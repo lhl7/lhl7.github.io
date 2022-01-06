@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Kali安装</title>
+      <link href="/2022/01/06/kali%E8%A3%85%E6%9C%BA%E8%BF%87%E7%A8%8B/"/>
+      <url>/2022/01/06/kali%E8%A3%85%E6%9C%BA%E8%BF%87%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="kali装机过程"><a href="#kali装机过程" class="headerlink" title="kali装机过程"></a>kali装机过程</h2><p>磁盘管理</p><p>设别管理器</p><p>系统信息</p><p>下载系统iso文件 rufus 3.14 将内容刻录到u盘</p><p>关机开机后，按住F1</p><p>进入bios窗口，选Security  进入Security Boot 将Secure Boot改为Disabled</p><p>F10退出 按住F12 进入Boot Menu 选使用用来装机的USB设备，回车</p><p>进入kali界面，卡了一下，等待</p><p>图形化安装，选择语言和国家</p><p>安装完毕后，连接WIFI</p><p>磁盘分区，选择整个磁盘（前提是备份电脑中的所有内容），选择电脑（最大的）的磁盘</p><p>放在同一分区下，确定后选择“是”要更改</p><p>最后一步，直接重启，先不拔出USB</p><p>拔出USB后，需要对u盘重新分区，使用windows的diskpart命令和磁盘管理。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2022/01/04/hello-world/"/>
       <url>/2022/01/04/hello-world/</url>
