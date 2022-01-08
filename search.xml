@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2022/01/08/Nmap%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
+      <url>/2022/01/08/Nmap%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="NMAP使用笔记"><a href="#NMAP使用笔记" class="headerlink" title="NMAP使用笔记"></a>NMAP使用笔记</h1><p>NMAP的作用是在信息收集阶段进行端口扫描。</p><h2 id="一、端口扫描："><a href="#一、端口扫描：" class="headerlink" title="一、端口扫描："></a>一、端口扫描：</h2><p>要给sudo权限</p><p><code>namp xx.com -p 80 -sS</code>（syn扫描方式）</p><p>此外还有-sS/sT/sA/sW/sM 分别对应SYN/Connect()/ACK/window/Maimon</p><p>-sU对应UDP</p><p>-sN/sF/sX对应TCP null/FIN/Xmas</p><p>加 <code>-sV -O</code>可以扫描主机版本 ，操作系统等等信息</p><p><code>namp xx.com -p 80 -A</code>效果相同（推荐） </p><p>扫描所有端口：<code>namp xx.com -A -sS</code>(不讲武德，推荐) </p><p>使用<code> -iR</code>随机扫描域名</p><p>扫描五个最常见的端口 <code>nmap xx.com --top-ports 5</code></p><p>输出到文件<code>-oN [文件路径+文件名]</code></p><p>脚本扫描<code>--script=[文件路径./...+文件名]</code></p><h2 id="二、防火墙欺骗："><a href="#二、防火墙欺骗：" class="headerlink" title="二、防火墙欺骗："></a>二、防火墙欺骗：</h2><p><code>-D1.1.1.1,2.2.2.2</code>冒充其他IP发包（伪造IP）</p><p><code>-g996</code>冒充其他源端口号（伪造端口）</p><p><code>--spoof-mac [MAC地址]</code>冒充其他mac地址</p><p><code> namp -iflist</code>输出正在使用的网络信息</p><p>还可以使用空闲扫描，使用网络上其他的空闲主机进行扫描：</p><p>先发现空闲主机：<code>sudo nmap --script ipedseq -iR 1000 -oN ipidseq.txt</code>(扫描一千个主机，输出到文件)</p><p>扫描结束后，使用空闲主机的ip和端口，使用命令：</p><p><code>nmap -Pn -sI [空闲IP:空闲端口] [目标IP]</code></p><p>​    </p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Kali安装</title>
       <link href="/2022/01/06/kali%E8%A3%85%E6%9C%BA%E8%BF%87%E7%A8%8B/"/>
       <url>/2022/01/06/kali%E8%A3%85%E6%9C%BA%E8%BF%87%E7%A8%8B/</url>
