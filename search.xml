@@ -5,6 +5,19 @@
     
     <entry>
       <title></title>
+      <link href="/2022/01/11/PIKACHU%E9%80%9A%E5%85%B3_DAY2_%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
+      <url>/2022/01/11/PIKACHU%E9%80%9A%E5%85%B3_DAY2_%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</url>
+      
+        <content type="html"><![CDATA[<h1 id="PIKACHU通关-命令执行"><a href="#PIKACHU通关-命令执行" class="headerlink" title="PIKACHU通关_命令执行"></a>PIKACHU通关_命令执行</h1><p>一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作的接口。<br>比如我们常见的路由器、防火墙、入侵检测等设备的web管理界面上<br>一般会给用户提供一个ping操作的web界面，用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。 但是如果设计者在完成该功能时，没有做严格的安全控制，则可能会导致攻击者通过该接口提交“意想不到”的命令，从而让后台进行执行，从而控制整个后台服务器。</p><h2 id="命令连接符"><a href="#命令连接符" class="headerlink" title="命令连接符"></a>命令连接符</h2><p>windows系统和<a href="https://so.csdn.net/so/search?q=linux">linux</a>系统各有4个，其中3个是共有的，各有1个是特有的：</p><ul><li>windows系统：| 、||、&amp;&amp;、&amp;</li><li>linux系统：| 、||、&amp;&amp;、;</li></ul><p>总结一下各连接符号的作用：</p><ol><li> |    管道符，用于把前一个命令的输出作为下一个命令的输入；</li><li> || 逻辑或，只有前一个命令成功，后一个就不执行，反之后一个执行；</li><li> &amp;&amp;逻辑与，只有前一个执行成功才执行后一个，否则不执行；</li><li> &amp; Windows独有，顺序执行每一条命令；</li><li> ；Linux独有，顺序执行每一条命令；</li></ol><h2 id="测试常用命令"><a href="#测试常用命令" class="headerlink" title="测试常用命令"></a>测试常用命令</h2><p><code>whoami</code>命令（Who am i），用于区分Windows和Linux环境：</p><p>（前者有两个参数，用”\“隔开，后者只显示用户名）</p><h2 id="PIKACHU-exec’ping’"><a href="#PIKACHU-exec’ping’" class="headerlink" title="PIKACHU_exec’ping’"></a>PIKACHU_exec’ping’</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220111170123070.png" alt="image-20220111170123070"></p><p>没有任何过滤，随便乱杀。</p><h2 id="PIKACHU-exec’eval’"><a href="#PIKACHU-exec’eval’" class="headerlink" title="PIKACHU_exec’eval’"></a>PIKACHU_exec’eval’</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220111210928950.png" alt="image-20220111210928950"></p><p>一样没有任何过滤，可以直接使用<code>phpinfo();</code>进行测试，</p><p>或者构造payload<code>fputs(fopen(&#39;shell.php&#39;,&#39;w&#39;),&#39;&lt;?php assert($_POST[lhl_2507]);?&gt;&#39;);</code></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/2022/01/11/PIKACHU%E9%80%9A%E5%85%B3_DAY1_%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"/>
       <url>/2022/01/11/PIKACHU%E9%80%9A%E5%85%B3_DAY1_%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</url>
       
