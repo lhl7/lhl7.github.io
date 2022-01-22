@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>汇编跳转指令及其十六进制码</title>
+      <link href="/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/"/>
+      <url>/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="汇编跳转指令及其十六进制码"><a href="#汇编跳转指令及其十六进制码" class="headerlink" title="汇编跳转指令及其十六进制码"></a>汇编跳转指令及其十六进制码</h1><p>几种跳转指令和对应的机器码：<br>0xE8 CALL后面的四个字节是地址<br>0xE9 JMP后面的四个字节是偏移<br>0xEB JMP后面的二个字节是偏移<br>0xFF15 CALL后面的四个字节是存放地址的地址<br>0xFF25 JMP后面的四个字节是存放地址的地址<br>0x68 PUSH后面的四个字节入栈<br>0x6AP USH后面的一个字节入栈</p><p>————————————————<br>版权声明：本文为CSDN博主「hincon」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/ccworm/article/details/112787439">https://blog.csdn.net/ccworm/article/details/112787439</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>攻防世界Reverse进阶区-BABYRE-writeup</title>
       <link href="/2022/01/18/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYRE-writeup/"/>
       <url>/2022/01/18/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYRE-writeup/</url>
