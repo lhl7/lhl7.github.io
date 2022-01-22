@@ -1,0 +1,57 @@
+<!DOCTYPE html><html class="appearance-dark" lang="en"><head><meta charset="UTF-8"><title>攻防世界Reverse进阶区-BABYHOOK-writeup</title><meta name="description" content="月明星稀 乌鹊南飞"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q || []).push(arguments)},i[r].l=1 * new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'lhl_2507', 'auto');
+ga('send', 'pageview');</script><!-- End Google Analytics -->
+<!-- Baidu Analytics --><script>var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "//hm.baidu.com/hm.js?" + 'lhl_2507';
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+})();</script><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="攻防世界Reverse进阶区-流浪者-writeup本题为较为基础的Hook题，通过本writeup来整理一下思路。
+main函数
+进入程序，首先确定flag字符串长度为19；
+然后发现程序会将输入内容写入文件名为文件Your_input的文件；
+最后通过核验NumberOfBytesWritten变量是否为1来控制输出；
+此时，若进入sub_401240函数就会中计，需手动进行测试。
+
+手动测试后发现输出文件中的内容和输入完全不同，推测可能在sub_401220函数中对输入进行了加密。
+sub_401220函数：进入sub_401220函数：（为hook关键函数）
+
+其主要内容如下（1~14行）：
+
+获取当前进程号，打开进程到hprocess,libfilename为一常量kernel32.dll，pro.."><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">攻防世界Reverse进阶区-BABYHOOK-writeup</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-%E6%B5%81%E6%B5%AA%E8%80%85-writeup"><span class="toc-text">攻防世界Reverse进阶区-流浪者-writeup</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#main%E5%87%BD%E6%95%B0"><span class="toc-text">main函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sub-401220%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">sub_401220函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sub-401080%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">sub_401080函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sub-401000%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">sub_401000函数：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E5%87%BD%E6%95%B0%E7%9A%84%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">汇编跳转函数的总结：</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">攻防世界Reverse进阶区-BABYHOOK-writeup</h1><time class="has-text-grey" datetime="2022-01-22T10:09:53.729Z">2022-01-22</time><article class="mt-2 post-content"><h1 id="攻防世界Reverse进阶区-流浪者-writeup"><a href="#攻防世界Reverse进阶区-流浪者-writeup" class="headerlink" title="攻防世界Reverse进阶区-流浪者-writeup"></a>攻防世界Reverse进阶区-流浪者-writeup</h1><p>本题为较为基础的Hook题，通过本writeup来整理一下思路。</p>
+<h2 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122143740757.png" alt="image-20220122143740757"></p>
+<p>进入程序，首先确定<code>flag</code>字符串长度为<strong>19</strong>；</p>
+<p>然后发现程序会将输入内容写入文件名为文件<strong>Your_input</strong>的文件；</p>
+<p>最后通过核验<strong>NumberOfBytesWritten</strong>变量是否为1来控制输出；</p>
+<p>此时，若进入<strong>sub_401240</strong>函数就会中计，需手动进行测试。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122144439005.png" alt="image-20220122144439005"></p>
+<p>手动测试后发现输出文件中的内容和输入完全不同，推测可能在<strong>sub_401220</strong>函数中对输入进行了加密。</p>
+<h2 id="sub-401220函数："><a href="#sub-401220函数：" class="headerlink" title="sub_401220函数："></a>sub_401220函数：</h2><p>进入<strong>sub_401220</strong>函数：（为<code>hook</code>关键函数）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122144907695.png" alt="image-20220122144907695"></p>
+<p>其主要内容如下（1~14行）：</p>
+<blockquote>
+<p>获取当前进程号，打开进程到hprocess,libfilename为一常量kernel32.dll，procname为一常量writefile,故dword_409c4（*WriteFile_0位置)、lpaddress所存为writefile的地址，然后程序复制了lpaddress的地址到unk_40c9b4。</p>
+</blockquote>
+<p>然后开始hook操作（15、16行）：</p>
+<p>可以看到第15行有一常量被存入地址<code>40C9BC</code>，H键转化为十六进制 <strong>0xE9</strong></p>
+<p>然后在地址<code>40C9BD</code>存入了函数<code>sub_401080</code>与IpAdress的距离再减去5，即<code>sub_401080</code>与WriteFile函数的距离。</p>
+<p>总结来说，将writeFile函数的前五个字节替换为了跳转到<code>sub_401080</code>的语句。</p>
+<p>回到main函数后，在调用<code>WriteFile</code>函数时，实际调用的是<code>sub_401080</code>，因此进入<code>sub_401080</code>：</p>
+<h2 id="sub-401080函数："><a href="#sub-401080函数：" class="headerlink" title="sub_401080函数："></a>sub_401080函数：</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122152116398.png" alt="image-20220122152116398"></p>
+<p>可以看到，此函数内容为，先调用<code>sub_401000</code>，返回值V5；</p>
+<p>然后再在内部调用WriteFile函数；</p>
+<p>最终根据V5的值，判断第四个指针参数<em>lpNumberOfBytesWritten的值，此处的</em>lpNumberOfBytesWritten参数，即对应main函数中的NumberOfBytesWritten关键参数。</p>
+<p>因此，推测<code>sub_401000</code>函数为对于输入的核心判断函数，步入查看：</p>
+<h2 id="sub-401000函数："><a href="#sub-401000函数：" class="headerlink" title="sub_401000函数："></a>sub_401000函数：</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122153313662.png" alt="image-20220122153313662"></p>
+<p>输入为a1；a2为固定值19；</p>
+<p>然后下面的逻辑简单的说就是先加密a1，然后比较数组a1每一位的值和储存在 <strong>byte_40A030</strong>处每一位的值。</p>
+<p>直接逆向分析函数思路，发现奇数位是通过本位推导，但偶数位是通过高位推导，因此第0位是无法被推导出的，而18位可以被推导出两次:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122164546365.png" alt="image-20220122164546365"></p>
+<p>脚本如上：猜测第一位是<code>f</code>字符，最终正确。</p>
+<h2 id="汇编跳转函数的总结："><a href="#汇编跳转函数的总结：" class="headerlink" title="汇编跳转函数的总结："></a>汇编跳转函数的总结：</h2><p><a target="_blank" rel="noopener" href="https://lhl7.github.io/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/">https://lhl7.github.io/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</a></p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" title="汇编跳转指令及其十六进制码"><span class="has-text-weight-semibold">Next: 汇编跳转指令及其十六进制码</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com/jacky_478"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/lhl7"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/lhl_2507"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/loki-45-54"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> lhl_2507 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

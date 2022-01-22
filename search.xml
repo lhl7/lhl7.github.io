@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>攻防世界Reverse进阶区-BABYHOOK-writeup</title>
+      <link href="/2022/01/22/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYHOOK-writeup/"/>
+      <url>/2022/01/22/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYHOOK-writeup/</url>
+      
+        <content type="html"><![CDATA[<h1 id="攻防世界Reverse进阶区-流浪者-writeup"><a href="#攻防世界Reverse进阶区-流浪者-writeup" class="headerlink" title="攻防世界Reverse进阶区-流浪者-writeup"></a>攻防世界Reverse进阶区-流浪者-writeup</h1><p>本题为较为基础的Hook题，通过本writeup来整理一下思路。</p><h2 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122143740757.png" alt="image-20220122143740757"></p><p>进入程序，首先确定<code>flag</code>字符串长度为<strong>19</strong>；</p><p>然后发现程序会将输入内容写入文件名为文件<strong>Your_input</strong>的文件；</p><p>最后通过核验<strong>NumberOfBytesWritten</strong>变量是否为1来控制输出；</p><p>此时，若进入<strong>sub_401240</strong>函数就会中计，需手动进行测试。</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122144439005.png" alt="image-20220122144439005"></p><p>手动测试后发现输出文件中的内容和输入完全不同，推测可能在<strong>sub_401220</strong>函数中对输入进行了加密。</p><h2 id="sub-401220函数："><a href="#sub-401220函数：" class="headerlink" title="sub_401220函数："></a>sub_401220函数：</h2><p>进入<strong>sub_401220</strong>函数：（为<code>hook</code>关键函数）</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122144907695.png" alt="image-20220122144907695"></p><p>其主要内容如下（1~14行）：</p><blockquote><p>获取当前进程号，打开进程到hprocess,libfilename为一常量kernel32.dll，procname为一常量writefile,故dword_409c4（*WriteFile_0位置)、lpaddress所存为writefile的地址，然后程序复制了lpaddress的地址到unk_40c9b4。</p></blockquote><p>然后开始hook操作（15、16行）：</p><p>可以看到第15行有一常量被存入地址<code>40C9BC</code>，H键转化为十六进制 <strong>0xE9</strong></p><p>然后在地址<code>40C9BD</code>存入了函数<code>sub_401080</code>与IpAdress的距离再减去5，即<code>sub_401080</code>与WriteFile函数的距离。</p><p>总结来说，将writeFile函数的前五个字节替换为了跳转到<code>sub_401080</code>的语句。</p><p>回到main函数后，在调用<code>WriteFile</code>函数时，实际调用的是<code>sub_401080</code>，因此进入<code>sub_401080</code>：</p><h2 id="sub-401080函数："><a href="#sub-401080函数：" class="headerlink" title="sub_401080函数："></a>sub_401080函数：</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122152116398.png" alt="image-20220122152116398"></p><p>可以看到，此函数内容为，先调用<code>sub_401000</code>，返回值V5；</p><p>然后再在内部调用WriteFile函数；</p><p>最终根据V5的值，判断第四个指针参数<em>lpNumberOfBytesWritten的值，此处的</em>lpNumberOfBytesWritten参数，即对应main函数中的NumberOfBytesWritten关键参数。</p><p>因此，推测<code>sub_401000</code>函数为对于输入的核心判断函数，步入查看：</p><h2 id="sub-401000函数："><a href="#sub-401000函数：" class="headerlink" title="sub_401000函数："></a>sub_401000函数：</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122153313662.png" alt="image-20220122153313662"></p><p>输入为a1；a2为固定值19；</p><p>然后下面的逻辑简单的说就是先加密a1，然后比较数组a1每一位的值和储存在 <strong>byte_40A030</strong>处每一位的值。</p><p>直接逆向分析函数思路，发现奇数位是通过本位推导，但偶数位是通过高位推导，因此第0位是无法被推导出的，而18位可以被推导出两次:</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220122164546365.png" alt="image-20220122164546365"></p><p>脚本如上：猜测第一位是<code>f</code>字符，最终正确。</p><h2 id="汇编跳转函数的总结："><a href="#汇编跳转函数的总结：" class="headerlink" title="汇编跳转函数的总结："></a>汇编跳转函数的总结：</h2><p><a href="https://lhl7.github.io/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/">https://lhl7.github.io/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>汇编跳转指令及其十六进制码</title>
       <link href="/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/"/>
       <url>/2022/01/22/%E6%B1%87%E7%BC%96%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
