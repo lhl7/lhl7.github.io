@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>正则表达式简单笔记</title>
+      <link href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <url>/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>python中可以通过<code>import re</code>引入re模块，用正则表达式处理字符串</p><h2 id="一、正则表达式"><a href="#一、正则表达式" class="headerlink" title="一、正则表达式"></a>一、正则表达式</h2><p><strong>在线正则表达式测试工具：<a href="https://regex101.com/">https://regex101.com/</a></strong></p><h3 id="1、限定符"><a href="#1、限定符" class="headerlink" title="1、限定符"></a>1、限定符</h3><h4 id="匹配单字符"><a href="#匹配单字符" class="headerlink" title="匹配单字符"></a>匹配单字符</h4><p><strong>? 限定符</strong>：通过<code>used？</code>可匹配<code>use</code>或<code>used</code>,等含有<code>use</code>字样，<code>d</code>可有可无；</p><p>*<strong>限定符</strong>：通过<code>ab*c</code>可以匹配 <code>ac abc abbbbc</code>等含有n个b，ac必须按照顺序有的字符串；</p><p><strong>+限定符</strong>：即*限定符除去没有b的情况，<code>ab</code>不会被匹配；</p><p><strong>{n}限定符</strong>：<code>ab&#123;6&#125;c</code>可匹配b出现次数为6的情况，或者，{2,6}为2-6次，{2,}为两次以上</p><h4 id="匹配多字符"><a href="#匹配多字符" class="headerlink" title="匹配多字符"></a>匹配多字符</h4><p>使用 **()**框选所要匹配的字符，然后正常使用限定符。</p><h3 id="2、“或”运算符"><a href="#2、“或”运算符" class="headerlink" title="2、“或”运算符"></a>2、“或”运算符</h3><p>正则表达式要匹配 <code>acat</code>或者 <code>adog</code>时，可以使用或运算符，表达式如下：</p><p><code>a(cat|dog)</code></p><h3 id="3、字符类"><a href="#3、字符类" class="headerlink" title="3、字符类"></a>3、字符类</h3><p><strong>[] 匹配符</strong>：</p><p>如果想匹配ab三个字母组成的内容，可以使用 <code>[abc]+</code>;</p><p>其中<code>[]</code>用于限制匹配的字符；</p><p>在方括号中，我们可以指定范围，语法如 <code>[a-zA-Z]</code>即大小写所有英文字符；</p><p><strong>^匹配：</strong></p><p>和方括号联用，<code>[^0-9]+</code>代表非数字</p><h3 id="4、元字符"><a href="#4、元字符" class="headerlink" title="4、元字符"></a>4、元字符</h3><p>元字符是正则表达式预先定义好的内容</p><table><thead><tr><th>符号</th><th>释义</th><th>解释</th></tr></thead><tbody><tr><td>\d+</td><td>数字字符</td><td>等同于[0-9]</td></tr><tr><td>\w+</td><td>单词字符</td><td>英文、数字、下划线</td></tr><tr><td>\s+</td><td>空白符</td><td>TAB和换行符（空格）</td></tr><tr><td>\D+</td><td>非数字字符</td><td></td></tr><tr><td>\W+</td><td>非单词字符</td><td></td></tr><tr><td>\S+</td><td>非空白字符</td><td></td></tr><tr><td>\b</td><td>单词边界</td><td>\b的前一个字符和后一个字符不全是\w</td></tr><tr><td>.*</td><td>任意字符</td><td>不包含换行符</td></tr></tbody></table><p>注：</p><p>**+**为匹配多个连接的字符，而非一个一个单独匹配</p><table><thead><tr><th>特殊字符</th><th>释义</th><th>解释</th></tr></thead><tbody><tr><td>^</td><td>匹配行首</td><td>如^a,只会匹配行首的a，而非所有a</td></tr><tr><td>$</td><td>匹配行尾</td><td>如$a,只会匹配行尾的a，而非所有a</td></tr></tbody></table><h3 id="5、贪婪与懒惰匹配"><a href="#5、贪婪与懒惰匹配" class="headerlink" title="5、贪婪与懒惰匹配"></a>5、贪婪与懒惰匹配</h3><p>正则表达式默认使用的是贪婪匹配；</p><p>即，当出现较大的字符能被一次匹配时，忽略其包含的较小的字符，优先匹配较大的字符，试举一例，当我们尝试匹配html标签，匹配内容如下：<br><code>&lt;span&gt;&lt;b&gt;this is a text&lt;/b&gt;&lt;/span&gt;</code></p><p>我们可能会使用 <code>&lt;.+&gt;</code>进行匹配：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111221372.png" alt="image-20220123111221372"></p><p>正则默认选择了最贪婪的匹配方法。</p><p>我们可以手动切换贪婪匹配为懒惰匹配，使用 <code>&lt;.+?&gt;</code>进行匹配：<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111350484.png" alt="image-20220123111350484"></p><h3 id="6、优秀教程"><a href="#6、优秀教程" class="headerlink" title="6、优秀教程"></a>6、优秀教程</h3>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>攻防世界Reverse进阶区-BABYHOOK-writeup</title>
       <link href="/2022/01/22/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYHOOK-writeup/"/>
       <url>/2022/01/22/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYHOOK-writeup/</url>
