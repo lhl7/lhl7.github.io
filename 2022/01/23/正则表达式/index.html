@@ -19,7 +19,7 @@ s.parentNode.insertBefore(hm, s);
 {n}限定符：ab&amp;#123;6&amp;#125;c可匹配b出现次数为6的情况，或者，{2,6}为2-6次，{2,}为两次以上
 匹配多字符使用 **()**框选所要匹配的字符，然后正常使用限定符。
 2、“或”运算符正则表达式要匹配 acat或者 adog时，可以使用或运算符，表达式如下：
-a.."><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">正则表达式简单笔记</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">一、正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="toc-text">1、限定符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%8D%95%E5%AD%97%E7%AC%A6"><span class="toc-text">匹配单字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%A4%9A%E5%AD%97%E7%AC%A6"><span class="toc-text">匹配多字符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E2%80%9C%E6%88%96%E2%80%9D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">2、“或”运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="toc-text">3、字符类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%85%83%E5%AD%97%E7%AC%A6"><span class="toc-text">4、元字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%B4%AA%E5%A9%AA%E4%B8%8E%E6%87%92%E6%83%B0%E5%8C%B9%E9%85%8D"><span class="toc-text">5、贪婪与懒惰匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E4%BC%98%E7%A7%80%E6%95%99%E7%A8%8B"><span class="toc-text">6、优秀教程</span></a></li></ol></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">正则表达式简单笔记</h1><time class="has-text-grey" datetime="2022-01-23T03:56:49.877Z">2022-01-23</time><article class="mt-2 post-content"><h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>python中可以通过<code>import re</code>引入re模块，用正则表达式处理字符串</p>
+a.."><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">正则表达式简单笔记</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">一、正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="toc-text">1、限定符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%8D%95%E5%AD%97%E7%AC%A6"><span class="toc-text">匹配单字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%A4%9A%E5%AD%97%E7%AC%A6"><span class="toc-text">匹配多字符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E2%80%9C%E6%88%96%E2%80%9D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">2、“或”运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E7%B1%BB"><span class="toc-text">3、字符类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%85%83%E5%AD%97%E7%AC%A6"><span class="toc-text">4、元字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%B4%AA%E5%A9%AA%E4%B8%8E%E6%87%92%E6%83%B0%E5%8C%B9%E9%85%8D"><span class="toc-text">5、贪婪与懒惰匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E4%BC%98%E7%A7%80%E6%95%99%E7%A8%8B"><span class="toc-text">6、优秀教程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">二、正则表达式的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81"><span class="toc-text">1、. ^ $</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81"><span class="toc-text">2、* + ? { }</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E9%9B%86%EF%BC%BB%EF%BC%BD%EF%BC%BB-%EF%BC%BD"><span class="toc-text">3、字符集［］［^］</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%88%86%E7%BB%84-%E4%B8%8E-%E6%88%96-%EF%BD%9C%EF%BC%BB-%EF%BC%BD"><span class="toc-text">4、分组 ()与 或 ｜［^］</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E8%BD%AC%E4%B9%89%E7%AC%A6"><span class="toc-text">5、转义符 \</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D"><span class="toc-text">6、贪婪匹配</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">正则表达式简单笔记</h1><time class="has-text-grey" datetime="2022-01-23T03:56:49.877Z">2022-01-23</time><article class="mt-2 post-content"><h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>python中可以通过<code>import re</code>引入re模块，用正则表达式处理字符串</p>
 <h2 id="一、正则表达式"><a href="#一、正则表达式" class="headerlink" title="一、正则表达式"></a>一、正则表达式</h2><p><strong>在线正则表达式测试工具：<a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></strong></p>
 <h3 id="1、限定符"><a href="#1、限定符" class="headerlink" title="1、限定符"></a>1、限定符</h3><h4 id="匹配单字符"><a href="#匹配单字符" class="headerlink" title="匹配单字符"></a>匹配单字符</h4><p><strong>? 限定符</strong>：通过<code>used？</code>可匹配<code>use</code>或<code>used</code>,等含有<code>use</code>字样，<code>d</code>可有可无；</p>
 <p>*<strong>限定符</strong>：通过<code>ab*c</code>可以匹配 <code>ac abc abbbbc</code>等含有n个b，ac必须按照顺序有的字符串；</p>
@@ -111,4 +111,218 @@ a.."><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-
 <p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111221372.png" alt="image-20220123111221372"></p>
 <p>正则默认选择了最贪婪的匹配方法。</p>
 <p>我们可以手动切换贪婪匹配为懒惰匹配，使用 <code>&lt;.+?&gt;</code>进行匹配：<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111350484.png" alt="image-20220123111350484"></p>
-<h3 id="6、优秀教程"><a href="#6、优秀教程" class="headerlink" title="6、优秀教程"></a>6、优秀教程</h3></article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2022/01/22/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYHOOK-writeup/" title="攻防世界Reverse进阶区-BABYHOOK-writeup"><span class="has-text-weight-semibold">Next: 攻防世界Reverse进阶区-BABYHOOK-writeup</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com/jacky_478"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/lhl7"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/lhl_2507"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/loki-45-54"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> lhl_2507 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
+<h3 id="6、优秀教程"><a href="#6、优秀教程" class="headerlink" title="6、优秀教程"></a>6、优秀教程</h3><h2 id="二、正则表达式的使用"><a href="#二、正则表达式的使用" class="headerlink" title="二、正则表达式的使用"></a>二、正则表达式的使用</h2><h4 id="1、"><a href="#1、" class="headerlink" title="1、. ^ $"></a>1、. ^ $</h4><table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a.</td>
+<td>abacad</td>
+<td>abacad</td>
+<td>匹配所有”a.”的字符</td>
+</tr>
+<tr>
+<td>^a.</td>
+<td>abacad</td>
+<td>ab</td>
+<td>只从开头匹配”a.”</td>
+</tr>
+<tr>
+<td>a.$</td>
+<td>abacad</td>
+<td>ad</td>
+<td>只匹配结尾的”a.$”</td>
+</tr>
+</tbody></table>
+<h4 id="2、"><a href="#2、" class="headerlink" title="2、* + ? { }"></a>2、* + ? { }</h4><table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a.?</td>
+<td>abefacgad</td>
+<td>ab ac ad</td>
+<td>?表示重复零次或一次，即只匹配”a”后面一个任意字符。</td>
+</tr>
+<tr>
+<td>a.*</td>
+<td>abefacgad</td>
+<td>abefacgad</td>
+<td>*表示重复零次或多次，即匹配”a”后面0或多个任意字符。</td>
+</tr>
+<tr>
+<td>a.+</td>
+<td>abefacgad</td>
+<td>abefacgad</td>
+<td>+表示重复一次或多次，即只匹配”a”后面1个或多个任意字符。</td>
+</tr>
+<tr>
+<td>a.{1,2}</td>
+<td>abefacgad</td>
+<td>abe acg ad</td>
+<td>{1,2}匹配1到2次任意字符。</td>
+</tr>
+</tbody></table>
+<p>注意：前面的*,+,?等都是贪婪匹配，也就是尽可能匹配，后面加?号使其变成惰性匹配</p>
+<table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a.*?</td>
+<td>abefacgad</td>
+<td>a a a</td>
+<td>惰性匹配</td>
+</tr>
+</tbody></table>
+<h4 id="3、字符集［］［-］"><a href="#3、字符集［］［-］" class="headerlink" title="3、字符集［］［^］"></a>3、字符集［］［^］</h4><table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>a[befcgd]*</td>
+<td>abefacgad</td>
+<td>abef acg ad</td>
+<td>表示匹配”a”后面[befcgd]的字符任意次`</td>
+</tr>
+<tr>
+<td>a[^f]*</td>
+<td>abefacgad</td>
+<td>abe acgad</td>
+<td>表示匹配一个不是”f”的字符任意次</td>
+</tr>
+<tr>
+<td>[\d]</td>
+<td>412a3bc</td>
+<td>4 1 2 3</td>
+<td>表示匹配任意一个数字，匹配到4个结果</td>
+</tr>
+<tr>
+<td>[\d]+</td>
+<td>412a3bc</td>
+<td>412 3</td>
+<td>表示匹配任意个数字，匹配到2个结果</td>
+</tr>
+</tbody></table>
+<h4 id="4、分组-与-或-｜［-］"><a href="#4、分组-与-或-｜［-］" class="headerlink" title="4、分组 ()与 或 ｜［^］"></a>4、分组 ()与 或 ｜［^］</h4><p>　　身份证号码是一个长度为15或18个字符的字符串，如果是15位则全部由数字组成，首位不能为0；如果是18位，则前17位全部是数字，末位可能是数字或x，下面我们尝试用正则来表示：</p>
+<table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>^[1-9]\d{13,16}[0-9x]$</td>
+<td>110101198001017032</td>
+<td>110101198001017032</td>
+<td>表示可以匹配一个正确的身份证号</td>
+</tr>
+<tr>
+<td>^[1-9]\d{13,16}[0-9x]$</td>
+<td>1101011980010170</td>
+<td>1101011980010170</td>
+<td>表示也可以匹配这串数字，但这并不是一个正确的身份证号码，它是一个16位的数字</td>
+</tr>
+<tr>
+<td>^[1-9]\d{14}(\d{2}[0-9x])?$</td>
+<td>1101011980010170</td>
+<td>False</td>
+<td>现在不会匹配错误的身份证号了()表示分组，将\d{2}[0-9x]分成一组，就可以整体约束他们出现的次数为0-1次</td>
+</tr>
+<tr>
+<td>^([1-9]\d{16}[0-9x]|[1-9]\d{14})$</td>
+<td>110105199812067023</td>
+<td>110105199812067023</td>
+<td>表示先匹配[1-9]\d{16}[0-9x]如果没有匹配上就匹配[1-9]\d{14}</td>
+</tr>
+</tbody></table>
+<h4 id="5、转义符"><a href="#5、转义符" class="headerlink" title="5、转义符 \"></a>5、转义符 \</h4><p>　　在正则表达式中，有很多有特殊意义的是元字符，比如\n和\s等，如果要在正则中匹配正常的”\n”而不是”换行符”就需要对”&quot;进行转义，变成’\‘。</p>
+<p>　　在python中，无论是正则表达式，还是待匹配的内容，都是以字符串的形式出现的，在字符串中\也有特殊的含义，本身还需要转义。所以如果匹配一次”\n”,字符串中要写成’\n’，那么正则里就要写成”\\n”,这样就太麻烦了。这个时候我们就用到了r’\n’这个概念，此时的正则是r’\n’就可以了。</p>
+<table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配 结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\n</td>
+<td>\n</td>
+<td>False</td>
+<td>因为在正则表达式中\是有特殊意义的字符，所以要匹配\n本身，用表达式\n无法匹配</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>\n</td>
+<td>True</td>
+<td>转义\之后变成\，即可匹配</td>
+</tr>
+<tr>
+<td>“\\n”</td>
+<td>‘\n’</td>
+<td>True</td>
+<td>如果在python中，字符串中的’&#39;也需要转义，所以每一个字符串’&#39;又需要转义一次</td>
+</tr>
+<tr>
+<td>r’\n’</td>
+<td>r’\n’</td>
+<td>True</td>
+<td>在字符串之前加r，让整个字符串不转义</td>
+</tr>
+</tbody></table>
+<h4 id="6、贪婪匹配"><a href="#6、贪婪匹配" class="headerlink" title="6、贪婪匹配"></a>6、贪婪匹配</h4><p>贪婪匹配：在满足匹配时，匹配尽可能长的字符串，默认情况下，采用贪婪匹配</p>
+<table>
+<thead>
+<tr>
+<th>正则</th>
+<th>待匹配字符</th>
+<th>匹配结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;.*&gt;</td>
+<td><script>...<script></td>
+<td><script>...<script></td>
+<td>默认为贪婪匹配模式，会匹配尽量长的字符串</td>
+</tr>
+<tr>
+<td>&lt;.*?&gt;</td>
+<td><script>...<script></td>
+<td><script> <script></td>
+<td>加上？为将贪婪匹配模式转为非贪婪匹配模式，会匹配尽量短的字符串</td>
+</tr>
+</tbody></table>
+<p>几个常用的非贪婪匹配Pattern</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*? 重复任意次，但尽可能少重复</span><br><span class="line">+? 重复1次或更多次，但尽可能少重复</span><br><span class="line">?? 重复0次或1次，但尽可能少重复</span><br><span class="line">&#123;n,m&#125;? 重复n到m次，但尽可能少重复</span><br><span class="line">&#123;n,&#125;? 重复n次以上，但尽可能少重复</span><br></pre></td></tr></table></figure>
+
+<p>.*?的用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">. 是任意字符</span><br><span class="line">* 是取 0 至 无限长度</span><br><span class="line">? 是非贪婪模式。</span><br><span class="line">何在一起就是 取尽量少的任意字符，一般不会这么单独写，他大多用在：</span><br><span class="line">.*?x</span><br><span class="line">就是取前面任意长度的字符，直到一个x出现</span><br></pre></td></tr></table></figure>
+
+<p>本部分摘自：</p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2022/01/22/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYHOOK-writeup/" title="攻防世界Reverse进阶区-BABYHOOK-writeup"><span class="has-text-weight-semibold">Next: 攻防世界Reverse进阶区-BABYHOOK-writeup</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com/jacky_478"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/lhl7"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/lhl_2507"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/loki-45-54"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> lhl_2507 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>
