@@ -1,0 +1,52 @@
+<!DOCTYPE html><html class="appearance-user-can-set" lang="en"><head><meta charset="UTF-8"><title>vi和vim的基础使用</title><meta name="description" content="月明星稀 乌鹊南飞"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q || []).push(arguments)},i[r].l=1 * new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'lhl_2507', 'auto');
+ga('send', 'pageview');</script><!-- End Google Analytics -->
+<!-- Baidu Analytics --><script>var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "//hm.baidu.com/hm.js?" + 'lhl_2507';
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+})();</script><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="vi的基础使用vim即vi的增强版，带有代码补全高亮等功能。
+一、vi和vim的三种模式
+正常模式：移动光标，删除字符或者整行，复制粘贴
+插入模式（一般输入i进入）：编辑模式
+命令行模式：（输入esc，然后：）提供相关指令，存档、离开等等
+
+三种模式的相互转化：
+命令行中输入：vim xxx进入 一般模式；
+在 一般模式中，输入i或者a进入 编辑模式；输入：或者/进入 命令模式
+在 命令模式或者 一般模式中，输入esc进入 一般模式
+命令行模式的退出方式：
+：wq-保存并退出
+：q-退出，不保存
+：q！-强制退出，不保存
+二、vi快捷键总结1.一般模式下的处理拷贝：拷贝当前行为yy；拷贝从当前行开始，直到向下的n行nyy（如5yy)
+粘贴：输入p
+删除：删除当前行为dd；删除从当前行开始，直到向下的n行nd.."><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">vi和vim的基础使用</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vi%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">vi的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81vi%E5%92%8Cvim%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-text">一、vi和vim的三种模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81vi%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93"><span class="toc-text">二、vi快捷键总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%80%E8%88%AC%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">1.一般模式下的处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">2.命令行模式的处理</span></a></li></ol></li></ol></li></ol></div><div class="column is-9"><header class="my-4"></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">vi和vim的基础使用</h1><time class="has-text-grey" datetime="2022-01-29T03:00:23.565Z">2022-01-29</time><article class="mt-2 post-content"><h1 id="vi的基础使用"><a href="#vi的基础使用" class="headerlink" title="vi的基础使用"></a>vi的基础使用</h1><p>vim即vi的增强版，带有代码补全高亮等功能。</p>
+<h2 id="一、vi和vim的三种模式"><a href="#一、vi和vim的三种模式" class="headerlink" title="一、vi和vim的三种模式"></a>一、vi和vim的三种模式</h2><ul>
+<li>正常模式：移动光标，删除字符或者整行，复制粘贴</li>
+<li>插入模式（一般输入i进入）：编辑模式</li>
+<li>命令行模式：（输入esc，然后：）提供相关指令，存档、离开等等</li>
+</ul>
+<p><strong>三种模式的相互转化：</strong></p>
+<p>命令行中输入：<code>vim xxx</code>进入 <em>一般模式</em>；</p>
+<p>在 <em>一般模式</em>中，输入<code>i或者a</code>进入 <em>编辑模式</em>；输入<code>：或者/</code>进入 <em>命令模式</em></p>
+<p>在 <em>命令模式</em>或者 <em>一般模式</em>中，输入<code>esc</code>进入 <em>一般模式</em></p>
+<p><strong>命令行模式的退出方式：</strong></p>
+<p><code>：wq</code>-保存并退出</p>
+<p><code>：q</code>-退出，不保存</p>
+<p><code>：q！</code>-强制退出，不保存</p>
+<h2 id="二、vi快捷键总结"><a href="#二、vi快捷键总结" class="headerlink" title="二、vi快捷键总结"></a>二、vi快捷键总结</h2><h3 id="1-一般模式下的处理"><a href="#1-一般模式下的处理" class="headerlink" title="1.一般模式下的处理"></a>1.一般模式下的处理</h3><p><strong>拷贝</strong>：拷贝当前行为<code>yy</code>；拷贝从当前行开始，直到向下的n行<code>nyy</code>（如<code>5yy</code>)</p>
+<p><strong>粘贴</strong>：输入p</p>
+<p><strong>删除</strong>：删除当前行为<code>dd</code>；删除从当前行开始，直到向下的n行<code>ndd</code>（如<code>5dd</code>)</p>
+<p><strong>撤销</strong>：输入<code>u</code>撤销</p>
+<p><strong>定位到首、末行</strong>：输入<code>G（即shift+g）</code>移动到最末行，输入<code>gg</code>移动到首行</p>
+<p><strong>定位到某一行</strong>：输入要定位的行号（如 <code>20</code>），然后输入<code>G（即shift+g）</code></p>
+<h3 id="2-命令行模式的处理"><a href="#2-命令行模式的处理" class="headerlink" title="2.命令行模式的处理"></a>2.命令行模式的处理</h3><p><strong>查找</strong>：输<code>/</code>进入命令行模式，输入要查找的字符串，回车即可，下一个为<code>n</code></p>
+<p><strong>设置行号</strong>：输<code>：</code>进入命令行模式，输入<code>set nu</code>打开行号，输入<code>set nonu</code>关闭行号</p>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式简单笔记"><span class="has-text-weight-semibold">Next: 正则表达式简单笔记</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com/jacky_478"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/lhl7"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com/lhl_2507"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><a title="zhihu" target="_blank" rel="noopener nofollow" href="//zhihu.com/people/loki-45-54"><i class="iconfont icon-zhihu"></i></a><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> lhl_2507 2022</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/post.js"></script></body></html>

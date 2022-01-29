@@ -11,7 +11,23 @@ var hm = document.createElement("script");
 hm.src = "//hm.baidu.com/hm.js?" + 'lhl_2507';
 var s = document.getElementsByTagName("script")[0];
 s.parentNode.insertBefore(hm, s);
-})();</script><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>Archives · All</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111221372.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"><img class="post-cover-img js-img-fadeIn" src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111221372.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式简单笔记</a></h2><time class="has-text-grey" datetime="2022-01-23T03:56:49.877Z">2022-01-23</time><p class="is-flex-grow-2 mt-2">正则表达式python中可以通过import re引入re模块，用正则表达式处理字符串
+})();</script><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>Archives · All</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/29/vi%E7%9A%84%E4%BD%BF%E7%94%A8/">vi和vim的基础使用</a></h2><time class="has-text-grey" datetime="2022-01-29T03:00:23.565Z">2022-01-29</time><p class="is-flex-grow-2 mt-2">vi的基础使用vim即vi的增强版，带有代码补全高亮等功能。
+一、vi和vim的三种模式
+正常模式：移动光标，删除字符或者整行，复制粘贴
+插入模式（一般输入i进入）：编辑模式
+命令行模式：（输入esc，然后：）提供相关指令，存档、离开等等
+
+三种模式的相互转化：
+命令行中输入：vim xxx进入 一般模式；
+在 一般模式中，输入i或者a进入 编辑模式；输入：或者/进入 命令模式
+在 命令模式或者 一般模式中，输入esc进入 一般模式
+命令行模式的退出方式：
+：wq-保存并退出
+：q-退出，不保存
+：q！-强制退出，不保存
+二、vi快捷键总结1.一般模式下的处理拷贝：拷贝当前行为yy；拷贝从当前行开始，直到向下的n行nyy（如5yy)
+粘贴：输入p
+删除：删除当前行为dd；删除从当前行开始，直到向下的n行nd..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/29/vi%E7%9A%84%E4%BD%BF%E7%94%A8/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111221372.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"><img class="post-cover-img js-img-fadeIn" src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220123111221372.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式简单笔记</a></h2><time class="has-text-grey" datetime="2022-01-23T03:56:49.877Z">2022-01-23</time><p class="is-flex-grow-2 mt-2">正则表达式python中可以通过import re引入re模块，用正则表达式处理字符串
 一、正则表达式在线正则表达式测试工具：https://regex101.com/
 1、限定符匹配单字符? 限定符：通过used？可匹配use或used,等含有use字样，d可有可无；
 *限定符：通过ab*c可以匹配 ac abc abbbbc等含有n个b，ac必须按照顺序有的字符串；
@@ -123,19 +139,7 @@ Cluster bomb（集束炸弹）
 
 分别对用户名和密码的爆破上传字典，若用户名和密码有特殊字符需求，不勾选URL-encoding:
 
-点击开始爆破，观察返回报文的长..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/11/PIKACHU%E9%80%9A%E5%85%B3_DAY1_%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/08/Nmap%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">Nmap使用笔记</a></h2><time class="has-text-grey" datetime="2022-01-08T03:32:09.633Z">2022-01-08</time><p class="is-flex-grow-2 mt-2">NMAP使用笔记NMAP的作用是在信息收集阶段进行端口扫描。
-一、端口扫描：要给sudo权限
-namp xx.com -p 80 -sS（syn扫描方式）
-此外还有-sS/sT/sA/sW/sM 分别对应SYN/Connect()/ACK/window/Maimon
--sU对应UDP
--sN/sF/sX对应TCP null/FIN/Xmas
-加 -sV -O可以扫描主机版本 ，操作系统等等信息
-namp xx.com -p 80 -A效果相同（推荐） 
-扫描所有端口：namp xx.com -A -sS(不讲武德，推荐) 
-使用 -iR随机扫描域名
-扫描五个最常见的端口 nmap xx.com --top-ports 5
-输出到文件-oN [文件路径+文件名]
-脚本扫描--script=[文件路径./.....</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/08/Nmap%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">Read more</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">12</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+点击开始爆破，观察返回报文的长..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/11/PIKACHU%E9%80%9A%E5%85%B3_DAY1_%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">Read more</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">13</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
 
 window.addEventListener('resize', $claudia.throttle(function () {
     var images = document.querySelectorAll('.js-img-fadeIn')

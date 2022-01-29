@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>vi和vim的基础使用</title>
+      <link href="/2022/01/29/vi%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2022/01/29/vi%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="vi的基础使用"><a href="#vi的基础使用" class="headerlink" title="vi的基础使用"></a>vi的基础使用</h1><p>vim即vi的增强版，带有代码补全高亮等功能。</p><h2 id="一、vi和vim的三种模式"><a href="#一、vi和vim的三种模式" class="headerlink" title="一、vi和vim的三种模式"></a>一、vi和vim的三种模式</h2><ul><li>正常模式：移动光标，删除字符或者整行，复制粘贴</li><li>插入模式（一般输入i进入）：编辑模式</li><li>命令行模式：（输入esc，然后：）提供相关指令，存档、离开等等</li></ul><p><strong>三种模式的相互转化：</strong></p><p>命令行中输入：<code>vim xxx</code>进入 <em>一般模式</em>；</p><p>在 <em>一般模式</em>中，输入<code>i或者a</code>进入 <em>编辑模式</em>；输入<code>：或者/</code>进入 <em>命令模式</em></p><p>在 <em>命令模式</em>或者 <em>一般模式</em>中，输入<code>esc</code>进入 <em>一般模式</em></p><p><strong>命令行模式的退出方式：</strong></p><p><code>：wq</code>-保存并退出</p><p><code>：q</code>-退出，不保存</p><p><code>：q！</code>-强制退出，不保存</p><h2 id="二、vi快捷键总结"><a href="#二、vi快捷键总结" class="headerlink" title="二、vi快捷键总结"></a>二、vi快捷键总结</h2><h3 id="1-一般模式下的处理"><a href="#1-一般模式下的处理" class="headerlink" title="1.一般模式下的处理"></a>1.一般模式下的处理</h3><p><strong>拷贝</strong>：拷贝当前行为<code>yy</code>；拷贝从当前行开始，直到向下的n行<code>nyy</code>（如<code>5yy</code>)</p><p><strong>粘贴</strong>：输入p</p><p><strong>删除</strong>：删除当前行为<code>dd</code>；删除从当前行开始，直到向下的n行<code>ndd</code>（如<code>5dd</code>)</p><p><strong>撤销</strong>：输入<code>u</code>撤销</p><p><strong>定位到首、末行</strong>：输入<code>G（即shift+g）</code>移动到最末行，输入<code>gg</code>移动到首行</p><p><strong>定位到某一行</strong>：输入要定位的行号（如 <code>20</code>），然后输入<code>G（即shift+g）</code></p><h3 id="2-命令行模式的处理"><a href="#2-命令行模式的处理" class="headerlink" title="2.命令行模式的处理"></a>2.命令行模式的处理</h3><p><strong>查找</strong>：输<code>/</code>进入命令行模式，输入要查找的字符串，回车即可，下一个为<code>n</code></p><p><strong>设置行号</strong>：输<code>：</code>进入命令行模式，输入<code>set nu</code>打开行号，输入<code>set nonu</code>关闭行号</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>正则表达式简单笔记</title>
       <link href="/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
       <url>/2022/01/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
