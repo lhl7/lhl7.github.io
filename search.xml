@@ -4,11 +4,24 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2022/02/14/PWN_%E6%A0%88%E5%9F%BA%E7%A1%80/"/>
+      <url>/2022/02/14/PWN_%E6%A0%88%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="PWN-栈基础"><a href="#PWN-栈基础" class="headerlink" title="PWN_栈基础"></a>PWN_栈基础</h1><h2 id="程序段结构图："><a href="#程序段结构图：" class="headerlink" title="程序段结构图："></a>程序段结构图：</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220214115234565.png" alt="image-20220214115234565"></p><h2 id="栈结构图："><a href="#栈结构图：" class="headerlink" title="栈结构图："></a>栈结构图：</h2><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220214120911800.png" alt="image-20220214120911800"></p><p>栈在内存中向下增长（地址下降）。<br>每个函数有自己的栈空间，从栈底（高地址）向栈顶（低地址）增长，函数与函数之间被称为栈帧。</p><p>其中，<br>    <strong>EBP</strong>指向栈底；<strong>ESP</strong>指向栈顶；</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>gdb调试基础</title>
       <link href="/2022/02/14/gdb%E8%B0%83%E8%AF%95%E5%9F%BA%E7%A1%80/"/>
       <url>/2022/02/14/gdb%E8%B0%83%E8%AF%95%E5%9F%BA%E7%A1%80/</url>
       
-        <content type="html"><![CDATA[<h1 id="gdb调试基础"><a href="#gdb调试基础" class="headerlink" title="gdb调试基础"></a>gdb调试基础</h1><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220213222351708.png" alt="image-20220213222351708" style="zoom:150%;" /><p><strong>调试</strong>：<br>    <code>s</code>默认在源代码下进行调试，在已经输入<code>s</code>的情况下，直接回车执行上一条语句；<br>    <code>si</code>为在汇编下进行调试；</p><p><strong>下断点：</strong></p><pre><code> 1. `b func_name` 2. `b /src/codefile.cc:81` gdb将在运行到源码文件/src/codefile.cc的第81行中断 3. `b *0x5859c0` &quot;*&quot;号是必须加在地址前的，0x5859c0为函数指针的地址</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="gdb调试基础"><a href="#gdb调试基础" class="headerlink" title="gdb调试基础"></a>gdb调试基础</h1><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220213222351708.png" alt="image-20220213222351708" style="zoom:150%;" /><p><strong>调试</strong>：<br>    <code>s</code>默认在源代码下进行调试，在已经输入<code>s</code>的情况下，直接回车执行上一条语句；<br>    <code>si</code>为在汇编下进行调试；</p><p><strong>下断点：</strong></p><pre><code> 1. `b func_name` 2. `b /src/codefile.cc:81` gdb将在运行到源码文件/src/codefile.cc的第81行中断 3. `b *0x5859c0` &quot;*&quot;号是必须加在地址前的，0x5859c0为函数指针的地址</code></pre><p><strong>段列表：</strong><br>    <code>vmap</code>可以显示程序的段列表</p>]]></content>
       
       
       
