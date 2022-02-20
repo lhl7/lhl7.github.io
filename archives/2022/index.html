@@ -11,7 +11,15 @@ var hm = document.createElement("script");
 hm.src = "//hm.baidu.com/hm.js?" + 'lhl_2507';
 var s = document.getElementsByTagName("script")[0];
 s.parentNode.insertBefore(hm, s);
-})();</script><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>Archives · 2022</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220214115234565.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/02/14/PWN_%E6%A0%88%E5%9F%BA%E7%A1%80/"><img class="post-cover-img js-img-fadeIn" src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220214115234565.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><time class="has-text-grey" datetime="2022-02-14T04:53:08.187Z">2022-02-14</time><p class="is-flex-grow-2 mt-2">PWN_栈基础程序段结构图：
+})();</script><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.0.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">lhl_2507's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>Archives · 2022</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/02/20/python_re%E6%A8%A1%E5%9D%97/">python_re模块</a></h2><time class="has-text-grey" datetime="2022-02-20T07:21:32.118Z">2022-02-20</time><p class="is-flex-grow-2 mt-2">python爬虫模块（RE、BS4、Xpath）一、RE模块基本使用：findall：匹配字符串中所有符合正则的内容
+finditer：匹配内容后返回迭代器，从迭代器中取数据可以用循环加.group()
+search：找到一个结果就返回，返回的结果是match对象，取数据可以用.group()
+match：从头开始匹配，从第一个字母匹配不到就没有（不常用）
+其中，上述内容的调用通过：    ret=re.findall(r&amp;#39;正则串&amp;#39;,&amp;#39;匹配目标串&amp;#39;)实现调用。
+预加载：预加载正则表达式（用于正则表达式较长、且多次使用时的封装）
+格式为:
+1234obj = re.compile(r&amp;quot;\d+&amp;quot;)ret = obj.finditer(&amp;quot;目标字串666..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/02/20/python_re%E6%A8%A1%E5%9D%97/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/02/20/python%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80/">python异步爬虫基础</a></h2><time class="has-text-grey" datetime="2022-02-20T07:21:32.118Z">2022-02-20</time><p class="is-flex-grow-2 mt-2">pyhton异步爬虫基础一、多线程/多进程多线程：1234567891011121314#  多线程from threading import Thread  # 线程类#实现方法1：def func():    for i in range(1000):        print(&amp;quot;func&amp;quot;, i)if __name__ == &amp;#x27;__main__&amp;#x27;:    t = Thread(target=func)  # 创建线程并给线程安排任务    t.start()  # 多线程状态为可以开始工作状态, 具体的执行时间由CPU决定    for i in range(1000):    	print(&amp;quot;main&amp;quot;, i)
+12345678910111..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/02/20/python%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220214115234565.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/02/14/PWN_%E6%A0%88%E5%9F%BA%E7%A1%80/"><img class="post-cover-img js-img-fadeIn" src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220214115234565.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><time class="has-text-grey" datetime="2022-02-14T04:53:08.187Z">2022-02-14</time><p class="is-flex-grow-2 mt-2">PWN_栈基础程序段结构图：
 栈结构图：
 栈在内存中向下增长（地址下降）。每个函数有自己的栈空间，从栈底（高地址）向栈顶（低地址）增长，函数与函数之间被称为栈帧。
 其中，    EBP指向栈底；ESP指向栈顶；
@@ -98,42 +106,7 @@ sub_401220函数：进入sub_401220函数：（为hook关键函数）
 此时可以在左侧找到相应函数内容，F5即可
 
 然后针对反汇编后的加密算法写一个脚本：
-12345678v2=[&amp;#x27;f&amp;#x27;,&amp;#x27;m&amp;#x27;,&amp;#x27;c&amp;#x27;,..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/18/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYRE-writeup/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220117123155980.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2022/01/17/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-%E6%B5%81%E6%B5%AA%E8%80%85-writeup/"><img class="post-cover-img js-img-fadeIn" src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220117123155980.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/17/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-%E6%B5%81%E6%B5%AA%E8%80%85-writeup/">攻防世界Reverse进阶区-流浪者-writeup</a></h2><time class="has-text-grey" datetime="2022-01-17T04:36:09.653Z">2022-01-17</time><p class="is-flex-grow-2 mt-2">攻防世界Reverse进阶区-流浪者-writeup
-关键函数1：sub_401890
-调用了另一个函数
-
-关键函数2：sub_4017F0
-先传入关键函数1进行加密，加密后进入函数2进行进一步加密，最后与kanXue...字符串对比查验
-逆向脚本书写逻辑即可
-
-最终运行结果：
-
-</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/17/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-%E6%B5%81%E6%B5%AA%E8%80%85-writeup/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><h2 class="mt-4 mb-0 is-family-serif"><a href="/2022/01/16/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">python笔记</a></h2><time class="has-text-grey" datetime="2022-01-16T14:31:38.600Z">2022-01-16</time><p class="is-flex-grow-2 mt-2">python笔记Python3 中有六个标准的数据类型：
-
-Number（数字）
-String（字符串）
-List（列表）
-Tuple（元组）
-Set（集合）
-Dictionary（字典）
-
-Python3 的六个标准数据类型中：
-
-不可变数据（3 个）：Number（数字）、String（字符串）、Tuple（元组）；
-
-可变数据（3 个）：List（列表）、Dictionary（字典）、Set（集合）。
-
-Python数据类型转换有时候，我们需要对数据内置的类型进行转换，数据类型的转换，你只需要将数据类型作为函数名即可，在下一章节 Python3 数据类型转换 会具体介绍。
-以下几个内置的函数可以执行数据类型之间的转换。这些函数返回一个新的对象，表示转换的值。
-
-
-
-函数
-描述
-
-
-
-[int(x ,b..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/16/python%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">Read more</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/archives/2022/page/2/">2</a><a class="extend next" rel="next" href="/archives/2022/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">14</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+12345678v2=[&amp;#x27;f&amp;#x27;,&amp;#x27;m&amp;#x27;,&amp;#x27;c&amp;#x27;,..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2022/01/18/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CReverse%E8%BF%9B%E9%98%B6%E5%8C%BA-BABYRE-writeup/">Read more</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/archives/2022/page/2/">2</a><a class="extend next" rel="next" href="/archives/2022/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a><span class="archive-list-count">14</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
 
 window.addEventListener('resize', $claudia.throttle(function () {
     var images = document.querySelectorAll('.js-img-fadeIn')
