@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>writeup_梅津美治郎reserve</title>
+      <link href="/2022/02/22/writeup_%E6%A2%85%E6%B4%A5%E7%BE%8E%E6%B2%BB%E9%83%8Ereserve/"/>
+      <url>/2022/02/22/writeup_%E6%A2%85%E6%B4%A5%E7%BE%8E%E6%B2%BB%E9%83%8Ereserve/</url>
+      
+        <content type="html"><![CDATA[<h1 id="writeup-梅津美治郎reserve"><a href="#writeup-梅津美治郎reserve" class="headerlink" title="writeup_梅津美治郎reserve"></a>writeup_梅津美治郎reserve</h1><p>查壳，没壳</p><p>ida打开：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222144540525.png" alt="image-20220222144540525"></p><p>level1太简单不说，r0b0RUlez！</p><p>直接，步入<code>sub_4015EA</code></p><p>发现有一个九次的小递归：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222144708771.png" alt="image-20220222144708771"></p><p>判断有猫腻，直接上动调，然而x32dbg怎么调都是一个异常终止。</p><p>查wp，改用虚拟机下的od，可以正常运行，简单的概述一下具体情况：</p><p>在运行完<code>int3</code>语句后，程序跳转到7地址开头系统领空，一段时间后，再次调用了4开头的正常函数，可以猜到应该是level2的主函数：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222145151675.png" alt="image-20220222145151675"></p><p>逻辑很简单：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222145245355.png" alt="image-20220222145245355"></p><p>直接比较了v1和另一串字符。</p><p>打开比较函数：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222145347133.png" alt="image-20220222145347133"></p><p>可以看到是将a2异或2后进行的比较，至此比较流程已经清晰，下面找到a2就可以解决问题。</p><p>依然需要动调：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222145635117.png" alt="image-20220222145635117"></p><p>可以看到数据窗口中显示的就是实际参与比较的a2字符串（以02结尾），我们直接解密：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220222150024397.png" alt="image-20220222150024397"></p><p>为welldone字样，然而这还不是最终flag。。。</p><p>最终的flag是第一层的结果下划线第二层的结果，即：</p><p>flag{r0b0RUlez!_w3lld0ne}</p><p>坑爹啊。。。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> reverse </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>writeup_攻防世界_WindowsReserve2</title>
       <link href="/2022/02/21/writeup_%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_WindowsReserve2/"/>
       <url>/2022/02/21/writeup_%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_WindowsReserve2/</url>
