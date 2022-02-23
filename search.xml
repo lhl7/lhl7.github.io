@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>汇编 db,dw,dd的区别</title>
+      <link href="/2022/02/23/%E6%B1%87%E7%BC%96dd%20dw%20db%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2022/02/23/%E6%B1%87%E7%BC%96dd%20dw%20db%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<h1 id="汇编-db-dw-dd的区别"><a href="#汇编-db-dw-dd的区别" class="headerlink" title="汇编 db,dw,dd的区别"></a>汇编 db,dw,dd的区别</h1><p>db定义字节类型变量，一个字节数据占1个字节单元，读完一个，偏移量加1；</p><p>dw定义字类型变量，一个字数据占2个字节单元，读完一个，偏移量加2；</p><p>dd定义双字类型变量，一个双字数据占4个字节单元，读完一个，偏移量加4；</p><p>dq定义四字节类型，一个四字类型数据占8个字节单元；</p><p>格式：〔符号名〕 DB\DW\DD\DF\DQ\DT 初值序列<br>DB定义的为字节类型，DW定义字类型，DD定义双字类型,DF为长字类型,DQ为四字类型,DT为十字节类型,该指令分别定义8位,16位,32位,48位,64位,80位的数据</p><p>DW就是表示为该数据分配一个字的存储空间,即16位</p><p>摘抄自：<a href="https://blog.csdn.net/baidu_37503452/article/details/83147318">https://blog.csdn.net/baidu_37503452/article/details/83147318</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> reverse </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>writeup_梅津美治郎reserve</title>
       <link href="/2022/02/22/writeup_%E6%A2%85%E6%B4%A5%E7%BE%8E%E6%B2%BB%E9%83%8Ereserve/"/>
       <url>/2022/02/22/writeup_%E6%A2%85%E6%B4%A5%E7%BE%8E%E6%B2%BB%E9%83%8Ereserve/</url>
