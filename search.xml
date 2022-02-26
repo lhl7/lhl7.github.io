@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>汇编函数调用的传参规则</title>
+      <link href="/2022/02/26/%E6%B1%87%E7%BC%96_%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E4%BC%A0%E5%8F%82%E8%A7%84%E5%88%99/"/>
+      <url>/2022/02/26/%E6%B1%87%E7%BC%96_%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E4%BC%A0%E5%8F%82%E8%A7%84%E5%88%99/</url>
+      
+        <content type="html"><![CDATA[<h1 id="汇编函数调用的传参规则"><a href="#汇编函数调用的传参规则" class="headerlink" title="汇编函数调用的传参规则"></a>汇编函数调用的传参规则</h1><p>函数调用一般有个模板。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">push es</span><br><span class="line">mov ebp,esp</span><br><span class="line">//这里提升堆栈</span><br><span class="line">sub esp,0x40  </span><br><span class="line">//这里是开辟缓冲区，不同编译器开辟的缓冲区大小不同。</span><br><span class="line">push edi</span><br><span class="line">push esi</span><br><span class="line">push ebx</span><br><span class="line">//保留现场</span><br><span class="line">lea edi, dword ptr ss:[ebp-0x40]</span><br><span class="line">mov ecx,0x10</span><br><span class="line">mov eax,0xcccccccc</span><br><span class="line">rep stos dowrd ptr es:[edi]</span><br><span class="line">//填充缓冲区</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">//这里是写函数的功能</span><br><span class="line">--------------------------------------------------------</span><br><span class="line">pop ebx</span><br><span class="line">pop esi</span><br><span class="line">pop edi</span><br><span class="line">//恢复现场</span><br><span class="line">mov esp,ebp</span><br><span class="line">pop ebp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure><p>中间的ccc…就是填充缓冲区。填充后可以用来写入局部变量。<br>EBP后面的高址，存有恢复用的EIP，和call函数前push的参数。<br>EBP前面的低址，用来存局部变量。</p><p>根据函数调用约定的不同，堆栈平衡的方式不同<br>如果是__cedcl约定，是在母函数中平衡堆栈，就是函数调用完返回后，在调用者里add esp，xx来平衡堆栈。</p><p>有几种函数调用约定，不同的调用约定，参数的传递，堆栈的平衡方式不同。下面是三种常见的调用约定：</p><h2 id="cedcl-约定："><a href="#cedcl-约定：" class="headerlink" title="__cedcl 约定："></a>__cedcl 约定：</h2><p>参数从右往左，依次入栈。堆栈平衡在母函数中完成。<br>在函数调用前，将参数压栈。<br>push xxx<br>push xxx<br>…<br>然后call 函数。<br>//函数执行完毕<br>add esp ，xx<br>//在母函数中平衡堆栈</p><h2 id="stdcall-约定："><a href="#stdcall-约定：" class="headerlink" title="stdcall 约定："></a>stdcall 约定：</h2><p>参数从右往左依次入栈，在子函数中 平衡堆栈。<br>参数还是在调用前push 入栈。<br>平衡堆栈时，在 ret 后加个 xx 恢复堆栈<br>例如 ret 0x8，相当于 pop eip add esp，0x8</p><h2 id="fastcall-约定："><a href="#fastcall-约定：" class="headerlink" title="fastcall 约定："></a>fastcall 约定：</h2><p>参数从右往左依次入栈，在子函数中 平衡堆栈<br>参数1个或者两个用 寄存器 传参，多于两个，多余两个的部分还是压栈传参。<br>例如 (int a,int b,int c)<br>push c<br>mov eax,b<br>mov ecx,a<br>然后再call 函数，最后在子函数中平衡堆栈。</p><p>————————————————<br>版权声明：本文为CSDN博主「dittozzz」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_43394612/article/details/84332149">https://blog.csdn.net/qq_43394612/article/details/84332149</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note-re </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>writeup_babyXOR_reverse</title>
       <link href="/2022/02/25/writeup_babyXOR_reverse/"/>
       <url>/2022/02/25/writeup_babyXOR_reverse/</url>
@@ -89,7 +108,7 @@
       
       <categories>
           
-          <category> reverse </category>
+          <category> Note-re </category>
           
       </categories>
       
@@ -203,7 +222,7 @@
       
       <categories>
           
-          <category> pwn </category>
+          <category> Note-re </category>
           
       </categories>
       
@@ -222,7 +241,7 @@
       
       <categories>
           
-          <category> reverse </category>
+          <category> Note-re </category>
           
       </categories>
       
@@ -317,7 +336,7 @@
       
       <categories>
           
-          <category> reverse </category>
+          <category> Note-re </category>
           
       </categories>
       
