@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>浮点数的表示 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="浮点数的表示c语言中的浮点数：float , double , long double 首先，为什么要使用浮点方法，为什么要使用浮点数而不使用定长小数。 这是因为如果小数定长，其精度就是固定的，也就是说，这样的表示方法就会有固定长度的整数位和小数位。一般这些位数都不会被全部用到，甚至很有可能牺牲精度，或者造成空间浪费，因此，需要创造一种小数点可以移动的数字表示方法，即浮点数。 其次，如何科学的表示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浮点数的表示">
+<meta property="og:url" content="https://lhl7.github.io/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="浮点数的表示c语言中的浮点数：float , double , long double 首先，为什么要使用浮点方法，为什么要使用浮点数而不使用定长小数。 这是因为如果小数定长，其精度就是固定的，也就是说，这样的表示方法就会有固定长度的整数位和小数位。一般这些位数都不会被全部用到，甚至很有可能牺牲精度，或者造成空间浪费，因此，需要创造一种小数点可以移动的数字表示方法，即浮点数。 其次，如何科学的表示">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2022-03-03T01:32:46.814Z">
+<meta property="article:modified_time" content="2022-03-03T01:32:34.611Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '浮点数的表示',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-03 09:32:34'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">32</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">浮点数的表示</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-03T01:32:46.814Z" title="Created 2022-03-03 09:32:46">2022-03-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-03T01:32:34.611Z" title="Updated 2022-03-03 09:32:34">2022-03-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/other/">other</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="浮点数的表示"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h1><p>c语言中的浮点数：float , double , long double</p>
+<p><strong>首先，为什么要使用浮点方法，为什么要使用浮点数而不使用定长小数。</strong></p>
+<p>这是因为如果小数定长，其精度就是固定的，也就是说，这样的表示方法就会有固定长度的整数位和小数位。一般这些位数都不会被全部用到，甚至很有可能牺牲精度，或者造成空间浪费，因此，需要创造一种小数点可以移动的数字表示方法，即浮点数。</p>
+<p><strong>其次，如何科学的表示二进制数。</strong></p>
+<p>这里引入二进制的科学计数法：<br>十进制有科学计数法，任何十进制数都可以表示为<code>x.xxxx*10^n</code>(x为0-9)，同理，所有二进制数也可以表示为<code>1.xxx*2^n</code>(x为0-1)，举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">101101.11101101转化为科学计数法</span><br><span class="line">1.0110111101101*2^5</span><br></pre></td></tr></table></figure>
+
+<p>那么按照这样的思路，一个二进制数，就能表示为一个整数位定长为1，且一定是1的数字<code>1.0110111101101</code>(因为整数位永远是1，因此其实可以默认)，和另一个整数<code>5</code>，代表乘2的多少次方。</p>
+<p><strong>然后，再加入正负的可能性，我们就可以完全的表示一个二进制数。</strong>**</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">N=((-1)^S)*(R^E)*M</span><br><span class="line">其中N是这个二进制数；</span><br><span class="line">S有两种取值，0表示N为正数，1表示N为负数；</span><br><span class="line">R恒为2；</span><br><span class="line">E是科学计数法中2的指数；</span><br><span class="line">M为科学计数法中以1.开头的二进制表示</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>最后，我们就可以开始设计浮点数了</strong></p>
+<p>S有两种取值，只需要一位；</p>
+<p>R取值固定，不需要表示，默认即可；</p>
+<p>E是指数（上例中的5），为一个不定长的整数（可能正，可能负），需要多位；</p>
+<p>M一定以1开头，因此可以忽略1，直接记录小数点后面的小数（即只记录0110111101101）；</p>
+<p>我们看看官方的表示方法：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220303091320390.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220303091346438.png" alt="image-20220303091346438"></p>
+<blockquote>
+<p>IEEE<strong>754</strong>标准(规定了浮点数的表示格式,运算规则等)</p>
+<p>​    规则规定了单精度(32)和双精度(64)的基本格式.<br>​    规则中,尾数（M）用原码,指数（E）用移码(便于对阶和比较)</p>
+</blockquote>
+<p>源码顾名思义就是二进制数直接写出来，不含符号位。</p>
+<p>移码是什么呢？</p>
+<p>上面说过，指数是有正负的可能性的，移码其实就是取中间数为0，减少为负数，增加为正数。</p>
+<p>比如说：</p>
+<p>对于32位的浮点数来说，E的位数有八位（256），因此选择127（01111111）为0，那么相应的，1就是128（10000000），-1就是126（01111110）。因此，如果给出一个值E，E-127就是指数的真实值。</p>
+<p>同理，对于64位的浮点数来说，E的位数有11位，那么把E换算成十进制后，E-1023就是指数的真实值。</p>
+<p>这样我们就学会如何表示一个浮点数了。</p>
+<p>我们给出一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">20.59375转化为32位数浮点表示</span><br><span class="line">首先分别将整数和分数部分转换成二进制数：</span><br><span class="line">20.59375=10100.10011</span><br><span class="line">     然后移动小数点，使其在第1，2位之间</span><br><span class="line">10100.10011=1.010010011×2^4</span><br><span class="line">     e=4于是得到：</span><br><span class="line">S=0, E=4+127=131, M=010010011</span><br><span class="line">    因此最后得到32位浮点数的二进制存储格式为：</span><br><span class="line">01000001101001001100000000000000=(41A4C000)16</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/">https://lhl7.github.io/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/02/28/writeup_intOverflow_pwn/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">writeup_intOverflow_pwn</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">32</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">浮点数的表示</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/" title="浮点数的表示">浮点数的表示</a><time datetime="2022-03-03T01:32:46.814Z" title="Created 2022-03-03 09:32:46">2022-03-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/28/writeup_intOverflow_pwn/" title="writeup_intOverflow_pwn">writeup_intOverflow_pwn</a><time datetime="2022-02-28T03:46:19.648Z" title="Created 2022-02-28 11:46:19">2022-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/27/writeup_guessNum_pwn/" title="writeup_guessNum_pwn">writeup_guessNum_pwn</a><time datetime="2022-02-27T08:01:30.979Z" title="Created 2022-02-27 16:01:30">2022-02-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/27/Canery(%E9%87%91%E4%B8%9D%E9%9B%80)%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%BB%95%E8%BF%87/" title="Canery(金丝雀)的介绍与绕过">Canery(金丝雀)的介绍与绕过</a><time datetime="2022-02-27T07:39:00.562Z" title="Created 2022-02-27 15:39:00">2022-02-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/26/writeup_CGfsb_pwn/" title="writeup-CGfsb-pwn">writeup-CGfsb-pwn</a><time datetime="2022-02-26T14:33:03.039Z" title="Created 2022-02-26 22:33:03">2022-02-26</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

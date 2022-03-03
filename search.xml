@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>浮点数的表示</title>
+      <link href="/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/"/>
+      <url>/2022/03/03/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h1><p>c语言中的浮点数：float , double , long double</p><p><strong>首先，为什么要使用浮点方法，为什么要使用浮点数而不使用定长小数。</strong></p><p>这是因为如果小数定长，其精度就是固定的，也就是说，这样的表示方法就会有固定长度的整数位和小数位。一般这些位数都不会被全部用到，甚至很有可能牺牲精度，或者造成空间浪费，因此，需要创造一种小数点可以移动的数字表示方法，即浮点数。</p><p><strong>其次，如何科学的表示二进制数。</strong></p><p>这里引入二进制的科学计数法：<br>十进制有科学计数法，任何十进制数都可以表示为<code>x.xxxx*10^n</code>(x为0-9)，同理，所有二进制数也可以表示为<code>1.xxx*2^n</code>(x为0-1)，举个例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">101101.11101101转化为科学计数法</span><br><span class="line">1.0110111101101*2^5</span><br></pre></td></tr></table></figure><p>那么按照这样的思路，一个二进制数，就能表示为一个整数位定长为1，且一定是1的数字<code>1.0110111101101</code>(因为整数位永远是1，因此其实可以默认)，和另一个整数<code>5</code>，代表乘2的多少次方。</p><p><strong>然后，再加入正负的可能性，我们就可以完全的表示一个二进制数。</strong>**</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">N=((-1)^S)*(R^E)*M</span><br><span class="line">其中N是这个二进制数；</span><br><span class="line">S有两种取值，0表示N为正数，1表示N为负数；</span><br><span class="line">R恒为2；</span><br><span class="line">E是科学计数法中2的指数；</span><br><span class="line">M为科学计数法中以1.开头的二进制表示</span><br></pre></td></tr></table></figure><p><strong>最后，我们就可以开始设计浮点数了</strong></p><p>S有两种取值，只需要一位；</p><p>R取值固定，不需要表示，默认即可；</p><p>E是指数（上例中的5），为一个不定长的整数（可能正，可能负），需要多位；</p><p>M一定以1开头，因此可以忽略1，直接记录小数点后面的小数（即只记录0110111101101）；</p><p>我们看看官方的表示方法：</p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220303091320390.png"></p><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220303091346438.png" alt="image-20220303091346438"></p><blockquote><p>IEEE<strong>754</strong>标准(规定了浮点数的表示格式,运算规则等)</p><p>​    规则规定了单精度(32)和双精度(64)的基本格式.<br>​    规则中,尾数（M）用原码,指数（E）用移码(便于对阶和比较)</p></blockquote><p>源码顾名思义就是二进制数直接写出来，不含符号位。</p><p>移码是什么呢？</p><p>上面说过，指数是有正负的可能性的，移码其实就是取中间数为0，减少为负数，增加为正数。</p><p>比如说：</p><p>对于32位的浮点数来说，E的位数有八位（256），因此选择127（01111111）为0，那么相应的，1就是128（10000000），-1就是126（01111110）。因此，如果给出一个值E，E-127就是指数的真实值。</p><p>同理，对于64位的浮点数来说，E的位数有11位，那么把E换算成十进制后，E-1023就是指数的真实值。</p><p>这样我们就学会如何表示一个浮点数了。</p><p>我们给出一个例子：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">20.59375转化为32位数浮点表示</span><br><span class="line">首先分别将整数和分数部分转换成二进制数：</span><br><span class="line">20.59375=10100.10011</span><br><span class="line">     然后移动小数点，使其在第1，2位之间</span><br><span class="line">10100.10011=1.010010011×2^4</span><br><span class="line">     e=4于是得到：</span><br><span class="line">S=0, E=4+127=131, M=010010011</span><br><span class="line">    因此最后得到32位浮点数的二进制存储格式为：</span><br><span class="line">01000001101001001100000000000000=(41A4C000)16</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> other </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>writeup_intOverflow_pwn</title>
       <link href="/2022/02/28/writeup_intOverflow_pwn/"/>
       <url>/2022/02/28/writeup_intOverflow_pwn/</url>
