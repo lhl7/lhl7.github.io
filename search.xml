@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>寄存器总结</title>
+      <link href="/2022/03/17/%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E5%85%B6%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93/"/>
+      <url>/2022/03/17/%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E5%85%B6%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="寄存器总结"><a href="#寄存器总结" class="headerlink" title="寄存器总结"></a>寄存器总结</h1><p>16个寄存器可以被分成以下四类： </p><p>​    8个通用寄存器(General-purpose registers) </p><p>​    6个段寄存器(Segment registers) </p><p>​    程序状态与控制寄存器(EFLAGS) </p><p>​    指令指针寄存器(EIP register）</p><h2 id="一、通用寄存器"><a href="#一、通用寄存器" class="headerlink" title="一、通用寄存器:"></a>一、通用寄存器:</h2><p>32位CPU通用寄存器共有8个：<strong>EAX，EBX，ECX， EDX，ESI，EDI，EBP，ESP</strong></p><h3 id="第1-4个寄存器"><a href="#第1-4个寄存器" class="headerlink" title="第1- 4个寄存器:"></a>第1- 4个寄存器:</h3><ul><li><p><strong>EAX</strong>：累加寄存器，是操作数和结果数据的累加器 </p></li><li><p><strong>EBX</strong>：基址寄存器，指向DS段中数据的指针 </p></li><li><p><strong>ECX</strong>：计数寄存器，是字符串和循环操作的计数器 </p></li><li><p><strong>EDX</strong>：数据寄存器， I/O指针 </p></li></ul><p>上面4个寄存器主要用于算术运算（ADD/SUB/XOR/OR等） 指令中，常用来保存常量与变量的值</p><h3 id="变址寄存器（第5-6个）"><a href="#变址寄存器（第5-6个）" class="headerlink" title="变址寄存器（第5-6个）:"></a>变址寄存器（第5-6个）:</h3><ul><li><p><strong>ESI</strong>：(字符串操作源指针)源变址寄存器 </p></li><li><p><strong>EDI</strong>：(字符串操作目的指针)目的变址寄存器 </p></li></ul><p>​    <strong>ESI</strong>和<strong>EDI</strong>与特定的串操作指令（MOVS/LODS/STOS）一起使用，在字符串操作的时候用的比较多 </p><p>变址寄存器存放存储单元在段内的偏移量，用它们可实 现多种存储器操作数的寻址方式，为通过多种方式访问 存储单元提供便利</p><h3 id="指针寄存器（第7-8个）"><a href="#指针寄存器（第7-8个）" class="headerlink" title="指针寄存器（第7-8个）:"></a>指针寄存器（第7-8个）:</h3><ul><li><p><strong>ESP</strong>：栈顶指针寄存器，用于存放当前堆栈的栈顶 地址，专门用作堆栈指针，不可作为一般通用寄存 器使用 </p></li><li><p><strong>EBP</strong>：栈底指针寄存器（基址指针寄存器），表示 栈区域的基地址，永远指向当前函数栈的栈底位置， 不可作为一般通用寄存器使用</p></li></ul><h2 id="二、段寄存器"><a href="#二、段寄存器" class="headerlink" title="二、段寄存器:"></a>二、段寄存器:</h2><ul><li><p><strong>CS</strong>：Code Segment，代码段寄存器 – 存放应用程序代码所在段的段基址 </p></li><li><p><strong>DS</strong>：Data Segment，数据段寄存器 – 用于存放数据段的段基址 </p></li><li><p><strong>SS</strong>：Stack Segment，堆栈段寄存器 – 用于存放栈段的段基址 </p></li><li><p><strong>ES</strong>、<strong>FS</strong>、<strong>GS</strong>，附加数据段寄存器 – 用于存放程序使用的附加数据段的段基</p></li></ul><h2 id="三、程序状态与控制寄存器（标志寄存器）"><a href="#三、程序状态与控制寄存器（标志寄存器）" class="headerlink" title="三、程序状态与控制寄存器（标志寄存器）"></a>三、程序状态与控制寄存器（标志寄存器）</h2><p>在IA-32中标志寄存器的名称为<strong>EFLAGS</strong>，大小为4个字节， 共有32个位元，每个位数都有其作用，；</p><p>可以分为以下四类：</p><ul><li>系统标志(位8，9，14，16，17，18，19，20，21)和 IOPL(I/O Privilege Level)字段(位12，13) ： 控制操作系统或执行操作，应用程序不能修改以上标志位 </li><li>方向标志(DF，位10)：控制串操作指令的处理方向 ：DF=0，从低地址到高地址  DF=1，从高地址到低地址 </li><li>状态标志(位0，2，4，6，7和11)：表示算数指令的运 算结果，如ADD、SUB、MUL和DIV指令 ：和应用程序运行状态密切相关，需掌握 </li><li>预留标志位（位1，3，5，15，22-31） ：DO NOT US</li></ul><h3 id="状态标志-位0，2，4，6，7，-和11-："><a href="#状态标志-位0，2，4，6，7，-和11-：" class="headerlink" title="状态标志(位0，2，4，6，7， 和11) ："></a>状态标志(位0，2，4，6，7， 和11) ：</h3><p>（重点）</p><ul><li><p><strong>CF</strong>(位0) – 进位标志位：</p><p>一般情况下，在进行无符号数运算的时候，它记录了 运算结果的最高有效位向更高位的进位值，或从更高位的借位值。 – 在加法运算中，若运算结果从字或字节的最高位产生了进位，则 CF=1；否则CF=0 – 在减法运算中，若被减数无借位，则CF=0；否则CF=1 </p></li><li><p><strong>OF</strong>(位11) – 溢出标志位：</p><p>一般情况下，OF记录了有符号数运算的结果是否发生 了溢出 – 如果发生了溢出，OF=1；如果没有发生溢出，OF=0 – 注：CF和OF所表示的进位和溢出，是分别针对无符号数和有符号数 运算而言的，一定要分清楚CF和OF的发生条件 （2）寄存器 — 程序状态与控制寄存器 </p></li><li><p><strong>AF</strong>(位4) – 辅助进位标志位：</p><p>在发生以下情况时，辅助进位标志AF的值被 置为1，否则其值为0： » 在字操作时，发生低字节向高字节进位或借位时 » 在字节操作时，发生低4位向高4位进位或借位时 </p></li><li><p><strong>PF</strong>(位2) – 奇偶标志位：</p><p>记录相关指令执行后，其结果的最低有效字节中1 的个数是否为偶数 – 如果1的个数为偶数，PF=1；如果1的个数为奇数，PF=0 （2）寄存器 — 程序状态与控制寄存器 </p></li><li><p><strong>SF</strong>(位7) – 符号标志位：</p><p>记录相关指令执行后，其结果是否为负 – 当操作数为有符号数时，若结果为负数，SF=1；若结果为非负数， SF=0 </p></li><li><p><strong>ZF</strong>(位6) – 零标志位：</p><p>记录相关指令执行后，其结果是否为0；若运算结果 为0，则其值为1，否则其值为0</p></li></ul><h2 id="四、指令指针寄存器"><a href="#四、指令指针寄存器" class="headerlink" title="四、指令指针寄存器"></a>四、指令指针寄存器</h2><p>​    程序运行时，CPU会读取<strong>EIP</strong>中一条指令的地址， 将指令传送到指令缓冲区后，<strong>EIP</strong>的值自动增加 </p><p>​    CPU每次执行完一条指令，就会通过<strong>EIP</strong>寄存器 读取并执行下一条指令 </p><p>​    不能直接修改<strong>EIP</strong>的值，只能通过其他指令间接 修改 – 这些特定指令包括JMP、JC、CALL、RET – 可以通过中断或异常来修改<strong>EIP</strong>的值</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Note-re </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CVE-2020-16898漏洞分析与复现</title>
       <link href="/2022/03/14/CVE-2020-16898%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/"/>
       <url>/2022/03/14/CVE-2020-16898%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/</url>
