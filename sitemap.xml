@@ -517,28 +517,7 @@
 
   
   <url>
-    <loc>https://lhl7.github.io/categories/linux/</loc>
-    <lastmod>2022-09-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://lhl7.github.io/categories/Note-re/</loc>
-    <lastmod>2022-09-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lhl7.github.io/categories/kali/</loc>
-    <lastmod>2022-09-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lhl7.github.io/categories/web/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -552,7 +531,28 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/other/</loc>
+    <loc>https://lhl7.github.io/categories/kali/</loc>
+    <lastmod>2022-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lhl7.github.io/categories/linux/</loc>
+    <lastmod>2022-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lhl7.github.io/categories/web/</loc>
+    <lastmod>2022-09-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lhl7.github.io/categories/pwn/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -566,7 +566,7 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/pwn/</loc>
+    <loc>https://lhl7.github.io/categories/other/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
