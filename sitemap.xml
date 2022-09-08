@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lhl7.github.io/2022/05/08/pwn%E5%85%A5%E9%97%A8%E4%B9%8Bgot%E5%92%8Cplt%E8%A1%A8/</loc>
+    
+    <lastmod>2022-09-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lhl7.github.io/google85e739257165d163.html</loc>
     
     <lastmod>2022-09-08</lastmod>
@@ -68,15 +77,6 @@
     <loc>https://lhl7.github.io/2022/02/26/%E6%B1%87%E7%BC%96_%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E4%BC%A0%E5%8F%82%E8%A7%84%E5%88%99/</loc>
     
     <lastmod>2022-05-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lhl7.github.io/2022/05/08/pwn%E5%85%A5%E9%97%A8%E4%B9%8Bgot&plt%E8%A1%A8/</loc>
-    
-    <lastmod>2022-05-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -517,14 +517,14 @@
 
   
   <url>
-    <loc>https://lhl7.github.io/categories/Note-re/</loc>
+    <loc>https://lhl7.github.io/categories/cve/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/cve/</loc>
+    <loc>https://lhl7.github.io/categories/Note-re/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -559,14 +559,14 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/re-Note/</loc>
+    <loc>https://lhl7.github.io/categories/other/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/other/</loc>
+    <loc>https://lhl7.github.io/categories/re-Note/</loc>
     <lastmod>2022-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
