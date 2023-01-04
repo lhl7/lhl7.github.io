@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>机器学习笔记 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="机器学习​    小小的俗称一波deeplearning，仅以此文作为笔记，参考课程： https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Pa411X76s?p&#x3D;66&amp;vd_source&#x3D;b5a5a804f02900e9715541fac229a727 ​    本文暂不记录任何代码实现，仅记录我对于机器学习过程的直观理解。 0x01 第一课 机器学习入门机器学习分为有监">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记">
+<meta property="og:url" content="https://lhl7.github.io/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="机器学习​    小小的俗称一波deeplearning，仅以此文作为笔记，参考课程： https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1Pa411X76s?p&#x3D;66&amp;vd_source&#x3D;b5a5a804f02900e9715541fac229a727 ​    本文暂不记录任何代码实现，仅记录我对于机器学习过程的直观理解。 0x01 第一课 机器学习入门机器学习分为有监">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-01-04T07:52:46.330Z">
+<meta property="article:modified_time" content="2023-01-04T07:52:15.544Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '机器学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-04 15:52:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">55</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">机器学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-01-04T07:52:46.330Z" title="Created 2023-01-04 15:52:46">2023-01-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-01-04T07:52:15.544Z" title="Updated 2023-01-04 15:52:15">2023-01-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ai/">ai</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="机器学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><p>​    小小的俗称一波deeplearning，仅以此文作为笔记，参考课程：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Pa411X76s?p=66&amp;vd_source=b5a5a804f02900e9715541fac229a727">https://www.bilibili.com/video/BV1Pa411X76s?p=66&amp;vd_source=b5a5a804f02900e9715541fac229a727</a></p>
+<p>​    本文暂不记录任何代码实现，仅记录我对于机器学习过程的直观理解。</p>
+<h2 id="0x01-第一课-机器学习入门"><a href="#0x01-第一课-机器学习入门" class="headerlink" title="0x01 第一课 机器学习入门"></a>0x01 第一课 机器学习入门</h2><p>机器学习分为有监督和无监督学习</p>
+<ul>
+<li>有监督学习是输入时就有结果的学习过程</li>
+<li>无监督是输入一大堆，让机器自行分类的过程</li>
+</ul>
+<h3 id="一、线性回归"><a href="#一、线性回归" class="headerlink" title="一、线性回归"></a>一、线性回归</h3><p>​    输入一大堆数据，通过线性拟合将其趋向整合为一个方程。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005140257384.png" alt="image-20221005140257384" style="zoom: 25%;" />
+
+<p>​    输入由x1,x2…xn,y组成的数据集，通过随机初始化w1,w2….wn，使得这一拟合出的直线与样本集的差距尽量小，其差距由<strong>代价函数</strong>（cost function）量化，如上所示。我们的目标就是不断调整w和b的取值，使得代价函数最小。</p>
+<p>​    注：上图中m为样本数量。</p>
+<p>​    这里提到两个概念，<strong>代价函数</strong>和<strong>损失函数</strong>，其中代价函数用 J(w,b) 表示，用于表示整个样本集和当前拟合出曲线的差距。而损失函数 ，用<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005163525544.png" alt="image-20221005163525544" style="zoom:50%;" />表示，用于代表一个样本所造成的偏差值大小。其中代价函数被定义为所有样本点损失函数的平均值再除以2。</p>
+<h4 id="1、梯度下降"><a href="#1、梯度下降" class="headerlink" title="1、梯度下降"></a>1、梯度下降</h4><p>​    要达成上述目地，我们需要逐步调整w和b的值，同过如下的方式：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005141055552.png" alt="image-20221005141055552" style="zoom:33%;" />
+
+<p>​    其中，等式右侧的的右侧的 值实际就是对代价函数求导，来判断在这一点上w、b的梯度值，直观来说，就是在这一点的下降趋势是否陡峭。若陡峭（且为正），则w就会随着上面的方程式快速减少），可以用如下的图示进行直观理解：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005141917777.png" alt="image-20221005141917777" style="zoom: 33%;" />
+
+<p>​    假设函数只有一个w（因为三维比较好理解），代价函数为纵轴，梯度下降所做的就是找到一条更快速下山的路线，若比较陡峭，就一步多走一点，若比较平缓，则少走一点。总之就是判断斜率然后判断以多大的速度往哪边走，但是要衡量走路的速度值，我们需要有一个基准数，也就是上式中的学习率a。</p>
+<h4 id="2、学习率"><a href="#2、学习率" class="headerlink" title="2、学习率"></a>2、学习率</h4><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005142315981.png" alt="image-20221005142315981" style="zoom:50%;" />
+
+<p>​    如图所示，a若选择的太小，如上图右上所示，梯度下降的进行过程就太慢。反之如果a选择的过大，可能导致梯度下降永远无法进行到最小值点。</p>
+<h4 id="3、线性回归的梯度下降"><a href="#3、线性回归的梯度下降" class="headerlink" title="3、线性回归的梯度下降"></a>3、线性回归的梯度下降</h4><p>​    在线性回归下，即我们使用线性回归的代价函数，我们可以将其代价函数与梯度下降算法合并，得到以下算式：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005142749701.png" alt="image-20221005142749701" style="zoom: 50%;" />
+
+<p>​    只要反复对初始化过的w和b执行如上操作，待w和b的值趋于不变时，我们就求出了完美的w和b。然后带入原算式 y=wx+b，就可以根据输入的x算出任意y的值。</p>
+<p>​    要判断梯度下降是否收敛，可以观察 训练次数-损失函数 曲线，如下所示。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005151347643.png" alt="image-20221005151347643" style="zoom:50%;" />
+
+<p>​    通过梯度下降是否收敛，可以反映出学习率的选用是否合适，一般来说，学习率以三倍为一缩放，十倍为两缩放。即0.1、0.3、1.0、3.0、10、30、100这样的速率进行调整。</p>
+<p>​    </p>
+<h4 id="4、向量化"><a href="#4、向量化" class="headerlink" title="4、向量化"></a>4、向量化</h4><p>​    实际情况下，不可能w（属特征值）只有一个，肯定y是有一大堆wx组成的，因此可用向量化表示如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005143838514.png" alt="image-20221005143838514" style="zoom:33%;" />
+
+<p>​    向量化的好处就是，我们可以直接使用点乘这一运算计算大量数据的乘法，最终，其梯度下降算法如下所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005150436693.png" alt="image-20221005150436693" style="zoom: 67%;" />
+
+<p>​    </p>
+<h3 id="二、特征缩放"><a href="#二、特征缩放" class="headerlink" title="二、特征缩放"></a>二、特征缩放</h3><h4 id="1、为什么要进行特征缩放？"><a href="#1、为什么要进行特征缩放？" class="headerlink" title="1、为什么要进行特征缩放？"></a>1、为什么要进行特征缩放？</h4><p>​    在线性回归问题中，假设由两个特征，这两个特征的基础值相差较大，如一个在0-1范围内，另一个在10-1M范围内，若我们画出其取值分布图，其将如下图左上所示，当我们如右上画出其代价函数等高线时，其将会是非常瘦长的，因为相对来讲，左图x2对其影响很大，而x1对其影响很小。</p>
+<p>​    假如假设x1和x2对最终的y值起到几乎同等作用的印象，那么x1&gt;&gt;x2就会导致w1&lt;&lt;w2的结果，又因为二者共享同一个学习率，因此在进行梯度下降时，梯度曲线极有可能在对w1进行缩放时左右横跳，同时若将a设置的太小，又会对w2影响太小导致训练缓慢。因此我们需要对x1、x2进行缩放。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005145203685.png" alt="image-20221005145203685" style="zoom:67%;" />
+
+
+
+<h4 id="2、如何进行特征缩放？"><a href="#2、如何进行特征缩放？" class="headerlink" title="2、如何进行特征缩放？"></a>2、如何进行特征缩放？</h4><p><strong>基于最大值进行特征缩放</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005150304599.png" alt="image-20221005150304599"></p>
+<p><strong>基于平均值进行特征缩放（均值归一化）</strong></p>
+<p>​    其中μ为x的平均值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005150400195.png" alt="image-20221005150400195"></p>
+<p><strong>基于正态分布进行特征缩放</strong></p>
+<p>​    其中μ为x平均值，σ为标准差。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005150936298.png" alt="image-20221005150936298"></p>
+<h3 id="三、逻辑回归"><a href="#三、逻辑回归" class="headerlink" title="三、逻辑回归"></a>三、逻辑回归</h3><p>​    逻辑回归用于根据给定的特征，将对样本进行二分类。</p>
+<h4 id="1、线性回归不再合适的原因"><a href="#1、线性回归不再合适的原因" class="headerlink" title="1、线性回归不再合适的原因"></a>1、线性回归不再合适的原因</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005155546032.png" alt="image-20221005155546032"></p>
+<p>​    由于可能会有特别离谱的样本值，可能会把拟合出的线拉飞。</p>
+<h4 id="2、逻辑回归详解"><a href="#2、逻辑回归详解" class="headerlink" title="2、逻辑回归详解"></a>2、逻辑回归详解</h4><p>​    逻辑回归沿用但不完全沿用线性回归：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005160925737.png" alt="image-20221005160925737"></p>
+<p>​    </p>
+<p>​    <strong>损失函数</strong>如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005162603096.png" alt="image-20221005162603096" style="zoom:80%;" />
+
+<p>​    上式和下式是同一个意思，从主观上理解，当y等于1时，求出的值越远离1，也就是越靠近零，说明误差越大；反之越靠近1则误差越小，因此，上述两曲线应分别如下图所示。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005162258969.png" alt="image-20221005162258969" style="zoom: 67%;" />
+
+<p>​    通过以上损失函数，可累加轻易知代价函数如下：</p>
+<img src="C:\Users\86183\AppData\Roaming\Typora\typora-user-images\image-20221005163142591.png" alt="image-20221005163142591" style="zoom:67%;" />
+
+<p>通过次代价函数，可进一步推出其梯度下降公式如下(分别求偏导数乘以学习率)：</p>
+<img src="C:\Users\86183\AppData\Roaming\Typora\typora-user-images\image-20221005164152850.png" alt="image-20221005164152850.png" style="zoom:67%;" />
+
+<h4 id="3、过拟合（高方差）"><a href="#3、过拟合（高方差）" class="headerlink" title="3、过拟合（高方差）"></a>3、过拟合（高方差）</h4><p>​    当一条曲线和数据集的契合程度高，我们成为其拟合程度好。比如如下第二条条曲线，由于我们对x进行了多项式操作，使得其拟合程度相较单纯的线性回归，也就是第一条曲线，拟合度变得更高了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005164615845.png" alt="image-20221005164615845"></p>
+<p>​    然而在第三条曲线中，我们添加了过多的多项式，使得曲线完全符合样本点，导致了过拟合现象。在过拟合现象发生后，一旦样本有轻微变化，样本曲线就会发生巨大的改变，且其预测效果也不好。如下，逻辑回归中也可能会出现过拟合现象：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005164847957.png" alt="image-20221005164847957" style="zoom: 50%;" />
+
+<p>​    解决过拟合有三种方式：</p>
+<ul>
+<li>增加样本量</li>
+<li>在样本量较少的情况下，精简单个样本的特征数量</li>
+<li>正则化</li>
+</ul>
+<p>其中方式一有点在于简单好用，但是我们可能没有更多样本；方式二可以解决问题，但是会损失我们掌握的信息；方式三是方式二的更好版本，也是一种较为科学的解决方案；</p>
+<p><strong>正则化详解</strong></p>
+<p>​    正则化的核心思想是缩小特征的系数，也就是缩小w的值（尤其是高维度特征的w）。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005165636629.png" alt="image-20221005165636629" style="zoom:50%;" />
+
+<p>​    如对于上式而言，我们应尽量使得w3、w4趋近于0，也就是尽量小。因此，我们将引入一种对于参数的惩罚机制，这一惩罚机制通过修改代价函数达成。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005165842909.png" alt="image-20221005165842909" style="zoom:67%;" />
+
+<p>​    源本代价函数仅仅是损失函数的平均值除以2，在进行正则化时，代价函数如上所示。若出现极大的w，会使得代价函数随之变大，这就会使得w在每一轮的迭代中尽量变小。其中λ制定了正则化的速度。</p>
+<p>​    进一步的，我们对于代价函数的修改就会体现在梯度下降的过程中，如线性回归的梯度下降会变成如下形式，逻辑回归也是类似的：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005170310543.png" alt="image-20221005170310543" style="zoom:67%;" />
+
+<p>逻辑回归的正则化：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221005170440729.png" alt="image-20221005170440729"></p>
+<h2 id="0x02-第二课-机器学习拓展"><a href="#0x02-第二课-机器学习拓展" class="headerlink" title="0x02 第二课 机器学习拓展"></a>0x02 第二课 机器学习拓展</h2><h3 id="一、神经网络的使用"><a href="#一、神经网络的使用" class="headerlink" title="一、神经网络的使用"></a>一、神经网络的使用</h3><p>​    无论是线性回归、多项式回归还是逻辑回归，当模型训练好后，都是输入-&gt;计算-&gt;输出的模型，然而在真正解决问题时，人类的神经元往往是多层的，同时线性会非线性的混用也可以增加思考的层次，因此，我们要将多个回归模型串起来。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221006150732648.png" alt="image-20221006150732648" style="zoom:67%;" />
+
+<p>​    如上图所示，这是一个三层的神经网络，第一层有二十五个单元，第二层有十五个单元，第三层有一个单元。我们要定义整个网络中的某个回归模型，如第一层第2个模型的w，使用<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221006151102459.png" alt="image-20221006151102459" style="zoom: 67%;" />来进行表示。每个单元均对应多个输入和一个输出。</p>
+<p>​    不考虑w、b参数的训练过程，假设我们已经训练好了，要使用此网络，在每一层代码所做的事应该如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_dense</span>(<span class="params">a_in, W, b, g</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Computes dense layer</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">      a_in (ndarray (n, )) : Data, 1 example 输入的数据</span></span><br><span class="line"><span class="string">      W    (ndarray (n,j)) : Weight matrix, n features per unit, j units</span></span><br><span class="line"><span class="string">      b    (ndarray (j, )) : bias vector, j units  </span></span><br><span class="line"><span class="string">      g    activation function (e.g. sigmoid, relu..) 激活函数</span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">      a_out (ndarray (j,))  : j units| 输出的数据</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    units = W.shape[<span class="number">1</span>]</span><br><span class="line">    a_out = np.zeros(units) <span class="comment">#输出向量长度为单元数</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(units):               </span><br><span class="line">        <span class="comment">#对每一个单元的内容进行计算</span></span><br><span class="line">        w = W[:,j]                                    </span><br><span class="line">        z = np.dot(w, a_in) + b[j]         </span><br><span class="line">        a_out[j] = g(z)               </span><br><span class="line">    <span class="keyword">return</span>(a_out)</span><br></pre></td></tr></table></figure>
+
+<p>​    我们可以使用矩阵操作将其简化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dense</span>(<span class="params">A_in,W,B</span>):</span></span><br><span class="line">    Z = np.matmul(A_in,W)+B</span><br><span class="line">    A_out = g(Z) <span class="comment">#激活函数</span></span><br><span class="line">    <span class="keyword">return</span> A_out</span><br></pre></td></tr></table></figure>
+
+<p>​    对于激活函数的选取：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221006152954198.png" alt="image-20221006152954198" style="zoom:80%;" />
+
+<p>​    二元分类取第一个也就是 1/(e^z+1) ；评估升降取第二个；预测价格取第三个。</p>
+<p>​    选择激活函数的核心就是引入非线性，因为如果一个神经网络内部全都是使用的线性回归模型，那其本质就是一个线性回归模型，可用多项式展开来证明这一说法。</p>
+<h3 id="二、Softmax"><a href="#二、Softmax" class="headerlink" title="二、Softmax"></a>二、Softmax</h3><h4 id="1、模型介绍"><a href="#1、模型介绍" class="headerlink" title="1、模型介绍"></a>1、模型介绍</h4><p>​    上述内容中，我们使用了逻辑回归解决二分类问题，但是未解决多元分类问题。沿用逻辑回归的思路和算算式，我们可以将其拓展为多元分类问题的解决思路。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221006223133101.png" alt="image-20221006223133101"></p>
+<p>​    先用sigmoid方式依次求出值，然后取比例大小即可，没有什么新意。损失函数如下所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221006223257070.png" alt="image-20221006223257070" style="zoom: 50%;" />
+
+
+
+<h4 id="2、优化方式"><a href="#2、优化方式" class="headerlink" title="2、优化方式"></a>2、优化方式</h4><ul>
+<li>将多步运算合为一步防止中间步带了的误差</li>
+<li>通过Adam方式加快梯度下降的进度</li>
+<li>卷积网络，卷积层的每一个单元不使用上一层的所有输入，只用一部分</li>
+</ul>
+<h4 id="3、迁移学习"><a href="#3、迁移学习" class="headerlink" title="3、迁移学习"></a>3、迁移学习</h4><p>​    如图像处理等工作，如果样本量较少或者项目周期较短，可以通过使用其他项目的神经网络进行迁移学习：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008145753782.png" alt="image-20221008145753782" style="zoom:50%;" />
+
+<ul>
+<li>方式一：重新训练输出层。</li>
+<li>方式二：以迁移模型为初始值，重新训练所有参数。</li>
+</ul>
+<h3 id="三、模型评估"><a href="#三、模型评估" class="headerlink" title="三、模型评估"></a>三、模型评估</h3><h4 id="1、模型的形成、选择与评估"><a href="#1、模型的形成、选择与评估" class="headerlink" title="1、模型的形成、选择与评估"></a>1、模型的形成、选择与评估</h4><p>​    当我们需要在多个模型中选择一个最佳模型，并对其进行评判时，一般我们会将数据集拆分为两份，即train data和test data。二者分别用于训练和测试，最终使用test model的测试结果，如代价函数来评判一个模型的优劣性，然而这是不正确的。</p>
+<p>​    由于test data在多个model中选出的结果最佳的一个，如下例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008142554447.png" alt="image-20221008142554447"></p>
+<p>​    虽然w、b参数都是有train data决定的，但参数d是由test data决定的，因此我们不能使用test data作为模型评估的最终结果。    </p>
+<p>​    一般来说，工作者会以6:2:2的方式分割元数据集，并将其分为三份：</p>
+<ul>
+<li>training set （训练集）用于训练的过程</li>
+<li>cross validation （交叉验证集） 用于选出最佳的模型</li>
+<li>test set （测试集合） 用于最终进行性能测试</li>
+</ul>
+<p>​    以线性回归为例，三者均使用如下公式进行计算：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008143038333.png" alt="image-20221008143038333" style="zoom:80%;" />
+
+<h4 id="2、方差与偏差"><a href="#2、方差与偏差" class="headerlink" title="2、方差与偏差"></a>2、方差与偏差</h4><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008143726509.png" alt="image-20221008143726509" style="zoom:67%;" />
+
+<p>​    如上图，图左为欠拟合（高偏差）的实例，表现为训练集的损失大、交叉验证集的损失也大；图右为过拟合（高方差）的实例，表现为训练集的损失小，交叉验证集的损失大。由此，我们可以得知如下图所示，随着多项式指数的增加，训练集和交叉验证集的损失函数如下所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008143935570.png" alt="image-20221008143935570" style="zoom: 50%;" />
+
+<p>​    正则化参数对方差偏差的影响如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008144436935.png" alt="image-20221008144436935" style="zoom:50%;" />
+
+<p>​    关于调整参数，能为模型带来什么：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008145018050.png" alt="image-20221008145018050" style="zoom:67%;" />
+
+<ul>
+<li>获取更多训练集 -&gt; 降低偏差</li>
+<li>减少特征数量 -&gt; 降低偏差</li>
+<li>添加特征或添加多项式系数 -&gt; 降低方差</li>
+<li>升高正则化参数 -&gt; 降低偏差</li>
+<li>降低正则化参数 -&gt; 降低方差</li>
+</ul>
+<h4 id="3、精确率和召回率"><a href="#3、精确率和召回率" class="headerlink" title="3、精确率和召回率"></a>3、精确率和召回率</h4><p>​    精确率和召回率的存在是起源于如下问题：</p>
+<p>​    <em>若有一个样本集，其中99%为1，只有1%为0。对应的，一个机器学习程序的内容实际是print(“1”)，则这个模型就能够达到99%的准确度。</em>这样的衡量指标显然是不科学的，而为了解决这一问题，在逻辑回归中，我们不仅仅使用简单的对或错来评判预测结果，而是使用如下方式：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008155229891.png" alt="image-20221008155229891" style="zoom:67%;" />
+
+<p>​    如上图所示：精度（Precision）指向在所有评估为1的结果中正确的比例；而召回率表示在所有为1的结果中，有多少内容被预测出。主观上讲，精确率表示预测的结果的准确程度（即预测的是否对），而召回率表示预测范围的准确程度（即预测的是否全）。</p>
+<p>​    有了如上两个判定方式之后，我们就需要对结果进行评判，我们所希望的是精度和召回率都保持在一定的高度，否则程序就有可能是类似于pirnt(“1”)或print(“0”)的废物程序，因此，可通过如下算式将两个值拟合：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221008160648340.png" alt="image-20221008160648340" style="zoom:67%;" />
+
+<p>平均值显然是不科学的，通过右下式子的拟合可以保证拟合结果受较小的值较大影响。</p>
+<p>​    </p>
+<h3 id="四、决策树"><a href="#四、决策树" class="headerlink" title="四、决策树"></a>四、决策树</h3><p>​    要实现二分类文体，也可通过决策树：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018214431300.png" alt="image-20221018214431300" style="zoom:50%;" />
+
+<p>​        如图所示，每个特征对应一个非叶节点，而叶节点对应决策树的判别结果。输入一个待判断节点时，依次从决策树由上向下归类即可。</p>
+<h4 id="1、-决策树基本搭建思路"><a href="#1、-决策树基本搭建思路" class="headerlink" title="1、 决策树基本搭建思路"></a>1、 决策树基本搭建思路</h4><p><strong>问题一：如何选择在哪一个节点使用哪一个特征进行分类？</strong></p>
+<p>​    和信息像是，决策树在每个节点尽量减少熵，即增大纯度（也就是尽量分的更加正确，尽量一边全是猫、一边全是狗）。</p>
+<p>​    那么下面给出如何衡量纯度：</p>
+<p>首先我们需要学会如何计算熵：</p>
+<p>​    熵是衡量纯度的唯一标准，若一组数据熵比较大，则说明纯度小；反之熵小则说明纯度大。而熵是可以和比例相互对应的，比例越接近1：1，则说明熵越大。如下图，横轴为比例，纵轴为熵：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018220347047.png" alt="image-20221018220347047"></p>
+<p>​    下面是计算熵的公式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018220447362.png" alt="image-20221018220447362"></p>
+<p>​    综上，只要给出任意一个节点的样本数据，我们就可以给出他的熵。</p>
+<p>然后，学会计算一组样本的熵后，可如下计算纯度的增益（信息增益）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018220732428.png" alt="image-20221018220732428"></p>
+<p>上式可以表示为：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018220926245.png" alt="image-20221018220926245" style="zoom:33%;" />
+
+<p>如上，计算了从上一步到下一步减少熵最多的，也就是纯度上升（信息增益）最大的。</p>
+<p><strong>问题二：合适停止对节点进行继续分类？</strong></p>
+<ul>
+<li>当一个节点成为只有一种样本的节点，则不继续拆分；</li>
+<li>当分裂已经超过了树的最大深度（根节点为0），则不继续拆分；<em>若树太大，可能过拟合</em></li>
+<li>若继续拆分节点导致的纯度的上升的程度低于阈值，则不继续拆分；</li>
+<li>若某个节点的样本数低于阈值，则不继续拆分；</li>
+</ul>
+<h4 id="2、one-hot编码"><a href="#2、one-hot编码" class="headerlink" title="2、one-hot编码"></a>2、one-hot编码</h4><p>​    当特征不只有两个可能性时，可以将其按照如下的方式转化：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018222201266.png" alt="image-20221018222201266" style="zoom:80%;" />
+
+<p>​    如上图，耳朵特征有三种可能的取值，因此可转化为如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018222250568.png" alt="image-20221018222250568"></p>
+<p>​    将一个特征放缩为三个特征，即可继续使用二分类。综上，对于一个有k种可能的特征，可将其放缩为k个特征，同一样本的这k个特征中，一定有且只有一个为1。 </p>
+<h4 id="3、连续有价值特征"><a href="#3、连续有价值特征" class="headerlink" title="3、连续有价值特征"></a>3、连续有价值特征</h4><p>​    当二分类问题中有如下具体数字（weight），而非离散的特征时，可以使用熵将其划分为二分离散特征。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018224656260.png" alt="image-20221018224656260"></p>
+<p>​    如图所示，可通过不断尝试划分情啊坤哥，来确定信息增益最大的划分方式：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221018225311222.png" alt="image-20221018225311222" style="zoom:67%;" />
+
+<p>​    如上图，选择weight=9 ，也就是绿的划分方式增益最大，因此直接将weight是否小于9作为一个特征就可以了。（上式中的比例系数时正样本在所有样本中所占的比例）</p>
+<h4 id="4、回归树"><a href="#4、回归树" class="headerlink" title="4、回归树"></a>4、回归树</h4><p>​    当希望决策树不仅能预测离散的二分情况，而是能预测数值时，可以使用回归树。其核心思想与决策树相同，只是使用反差来衡量熵的减小情况，入下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221019135346563.png" alt="image-20221019135346563"></p>
+<h4 id="5、决策森林"><a href="#5、决策森林" class="headerlink" title="5、决策森林"></a>5、决策森林</h4><p>​    决策森林的存在用于解决决策树的不健壮问题。<em>不健壮，指决策树训练集的微小变化可能导致决策树的巨幅改变。</em></p>
+<p>​    我们可以构建多个决策树（决策森林），通过多个决策树（决策森林）分别判断结果后进行投票，最终区票数高的结果即可：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221019135926788.png" alt="image-20221019135926788"></p>
+<p>​    根据上上述对于决策树构建过程的叙述，对于同一组样本，决策树的产生是唯一的，因此可以使用<strong>有放回抽样</strong>的方式，构造伪随机样本集。 <em>有放回抽样，就是在n个样本中抽n次，每次抽完后记录结果并放回。</em> </p>
+<p>​    即使使用了上述方法构造有放回抽样的随机森林，决策森林也有可能出现节点顺序、结构依然相似的情况。此时可以在生成新节点时不用所有特征进行判定比较，而是在<strong>n个特征中选择其子集</strong>（假设包含k个特征）进行对于节点特征的选取工作，当n较大，一般k取n的平方根。</p>
+<p>​    以上方式，都是构建决策森林的方式，同样的，有一种决策森林构建法叫做xgboosting</p>
+<h4 id="6、XGBoost"><a href="#6、XGBoost" class="headerlink" title="6、XGBoost"></a>6、XGBoost</h4><p>​    XGBoost的核心思想是，构建新的决策树时，提高上一个决策树判断错误的样本出现的频率。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221019143242607.png" alt="image-20221019143242607"></p>
+<p>​    如上所示，假设第b-1个决策树如图所示，其中有三个样本判断错误，就应在构建第b棵决策树时提高这三个样本出现的概率。</p>
+<p>​    更多细节没讲，可以使用 <em>from xgboost import XGBClassifier</em> 来使用这一模型</p>
+<h4 id="7、决策树-amp-神经网络"><a href="#7、决策树-amp-神经网络" class="headerlink" title="7、决策树&amp;神经网络"></a>7、决策树&amp;神经网络</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20221019143700754.png" alt="image-20221019143700754"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://lhl7.github.io/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/09/09/badusb%E9%92%88%E5%AF%B9windowsDefender%E7%9A%84%E5%85%8D%E6%9D%80%E6%80%9D%E8%B7%AF/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">badusb针对windowsDefender的免杀思路</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">55</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-text">机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E7%AC%AC%E4%B8%80%E8%AF%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8"><span class="toc-text">0x01 第一课 机器学习入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">一、线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">1、梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="toc-text">2、学习率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">3、线性回归的梯度下降</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%90%91%E9%87%8F%E5%8C%96"><span class="toc-text">4、向量化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE"><span class="toc-text">二、特征缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%EF%BC%9F"><span class="toc-text">1、为什么要进行特征缩放？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%EF%BC%9F"><span class="toc-text">2、如何进行特征缩放？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">三、逻辑回归</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%8D%E5%86%8D%E5%90%88%E9%80%82%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-text">1、线性回归不再合适的原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E8%AF%A6%E8%A7%A3"><span class="toc-text">2、逻辑回归详解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%BF%87%E6%8B%9F%E5%90%88%EF%BC%88%E9%AB%98%E6%96%B9%E5%B7%AE%EF%BC%89"><span class="toc-text">3、过拟合（高方差）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E7%AC%AC%E4%BA%8C%E8%AF%BE-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8B%93%E5%B1%95"><span class="toc-text">0x02 第二课 机器学习拓展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">一、神经网络的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Softmax"><span class="toc-text">二、Softmax</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、模型介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E4%BC%98%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="toc-text">2、优化方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0"><span class="toc-text">3、迁移学习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-text">三、模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BD%A2%E6%88%90%E3%80%81%E9%80%89%E6%8B%A9%E4%B8%8E%E8%AF%84%E4%BC%B0"><span class="toc-text">1、模型的形成、选择与评估</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%81%8F%E5%B7%AE"><span class="toc-text">2、方差与偏差</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E7%B2%BE%E7%A1%AE%E7%8E%87%E5%92%8C%E5%8F%AC%E5%9B%9E%E7%8E%87"><span class="toc-text">3、精确率和召回率</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">四、决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81-%E5%86%B3%E7%AD%96%E6%A0%91%E5%9F%BA%E6%9C%AC%E6%90%AD%E5%BB%BA%E6%80%9D%E8%B7%AF"><span class="toc-text">1、 决策树基本搭建思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81one-hot%E7%BC%96%E7%A0%81"><span class="toc-text">2、one-hot编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E8%BF%9E%E7%BB%AD%E6%9C%89%E4%BB%B7%E5%80%BC%E7%89%B9%E5%BE%81"><span class="toc-text">3、连续有价值特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%9B%9E%E5%BD%92%E6%A0%91"><span class="toc-text">4、回归树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%86%B3%E7%AD%96%E6%A3%AE%E6%9E%97"><span class="toc-text">5、决策森林</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81XGBoost"><span class="toc-text">6、XGBoost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91-amp-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">7、决策树&amp;神经网络</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记">机器学习笔记</a><time datetime="2023-01-04T07:52:46.330Z" title="Created 2023-01-04 15:52:46">2023-01-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/09/badusb%E9%92%88%E5%AF%B9windowsDefender%E7%9A%84%E5%85%8D%E6%9D%80%E6%80%9D%E8%B7%AF/" title="badusb针对windowsDefender的免杀思路">badusb针对windowsDefender的免杀思路</a><time datetime="2022-09-09T08:34:25.885Z" title="Created 2022-09-09 16:34:25">2022-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/18/shell%E5%85%A5%E9%97%A8/" title="shell入门">shell入门</a><time datetime="2022-08-18T03:18:16.621Z" title="Created 2022-08-18 11:18:16">2022-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/18/cve-2022-21907%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" title="cve-2022-21907分析与复现">cve-2022-21907分析与复现</a><time datetime="2022-07-18T07:29:14.898Z" title="Created 2022-07-18 15:29:14">2022-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/25/%E5%B8%B8%E8%A7%81%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E9%80%86%E5%90%91%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/" title="常见加密算法逆向特征分析">常见加密算法逆向特征分析</a><time datetime="2022-06-25T12:58:00.209Z" title="Created 2022-06-25 20:58:00">2022-06-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
