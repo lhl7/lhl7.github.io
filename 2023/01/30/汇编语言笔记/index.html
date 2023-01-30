@@ -1,0 +1,845 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>汇编语言笔记 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="汇编语言笔记一、传送指令1 、通用数据传送指令   指令 英文全称    MOV move   MOVSX extended move with sign data   MOVZX extended move with zero data   PUSH push   POP pop   PUSHA push all   POPA pop all   PUSHAD push all data   P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编语言笔记">
+<meta property="og:url" content="https://lhl7.github.io/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="汇编语言笔记一、传送指令1 、通用数据传送指令   指令 英文全称    MOV move   MOVSX extended move with sign data   MOVZX extended move with zero data   PUSH push   POP pop   PUSHA push all   POPA pop all   PUSHAD push all data   P">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-01-30T06:43:57.233Z">
+<meta property="article:modified_time" content="2022-06-26T00:51:13.948Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '汇编语言笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-26 08:51:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">56</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">汇编语言笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-01-30T06:43:57.233Z" title="Created 2023-01-30 14:43:57">2023-01-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-26T00:51:13.948Z" title="Updated 2022-06-26 08:51:13">2022-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Note-re/">Note-re</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="汇编语言笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="汇编语言笔记"><a href="#汇编语言笔记" class="headerlink" title="汇编语言笔记"></a>汇编语言笔记</h1><h2 id="一、传送指令"><a href="#一、传送指令" class="headerlink" title="一、传送指令"></a>一、传送指令</h2><h3 id="1-、通用数据传送指令"><a href="#1-、通用数据传送指令" class="headerlink" title="1 、通用数据传送指令"></a>1 、通用数据传送指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MOV</td>
+<td>move</td>
+</tr>
+<tr>
+<td>MOVSX</td>
+<td>extended move with sign data</td>
+</tr>
+<tr>
+<td>MOVZX</td>
+<td>extended move with zero data</td>
+</tr>
+<tr>
+<td>PUSH</td>
+<td>push</td>
+</tr>
+<tr>
+<td>POP</td>
+<td>pop</td>
+</tr>
+<tr>
+<td>PUSHA</td>
+<td>push all</td>
+</tr>
+<tr>
+<td>POPA</td>
+<td>pop all</td>
+</tr>
+<tr>
+<td>PUSHAD</td>
+<td>push all data</td>
+</tr>
+<tr>
+<td>POPAD</td>
+<td>pop all data</td>
+</tr>
+<tr>
+<td>BSWAP</td>
+<td>byte swap</td>
+</tr>
+<tr>
+<td>XCHG</td>
+<td>exchange</td>
+</tr>
+<tr>
+<td>CMPXCHG</td>
+<td>compare and change</td>
+</tr>
+<tr>
+<td>XADD</td>
+<td>exchange and add</td>
+</tr>
+<tr>
+<td>XLAT</td>
+<td>translate</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="2-、输入输出端口传送指令"><a href="#2-、输入输出端口传送指令" class="headerlink" title="2 、输入输出端口传送指令"></a>2 、输入输出端口传送指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IN</td>
+<td>input</td>
+</tr>
+<tr>
+<td>OUT</td>
+<td>output</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="3-、目的地址传送指令"><a href="#3-、目的地址传送指令" class="headerlink" title="3 、目的地址传送指令"></a>3 、目的地址传送指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LEA</td>
+<td>load effective address</td>
+</tr>
+<tr>
+<td>LDS</td>
+<td>load DS</td>
+</tr>
+<tr>
+<td>LES</td>
+<td>load ES</td>
+</tr>
+<tr>
+<td>LFS</td>
+<td>load FS</td>
+</tr>
+<tr>
+<td>LGS</td>
+<td>load GS</td>
+</tr>
+<tr>
+<td>LSS</td>
+<td>load SS</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="4-、标志传送指令"><a href="#4-、标志传送指令" class="headerlink" title="4 、标志传送指令"></a>4 、标志传送指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LAHF</td>
+<td>load AH from flag</td>
+</tr>
+<tr>
+<td>SAHF</td>
+<td>save AH to flag</td>
+</tr>
+<tr>
+<td>PUSHF</td>
+<td>push flag</td>
+</tr>
+<tr>
+<td>POPF</td>
+<td>pop flag</td>
+</tr>
+<tr>
+<td>PUSHD</td>
+<td>push dword flag</td>
+</tr>
+<tr>
+<td>POPD</td>
+<td>pop dword flag</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="二、-运算指令"><a href="#二、-运算指令" class="headerlink" title="二、 运算指令"></a>二、 运算指令</h2><h3 id="1-、算术运算指令"><a href="#1-、算术运算指令" class="headerlink" title="1 、算术运算指令"></a>1 、算术运算指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADD</td>
+<td>add</td>
+</tr>
+<tr>
+<td>ADC</td>
+<td>add with carry</td>
+</tr>
+<tr>
+<td>INC</td>
+<td>increase 1</td>
+</tr>
+<tr>
+<td>AAA</td>
+<td>ascii add with adjust</td>
+</tr>
+<tr>
+<td>DAA</td>
+<td>decimal add with adjust</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>substract</td>
+</tr>
+<tr>
+<td>SBB</td>
+<td>substract with borrow</td>
+</tr>
+<tr>
+<td>DEC</td>
+<td>decrease 1</td>
+</tr>
+<tr>
+<td>NEC</td>
+<td>negative</td>
+</tr>
+<tr>
+<td>CMP</td>
+<td>compare</td>
+</tr>
+<tr>
+<td>AAS</td>
+<td>ascii adjust on substract</td>
+</tr>
+<tr>
+<td>DAS</td>
+<td>decimal adjust on substract</td>
+</tr>
+<tr>
+<td>MUL</td>
+<td>multiplication</td>
+</tr>
+<tr>
+<td>IMUL</td>
+<td>integer multiplication</td>
+</tr>
+<tr>
+<td>AAM</td>
+<td>ascii adjust on multiplication</td>
+</tr>
+<tr>
+<td>DIV</td>
+<td>divide</td>
+</tr>
+<tr>
+<td>IDIV</td>
+<td>integer divide</td>
+</tr>
+<tr>
+<td>AAD</td>
+<td>ascii adjust on divide</td>
+</tr>
+<tr>
+<td>CBW</td>
+<td>change byte to word</td>
+</tr>
+<tr>
+<td>CWD</td>
+<td>change word to double word</td>
+</tr>
+<tr>
+<td>CWDE</td>
+<td>change word to double word with sign to  EAX</td>
+</tr>
+<tr>
+<td>CDQ</td>
+<td>change double word to quadrate word</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="2-、逻辑运算指令"><a href="#2-、逻辑运算指令" class="headerlink" title="2 、逻辑运算指令"></a>2 、逻辑运算指令</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AND</td>
+<td>and</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>or</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>xor</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>not</td>
+</tr>
+<tr>
+<td>TEST</td>
+<td>test</td>
+</tr>
+<tr>
+<td>SHL</td>
+<td>shift left</td>
+</tr>
+<tr>
+<td>SAL</td>
+<td>arithmatic shift left</td>
+</tr>
+<tr>
+<td>SHR</td>
+<td>shift right</td>
+</tr>
+<tr>
+<td>SAR</td>
+<td>arithmatic shift right</td>
+</tr>
+<tr>
+<td>ROL</td>
+<td>rotate left</td>
+</tr>
+<tr>
+<td>ROR</td>
+<td>rotate right</td>
+</tr>
+<tr>
+<td>RCL</td>
+<td>rotate left with carry</td>
+</tr>
+<tr>
+<td>RCR</td>
+<td>rotate right with carry</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="三、字符串操作指令"><a href="#三、字符串操作指令" class="headerlink" title="三、字符串操作指令"></a>三、字符串操作指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MOVS</td>
+<td>move string</td>
+</tr>
+<tr>
+<td>CMPS</td>
+<td>compare string</td>
+</tr>
+<tr>
+<td>SCAS</td>
+<td>scan string</td>
+</tr>
+<tr>
+<td>LODS</td>
+<td>load string</td>
+</tr>
+<tr>
+<td>STOS</td>
+<td>store string</td>
+</tr>
+<tr>
+<td>REP</td>
+<td>repeat</td>
+</tr>
+<tr>
+<td>REPE</td>
+<td>repeat when equal</td>
+</tr>
+<tr>
+<td>REPZ</td>
+<td>repeat when zero flag</td>
+</tr>
+<tr>
+<td>REPNE</td>
+<td>repeat when not equal</td>
+</tr>
+<tr>
+<td>REPNZ</td>
+<td>repeat when zero flag</td>
+</tr>
+<tr>
+<td>REPC</td>
+<td>repeat when carry flag</td>
+</tr>
+<tr>
+<td>REPNC</td>
+<td>repeat when not carry flag</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="四、程序转移指令"><a href="#四、程序转移指令" class="headerlink" title="四、程序转移指令"></a>四、程序转移指令</h2><h3 id="1-、-无条件转移指令-长转移"><a href="#1-、-无条件转移指令-长转移" class="headerlink" title="1 、 无条件转移指令 ( 长转移 )"></a>1 、 无条件转移指令 ( 长转移 )</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JMP</td>
+<td>jump</td>
+</tr>
+<tr>
+<td>CALL</td>
+<td>call</td>
+</tr>
+<tr>
+<td>RET</td>
+<td>return</td>
+</tr>
+<tr>
+<td>RETF</td>
+<td>return far</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="2-、-条件转移指令-短转移-128-到-127-的距离内"><a href="#2-、-条件转移指令-短转移-128-到-127-的距离内" class="headerlink" title="2 、 条件转移指令 ( 短转移 ,128 到 +127 的距离内 )"></a>2 、 条件转移指令 ( 短转移 ,128 到 +127 的距离内 )</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JAE</td>
+<td>jump when above or equal</td>
+</tr>
+<tr>
+<td>JNB</td>
+<td>jump when not below</td>
+</tr>
+<tr>
+<td>JB</td>
+<td>jump when below</td>
+</tr>
+<tr>
+<td>JNAE</td>
+<td>jump when not above or equal</td>
+</tr>
+<tr>
+<td>JBE</td>
+<td>jump when below or equal</td>
+</tr>
+<tr>
+<td>JNA</td>
+<td>jump when not above</td>
+</tr>
+<tr>
+<td>JG</td>
+<td>jump when greater</td>
+</tr>
+<tr>
+<td>JNLE</td>
+<td>jump when not less or equal</td>
+</tr>
+<tr>
+<td>JGE</td>
+<td>jump when greater or equal</td>
+</tr>
+<tr>
+<td>JNL</td>
+<td>jump when not less</td>
+</tr>
+<tr>
+<td>JL</td>
+<td>jump when less</td>
+</tr>
+<tr>
+<td>JNGE</td>
+<td>jump when not greater or equal</td>
+</tr>
+<tr>
+<td>JLE</td>
+<td>jump when less or equal</td>
+</tr>
+<tr>
+<td>JNG</td>
+<td>jump when not greater</td>
+</tr>
+<tr>
+<td>JE</td>
+<td>jump when equal</td>
+</tr>
+<tr>
+<td>JZ</td>
+<td>jump when has zero flag</td>
+</tr>
+<tr>
+<td>JNE</td>
+<td>jump when not equal</td>
+</tr>
+<tr>
+<td>JNZ</td>
+<td>jump when not has zero flag</td>
+</tr>
+<tr>
+<td>JC</td>
+<td>jump when has carry flag</td>
+</tr>
+<tr>
+<td>JNC</td>
+<td>jump when not has carry flag</td>
+</tr>
+<tr>
+<td>JNO</td>
+<td>jump when not has overflow flag</td>
+</tr>
+<tr>
+<td>JNP</td>
+<td>jump when not has parity flag</td>
+</tr>
+<tr>
+<td>JPO</td>
+<td>jump when parity flag is odd</td>
+</tr>
+<tr>
+<td>JNS</td>
+<td>jump when not has sign flag</td>
+</tr>
+<tr>
+<td>JO</td>
+<td>jump when has overflow flag</td>
+</tr>
+<tr>
+<td>JP</td>
+<td>jump when has parity flag</td>
+</tr>
+<tr>
+<td>JPE</td>
+<td>jump when parity flag is even</td>
+</tr>
+<tr>
+<td>JS</td>
+<td>jump when has sign flag</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="3-、-循环控制指令-短转移"><a href="#3-、-循环控制指令-短转移" class="headerlink" title="3 、 循环控制指令 ( 短转移 )"></a>3 、 循环控制指令 ( 短转移 )</h3><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LOOP</td>
+<td>loop</td>
+</tr>
+<tr>
+<td>LOOPE</td>
+<td>loop equal</td>
+</tr>
+<tr>
+<td>LOOPZ</td>
+<td>loop zero</td>
+</tr>
+<tr>
+<td>LOOPNE</td>
+<td>loop not equal</td>
+</tr>
+<tr>
+<td>LOOPNZ</td>
+<td>loop not zero</td>
+</tr>
+<tr>
+<td>JCXZ</td>
+<td>jump when CX is zero</td>
+</tr>
+<tr>
+<td>JECXZ</td>
+<td>jump when ECX is zero</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="五-、中断指令"><a href="#五-、中断指令" class="headerlink" title="五 、中断指令"></a>五 、中断指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INT</td>
+<td>interrupt</td>
+</tr>
+<tr>
+<td>INTO</td>
+<td>overflow interrupt</td>
+</tr>
+<tr>
+<td>IRET</td>
+<td>interrupt return</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="六、-处理器控制指令"><a href="#六、-处理器控制指令" class="headerlink" title="六、 处理器控制指令"></a>六、 处理器控制指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HLT</td>
+<td>halt</td>
+</tr>
+<tr>
+<td>WAIT</td>
+<td>wait</td>
+</tr>
+<tr>
+<td>ESC</td>
+<td>escape</td>
+</tr>
+<tr>
+<td>LOCK</td>
+<td>lock</td>
+</tr>
+<tr>
+<td>NOP</td>
+<td>no operation</td>
+</tr>
+<tr>
+<td>STC</td>
+<td>set carry</td>
+</tr>
+<tr>
+<td>CLC</td>
+<td>clear carry</td>
+</tr>
+<tr>
+<td>CMC</td>
+<td>carry make change</td>
+</tr>
+<tr>
+<td>STD</td>
+<td>set direction</td>
+</tr>
+<tr>
+<td>CLD</td>
+<td>clear direction</td>
+</tr>
+<tr>
+<td>STI</td>
+<td>set interrupt</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td>clear interrupt</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="七、-伪指令"><a href="#七、-伪指令" class="headerlink" title="七、 伪指令"></a>七、 伪指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>英文全称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DW</td>
+<td>define word</td>
+</tr>
+<tr>
+<td>PROC</td>
+<td>procedure</td>
+</tr>
+<tr>
+<td>ENDP</td>
+<td>end of procedure</td>
+</tr>
+<tr>
+<td>SEGMENT</td>
+<td>segment</td>
+</tr>
+<tr>
+<td>ASSUME</td>
+<td>assume</td>
+</tr>
+<tr>
+<td>ENDS</td>
+<td>end segment</td>
+</tr>
+<tr>
+<td>END</td>
+<td>end</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><img src="C:\Users\86183\AppData\Roaming\Typora\typora-user-images\image-20220626085110131.png" alt="image-20220626085110131"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/">https://lhl7.github.io/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">机器学习笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">56</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0"><span class="toc-text">汇编语言笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-text">一、传送指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E9%80%9A%E7%94%A8%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-text">1 、通用数据传送指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AB%AF%E5%8F%A3%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-text">2 、输入输出端口传送指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81%E7%9B%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-text">3 、目的地址传送指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81%E6%A0%87%E5%BF%97%E4%BC%A0%E9%80%81%E6%8C%87%E4%BB%A4"><span class="toc-text">4 、标志传送指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">二、 运算指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">1 、算术运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">2 、逻辑运算指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">三、字符串操作指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%A8%8B%E5%BA%8F%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4"><span class="toc-text">四、程序转移指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E3%80%81-%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4-%E9%95%BF%E8%BD%AC%E7%A7%BB"><span class="toc-text">1 、 无条件转移指令 ( 长转移 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81-%E6%9D%A1%E4%BB%B6%E8%BD%AC%E7%A7%BB%E6%8C%87%E4%BB%A4-%E7%9F%AD%E8%BD%AC%E7%A7%BB-128-%E5%88%B0-127-%E7%9A%84%E8%B7%9D%E7%A6%BB%E5%86%85"><span class="toc-text">2 、 条件转移指令 ( 短转移 ,128 到 +127 的距离内 )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81-%E5%BE%AA%E7%8E%AF%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4-%E7%9F%AD%E8%BD%AC%E7%A7%BB"><span class="toc-text">3 、 循环控制指令 ( 短转移 )</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E3%80%81%E4%B8%AD%E6%96%AD%E6%8C%87%E4%BB%A4"><span class="toc-text">五 、中断指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E5%A4%84%E7%90%86%E5%99%A8%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4"><span class="toc-text">六、 处理器控制指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-text">七、 伪指令</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="汇编语言笔记">汇编语言笔记</a><time datetime="2023-01-30T06:43:57.233Z" title="Created 2023-01-30 14:43:57">2023-01-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记">机器学习笔记</a><time datetime="2023-01-04T07:52:46.330Z" title="Created 2023-01-04 15:52:46">2023-01-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/09/badusb%E9%92%88%E5%AF%B9windowsDefender%E7%9A%84%E5%85%8D%E6%9D%80%E6%80%9D%E8%B7%AF/" title="badusb针对windowsDefender的免杀思路">badusb针对windowsDefender的免杀思路</a><time datetime="2022-09-09T08:34:25.885Z" title="Created 2022-09-09 16:34:25">2022-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/18/shell%E5%85%A5%E9%97%A8/" title="shell入门">shell入门</a><time datetime="2022-08-18T03:18:16.621Z" title="Created 2022-08-18 11:18:16">2022-08-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/18/cve-2022-21907%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E7%8E%B0/" title="cve-2022-21907分析与复现">cve-2022-21907分析与复现</a><time datetime="2022-07-18T07:29:14.898Z" title="Created 2022-07-18 15:29:14">2022-07-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
