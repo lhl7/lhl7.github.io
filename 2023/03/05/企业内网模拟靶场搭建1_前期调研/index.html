@@ -1,0 +1,577 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>企业内网模拟靶场搭建1_前期调研 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="企业内网模拟靶场搭建1_前期调研本文旨在对企业内网搭建的模块进行划分，并给出完整的规划情况和调研所得的技术栈，汇报共7轮，于16周内完成。 一、云环境搭建任务需求1. 云环境搭建云环境的目的是进行：企业网的网络架构设计 网络层次：搭建包括 OS 层、虚拟化层、容器层、应用服务层等多层次的云网络环境 结合虚拟化软件，搭建模拟路由器 交换机 防火墙 安全网关 &#x2F; IoT 接入设备等基础性网络环境 2.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="企业内网模拟靶场搭建1_前期调研">
+<meta property="og:url" content="https://lhl7.github.io/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="企业内网模拟靶场搭建1_前期调研本文旨在对企业内网搭建的模块进行划分，并给出完整的规划情况和调研所得的技术栈，汇报共7轮，于16周内完成。 一、云环境搭建任务需求1. 云环境搭建云环境的目的是进行：企业网的网络架构设计 网络层次：搭建包括 OS 层、虚拟化层、容器层、应用服务层等多层次的云网络环境 结合虚拟化软件，搭建模拟路由器 交换机 防火墙 安全网关 &#x2F; IoT 接入设备等基础性网络环境 2.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-03-05T14:47:11.297Z">
+<meta property="article:modified_time" content="2023-03-05T14:46:58.568Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '企业内网模拟靶场搭建1_前期调研',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-05 22:46:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">57</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">企业内网模拟靶场搭建1_前期调研</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-03-05T14:47:11.297Z" title="Created 2023-03-05 22:47:11">2023-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-03-05T14:46:58.568Z" title="Updated 2023-03-05 22:46:58">2023-03-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web/">web</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="企业内网模拟靶场搭建1_前期调研"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="企业内网模拟靶场搭建1-前期调研"><a href="#企业内网模拟靶场搭建1-前期调研" class="headerlink" title="企业内网模拟靶场搭建1_前期调研"></a>企业内网模拟靶场搭建1_前期调研</h1><p>本文旨在对企业内网搭建的模块进行划分，并给出完整的规划情况和调研所得的技术栈，汇报共7轮，于16周内完成。</p>
+<h2 id="一、云环境搭建任务需求"><a href="#一、云环境搭建任务需求" class="headerlink" title="一、云环境搭建任务需求"></a>一、云环境搭建任务需求</h2><h3 id="1-云环境搭建"><a href="#1-云环境搭建" class="headerlink" title="1. 云环境搭建"></a>1. 云环境搭建</h3><p>云环境的目的是进行：<strong>企业网的网络架构设计</strong></p>
+<p>网络层次：搭建包括 OS 层、虚拟化层、容器层、应用服务层等多层次的云网络环境</p>
+<p>结合虚拟化软件，搭建模拟路由器 交换机 防火墙 安全网关 / IoT 接入设备等基础性网络环境</p>
+<h3 id="2-攻击-amp-防御体系"><a href="#2-攻击-amp-防御体系" class="headerlink" title="2. 攻击&amp;防御体系"></a>2. 攻击&amp;防御体系</h3><p><strong>网络系统防御 ：</strong></p>
+<ul>
+<li>设计基于网络设备（路由器、交换机）、安全防护设备（防火墙、堡垒主机）、网络边缘接入设备（网关、VPN网关）的攻击和渗透工具集，开展攻击测试</li>
+<li>面向网络系统的攻击，设计基于网络嗅探、网络拦截、网络检测功能的网络系统防御检测体系</li>
+</ul>
+<p><strong>应用设备防御：</strong></p>
+<ul>
+<li>设计应用系统全系列攻击工具集，开展攻击测试</li>
+<li>设计应用系统全方位 检测防御分析工具集，针对攻击开展检测分析</li>
+</ul>
+<p><em><strong>云环境的攻击&amp;防御：</strong></em></p>
+<ul>
+<li><em>构建各个层面的漏洞发现、攻击工具集，多层次穿透技术</em></li>
+<li><em>构建全层次的攻击检测、防御集合，用于响应和发现攻击行为</em></li>
+</ul>
+<p>总言之，体系化的攻击技术体系：整体框架设计、工具集构建、攻击技术研发、攻击渗透验证</p>
+<p>体系化的防御技术体系：整体框架设计、工具集构建、安全防御技术研发、安全防御验证</p>
+<h3 id="3-新型技术"><a href="#3-新型技术" class="headerlink" title="3.新型技术"></a>3.新型技术</h3><p><strong>新型渗透技术：</strong>3</p>
+<ul>
+<li>体系化的漏洞挖掘工具集构建（开源项目收集 … …）</li>
+<li>安全防护场景的探测（在 VPN 、 WAF 、 FW 、 HTTPS 场景下，探测网络中的公开和非公开服务、拓扑 …）</li>
+<li>绕过 WAF 、 IPS 的攻击（绕过规则检测、设备脆弱性利用）</li>
+<li>自动化攻击渗透（扫描 攻击路径选择 漏洞攻击的组合 …）</li>
+<li>高隐蔽性回传技术（动态域名、动态路径、匿名网络）（注：此处回传指的是，当攻击者入侵系统获取资料后，将敏感资料回传至公网，或自己的主机上的动作）</li>
+<li>网络基础设施设备的远程攻击和控制（路由器、防火墙、 IoT设备、智能终端 的攻击和控制）</li>
+</ul>
+<p><strong>防御技术体系：</strong>2</p>
+<ul>
+<li>抗绕过 ips 、 waf 规则恶意流量的智能检测技术（对编码、压缩、混淆、加密攻击流量的检测）</li>
+<li>C&amp;C Command and Control Server ）检测 /APT 远控、扩散和回传的检测 SSH/SSL/TSL/ICMP/UDP/SOCKS/Proxy</li>
+<li>主机深度智能检测技术（深度脱壳检测、抗沙箱反分析、内存解密反 混淆）</li>
+<li>未知新型攻击流量的 AI 智能检测技术</li>
+<li>对网络基础设施设备的未知新型远程攻击控制技术的智能检测</li>
+</ul>
+<h2 id="二、网络拓扑搭建"><a href="#二、网络拓扑搭建" class="headerlink" title="二、网络拓扑搭建"></a>二、网络拓扑搭建</h2><p>注：本部分参考51CTO博主： <em>听雪落的光阴</em>  <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_14557673/2473895">相关博客</a>。</p>
+<p>​    在学校提供的平台上搭建模拟企业架构存在的问题是：</p>
+<ul>
+<li>性能较差，卡顿影响操作</li>
+<li>储存节点会随机刷新，无法可控的储存信息，环境有可能被清空</li>
+<li>依赖于学校网络中心，随时崩溃</li>
+</ul>
+<p>​    在个人主机上可以通过路由器、hub等工具组成子网，并完成实验，但是专业昂搭建企业架构存在的问题是：</p>
+<ul>
+<li>依赖于个人主机，每次组装时间较长</li>
+<li>个人主机大多为Windows系统，不容易完成实验需要</li>
+<li>使用桥接（bridge）的虚拟机难以与宿主机分割，搭建复杂拓扑存在难点。</li>
+</ul>
+<p>​    </p>
+<p>​    综上，经过调研后，我们最终将目光锁定在<strong>openstack</strong>技术上，下文中将继续记录尝试使用Openstack搭建平台的过程：</p>
+<h3 id="1-Openstack调研"><a href="#1-Openstack调研" class="headerlink" title="1. Openstack调研"></a>1. Openstack调研</h3><p>关于Openstack：</p>
+<ul>
+<li>OpenStack起源于云计算技术；</li>
+<li>OpenStack是一个云操作系统；</li>
+<li>OpenStack控制三大资源：计算、网络、存储（池）；</li>
+<li>OpenStack采取身份认证机制给予用户权限和资源；</li>
+<li>OpenStack提供web端的可视化界面方便管理员控制；</li>
+</ul>
+<p>OpenStack就是一个控制计算、网络和存储资源的分布式云操作系统。</p>
+<h4 id="Openstack整体架构"><a href="#Openstack整体架构" class="headerlink" title="Openstack整体架构"></a>Openstack整体架构</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/532554e20e8efff985efca155514ed0e.png" alt="img"></p>
+<p>​    如图，官方给出的架构将OPENSTACK体系分为多个层次，其中的每一个单词对应一个组件，其中被加粗的组件可以被视为核心的组件，未加粗的则是并非核心，按照个人需要安装的组件。</p>
+<p><strong>核心组件功能表格：</strong></p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>项目</th>
+<th>项目说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Compute（计算服务）</td>
+<td>Nova</td>
+<td>实施服务和关联的库，以提供对可计算资源（包括裸机，虚拟机和容器）的大规模可扩展的按需自助服务访问</td>
+</tr>
+<tr>
+<td>Identity Service(认证服务)</td>
+<td>Keystone</td>
+<td>提供API客户端身份验证，服务发现和分布式多租户授权</td>
+</tr>
+<tr>
+<td>Image Service（镜像服务）</td>
+<td>Glance</td>
+<td>发现，注册和检索虚拟机映像。Glance具有一个RESTful API，该API允许查询VM映像元数据以及检索实际映像。通过Glance提供的VM映像可以存储在从简单文件系统到对象存储系统（例如OpenStack Swift项目）的各种位置。</td>
+</tr>
+<tr>
+<td>Networking（网络服务）</td>
+<td>Neutron</td>
+<td>SDN网络项目，在虚拟计算环境中交付网络即服务</td>
+</tr>
+<tr>
+<td>Dashboard（仪表板）</td>
+<td>Horizon</td>
+<td>为OpenStack服务提供基于Web的用户界面</td>
+</tr>
+<tr>
+<td>Block Storage（块存储）</td>
+<td>Cinder</td>
+<td>虚拟化了块存储设备的管理，并为最终用户提供了自助服务API，以请求和使用这些资源，而无需了解其存储实际部署在何处或在哪种类型的设备上。</td>
+</tr>
+<tr>
+<td>Object Storage（对象存储）</td>
+<td>Swift</td>
+<td>高度可用的，分布式的，最终一致的对象存储。组织可以使用Swift来高效、安全和廉价地存储大量数据。</td>
+</tr>
+<tr>
+<td>Telemetry（计量服务）</td>
+<td>Ceilometer</td>
+<td>有效收集，规范化和转换OpenStack服务产生的数据</td>
+</tr>
+<tr>
+<td>Orchestration(编排服务)</td>
+<td>Heat</td>
+<td>基于文本文件形式的模板，为云应用程序协调基础结构资源，可以将其视为代码</td>
+</tr>
+<tr>
+<td>Database Service（数据库服务）</td>
+<td>Trove</td>
+<td>一个数据库即服务供应关系和非关系数据库引擎</td>
+</tr>
+<tr>
+<td>Data Processing（数据处理）</td>
+<td>Sahara</td>
+<td>为用户提供一种简单的方法来在OpenStack上预配数据处理框架（例如Hadoop，Spark和Storm）</td>
+</tr>
+</tbody></table>
+<h4 id="Openstack环境搭建"><a href="#Openstack环境搭建" class="headerlink" title="Openstack环境搭建"></a>Openstack环境搭建</h4><p>​    可以自上文看出，Openstack本身只提供最基础的服务和命令行，要正常的使用Openstack一定要安装配置对应的组件，同时在配置之前，需要对网络、时间、安装源、数据库等进行手动安装，这样的工作量是及其庞大的。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305142931319.png" alt="image-20230305142931319" style="zoom:50%;" />
+
+<p>​    要规避安装所带来的痛苦，有一些工具可供我们使用：</p>
+<ul>
+<li>DevStack</li>
+<li>PackStack</li>
+<li>TripleO</li>
+<li>Juju</li>
+</ul>
+<p>在配置过程中，存在大量系统版本报错问题，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Package: libselinux-ruby-2.5-12.el7.x86_64 (local) Requires: libselinux-ruby-2.4.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+<p>如上类似的版本问题，均可以通过手动下载对应版本，在对应安装包目录下使用:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum downgrade libselinux-ruby-2.4.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p>解决。</p>
+<p>在按照上述教程配置环境后，可以访问web界面如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305113157237.png" alt="image-20230305113157237"></p>
+<hr>
+<h3 id="2-StarVCenter调研和使用"><a href="#2-StarVCenter调研和使用" class="headerlink" title="2.StarVCenter调研和使用"></a>2.StarVCenter调研和使用</h3><h4 id="StarVCenter比较情况"><a href="#StarVCenter比较情况" class="headerlink" title="StarVCenter比较情况"></a>StarVCenter比较情况</h4><p>​    StarVCenter和OpenStack都是开源的云计算平台，它们的主要区别在于：</p>
+<ul>
+<li><strong>体系结构</strong>：StarVCenter是一个基于VMware vSphere的云管理平台，它使用vSphere API来管理虚拟化基础设施。而OpenStack则是一个基于多个开源组件的云管理平台，包括Nova（虚拟机管理）、Neutron（网络管理）、Cinder（存储管理）等等。</li>
+<li><strong>支持的虚拟化技术</strong>：StarVCenter仅支持VMware的虚拟化技术，而OpenStack支持多种虚拟化技术，包括KVM、Xen、Hyper-V等等。</li>
+<li><strong>社区规模和生态系统</strong>：OpenStack是由多家公司和组织共同开发和维护的项目，拥有一个庞大的社区和生态系统。而StarVCenter是由VMware单独开发和维护的，其社区和生态系统相对较小。</li>
+<li><strong>功能和灵活性</strong>：OpenStack具有更高的灵活性和可扩展性，可以根据用户的需要进行自定义配置和扩展。而StarVCenter的功能相对较为简单，主要是针对VMware虚拟化环境的管理和监控。</li>
+</ul>
+<p>​    总之，StarVCenter更适合那些已经使用VMware虚拟化技术的企业，而OpenStack则适用于需要更高灵活性和可扩展性的企业。</p>
+<p><em>注：上述文字通过ChatGPT生成，但是经过实验基本正确。</em></p>
+<h4 id="StarVCenter使用体验"><a href="#StarVCenter使用体验" class="headerlink" title="StarVCenter使用体验"></a>StarVCenter使用体验</h4><p>​    StarVCenter的安装相对来说简单得多，开发者将StarVCenter使用.iso镜像封装，直接添加镜像，就能得到配置完毕的环境：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305144338169.png" alt="image-20230305144338169" style="zoom:50%;" />
+
+<p>在环境配置完毕后，我们对其功能进行了调研和学习：</p>
+<p>添加计算节点：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305145557954.png" alt="image-20230305145557954"></p>
+<p>初始化网络配置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305150610068.png" alt="image-20230305150610068"></p>
+<p>添加云路由：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305150635591.png" alt="image-20230305150635591"></p>
+<p>添加虚拟机模板：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305150704456.png" alt="image-20230305150704456"></p>
+<p>添加测试虚拟机：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305150731934.png" alt="image-20230305150731934"></p>
+<p>完成了初步对于StarVCenter的学习使用工作后，我们发现该软件存在一定的问题。</p>
+<h4 id="StarVCenter的不足之处"><a href="#StarVCenter的不足之处" class="headerlink" title="StarVCenter的不足之处"></a>StarVCenter的不足之处</h4><ol>
+<li><p>starVCenter网上社区较小，通过微信开创社区不太方便：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305152743075.png" alt="image-20230305152743075" style="zoom:33%;" /></li>
+<li><p>StarVCenter更注重starVCenter集群在企业架构中的位置，而不是注重云环境的拓扑情况，如下图，为starVCenter在官方文档中给出的部署结构图，可以看出，官方对该软件的定位也是提供云服务的企业内部计算集群：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305161013554.png" alt="image-20230305161013554" style="zoom:50%;" />
+
+<p>​    如下图所示，StarVCenter给出的全局仿真视图仅仅体现了储存、计算、管理网络的拓扑，但是未反应云服务拓扑因此和我们所做的事情并不对应。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305161524312.png" alt="image-20230305161524312" style="zoom:50%;" /></li>
+<li><p>因此，总体来说StarVCenter在部署难易、易用性等方面都远远超越了Openstack，但由于其功能和社区所限，我们决定放弃这一方案。</p>
+</li>
+</ol>
+<h3 id="3-对于Openstack学习与探索"><a href="#3-对于Openstack学习与探索" class="headerlink" title="3.对于Openstack学习与探索"></a>3.对于Openstack学习与探索</h3><h4 id="使用Openstack搭建企业靶场的可行性分析"><a href="#使用Openstack搭建企业靶场的可行性分析" class="headerlink" title="使用Openstack搭建企业靶场的可行性分析"></a>使用Openstack搭建企业靶场的可行性分析</h4><p>可以看到，知网上给出了一些关于使用Openstack搭建靶场的文献。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305162354915.png" alt="image-20230305162354915"></p>
+<h4 id="使用Openstack未解决的问题"><a href="#使用Openstack未解决的问题" class="headerlink" title="使用Openstack未解决的问题"></a>使用Openstack未解决的问题</h4><h5 id="网络架构配置问题"><a href="#网络架构配置问题" class="headerlink" title="网络架构配置问题"></a>网络架构配置问题</h5><p>​    由于openstack需要连接控制节点和多个计算节点，以分担控制节点资源不够的情况，他们就需要多台主机进行相连，由于openstack需要在Linux平台上部署，故只能使用虚拟机进行平台的部署，然而虚拟机之间的相连就成了问题之一；虚拟机之间相连，首先需要虚拟机内部能够访问外部网络，另一方面需要外部网络能访问到部署在虚拟机上的服务。要完成前者非常容易，而完成后者，则依赖一定的技术，原因如下：大多数的情况下，openstack软件的步数都依赖于固定的IP地址，因此使用仅主机和nat模式两张网卡进行虚拟机的配置，要让部署了openstack软件的虚拟机上的服务，能够被公共网络访问，最直接的想法就是将虚拟机桥接到网络中，该方法中，我们遇到的难题就是Openstack复杂的网络配置，Openstack本身会利用用户配置时所提供的Ip添加网桥，进行服务的搭建，导致网络变得更加复杂。另一个直接的思路就是使用端口转发技术，转发Openstack向外提供的web服务，以达成服务的外部访问：</p>
+<p><strong>端口转发：</strong></p>
+<p>​    调研过程中，我们考虑了两种端口转发的方式，</p>
+<p>使用python程序进行转发</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> twisted.internet <span class="keyword">import</span> reactor, protocol</span><br><span class="line"></span><br><span class="line">LOCAL_PORT = <span class="number">5000</span>  <span class="comment"># 本地端口号</span></span><br><span class="line">REMOTE_PORT = <span class="number">5000</span>   <span class="comment"># OpenStack服务端口号</span></span><br><span class="line">VM_IP = <span class="string">&#x27;192.168.6.20&#x27;</span>  <span class="comment"># 虚拟机IP地址</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForwardServer</span>(<span class="params">protocol.Protocol</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, factory</span>):</span></span><br><span class="line">        self.factory = factory</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connectionMade</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Accepted connection from <span class="subst">&#123;self.transport.getPeer()&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="comment"># 连接到虚拟机的OpenStack服务</span></span><br><span class="line">        self.remote = protocol.ClientCreator(reactor, protocol.Protocol).connect((VM_IP, REMOTE_PORT))</span><br><span class="line">        self.remote.addCallback(self.remoteConnected)</span><br><span class="line">        self.remote.addErrback(self.remoteConnectionFailed)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connectionLost</span>(<span class="params">self, reason</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Connection lost: <span class="subst">&#123;reason&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(self, <span class="string">&#x27;remote&#x27;</span>):</span><br><span class="line">            self.remote.transport.loseConnection()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dataReceived</span>(<span class="params">self, data</span>):</span></span><br><span class="line">        self.remote.transport.write(data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remoteConnected</span>(<span class="params">self, remote</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Connected to <span class="subst">&#123;VM_IP&#125;</span>:<span class="subst">&#123;REMOTE_PORT&#125;</span>&quot;</span>)</span><br><span class="line">        self.remote = remote</span><br><span class="line">        self.remote.transport.registerProducer(self, <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remoteConnectionFailed</span>(<span class="params">self, failure</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Failed to connect to <span class="subst">&#123;VM_IP&#125;</span>:<span class="subst">&#123;REMOTE_PORT&#125;</span>&quot;</span>)</span><br><span class="line">        self.transport.loseConnection()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForwardServerFactory</span>(<span class="params">protocol.Factory</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buildProtocol</span>(<span class="params">self, addr</span>):</span></span><br><span class="line">        <span class="keyword">return</span> ForwardServer(self)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    reactor.listenTCP(LOCAL_PORT, ForwardServerFactory())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Listening on localhost:<span class="subst">&#123;LOCAL_PORT&#125;</span>...&quot;</span>)</span><br><span class="line">    reactor.run()</span><br></pre></td></tr></table></figure>
+
+<p>使用虚拟机自带配置进行转发：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305172058525.png" alt="image-20230305172058525"></p>
+<p>然而，经过试验后，这两类方式都无法完成向内访问的流量转发到虚拟机的目的，经过抓包分析：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305172859372.png" alt="image-20230305172859372" style="zoom:80%;" />
+
+<p>服务存在跨域访问的情况，因此，最终还是需要使用桥接技术。</p>
+<h5 id="Openstack使用方式学习"><a href="#Openstack使用方式学习" class="headerlink" title="Openstack使用方式学习"></a>Openstack使用方式学习</h5><p>逐步学习Openstack软件的使用，如下为指定项目添加角色用户</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/fb4b369de639745ac0f33b11c9a1155.png" alt="fb4b369de639745ac0f33b11c9a1155"></p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/d99e27fc4d86f2b175d88512217bf0e.png" alt="d99e27fc4d86f2b175d88512217bf0e" style="zoom: 50%;" />
+
+
+
+<h2 id="三、常见企业网络架构"><a href="#三、常见企业网络架构" class="headerlink" title="三、常见企业网络架构"></a>三、常见企业网络架构</h2><h3 id="1-小型企业网络"><a href="#1-小型企业网络" class="headerlink" title="1.小型企业网络"></a><strong>1.小型企业网络</strong></h3><p><img src="https://pic1.zhimg.com/80/v2-77f69fbd69fab5602a5211b55e237a28_720w.webp" alt="https://pic1.zhimg.com/80/v2-77f69fbd69fab5602a5211b55e237a28_720w.webp"></p>
+<p>​    小型企业的网络架构中，把各个部门划分为独立的vlan并设置一个单独的子网网段，接入层网络使用2层交换机，汇聚及核心层网络使用园区级3层交换机，在各个子网间进行数据转发，最后通过防火墙连接到互联网；这样做的目的是使各个部门网络访问相对独立，便于各个部门设置专属的网络访问需求；各功能模块相对独立，从逻辑层来看清晰明了，方便后期运维及故障排查。</p>
+<p><strong>设备：</strong>FW（防火墙）-交换机-PC服务器-办公PC-AP（无线网设备）-AC（无线接入AP控制器）-无线设备</p>
+<h4 id="路由器和交换机的区别"><a href="#路由器和交换机的区别" class="headerlink" title="路由器和交换机的区别"></a>路由器和交换机的区别</h4><ol>
+<li>交换机工作于 TCP/IP 协议的数据链路层（2层），路由器工作于网络层（3层）。</li>
+<li>交换机的每一个端口对应一个mac地址；路由器接入了几个网络，就有几个IP地址，负责连接不同网络（一般为内-外网）；</li>
+<li>有些路由器提供了防火墙的服务，交换机不能提供该功能。路由器仅仅转发特定地址的数据包，不传送不支持路由协议的数据包传送和未知目标网络数据包的传送，从而可以防止广播风暴。</li>
+</ol>
+<h4 id="无线和有线传输的区别"><a href="#无线和有线传输的区别" class="headerlink" title="无线和有线传输的区别"></a>无线和有线传输的区别</h4><ol>
+<li>物理层协议：有线网络通常使用的是以太网协议（Ethernet Protocol），而无线网络则使用的是Wi-Fi协议（Wireless Fidelity Protocol），这两种协议在物理层上的传输方式不同。</li>
+<li>链路层协议：有线网络使用的是MAC地址（Media Access Control Address）来标识设备的身份，而无线网络则使用的是MAC地址和SSID（Service Set Identifier）来标识设备的身份。</li>
+<li>网络层协议：有线网络和无线网络使用的网络层协议是一致的，都使用的是IP协议（Internet Protocol）来实现数据包的传输。</li>
+</ol>
+<p>总而言之，在网络层以下存在区别，而网络层以上不存在，即AP就是无线交换机。</p>
+<h4 id="网络架构设计"><a href="#网络架构设计" class="headerlink" title="网络架构设计"></a>网络架构设计</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305181451165.png" alt="image-20230305181451165"></p>
+<h3 id="2-最常见三层架构网络（大型企业网络架构）"><a href="#2-最常见三层架构网络（大型企业网络架构）" class="headerlink" title="2.最常见三层架构网络（大型企业网络架构）"></a><strong>2.最常见三层架构网络（大型企业网络架构）</strong></h3><p><strong>物理网络拓扑：</strong>采用简单的三层架构，接入-汇聚-核心；</p>
+<p><img src="https://pic2.zhimg.com/80/v2-e9ab66f45b5688fa8fbd4e9ef30fb2e1_720w.webp" alt="https://pic2.zhimg.com/80/v2-e9ab66f45b5688fa8fbd4e9ef30fb2e1_720w.webp"></p>
+<ol>
+<li><p><strong>核心层</strong></p>
+<p>核心层是企业网络的中心，连接着汇聚层和其他远程网段，承担着高速数据传输的任务。在核心层中通常采用高速交换机、路由器等设备，保证网络传输速度和可靠性。通常三个以上部门规模的园区网建议规划核心层。针对无线网络，核心层包括WAC，WAC通过CAPWAP（Control and Provisioning of Wireless Access Points，无线接入点控制协议）协议对AP进行管理。</p>
+</li>
+<li><p><strong>汇聚层</strong></p>
+<p>汇聚层是接入层与园区核心层之间的网络分界线，主要用于转发用户间的“横向”流量，同时转发到核心层的“纵向”流量。在汇聚层中，通常采用交换机、路由器等设备，以支持不同子网之间的通信。汇聚层还负责实现网络的隔离和分割，以保证网络安全性和管理性。</p>
+</li>
+<li><p><strong>接入层</strong></p>
+<p>接入层为用户提供各种接入方式，是终端接入网络的第一层。接入层通常由接入交换机组成，接入层交换机在网络中数量众多，安装位置分散，通常是简单的二层交换机。如果终端层存在无线终端设备，接入层需要无线接入点AP设备，AP设备通过接入交换机接入网络。</p>
+</li>
+</ol>
+<p>这是三个基础层，是为其他层服务的，下面介绍其他层，同时引入一个新架构：</p>
+<p><a target="_blank" rel="noopener" href="https://download.huawei.com/mdl/image/download?uuid=5bf3e4ab28534271b560267395f8ef4a">https://download.huawei.com/mdl/image/download?uuid=5bf3e4ab28534271b560267395f8ef4a</a></p>
+<h4 id="终端层"><a href="#终端层" class="headerlink" title="终端层"></a>终端层</h4><p>终端层是指接入园区网络的各种终端设备，例如电脑、打印机、IP话机、手机、摄像头等。</p>
+<h4 id="核心区"><a href="#核心区" class="headerlink" title="核心区"></a>核心区</h4><p>叫法有所不同，指一般存放着企业最重要的数据、文档等资产。例如，域控、核心生产服务器等，安全设置也最为严格。根据业务的不同，相关服务器可能存放于不同的网段中。核心区按照系统可分为业务系统、运维监控系统、安全系统等，按照网段可分为业务网段、运维监控网段、安全管理网段等。</p>
+<ul>
+<li><p>数据中心区</p>
+<p>数据中心区是管理业务服务器（例如文件服务器、邮件服务器等）的区域，为企业内部和外部用户提供业务服务。</p>
+</li>
+<li><p>网络管理区</p>
+<p>网络管理区是管理网络服务器（例如网管系统、认证服务器等）的区域。网管系统通过网管协议与和网络设备交互，能够提供配置、管理和运维功能，主流的网管协议有：SNMP（Simple Network Management Protocol，简单网络管理协议）和Netconf（Network Configuration Protocol ，网络配置协议）。认证服务器可提供网络准入的认证、授权和计费功能，主流的认证协议有：RADIUS（Remote Authentication Dial In User Service，用户远端拨号接入服务）和TACACS（Terminal Access Controller Access-Control System，终端访问控制器访问控制系统）。</p>
+</li>
+</ul>
+<h4 id="DMZ区"><a href="#DMZ区" class="headerlink" title="DMZ区"></a>DMZ区</h4><p>**DMZ(Demilitarized Zone)**非军事化区，也就是隔离区，DMZ区是一个对外服务区，在DMZ区域中存放着一些公共服务器，比如对外的服务器、对外的邮箱等等。用户要从外网访问到的服务，理论上都可以放到DMZ区，这个区对外提供业务，安全性有严格限制。上层可能有WAF、IPS等。</p>
+<h4 id="出口区"><a href="#出口区" class="headerlink" title="出口区"></a>出口区</h4><p>园区出口是园区内部网络到外部网络的边界，内部用户通过园区出口区接入到外部网络，外部网络的用户通过园区出口区接入到内部网络。园区出口区一般需要部署出口路由器和防火墙。路由器解决内外网互通的问题，防火墙提供边界安全防护能力。</p>
+<p>在最一般的架构中，出口区就是一个路由器，当然下面可以接一个fw，再接一个IPS。</p>
+<p>设备汇总：路由器-FW-IPS-WAF-交换机（多层交换机）-AP-AC-应用服务器-认证服务器-办公主机-无线设备</p>
+<h4 id="访问限制"><a href="#访问限制" class="headerlink" title="访问限制"></a>访问限制</h4><p>当规划一个拥有DMZ的网络时候,我们可以明确各个网络之间的访问关系,可以确定以下六条访问控制策略。</p>
+<ol>
+<li>内网可以访问外网</li>
+</ol>
+<p>内网的用户显然需要自由地访问外网。在这一策略中，出口路由器需要进行源地址NAT转换。</p>
+<ol start="2">
+<li>内网可以访问DMZ</li>
+</ol>
+<p>此策略是为了方便内网用户使用和管理DMZ中的服务器。</p>
+<ol start="3">
+<li>外网不能访问内网</li>
+</ol>
+<p>很显然，内网中存放的是公司内部数据，这些数据不允许外网的用户进行访问。</p>
+<ol start="4">
+<li>外网可以访问DMZ</li>
+</ol>
+<p>DMZ中的服务器本身就是要给外界提供服务的，所以外网必须可以访问DMZ。同时，外网访问DMZ需要由出口路由器完成对外地址到服务器实际地址的转换。</p>
+<ol start="5">
+<li>DMZ访问内网有限制</li>
+</ol>
+<p>很明显，如果违背此策略，则当入侵者攻陷DMZ时，就可以进一步进攻到内网的重要数据。</p>
+<ol start="6">
+<li>DMZ不能访问外网</li>
+</ol>
+<p>此条策略也有例外，比如DMZ中放置邮件服务器时，就需要访问外网。</p>
+<h3 id="3-各类设备的调研与实现"><a href="#3-各类设备的调研与实现" class="headerlink" title="3.各类设备的调研与实现"></a>3.各类设备的调研与实现</h3><h4 id="安全（网络）设备"><a href="#安全（网络）设备" class="headerlink" title="安全（网络）设备"></a>安全（网络）设备</h4><h5 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h5><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305184037606.png" alt="image-20230305184037606" style="zoom:67%;" />
+
+<p>可通过Vyos等开源路由器实现方案实现。</p>
+<h5 id="FW"><a href="#FW" class="headerlink" title="FW"></a>FW</h5><ul>
+<li><p>总述：调研获知，有这么几款防火墙软件适配度较高。（考虑：防火墙如思科等商用级别的不适合课程设置，所以我们主要搜集比较经典的或者是高水平课设防火墙项目）</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/1397981186/firewall">https://github.com/1397981186/firewall</a> 这个项目没有后续开发，而且功能仅限于审计而没有响应。<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305175522661.png" alt="image-20230305175522661"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/dekuan/VwFirewall">GitHub - dekuan/VwFirewall: 微盾®VirtualWall®防火墙整套源代码</a> 据github介绍此款防火墙虽然源码公开，但是长时间未维护，并且只能够运行在win2000上。<br> <img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305175532829.png" alt="image-20230305175532829"></p>
+</li>
+<li><p>Smoothwall （文档全英文，中国区域几乎没有使用，触发问题难以找到解决方案）<br> <img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305175542712.png" alt="image-20230305175542712"></p>
+</li>
+<li><p>Suricata<br> <img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305175607007.png" alt="image-20230305175607007"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​    相较于传统的防火墙软件Snort，这一款Suricata支持多线程，理论上有更加良好的检测性能。所以最后我们选择了这个。</p>
+<h5 id="IPS"><a href="#IPS" class="headerlink" title="IPS"></a>IPS</h5><p>​    Suricata集成了防火墙和IPS的功能，所以这部分采用上一部分的Suricata工具，同时略过此部分。</p>
+<h5 id="WAF"><a href="#WAF" class="headerlink" title="WAF"></a>WAF</h5><p>Centos7+ModSecurity</p>
+<p><strong>1.CentOS和ModSecurity</strong></p>
+<p><strong>CentOS简介</strong></p>
+<p>CentOS是一个企业级的Linux操作系统，它是Red Hat Enterprise Linux（RHEL）的一个免费版本，因此也被称为“Community Enterprise Operating System”。CentOS具有高可靠性、稳定性和安全性，因此非常适合用于Web应用程序的服务器环境。</p>
+<p><strong>ModSecurity简介</strong></p>
+<p>ModSecurity是一个开源的Web应用程序防火墙，可以在Apache、Nginx、IIS等Web服务器上使用。ModSecurity功能介绍</p>
+<p>SQL Injection (SQLi)：阻止SQL注入 Cross Site Scripting (XSS)：阻止跨站脚本攻击 Local File Inclusion (LFI)：阻止利用本地文件包含漏洞进行攻击 Remote File Inclusione(RFI)：阻止利用远程文件包含漏洞进行攻击 Remote Code Execution (RCE)：阻止利用远程命令执行漏洞进行攻击 PHP Code Injectiod：阻止PHP代码注入 HTTP Protocol Violations：阻止违反HTTP协议的恶意访问 HTTPoxy：阻止利用远程代理感染漏洞进行攻击 Sshllshock：阻止利用Shellshock漏洞进行攻击 Session Fixation：阻止利用Session会话ID不变的漏洞进行攻击 Scanner Detection：阻止黑客扫描网站 Metadata/Error Leakages：阻止源代码/错误信息泄露 Project Honey Pot Blacklist：蜜罐项目黑名单 GeoIP Country Blocking：根据判断IP地址归属地来进行IP阻断</p>
+<p><strong>2.ModSecurity 部署模式</strong></p>
+<p>架设方案：</p>
+<p>一般来说，为了实现更高的安全性，将WAF部署在Web服务器的上层服务器上会更好。这种方法的优点包括：</p>
+<ol>
+<li>安全性更高：将WAF部署在Web服务器的上层服务器上，可以提供更好的隔离和安全性，因为WAF将运行在专门的服务器上，可以更好地管理和控制安全策略，减少攻击者对Web服务器的直接攻击。</li>
+<li>可伸缩性更好：将WAF部署在Web服务器的上层服务器上，可以更容易地进行水平扩展，以应对不断增长的流量和攻击。</li>
+<li>管理更方便：将WAF部署在Web服务器的上层服务器上，可以更方便地管理WAF的配置和日志，以及与其他安全工具进行集成，提高管理效率和安全性。</li>
+<li>性能更好：虽然将WAF部署在Web服务器的上层服务器上可能会增加一些性能开销，但是现代的WAF设备和软件通常都具有优化性能的功能，可以提供与将WAF部署在Web服务器上相当的性能。</li>
+</ol>
+<p>ModSecurity 支持两种部署模式：嵌入模式和反向代理模式。这两种模式各有利弊，选用哪种模式取决于你的架构环境：</p>
+<p><strong>嵌入模式（Embedded）</strong></p>
+<p>因为 ModSecurity 是 Apache 的一个模块，你可以把它加载到任何兼容的 Apache 版本中。2.0.x 和 2.2.x 系列的 Apache 版本都是兼容的。对于那些架构已经确定好或者已经在使用中的情况来说，使用嵌入模式来部署 ModSecurity 是一个很好的选项。嵌入模式不但不会引入新的故障点（Points of Failure），而且也可以随着底层 Web 基础设施的伸缩而无缝伸缩。嵌入模式部署的最主要挑战是，ModSecurity 和 Web 服务器共享计算资源。</p>
+<p><strong>反向代理模式（Reverse Proxy）</strong></p>
+<p>反向代理其实是 HTTP 路由器，它被设计成部署在 Web 服务器和其客户端之间。当你安装了一台专用的 Apache 反向代理并且增加了 ModSecurity 模块，那么你就得到了一台网络 Web 应用防火墙–你可以用其来保护同网络的任何数量的 Web 服务器。很多安全实践者倾向于使用独立的安全控制层，这样一来你可以把它和被保护对象完全隔离开来。就性能来说，独立部署的 ModSecurity 有专属的计算资源，那么这意味着你可以做更多的事情（例如，配置更加复杂的规则）。这种部署模式最大的缺陷是，你引入了新的故障点。而解决这个新的故障点的方法是，使用两台或者更多台反向代理服务器的集群来提供高可用（High-Availability，HA）的架构设置。</p>
+<p>在Web服务器和客户端之间安装反向代理服务器，可以提高Web应用程序的安全性和性能。当安装了Apache反向代理服务器后，其工作原理如下：</p>
+<ol>
+<li>客户端向反向代理服务器发起请求：客户端通过HTTP协议向反向代理服务器发起请求。反向代理服务器通常会监听80端口或443端口，用于接收客户端请求。</li>
+<li>反向代理服务器代理请求：反向代理服务器收到客户端请求后，会根据请求的URL和其他信息，将请求转发给后端的Web服务器。在这个过程中，客户端并不知道请求实际上被转发给了哪个Web服务器。</li>
+<li>后端Web服务器响应请求：后端Web服务器收到请求后，根据请求的内容进行处理，并且返回响应结果。这个响应结果可以是动态生成的HTML页面、静态的文件或者其他资源。</li>
+<li>反向代理服务器返回响应：反向代理服务器收到后端Web服务器返回的响应后，会将响应内容返回给客户端。在这个过程中，反向代理服务器可以根据需要对响应内容进行缓存、压缩、加密等处理，以提高Web应用程序的性能和安全性。</li>
+</ol>
+<h4 id="服务设备（应用）"><a href="#服务设备（应用）" class="headerlink" title="服务设备（应用）"></a>服务设备（应用）</h4><h5 id="应用服务器（DMZ区）"><a href="#应用服务器（DMZ区）" class="headerlink" title="应用服务器（DMZ区）"></a>应用服务器（DMZ区）</h5><p><strong>1.Web服务器</strong>：Ubuntu18.04 + Apache + Flask</p>
+<p>web服务器需访问内网（数据管理区）中的数据库服务器以获得数据。</p>
+<p><strong>2.DNS服务器</strong>：Centos7 + bind 搭建内网服务器</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lcxhk/p/14118674.html">https://www.cnblogs.com/lcxhk/p/14118674.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://doc.52zoe.com/docs/maple-linux/maple-linux-1ci1kqbv08g61">https://doc.52zoe.com/docs/maple-linux/maple-linux-1ci1kqbv08g61</a></p>
+<p>企业的DNS服务器对外提供服务主要是为了支持企业的对外网络访问，例如企业的网站、邮件服务器等需要通过域名进行访问。企业可以将其域名解析服务委托给第三方DNS解析服务商，但这样会涉及到一些安全和隐私问题。</p>
+<p>企业自己搭建的DNS服务器一般会配置为递归查询的方式。</p>
+<p>更新DNS服务器的域名表，自动同步，即DNS服务器可以从其他DNS服务器自动获取域名解析信息，并及时更新自己的域名表。自动同步的方式一般使用DNS协议中的区域传输（AXFR）或增量传输（IXFR）功能实现.</p>
+<p><strong>3.邮件服务器</strong>：Ubuntu18.04 + Postfix</p>
+<p>关于Postfix</p>
+<p>Postfix是一个顶尖的SMTP服务器，也被称为MTA。Postfix负责从其他SMTP服务器接收邮件，将MUA递交的邮件传递给收件人。MUA(mail user agent)就是我们平常使用的Thunderbird，Foxmail，Outlook等邮箱客户端。Postfix程序采用模块化的设计，每一个模块都尽可能以最低的权限运行。这种设计非常有助于安全。Postfix与Unix的结合度非常高。一台Linux服务器的Postfix可以负责多个域名的邮件发送和接收。这篇文章只介绍单个域名的发送和接收。 <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15127557/4065429">https://blog.51cto.com/u_15127557/4065429</a></p>
+<h5 id="数据库服务器"><a href="#数据库服务器" class="headerlink" title="数据库服务器"></a>数据库服务器</h5><p>Ubuntu18.04 + Mysql + 远程访问</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Qingquan-Li/blog/issues/151">https://github.com/Qingquan-Li/blog/issues/151</a></p>
+<p>在数据库服务器中，配置远程访问以供web服务器接入；此外需通过防火墙限制流量，仅允许来自web服务器的流量通过，或建立VPN（偏麻烦）。</p>
+<h5 id="认证服务器（域控等）"><a href="#认证服务器（域控等）" class="headerlink" title="认证服务器（域控等）"></a>认证服务器（域控等）</h5><p>​    Windows办公环境下，域控的角色常常使用Active Directory完成，Windows Server的局限性使得Windows域中只能添加Windows系统主机，而不能添加Linux系统主机。Samba可以通过Samba 4实现Active Directory域控制器的功能。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/samba-team/samba">https://github.com/samba-team/samba</a></p>
+<h5 id="安卓模拟器"><a href="#安卓模拟器" class="headerlink" title="安卓模拟器"></a>安卓模拟器</h5><p>Ubuntu18.04+Genymotion</p>
+<p>一般来说，Linux系统上也可以使用安卓模拟器来模拟安卓设备。安卓模拟器软件通常是跨平台的，可以在多种操作系统上运行，包括Linux系统。以下是几种在Linux系统上常用的安卓模拟器：</p>
+<ol>
+<li>Android Studio自带的模拟器：Android Studio是一种主要用于开发安卓应用程序的开发工具，它自带了一个安卓模拟器，可以在Linux系统上运行安卓应用程序。安装和配置过程相对较为复杂，需要一定的开发经验。</li>
+<li>Genymotion：Genymotion是一种功能强大的第三方安卓模拟器，提供了高度仿真的安卓环境，可以支持多种安卓版本和设备类型，并且支持多种PC平台，包括Linux系统。Genymotion的界面友好，易于使用。</li>
+<li>Anbox：Anbox是一种基于Linux容器技术的安卓模拟器，可以在Linux系统上运行安卓应用程序。与其他安卓模拟器不同的是，Anbox是通过在Linux内核上创建安卓容器来实现安卓应用的运行，因此可以实现更高的性能和更好的集成度。</li>
+</ol>
+<p>Genymotion是一种基于VirtualBox虚拟化技术的第三方安卓模拟器，可以在多种操作系统上运行，包括Linux系统。具体来说，Genymotion支持以下几种Linux发行版：</p>
+<ul>
+<li>Ubuntu 18.04、20.04</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_53533553/article/details/127968374">https://blog.csdn.net/m0_53533553/article/details/127968374</a></p>
+<h4 id="二层设备"><a href="#二层设备" class="headerlink" title="二层设备"></a>二层设备</h4><h5 id="交换机（核心-汇聚层）"><a href="#交换机（核心-汇聚层）" class="headerlink" title="交换机（核心+汇聚层）"></a>交换机（核心+汇聚层）</h5><ul>
+<li><p>总述，我们暂时决定采用虚拟化的交换机。下面是几款主流的交换机虚拟方案。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/faucetsdn/ryu">https://github.com/faucetsdn/ryu</a></p>
+<ul>
+<li><p>Ryu：Ryu是一个用Python编写的SDN控制器平台，它提供了许多SDN应用程序和网络服务的API，同时也可以作为虚拟交换机使用。Ryu的虚拟交换机模块实现了OpenFlow协议，并且可以与其他SDN控制器配合使用。</p>
+</li>
+<li><p>然而Ryu是一个SDN控制器的软件包，它不是一个虚拟交换机，因此<strong>不能用于直接</strong>模拟核心虚拟机和汇聚层虚拟机。然而，可以使用Ryu控制器来控制OpenFlow交换机，这些交换机可以作为虚拟交换机在虚拟化环境中使用，从而实现对核心虚拟机和汇聚层虚拟机的控制。同时，Ryu控制器也支持多种网络拓扑结构和应用场景。</p>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/openvswitch/ovs">https://github.com/openvswitch/ovs</a></p>
+<ul>
+<li><p>Open vSwitch是什么？<br> Open vSwitch（OVS）是一个开源的虚拟交换机，可用于在物理和虚拟服务器之间创建虚拟网络。它支持多种数据面处理程序，包括Linux内核、DPDK和Netmap等，同时也支持多种控制器协议，如OpenFlow和OVSDB等。</p>
+</li>
+<li><p>OVS能够同时支持核心交换机和汇聚层交换机的模拟吗？<br> 云环境平台涉及到两种交换机：核心交换机和汇聚层交换机，而Open vSwitch可以同时模拟核心虚拟机和汇聚层虚拟机。<br> Open vSwitch是一个虚拟交换机，可以在虚拟化环境中使用，支持多种虚拟化平台和技术，如KVM、Xen、VMware、Hyper-V等。Open vSwitch提供了许多高级特性，如多层交换、负载均衡、流量限制、VLAN、QoS等。这些特性使得Open vSwitch可以满足数据中心网络中各种不同的需求，包括核心虚拟机和汇聚层虚拟机。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="AP-amp-AC（无线访问接入点-amp-接入控制器）"><a href="#AP-amp-AC（无线访问接入点-amp-接入控制器）" class="headerlink" title="AP&amp;AC（无线访问接入点&amp;接入控制器）"></a>AP&amp;AC（无线访问接入点&amp;接入控制器）</h5><p><strong>AP设备：</strong></p>
+<ul>
+<li><p>总述：AP设备也能够虚拟化，所以我们寻找了一些虚拟化方案。常用的虚拟化方案有下面的这些。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://wiki.dd-wrt.com/wiki/index.php/%E6%95%99%E7%A8%8B">https://wiki.dd-wrt.com/wiki/index.php/%E6%95%99%E7%A8%8B</a></p>
+</li>
+<li><p>DD-WRT是一个基于Linux的开源无线路由器固件，它可以用于将路由器设备转换为软AP。DD-WRT支持多种路由器设备和Wi-Fi芯片组，具有强大的路由和网络功能。</p>
+<ul>
+<li>因为常用的</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/openwrt/openwrt">https://github.com/openwrt/openwrt</a></p>
+<ul>
+<li>OpenWrt：OpenWrt是一个开源的嵌入式Linux发行版，它可以用于将支持OpenWrt的路由器设备转换为软AP。OpenWrt支持多种硬件平台和Wi-Fi芯片组，具有强大的路由和网络功能。可以利用虚拟机模拟AP设备的实现（vmware模拟AP设备教程：<a target="_blank" rel="noopener" href="https://www.jb51.net/article/241586.htm%EF%BC%89">https://www.jb51.net/article/241586.htm）</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>注意，</strong>上面两种软件的都较为主流，主要区别是：OpenWrt注重自由、可定制性强，DD-Wrt注重易用性和稳定性，且支持更多的硬件设备。</p>
+<p>私有云和公有云的安全主要靠网络边界的防护，如fw、waf等</p>
+<h3 id="4-云服务相关调研"><a href="#4-云服务相关调研" class="headerlink" title="4.云服务相关调研"></a>4.云服务相关调研</h3><h4 id="云服务概念解释"><a href="#云服务概念解释" class="headerlink" title="云服务概念解释"></a>云服务概念解释</h4><h5 id="云计算-amp-云服务"><a href="#云计算-amp-云服务" class="headerlink" title="云计算&amp;云服务"></a>云计算&amp;云服务</h5><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305185115232.png" alt="image-20230305185115232"></p>
+<p>​    云计算是一种技术，他搭建了一个平台，帮助中小型企业解决了在部署应用时昂贵的硬件设备成本。在这一平台上，可以提供存储、计算等不同的服务，这些服务就是云服务。<strong>“云计算实现的服务”</strong>。</p>
+<h5 id="云服务结构示意"><a href="#云服务结构示意" class="headerlink" title="云服务结构示意"></a>云服务结构示意</h5><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/clip_image002.png" alt="img"></p>
+<p>​    硬件、软件、网络等计算机资源，在<strong>云计算</strong>技术的技术架构中，得到整合，然后在其管理调度下，形成一个<strong>计算机资源共享池</strong>，即“<strong>云</strong>”。它可以对外提供服务，从而形成一个云计算平台，简称<strong>云平台</strong>。云平台有存储、计算、处理和共享这4种功能。其中，在云平台上进行存储，即为“<strong>云存储</strong>”。用户可以通过互联网，接入云平台，以按需、易拓展的方式获取所需服务，这就是“<strong>云服务</strong>”。</p>
+<h5 id="公有云、私有云、社区云、混合云"><a href="#公有云、私有云、社区云、混合云" class="headerlink" title="公有云、私有云、社区云、混合云"></a>公有云、私有云、社区云、混合云</h5><p>​    云计算的部署模式有以下4种，分别是：1、私有云；2、社区云；3、公共云；4、混合云。这是根据云计算服务的消费者来源划分的。私有云是为某个特定用户/机构建立的，公有云是为大众建的，社区云是介于公有、私有之间的一个形式，混合云是公有云、私有云、社区云几种的任意混合。</p>
+<h4 id="云网络接入架构"><a href="#云网络接入架构" class="headerlink" title="云网络接入架构"></a>云网络接入架构</h4><p>企业客户业务场景多种多样，包括线下 IDC，分布各地的办公室，门店，在家办公人员等。所有这些环境都需要一致的体验接入到企业内网的工作环境。</p>
+<p><strong>什么是云架构</strong>？ 云架构是指构建云所需的所有组件和功能如何连接起来，以便交付供应用运行的在线平台。云被视为平台即服务（Pass），因为云提供商为用户提供了平台以及底层IT基础架构。 与传统的服务器相比，云平台可以将物理资源虚拟化为虚拟机资源池，灵活调用软硬件资源，实现对用户的按需访问。而且在运行过程中根据用户并发量的不同，实时迁移虚拟机资源，一方面保证提供高质量的服务，另一方面最小化资源成本，提高CPU，内存等利用率</p>
+<p>云应用网络拓扑：</p>
+<p><img src="https://www.iodraw.com/file/img/1/aliyun.svg" alt="https://www.iodraw.com/file/img/1/aliyun.svg"></p>
+<p><strong>VPC</strong>：专有网络VPC (Virtual Private Cloud)是基于阿里云构建的一个隔离的网络环境，专有网络之间逻辑上彻底隔离。托管在VPC内的是我们在私有云上的服务资源，如云主机、负载均衡、云数据库等。</p>
+<p>专有网络是您专有的云上私有网络。您可以完全掌控自己的专有网络，例如选择IP地址范围、配置路由表和网关等，您可以在自己定义的专有网络中使用阿里云资源，如云服务器ECS（Elastic Compute Service）、云数据库RDS（Relational Database Service）和负载均衡SLB等。</p>
+<p><strong>VPN：</strong>VPN的英文全称是“Virtual Private Network”，翻译过来就是“虚拟专用网络”。在公用网络上建立专用网络，进行加密通讯。在交换机，防火墙设备或Windows等软件里也都支持VPN功能，一句话，VPN的核心就是在利用公共网络建立虚拟私有网。</p>
+<p>简而言之，VPN创建了一条通向内网的通道，用户通过访问VPN服务器来访问内网服务，即用户对内网服务是不可见的，内网服务对用户是可见的，VPN服务器代替用户访问内网网站。</p>
+<p>跨地网络互通云企业网方案</p>
+<p><img src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8328558561/p469742.png" alt="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/8328558561/p469742.png"></p>
+<h2 id="四、访问控制技术"><a href="#四、访问控制技术" class="headerlink" title="四、访问控制技术"></a>四、访问控制技术</h2><p>​    传统企业网络的大内网中，有极大一部分的威胁都来自于黑客入侵内网某一台主机后，横向移动导致的进一步攻击，为了有效地快速对入侵事件进行响应，阻止横向移动，可通过构建内网的防御体系：</p>
+<h3 id="1-ACL-访问控制列表"><a href="#1-ACL-访问控制列表" class="headerlink" title="1.ACL(访问控制列表)"></a>1.ACL(访问控制列表)</h3><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305213404915.png" alt="image-20230305213404915"></p>
+<ul>
+<li>访问控制列表ACL（Access Control List）是由一条或多条规则组成的集合。所谓规则，是指描述报文匹配条件的判断语句，这些条件可以是报文的源地址、目的地址、端口号等。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305213823572.png" alt="image-20230305213823572" style="zoom:80%;" />
+
+<ul>
+<li>ACL本质上是一种报文过滤器，规则是过滤器的滤芯。设备基于这些规则进行报文匹配，可以过滤出特定的报文，并根据应用ACL的业务模块的处理策略来允许或阻止该报文通过。</li>
+<li>ACL的缺点：难以优化理解，大型ACL的冗余、不一致</li>
+</ul>
+<p><strong>实现方案：</strong>一般路由器都能够进行ACL配置。</p>
+<h3 id="2-SDP-软件定义边界"><a href="#2-SDP-软件定义边界" class="headerlink" title="2.SDP(软件定义边界)"></a>2.SDP(软件定义边界)</h3><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230305213708489.png" alt="image-20230305213708489"></p>
+<ul>
+<li><p>软件定义边界”（ Software Defined Perimeter，SDP），也称为Dark Cloud，是由国际云安全联盟CSA于2013年提出的基于零信任(Zero Trust)理念的新一代网络安全技术架构。SDP借鉴了虚拟化技术和其他软件定义的体系结构的概念，旨在进一步实现网络安全现代化。</p>
+</li>
+<li><p>SDP主张网络隐身、零信任、最小授权，所有应用程序都将被隐藏，外部方和攻击者都看不到它，只有在对每个端点请求进行身份验证和授权之后才授予访问权限。使用SDP的公司实质上是在其服务器和其他基础架构上披上了隐形的外衣，没有人可以从外面看到，只有授权用户可以访问基础结构。</p>
+</li>
+</ul>
+<p><strong>SDP开源实现方案</strong>：<a target="_blank" rel="noopener" href="https://github.com/WaverleyLabs">https://github.com/WaverleyLabs</a></p>
+<h3 id="3-SDN（软件定义网络）"><a href="#3-SDN（软件定义网络）" class="headerlink" title="3.SDN（软件定义网络）"></a>3.SDN（软件定义网络）</h3><p>​    在传统的网络中，网络设备通常具有复杂的配置和管理，因此难以快速应对网络安全威胁。另外，传统网络中的数据包传输是基于物理设备的，攻击者可以通过攻击这些物理设备来获取更多的访问权限，并进行横向移动攻击。</p>
+<p>​    而SDN采用了软件定义的方式管理网络，可以通过中央控制器对整个网络进行实时管理和控制，从而提高了网络的可视化和可管理性。此外，SDN中的网络流量可以通过流量分类和隔离技术进行管理，可以对网络流量进行更加精细的控制和监控，从而有效防止横向移动攻击。</p>
+<ol>
+<li>OpenDaylight：OpenDaylight是一个开源的SDN控制器，可以用于构建和管理SDN网络。它提供了各种插件和API，可以方便地管理和控制SDN网络中的设备和流量。</li>
+<li>Floodlight：Floodlight是一个基于OpenFlow协议的开源SDN控制器，支持各种类型的SDN网络拓扑结构和流量管理。它提供了一系列的API和插件，可用于构建和管理SDN网络。</li>
+<li>ONOS：ONOS是一个开源的SDN控制器，支持各种类型的SDN网络拓扑结构和协议。它提供了一系列的API和插件，可用于构建和管理SDN网络。</li>
+<li>Ryu：Ryu是一个轻量级的SDN控制器，可以用于构建和管理SDN网络。它支持OpenFlow协议和其他SDN协议，提供了一系列的API和插件，可用于管理SDN网络中的流量和设备。</li>
+</ol>
+<p><strong>SDN：</strong><a target="_blank" rel="noopener" href="https://pluribusnetworks.com/blog/what-is-network-segmentation/">https://pluribusnetworks.com/blog/what-is-network-segmentation/</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/">https://lhl7.github.io/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">汇编语言笔记</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">57</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">14</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1-%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94"><span class="toc-text">企业内网模拟靶场搭建1_前期调研</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BA%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%BB%E5%8A%A1%E9%9C%80%E6%B1%82"><span class="toc-text">一、云环境搭建任务需求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">1. 云环境搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB-amp-%E9%98%B2%E5%BE%A1%E4%BD%93%E7%B3%BB"><span class="toc-text">2. 攻击&amp;防御体系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%96%B0%E5%9E%8B%E6%8A%80%E6%9C%AF"><span class="toc-text">3.新型技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E6%90%AD%E5%BB%BA"><span class="toc-text">二、网络拓扑搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Openstack%E8%B0%83%E7%A0%94"><span class="toc-text">1. Openstack调研</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Openstack%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">Openstack整体架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Openstack%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">Openstack环境搭建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-StarVCenter%E8%B0%83%E7%A0%94%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-text">2.StarVCenter调研和使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#StarVCenter%E6%AF%94%E8%BE%83%E6%83%85%E5%86%B5"><span class="toc-text">StarVCenter比较情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StarVCenter%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C"><span class="toc-text">StarVCenter使用体验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#StarVCenter%E7%9A%84%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84"><span class="toc-text">StarVCenter的不足之处</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AF%B9%E4%BA%8EOpenstack%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%8E%A2%E7%B4%A2"><span class="toc-text">3.对于Openstack学习与探索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Openstack%E6%90%AD%E5%BB%BA%E4%BC%81%E4%B8%9A%E9%9D%B6%E5%9C%BA%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90"><span class="toc-text">使用Openstack搭建企业靶场的可行性分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Openstack%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">使用Openstack未解决的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-text">网络架构配置问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Openstack%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E5%AD%A6%E4%B9%A0"><span class="toc-text">Openstack使用方式学习</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B8%B8%E8%A7%81%E4%BC%81%E4%B8%9A%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="toc-text">三、常见企业网络架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%8F%E5%9E%8B%E4%BC%81%E4%B8%9A%E7%BD%91%E7%BB%9C"><span class="toc-text">1.小型企业网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8%E5%92%8C%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">路由器和交换机的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E5%92%8C%E6%9C%89%E7%BA%BF%E4%BC%A0%E8%BE%93%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">无线和有线传输的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">网络架构设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%80%E5%B8%B8%E8%A7%81%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84%E7%BD%91%E7%BB%9C%EF%BC%88%E5%A4%A7%E5%9E%8B%E4%BC%81%E4%B8%9A%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%EF%BC%89"><span class="toc-text">2.最常见三层架构网络（大型企业网络架构）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF%E5%B1%82"><span class="toc-text">终端层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8C%BA"><span class="toc-text">核心区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DMZ%E5%8C%BA"><span class="toc-text">DMZ区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BA%E5%8F%A3%E5%8C%BA"><span class="toc-text">出口区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6"><span class="toc-text">访问限制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%90%84%E7%B1%BB%E8%AE%BE%E5%A4%87%E7%9A%84%E8%B0%83%E7%A0%94%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.各类设备的调研与实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%EF%BC%88%E7%BD%91%E7%BB%9C%EF%BC%89%E8%AE%BE%E5%A4%87"><span class="toc-text">安全（网络）设备</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%99%A8"><span class="toc-text">路由器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#FW"><span class="toc-text">FW</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IPS"><span class="toc-text">IPS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#WAF"><span class="toc-text">WAF</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E8%AE%BE%E5%A4%87%EF%BC%88%E5%BA%94%E7%94%A8%EF%BC%89"><span class="toc-text">服务设备（应用）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88DMZ%E5%8C%BA%EF%BC%89"><span class="toc-text">应用服务器（DMZ区）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">数据库服务器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A4%E8%AF%81%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E5%9F%9F%E6%8E%A7%E7%AD%89%EF%BC%89"><span class="toc-text">认证服务器（域控等）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E5%8D%93%E6%A8%A1%E6%8B%9F%E5%99%A8"><span class="toc-text">安卓模拟器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="toc-text">二层设备</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%EF%BC%88%E6%A0%B8%E5%BF%83-%E6%B1%87%E8%81%9A%E5%B1%82%EF%BC%89"><span class="toc-text">交换机（核心+汇聚层）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AP-amp-AC%EF%BC%88%E6%97%A0%E7%BA%BF%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%85%A5%E7%82%B9-amp-%E6%8E%A5%E5%85%A5%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%89"><span class="toc-text">AP&amp;AC（无线访问接入点&amp;接入控制器）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BA%91%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3%E8%B0%83%E7%A0%94"><span class="toc-text">4.云服务相关调研</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A"><span class="toc-text">云服务概念解释</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E8%AE%A1%E7%AE%97-amp-%E4%BA%91%E6%9C%8D%E5%8A%A1"><span class="toc-text">云计算&amp;云服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1%E7%BB%93%E6%9E%84%E7%A4%BA%E6%84%8F"><span class="toc-text">云服务结构示意</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AC%E6%9C%89%E4%BA%91%E3%80%81%E7%A7%81%E6%9C%89%E4%BA%91%E3%80%81%E7%A4%BE%E5%8C%BA%E4%BA%91%E3%80%81%E6%B7%B7%E5%90%88%E4%BA%91"><span class="toc-text">公有云、私有云、社区云、混合云</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%91%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%85%A5%E6%9E%B6%E6%9E%84"><span class="toc-text">云网络接入架构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="toc-text">四、访问控制技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ACL-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8"><span class="toc-text">1.ACL(访问控制列表)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-SDP-%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E8%BE%B9%E7%95%8C"><span class="toc-text">2.SDP(软件定义边界)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-SDN%EF%BC%88%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-text">3.SDN（软件定义网络）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/" title="企业内网模拟靶场搭建1_前期调研">企业内网模拟靶场搭建1_前期调研</a><time datetime="2023-03-05T14:47:11.297Z" title="Created 2023-03-05 22:47:11">2023-03-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="汇编语言笔记">汇编语言笔记</a><time datetime="2023-01-30T06:43:57.233Z" title="Created 2023-01-30 14:43:57">2023-01-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记">机器学习笔记</a><time datetime="2023-01-04T07:52:46.330Z" title="Created 2023-01-04 15:52:46">2023-01-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/09/badusb%E9%92%88%E5%AF%B9windowsDefender%E7%9A%84%E5%85%8D%E6%9D%80%E6%80%9D%E8%B7%AF/" title="badusb针对windowsDefender的免杀思路">badusb针对windowsDefender的免杀思路</a><time datetime="2022-09-09T08:34:25.885Z" title="Created 2022-09-09 16:34:25">2022-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/18/shell%E5%85%A5%E9%97%A8/" title="shell入门">shell入门</a><time datetime="2022-08-18T03:18:16.621Z" title="Created 2022-08-18 11:18:16">2022-08-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
