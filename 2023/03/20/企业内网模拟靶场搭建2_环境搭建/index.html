@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>企业内网模拟靶场搭建1_前期调研 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="企业内网模拟靶场搭建2_环境搭建本文旨在对企业内网搭建的模块进行划分，并给出完整的规划情况和调研所得的技术栈，汇报共7轮，于16周内完成。 组长：鲁昊朗 小组成员：刘奇、彭竑睿、时钰铎、周椿林 汇报时间：2023年3月20日 一、针对网络拓扑的优化与修改针对网络拓扑，在实际搭建过程中，我们进行了优化，并分配了IP地址：  网络拓扑图有以下改动：  取消子网边界的多余的防火墙：子网内部设置过多防火墙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="企业内网模拟靶场搭建1_前期调研">
+<meta property="og:url" content="https://lhl7.github.io/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="企业内网模拟靶场搭建2_环境搭建本文旨在对企业内网搭建的模块进行划分，并给出完整的规划情况和调研所得的技术栈，汇报共7轮，于16周内完成。 组长：鲁昊朗 小组成员：刘奇、彭竑睿、时钰铎、周椿林 汇报时间：2023年3月20日 一、针对网络拓扑的优化与修改针对网络拓扑，在实际搭建过程中，我们进行了优化，并分配了IP地址：  网络拓扑图有以下改动：  取消子网边界的多余的防火墙：子网内部设置过多防火墙">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-03-20T03:41:10.094Z">
+<meta property="article:modified_time" content="2023-03-20T03:42:40.624Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '企业内网模拟靶场搭建1_前期调研',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-20 11:42:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">企业内网模拟靶场搭建1_前期调研</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-03-20T03:41:10.094Z" title="Created 2023-03-20 11:41:10">2023-03-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-03-20T03:42:40.624Z" title="Updated 2023-03-20 11:42:40">2023-03-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/network/">network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="企业内网模拟靶场搭建1_前期调研"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="企业内网模拟靶场搭建2-环境搭建"><a href="#企业内网模拟靶场搭建2-环境搭建" class="headerlink" title="企业内网模拟靶场搭建2_环境搭建"></a>企业内网模拟靶场搭建2_环境搭建</h1><p>本文旨在对企业内网搭建的模块进行划分，并给出完整的规划情况和调研所得的技术栈，汇报共7轮，于16周内完成。</p>
+<p>组长：鲁昊朗</p>
+<p>小组成员：刘奇、彭竑睿、时钰铎、周椿林</p>
+<p>汇报时间：2023年3月20日</p>
+<h2 id="一、针对网络拓扑的优化与修改"><a href="#一、针对网络拓扑的优化与修改" class="headerlink" title="一、针对网络拓扑的优化与修改"></a>一、针对网络拓扑的优化与修改</h2><p>针对网络拓扑，在实际搭建过程中，我们进行了优化，并分配了IP地址：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318165056455.png" alt="image-20230318142816273"></p>
+<p>网络拓扑图有以下改动：</p>
+<ul>
+<li><strong>取消子网边界的多余的防火墙</strong>：子网内部设置过多防火墙会进行重复、赘余的检查，降低网络效率；</li>
+<li><strong>取消数据中心区的设置</strong>：我们曾经错误的认为DMZ-WEB服务器的数据库应该放置在核心内网中隔离，但是实际上并不需要，如果那样部署反而会引起黑客入侵内网；</li>
+<li><strong>优化了IPS的连接方式</strong>：由于DMZ区的web、邮件服务器均已经收到来自网络层的边界fw和来自网络层的WAF的保护，在其中再架设IPS就会增大IPS的负载，故IPS只用来保护核心内网的主机；</li>
+</ul>
+<p>于此同时，我们对内网中每一个终端（虚拟终端）的IP地址进行了计划.</p>
+<h2 id="二、针对组网技术的调研"><a href="#二、针对组网技术的调研" class="headerlink" title="二、针对组网技术的调研"></a>二、针对组网技术的调研</h2><h3 id="1-使用云服务技术进行虚拟组网"><a href="#1-使用云服务技术进行虚拟组网" class="headerlink" title="1. 使用云服务技术进行虚拟组网"></a>1. 使用云服务技术进行虚拟组网</h3><p>​    在前期调研中，我们提到使用Openstack、StarVcenter等工具，完成完整网络拓扑的构建（即使用云服务模拟网络架构的功能，模拟整个网络），该方案具有一定的可行性，如openstack提供了基于网络拓扑的配置的单独界面：</p>
+<p><img src="https://img-blog.csdnimg.cn/ed0f71e6db464aca9400ad5eb74fb641.png" alt="img"></p>
+<p>然而，Openstack具有如下的不可行性：</p>
+<ul>
+<li>所需要的硬件资源庞大，单独电脑无法承受其带来的负载，增添节点后，又会增加部署和环境的复杂度</li>
+<li>本身作为云服务部署在虚拟机上，在上面再进行云服务的嵌套，层数太多，消耗性能</li>
+<li>配置网络内容时，更多的使用web页面提供的集成功能，而不是手动进行web配置</li>
+<li>软件体系过大，导致更多的困难集中于对于拓扑的部署，而不是对于主题安全防护设备本身的思考</li>
+</ul>
+<p>综合以上原因，虽然我们在上一周已经对云服务进行了初步的尝试和配置，最终选择放弃这一方案。</p>
+<h3 id="2-使用拓扑软件的思路"><a href="#2-使用拓扑软件的思路" class="headerlink" title="2. 使用拓扑软件的思路"></a>2. 使用拓扑软件的思路</h3><p>​    eNSP是华为的一个网络模拟器，借助这个模拟器，可以模拟网络架构和建设，在其中，我们可以进行较为复杂的网络配置的工作，同时，由于ensp还支持虚拟机，也就是cloud的接入，可以在不搭建云服务的情况下实现较为完整的网络拓扑。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318172746303.png" alt="image-20230318164008869"></p>
+<p>eNSP的优点：</p>
+<ul>
+<li>其中的网络设备（如路由器）均可以使用等同于现实的命令行进行配置，帮助了解网络配置步骤：</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318172558600.png" alt="image-20230318165056455" style="zoom: 67%;" />
+
+<ul>
+<li>可以配置较为复杂的网络拓扑，并通过cloud接入本地虚拟机</li>
+</ul>
+<p>之所以不选择ensp的原因:</p>
+<ul>
+<li>eNSP连入的本地虚拟机需要同时启动，没有能装得下那么多虚拟机的系统，如果只启动一部分虚拟机都不太方便</li>
+<li>单机配置环境，若多机配置，需要迁移虚拟机，面临网络配置、虚拟机版本问题，不利于团队协作</li>
+</ul>
+<h3 id="3-zerotier调研使用情况"><a href="#3-zerotier调研使用情况" class="headerlink" title="3. zerotier调研使用情况"></a>3. zerotier调研使用情况</h3><p>​    zerotier是一个组网工具，支持windows、linux、freeBSD多种操作系统。在对应主机上安装软件后，可以为多个能够连接公网的物理\虚拟设备分配ip地址，进行虚拟组网，使他们在逻辑上处于一个虚拟局域网中，首先在注册后创建一个网络：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318174948459.png" alt="image-20230318172558600"></p>
+<p>​    通过该网络独有的网络IP，即NETWORK ID加入网络：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318142816273.png" alt="image-20230318172746303"></p>
+<p>​    如上所示，该虚拟局域网中有9台主机加入，并分别分配了IP，形成如下拓扑</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318164008869.png" alt="image-20230318173058248" style="zoom: 50%;" />
+
+<p>​    其中，被圈中的三个节点为同一台主机，并按照ip分发网络拓扑配置。实现在192.168.0.0/16的大内网下，分别划分192.168.10.0/24和192.168.11.0/24两个子网，并通过被圈起的，也就是列表中的kali主机进行流量的转发工作（为了实验，暂时使用此系统）。</p>
+<p>​    然而，zerotier并没有实现内网的划分功能：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319143823012.png" alt="image-20230318173440005" style="zoom:80%;" />
+
+<p>​    如图，指定LAN地址为192.168.0.0/16，zerotier所支持的，就是在词虚拟局域网LAN和其他网段之间构建路由，并添加via。如<code>ip route add 192.168.0.0/24 via 192.168.1.2</code>就表示，要进入192.168.0.0/24网段，需要经过入口主机也就是192.168.1.2主机。</p>
+<p>​    这一方式，实现网段划分的问题是，要进行网段逻辑上的分离需要创建多个zerotier网络，这和内网实际不是非常相似（企业的内网也应该是通过在大内网中划分小网段的方式实现的）。</p>
+<p>​    经过研究，我们提出了另一种划分子网的方式，即通过flow rules划分：</p>
+<p>如下，可实现不同网段的隔离：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">accept ipdest 192.168.10.0/24 and ipsrc 192.168.10.0/24;</span><br><span class="line">accept ipdest 192.168.11.0/24 and ipsrc 192.168.11.0/24;</span><br><span class="line"></span><br><span class="line">drop;</span><br></pre></td></tr></table></figure>
+
+<p>如下，可手动实现redirect，这一功能可将网络中指定ID号的主机设置为网关主机。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318173440005.png" alt="image-20230318174948459"></p>
+<p>通过flow rules配置，就可以满足内网划分子网模拟的需要。</p>
+<h2 id="三、针对网络内部主机（组件）的配置"><a href="#三、针对网络内部主机（组件）的配置" class="headerlink" title="三、针对网络内部主机（组件）的配置"></a>三、针对网络内部主机（组件）的配置</h2><p>​    我们对网络中各个组件（也就是终端）进行了分模块的部署工作。</p>
+<h3 id="0-网络入口"><a href="#0-网络入口" class="headerlink" title="0.网络入口"></a>0.网络入口</h3><h4 id="pfSense入口FW"><a href="#pfSense入口FW" class="headerlink" title="pfSense入口FW"></a>pfSense入口FW</h4><h5 id="pfSense概况"><a href="#pfSense概况" class="headerlink" title="pfSense概况"></a>pfSense概况</h5><p>​    pfSense是一款基于FreeBSD操作系统的免费开源防火墙和路由器软件。它提供了许多功能，例如虚拟专用网络（VPN）功能，负载平衡，网络地址转换（NAT），DHCP服务，域名系统（DNS）服务，以及其他网络安全和路由功能。通过官网教程，可在vm workstatio对该系统进行安装：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319173726373.png" alt="image-20230319143823012" style="zoom: 80%;" />
+
+<p>​    如上所示，pfsense系统需要wan、lan两个网段分别对应企业架构中的外网和内网，对应的，也需要添加两张网卡。在option中的1、2可以分别指定不同网段对应的网卡（也就是选择那张网卡对应lan、哪个对应wan）和某一网卡的IP配置情况（等同于linux的/etc/sysconfig/network-script目录下的配置）。而后，在Lan，也就是内网可访问到pfsense的webUI界面，或使用sshshell或本机shell对其进行操作：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319173806702.png" alt="image-20230319144214374" style="zoom: 50%;" />
+
+<p>​    如图，web界面中，每一个选项的功能如下：</p>
+<ol>
+<li><strong>Interfaces</strong>：配置接口类型、IP地址、子网掩码、MTU（最大传输单元）等。</li>
+<li><strong>Firewall</strong>：配置pfSense的防火墙规则，包括入站、出站和NAT规则</li>
+<li><strong>Services</strong>：配置pfSense提供的服务，例如DHCP、DNS、NTP等。</li>
+<li><strong>VPN</strong>：可以配置OpenVPN和IPsec等。</li>
+<li><strong>Status</strong>：此页面提供了系统状态和事件日志的信息，包括接口状态、系统日志、DHCP租赁信息等，当出现错误时，可以在此处找到历史流量的记录。</li>
+<li><strong>Diagnostics</strong>：此页面提供了一些诊断工具，例如ping、traceroute、nslookup等。用户可以使用这些工具来测试网络连接和解决故障。</li>
+</ol>
+<h5 id="nat策略"><a href="#nat策略" class="headerlink" title="nat策略"></a>nat策略</h5><p>多种NAT技术：</p>
+<blockquote>
+<ul>
+<li>端口转发：将外部网络请求转发到内部网络的指定主机和端口，从而实现内部网络主机的对外服务。如，将外部网络对公共IP地址的80端口请求转发到内部网络的某个主机的8080端口；</li>
+<li>地址转换：NAT设备将内部网络的私有IP地址转换为外部网络的公共IP地址，从而实现内部网络主机的访问外部网络；</li>
+<li>端口映射：NAT设备将外部网络请求映射到内部网络的不同端口，从而实现内部网络主机的对外服务，但是映射后的端口与内部网络的原始端口不同。</li>
+</ul>
+</blockquote>
+<p><strong>端口映射&amp;端口转发</strong></p>
+<p>​    查了很多资料，最后得出的结论就是：<strong>端口映射和端口转发的区别在于数据包的源IP地址和端口是否被修改，修改了，则是端口转发；反之，则是映射。</strong></p>
+<p>​    在端口映射中，数据包的源IP地址和端口不会被修改，内网主机接收到的数据包的源IP地址和端口与外部用户发送的数据包的源IP地址和端口相同。内网主机响应该请求时，将响应数据包发送回路由器或防火墙。路由器或防火墙会将目的IP地址和端口修改为外部用户的IP地址和端口，然后将响应数据包发送给外部用户。数据包只需要经过一次NAT转换。</p>
+<p>​    在端口转发中，外部用户向路由器或防火墙的公共IP地址和转发的端口发送数据包时，数据包的目的IP地址和端口会被修改为内网主机的IP地址和端口。内网主机接收到的数据包的源IP地址和端口与外部用户发送的数据包的源IP地址和端口不同，内网主机响应该请求时，将响应数据包发送回路由器或防火墙。路由器或防火墙会将源IP地址和端口修改为公共IP地址和转发的端口，然后将响应数据包发送给外部用户。因此，在端口转发中，数据包的目的IP地址和端口会被修改，数据包需要经过两次NAT转换。</p>
+<p>​    在端口映射中，由于映射的端口与内部网络的原始端口不同，因此在内部网络中的主机向外部网络发送响应数据包时，这些数据包需要经过路由器或防火墙的处理，并且源地址和端口需要正确地映射为公共IP地址和映射的端口，才能被正确返回。因此，在端口映射中需要回流规则来确保响应数据包能够正确返回。端口转发中，公共IP地址和端口直接映射到内部网络中的主机和端口，返回的数据包是直接从目标主机返回到客户端，没有经过路由器或防火墙的再次处理，因此不存在回流问题，不需要设置回流规则。</p>
+<p>​    最终实际使用的技术是<strong>端口映射</strong>。</p>
+<h5 id="实际配置过程："><a href="#实际配置过程：" class="headerlink" title="实际配置过程："></a>实际配置过程：</h5><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318141013748.png" alt="image-20230319173726373"></p>
+<p>配置端口映射策略，得到如下规则：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319220531210.png" alt="image-20230319173806702"></p>
+<p>将来自外网针对边界防火墙的8081端口的请求，映射到内网192.168.152.100主机的80端口。</p>
+<p>过程中遇到的问题：</p>
+<p>问题一：未关闭针对私有地址回流的屏蔽，两个内网网段无法通信。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319144214374.png" alt="image-20230318141013748"></p>
+<p>问题二：未启用NAT回流</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319180720377.png" alt="image-20230319180720377"></p>
+<p>问题三：经过一系列正确配置后，未将pfsense防火墙主机设置为被保护主机的网关，被保护主机默认将数据包返回到vmware网关，故无法正确进行数据包的返回。</p>
+<h4 id="suricata"><a href="#suricata" class="headerlink" title="suricata"></a>suricata</h4><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><p>​    <strong>Suricata</strong>是一个免费、开源、成熟、快速、健壮的网络威胁检测引擎。Suricata引擎能够进行实时入侵检测(IDS)、入侵防御系统(IPS)和离线pcap处理。Suricata使用强大而广泛的规则和签名语言来检查网络流量，并提供强大的Lua脚本支持来检测复杂的威胁。使用标准的输入和输出格式(如YAML和JSON)，使用现有的SIEMs、Splunk、Logstash/Elasticsearch、Kibana和其他数据库等工具进行集成将变得非常简单。</p>
+<blockquote>
+<ol>
+<li>SIEMs（Security Information and Event Management）：是一种集成了安全信息管理和安全事件管理的综合性安全系统，可以对安全事件进行实时监控、检测和响应，并提供事件管理、日志管理、威胁情报和风险评估等功能。常见的SIEM产品包括IBM QRadar、Splunk Enterprise Security、LogRhythm等。</li>
+<li>Splunk：是一种用于实时日志管理和分析的软件，可以从各种数据源中收集、存储和分析数据，并提供数据可视化、报告和警报等功能，可广泛应用于IT运维、安全事件响应等领域。</li>
+<li>Logstash/Elasticsearch：Logstash是一种数据采集和处理工具，可以将来自各种数据源的数据进行采集、处理和转换，最终将数据存储到Elasticsearch中。Elasticsearch是一种开源搜索引擎，用于存储、搜索和分析各种类型的数据。Logstash和Elasticsearch通常一起使用，形成一种日志管理和分析系统。</li>
+<li>Kibana：是一种开源数据可视化工具，与Elasticsearch紧密集成，可以对Elasticsearch中的数据进行实时查询和分析，并生成各种类型的数据可视化图表和报告。Kibana通常用于IT运维、日志分析和安全事件响应等领域。</li>
+</ol>
+<p>注：生成自chatgpt</p>
+</blockquote>
+<p>三种运行模式：</p>
+<p>​    网关模式：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319203709319.png" alt="image-20230319220442749" style="zoom: 33%;" />
+
+<p>​    主机模式：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6201627-7e583cbd133ae5b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/378/format/webp" alt="img"></p>
+<p>​    旁路模式：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319203507239.png" alt="image-20230319220531210" style="zoom: 80%;" />
+
+<h5 id="安装-amp-配置"><a href="#安装-amp-配置" class="headerlink" title="安装&amp;配置"></a>安装&amp;配置</h5><ul>
+<li>系统：CentOS 7</li>
+</ul>
+<p>我们在CentOS 上安装的是 Suricata 6.0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release yum-plugin-copr</span><br><span class="line">yum copr enable @oisf/suricata-6.0</span><br><span class="line">yum install suricata</span><br></pre></td></tr></table></figure>
+
+<p>安装后可以通过 <code>suricata</code>查看</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319203607817.png" alt="image-20230319203424354" style="zoom: 50%;" />
+
+<p>基本使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">目录：</span><br><span class="line">/etc/suricata/	存放suricata执行和配置文件的目录</span><br><span class="line">/etc/suricata/rules	规则文件存放目录，自己之后写的也要放在这里</span><br><span class="line">/var/log/suricata/	存放suricata日志的目录</span><br><span class="line">/var/lib/suricata/rules 更新的配置文件</span><br><span class="line"></span><br><span class="line">//官方更新的rule规则,更新的配置文件存放在`/var/lib/suricata/rules`中,文件为classification.config和`suricata.rules`,需要`cp`至`/etc/suricata/rules`中才能加载成功,不然可能会有错误</span><br><span class="line"></span><br><span class="line">文件：</span><br><span class="line">suricata.yaml	suricata的配置文件，重中之重，特别重要，位于/etc/suricata/下</span><br><span class="line">suricata.rules	官方规则文件，存放在/etc/suricata/rules中</span><br><span class="line">fast.log	警告日志文件，存放在/var/log/suricata/下，匹配的输出都在这里</span><br><span class="line"></span><br><span class="line">启动 suricata -c /etc/suricata/suricata.yaml -i ens32</span><br><span class="line">查看日志 vi /var/log/suricata/fast.log</span><br></pre></td></tr></table></figure>
+
+<p>简单测试：</p>
+<p>这里，我们先对<code> /etc/suricata/suricata.yaml</code>文件开头的<code>HOME_NET</code>和<code>EXTERNAL_NET</code>进行设置</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319220442749.png" alt="image-20230319203507239" style="zoom:50%;" />
+
+<p>然后，修改<code>suricata.yaml</code>中最后配置中的默认规则文件<code>rule-files</code>，将其修改为自己的<code>test-rules</code>文件，对了，这里记得将默认的路径修改为<code>/etc/suricata/rules</code>，这个路径下全部都是suricata的规则文件，我们自己写的<code>test-rules</code>也是放在这个文件路径下的。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319203636234.png" alt="image-20230319203530494" style="zoom: 50%;" />
+
+<p>然后，编辑<code>test-rules</code>，加入百度触发规则<code>alert http any any -&gt; any any (msg:&quot;hit baidu.com...&quot;;content:&quot;baidu&quot;; reference:url, www.baidu.com;)</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319212643244.png" alt="image-20230319203607817">使用<code>ifconfig ens32 promisc</code>将<code>ens32</code>网卡设置为混杂模式，接收网络中的数据包：</p>
+<blockquote>
+<p>网卡的混杂模式（Promiscuous mode）是指网卡可以接收到所有经过它的网络流量，包括那些不是发送给它的数据包。通常情况下，网卡只会接收那些目标地址是它自己或者广播地址的数据包，而忽略其他的数据包，这样可以避免网络拥塞和减轻网卡的工作负担。但是，在某些情况下，需要使用网卡的混杂模式，例如网络分析、数据包捕获、入侵检测等。</p>
+</blockquote>
+<p> <img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319130003309.png" alt="image-20230319203636234">如果这里显示CentOS上没有安装<code>ifconfig</code>，可以使用指令<code>yum install net-tools.x86_64 -y</code>进行安装</p>
+<p>然后，执行<code>suricata -c /etc/suricata/suricata.yaml -i ens32</code>启动<code>suricata</code>，进行对<code>ens32</code>网卡的网络检测，</p>
+<p>并且开启处于同一网段下的另一台CentOS主机<code>192.168.215.136</code>，通过<code>curl http://www.baidu.com</code>访问百度页面</p>
+<p>然后，<code>suricata主机</code>执行<code> vi /var/log/suricata/fast.log</code>查看日志信息，这里就可以看到另一主机访问百度的信息，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230318173058248.png" alt="image-20230319203709319">这表明，我们成功使用<code>suricata</code>对<code>192.168.215.0/24</code>网段下的网络流量进行了监测行为。</p>
+<h3 id="1-DMZ区"><a href="#1-DMZ区" class="headerlink" title="1.DMZ区"></a>1.DMZ区</h3><h4 id="bind-DNS服务器"><a href="#bind-DNS服务器" class="headerlink" title="bind DNS服务器"></a>bind DNS服务器</h4><h5 id="DNS-概况"><a href="#DNS-概况" class="headerlink" title="DNS-概况"></a>DNS-概况</h5><p><strong>Bind简介</strong>：</p>
+<p>​    <strong>BIND</strong>（Berkeley Internet Name Domain）作为一款目前市面是最主流的开源DNS软件，占据了市面上DNS服务器软件的九成，目前由 互联网系统协会 (Internet Systems Consortium) 负责开发和维护。目前，最新的稳定版BIND已经更新到了 BIND 9 版本。</p>
+<p><strong>本地部署环境：</strong></p>
+<p>​    Dns服务器：ubuntu20 bind9</p>
+<p>​    Dns客户端：ubuntu20</p>
+<h5 id="DNS-企业为什么要搭建DNS服务器？"><a href="#DNS-企业为什么要搭建DNS服务器？" class="headerlink" title="DNS-企业为什么要搭建DNS服务器？"></a>DNS-企业为什么要搭建DNS服务器？</h5><p>参考博客：<a target="_blank" rel="noopener" href="https://www.bbsmax.com/A/Vx5MZoZ9dN/">https://www.bbsmax.com/A/Vx5MZoZ9dN/</a></p>
+<p>​    DNS服务器的最主要功能用于提供对应服务器的FQDN（Fully qualified domain name），既然使用互联网上的DNS服务器就可以解析全球域名，为何还要自掏腰包搭建DNS服务器呢？有2点原因：</p>
+<blockquote>
+<p><strong>完全限定域名</strong>（英语：Fully qualified domain name），缩写为FQDN，又译为<strong>完全资格域名</strong>、<strong>完整领域名称</strong>，又称为<strong>绝对领域名称</strong>（absolute domain name）、 <strong>绝对域名</strong>，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D?fromModule=lemma_inlink">域名</a>的一种，能指定其在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">域名系统</a> (DNS) 树状图下的一个确实位置。</p>
+<p>完整域名由主机名称与母域名两部分所组成，例如有一部服务器的本地主机名为myhost，而其母域名为example.com，那指向该服务器的完整域名就是myhost.example.com。虽然世界上可能有很多服务器的本地主机名是myhost，但myhost.example.com是唯一的，因此完整域名能识别该特定服务器。</p>
+</blockquote>
+<p>① 解析内网服务器域名<br>② 降低内网域名解析流量</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319203424354.png" alt="image-20230319130003309" style="zoom:80%;" />
+
+
+
+<p>​    在BUPT域名下，有很多域名，如jwgl.bupt.deu.cn是不提供给公网上的用户访问的，只提供内网用户人员进行访问，此时，这些域名未向相关机构进行注册，也就无法被互联网的DNS服务器解析。如上图所示校内ftp服务器的FQDN就是ftp.bupt.edu.cn，其他服务器类似。企业内部计算机访问ftp的时候就会被DNS解析成内网的IP（内网的IP都是私网IP，指望互联网上DNS是不可能解析出来的）。对于非内网的域名，比如<a target="_blank" rel="noopener" href="http://www.baidu.com,内网dns自己解析不出来就寻求互联网上的根dns服务器,后面过程就是标准dns递归解析流程了./">www.baidu.com，内网DNS自己解析不出来就寻求互联网上的根DNS服务器，后面过程就是标准DNS递归解析流程了。</a></p>
+<p>​    与此同时，若企业内部没有DNS服务器，所有客户上网都是用互联网上的DNS服务器。以上百度为例，所有客户机都需要缓存一份到百度的域名解析记录。这无疑是很浪费资源的，同时企业中计算机较为庞大，每个人都有域名解析需求，必然会消耗企业到互联网之间宝贵的带宽。在企业内网引入一个DNS服务器，企业计算机的DNS都指向该内网DNS服务器，对于外网的域名，只需要内网DNS服务器解析缓存一次即可，内网计算机的域名解析流量被拦截在了内网。</p>
+<p>​    使用内网DNS服务器还有个好处，就是可以限制内网客户机上网。在公司内部，需要对一些一致的恶意域名和与办公无关的域名进行屏蔽，如在内网DNS上把淘宝的域名屏蔽掉，内网客户机就不能访问淘宝了。当然如果内网主机能够使用互联网上的DNS照样能够访问淘宝，但是，如果企业继续在内网到外网的出口路由器（防火墙）进行对于dns协议的屏蔽策略，在出口路由器那里设置只允许内网DNS服务器的ip地址通过dns协议访问Internet，就能实现对于内网域名解析的限制。</p>
+<h5 id="DNS-配置"><a href="#DNS-配置" class="headerlink" title="DNS-配置"></a>DNS-配置</h5><p>​    实验目的：服务器和客户端在同一网段（可互相ping通），通过手动配置dns客户端dns服务器地址。实现局域网内终端机dns正向解析、逆向解析和域名屏蔽。（说明：因为当前架构较小，没有考虑设置出于完备性的从属dns服务器作为备份）</p>
+<p><strong>配置文件</strong></p>
+<p>​    Bind需要配置的文件有这么几个</p>
+<ul>
+<li>named.conf <ul>
+<li>全局设置<br> <img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" alt="img"></li>
+</ul>
+</li>
+</ul>
+<p>​    一般的全局设置放在了named.conf.options中，这里的named.conf仅用作域名屏蔽。</p>
+<ul>
+<li><p>named.conf.options </p>
+<ul>
+<li>全局设置选项（实际上效果和named.conf能够平替）<br> <img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image004.jpg" alt="img"></li>
+</ul>
+</li>
+<li><p>named.conf.local</p>
+<ul>
+<li>zones解析文件的引导文件<br> <img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image006.jpg" alt="img"></li>
+</ul>
+</li>
+</ul>
+<p>上面每个域的解析文件分别如下</p>
+<ul>
+<li><p>nyc3.example.com（正向解析表）<br> <img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg" alt="img"></p>
+</li>
+<li><p>122.10.in-addr.arpa（逆向解析表）<br> <img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg" alt="img"></p>
+</li>
+</ul>
+<p><strong>dns正向解析效果：</strong></p>
+<p><img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image011.png" alt="img"></p>
+<p><strong>dns逆向解析效果：</strong></p>
+<p><img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image013.jpg" alt="img"></p>
+<p><strong>域名屏蔽效果：</strong></p>
+<p><img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image015.jpg" alt="img"></p>
+<p>作为对比，访问淘宝网站时正常：</p>
+<p><img src="file:///C:/Users/86183/AppData/Local/Temp/msohtmlclip1/01/clip_image017.jpg" alt="img"></p>
+<h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319173637931.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319173637931.png"></p>
+<p><a target="_blank" rel="noopener" href="http://nginx.org/en/linux_packages.html#mainline">http://nginx.org/en/linux_packages.html#mainline</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">To set up the apt repository for stable nginx packages, run the following command:</span><br><span class="line"></span><br><span class="line">echo &quot;deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \\</span><br><span class="line">&lt;http://nginx.org/packages/ubuntu&gt; `lsb_release -cs` nginx&quot; \\</span><br><span class="line">    | sudo tee /etc/apt/sources.list.d/nginx.list</span><br><span class="line">If you would like to use mainline nginx packages, run the following command instead:</span><br><span class="line"></span><br><span class="line">echo &quot;deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] \\</span><br><span class="line">&lt;http://nginx.org/packages/mainline/ubuntu&gt; `lsb_release -cs` nginx&quot; \\</span><br><span class="line">    | sudo tee /etc/apt/sources.list.d/nginx.list</span><br><span class="line">Set up repository pinning to prefer our packages over distribution-provided ones:</span><br><span class="line"></span><br><span class="line">echo -e &quot;Package: *\\nPin: origin nginx.org\\nPin: release o=nginx\\nPin-Priority: 900\\n&quot; \\</span><br><span class="line">    | sudo tee /etc/apt/preferences.d/99nginx</span><br><span class="line">To install nginx, run the following commands:</span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="Modsecurity"><a href="#Modsecurity" class="headerlink" title="Modsecurity"></a>Modsecurity</h4><h5 id="Modsecurity安装"><a href="#Modsecurity安装" class="headerlink" title="Modsecurity安装"></a>Modsecurity安装</h5><p><strong>安装依赖</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ yum install -y wget epel-release gcc-c++ flex bison yajl yajl-devel curl-devel curl GeoIP-devel doxygen zlib-devel pcre-devel lmdb-devel libxml2-devel ssdeep-devel lua-devel libtool autoconf automake</span><br><span class="line">$ wget &lt;https://github.com/maxmind/libmaxminddb/releases/download/1.6.0/libmaxminddb-1.6.0.tar.gz&gt;</span><br><span class="line">$ tar -zxvf libmaxminddb-1.6.0.tar.gz</span><br><span class="line">$ cd libmaxminddb-1.6.0</span><br><span class="line">$ ./configure</span><br><span class="line">$ make</span><br><span class="line">$ make check</span><br><span class="line">$ make install</span><br><span class="line">$ ldconfig</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装 ModSecurity</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git clone --depth 1 -b v3/master --single-branch &lt;https://github.com/SpiderLabs/ModSecurity&gt;</span><br><span class="line">$ cd ModSecurity</span><br><span class="line">$ git submodule init</span><br><span class="line">$ git submodule update</span><br><span class="line">$ ./build.sh</span><br><span class="line">$ ./configure --with-maxmind=/usr/local</span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>出现 fatal: No names found, cannot describe anything. 报错忽略即可</p>
+</blockquote>
+<blockquote>
+<p>如果连接不上 git 可以使用 代理服务</p>
+</blockquote>
+<p>下载用于 <code>ModSecurity</code> 的 <code>nginx</code> 连接器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone --depth 1 &lt;https://github.com/SpiderLabs/ModSecurity-nginx.git&gt;</span><br></pre></td></tr></table></figure>
+
+<p>确定当前 nginx 版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nginx -v</span><br><span class="line">nginx version: nginx/1.20.1</span><br></pre></td></tr></table></figure>
+
+<p>下载与安装版本对应的源代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget &lt;http://nginx.org/download/nginx-1.20.1.tar.gz&gt;</span><br><span class="line">$ tar -zxvf nginx-1.20.1.tar.gz</span><br><span class="line">$ cd nginx-1.20.1</span><br></pre></td></tr></table></figure>
+
+<h5 id="Modsecurity动态编译"><a href="#Modsecurity动态编译" class="headerlink" title="Modsecurity动态编译"></a>Modsecurity动态编译</h5><p>编译动态模块，复制到 <code>nginx</code> 模块标准目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前 nginx 编译参数</span><br><span class="line">$ nginx -V</span><br><span class="line"># 复制 nginx 所有参数，删除所有 --add-module 选项</span><br><span class="line">$ ./configure --add-dynamic-module=../ModSecurity-nginx ...</span><br><span class="line">$ make modules</span><br><span class="line">$ cp objs/ngx_http_modsecurity_module.so /etc/nginx/modules/</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：这里的模块是放到了/etc/nginx/modules/目录下，但实操过程中，这样配置完无法运行nginx（报错是找不到目的文件）。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319164315108.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319164315108.png"></p>
+<p><strong>经分析，原始配置文件的模块加载默认地址似乎为/usr/share/nginx/modules/，所以实操时还执行了一句cp objs/ngx_http_modsecurity_module.so /usr/share/nginx/modules/，才得以成功运行，这个地方之后可能还要再修改。</strong></p>
+<p>加载模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/nginx.conf</span><br><span class="line">load_module modules/ngx_http_modsecurity_module.so;</span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>nginx</code> 配置文件，在主配置文件 <code>events</code> 上加入一行，具体路径根据自己 <code>nginx</code> 模块路径来定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load_module modules/ngx_http_modsecurity_module.so;</span><br></pre></td></tr></table></figure>
+
+<p>重新加载配置： nginx -s reload</p>
+<h5 id="Modsecurity配置"><a href="#Modsecurity配置" class="headerlink" title="Modsecurity配置"></a>Modsecurity配置</h5><p>1.创建一个mod配置文件夹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/nginx/modsec</span><br></pre></td></tr></table></figure>
+
+<p>2.给modsec文件夹添加配置文件，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget</span><br><span class="line">&lt;https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/modsecurity.conf-recommended&gt;</span><br><span class="line">wget &lt;https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/unicode.mapping&gt;</span><br><span class="line"></span><br><span class="line">mv modsecurity.conf-recommended modsecurity.conf</span><br></pre></td></tr></table></figure>
+
+<p>3.将modsecurity.conf中现有的SecRuleEngine修改为On：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># SecRuleEngine DetectionOnly</span><br><span class="line">SecRuleEngine On</span><br></pre></td></tr></table></figure>
+
+<p>4.创建自定义规则，如下规则意为param参数若出现test字段，则deny，返回403.</p>
+<p>vim  /etc/nginx/modsec/main.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Include the recommended configuration</span><br><span class="line">Include /etc/nginx/modsec/modsecurity.conf</span><br><span class="line"># A test rule</span><br><span class="line">SecRule ARGS:param &quot;@contains test&quot; &quot;id:1234,deny,log,status:403&quot;</span><br></pre></td></tr></table></figure>
+
+<p>5.在nginx的conf中添加刚才的配置来启用modsec</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/proxy.conf</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    modsecurity on;</span><br><span class="line">    modsecurity_rules_file /etc/nginx/modsec/main.conf;</span><br><span class="line"> location / &#123;</span><br><span class="line"> proxy_pass &lt;http://localhost:8085&gt;;</span><br><span class="line"> proxy_set_header Host $host;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">[root@centos24-4 modsec]# nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>通过发出在查询字符串param参数的值中包含字符串test的请求，验证步骤4中配置的规则是否正常工作，出现403证明触发了相应的规则，进一步可以在log里看到触发的是我们自定义的规则。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230318165327448.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230318165327448.png"></p>
+<h5 id="Nginx反向代理配置"><a href="#Nginx反向代理配置" class="headerlink" title="Nginx反向代理配置"></a>Nginx反向代理配置</h5><p>在Ubuntu-WebServer（192.168.254.133）上运行nginx服务：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319145434651.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319145434651.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319150604338.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319150604338.png"></p>
+<p>在Centos7-WAF（192.168.254.133）上运行开启了ModSecurity动态模块的Nginx服务，配置该Nginx服务，使其反向代理Ubuntu-WebServer（192.168.254.133）的Nginx服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/proxy.conf</span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    modsecurity on;</span><br><span class="line">    modsecurity_rules_file /etc/nginx/modsec/main.conf;</span><br><span class="line"> location / &#123;</span><br><span class="line"> proxy_pass &lt;http://192.168.254.133/&gt;;</span><br><span class="line"> proxy_set_header Host $host;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">[root@centos24-4 modsec]# nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319150249272.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319150249272.png"></p>
+<p>其中modsecurity on; 开启了ModSecurity模块，</p>
+<p>modsecurity_rules_file /etc/nginx/modsec/main.conf; 指定了ModSecurity规则。</p>
+<p>重启服务systemctl restart nginx</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319150552134.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319150552134.png"></p>
+<h5 id="ModSecurity引用OWASP-CRS-规则"><a href="#ModSecurity引用OWASP-CRS-规则" class="headerlink" title="ModSecurity引用OWASP CRS 规则"></a>ModSecurity引用OWASP CRS 规则</h5><blockquote>
+<p>OWASP CRS (OWASP ModSecurity Core Rule Set) 是一个开源的 Web 应用程序防火墙 (WAF) 规则集，它是基于 ModSecurity 开发的。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/coreruleset/coreruleset">github 地址</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd /etc/nginx/modsec</span><br><span class="line">$ wget -O coreruleset-3.3.4.tar.gz &lt;https://codeload.github.com/coreruleset/coreruleset/tar.gz/refs/tags/v3.3.4&gt;</span><br><span class="line">$ tar -zxvf coreruleset-3.3.4.tar.gz</span><br><span class="line">$ cd coreruleset-3.3.4</span><br><span class="line">$ cp crs-setup.conf.example crs-setup.conf</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>modsec/main.conf</code> 配置文件里引入 <code>CRS</code> 配置和规则</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/nginx/modsec/main.conf</span><br><span class="line">include coreruleset-3.3.4/crs-setup.conf</span><br><span class="line">include coreruleset-3.3.4/rules/*.cnf</span><br><span class="line">$ curl -H &quot;User-Agent: Nikto&quot; &lt;http://localhost&gt;</span><br></pre></td></tr></table></figure>
+
+<p>验证部分规则，如访问限制：访问<a target="_blank" rel="noopener" href="http://192.168.254.128/nginx.conf%EF%BC%8C">http://192.168.254.128/nginx.conf，</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319162153905.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319162153905.png"></p>
+<p>参数过滤：<a target="_blank" rel="noopener" href="http://192.168.254.128/?param=/etc/passwd%EF%BC%88%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95%E5%8F%82%E6%95%B0%EF%BC%89">http://192.168.254.128/?param=/etc/passwd（敏感目录参数）</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319162317296.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319162317296.png"></p>
+<h5 id="配置路由限制其他ip访问WebServer"><a href="#配置路由限制其他ip访问WebServer" class="headerlink" title="配置路由限制其他ip访问WebServer"></a>配置路由限制其他ip访问WebServer</h5><p>使用iptables，使得除了WAF服务器外的ip地址都无法访问WebServer。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#先关闭所有的对本机80端口的访问</span><br><span class="line">iptables -I INPUT -p tcp --dport 80 -j DROP</span><br><span class="line"></span><br><span class="line">#只开放192.168.254.133 对本机80端口的访问</span><br><span class="line">iptables -I INPUT -s 192.168.254.133 -p tcp --dport 80 -j ACCEPT</span><br><span class="line"></span><br><span class="line">#开启ip段192.168.1.0/24端的80口</span><br><span class="line">iptables -I INPUT -s 192.168.1.0/24 -p tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<p>无法访问web服务器：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319170206666.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319170206666.png"></p>
+<p>只能访问代理服务器：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319170255698.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319170255698.png"></p>
+<h5 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h5><p>1、If any other virtual servers (server blocks) in your NGINX configuration listen on port 80, you need to disable them for the reverse proxy to work correctly. For example, the /etc/nginx/conf.d/default.conf file provided in the nginx package includes such a server block. Comment out or remove the server block, but do not remove or rename the default.conf file itself – if the file is missing during an upgrade, it is automatically restored, which can break the reverse-proxy configuration.</p>
+<p>如果原来nginx有默认在80端口的服务，要把它移除，否则会影响代理服务器的运行。但是不要删去那个配置文件。</p>
+<p>默认的主页在：/usr/share/nginx/html</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230318152047313.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230318152047313.png"></p>
+<p>原有默认配置在：/etc/nginx/nginx.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        listen       [::]:80;</span><br><span class="line">        server_name  _;</span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">        # Load configuration files for the default server block.</span><br><span class="line">        include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">        error_page 404 /404.html;</span><br><span class="line">        location = /404.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 500 502 503 504 /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>把这个server删掉即可。</p>
+<p>2、配置路径问题</p>
+<p>配置过程中存在很多路径，不同教程的配置路径都不同，需要先规划好各模块存放的路径，包括编译时的路径，ModSecurity规则的路径，模块的路径等。如模块路径问题：</p>
+<p><strong>注意：这里的模块是放到了/etc/nginx/modules/目录下，但实操过程中，这样配置完无法运行nginx（报错是找不到目的文件）。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319164315108.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319164315108.png"></p>
+<p><strong>经分析，原始配置文件的模块加载默认地址似乎为/usr/share/nginx/modules/，还执行了一句cp objs/ngx_http_modsecurity_module.so /usr/share/nginx/modules/</strong></p>
+<h5 id="配置文件位置整理"><a href="#配置文件位置整理" class="headerlink" title="配置文件位置整理"></a>配置文件位置整理</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ModSecurity源代码位置：/opt/ModSecurity</span><br><span class="line">模块源代码存放位置：/opt/ModSecurity/nginx-1.20.1</span><br><span class="line"></span><br><span class="line">编译后模块文件存放位置：/etc/nginx/modules/</span><br><span class="line">ModSecurity规则文件：/etc/nginx/modsec/main.conf</span><br><span class="line">Nginx代理配置文件：/etc/nginx/conf.d/proxy.conf</span><br></pre></td></tr></table></figure>
+
+<h4 id="postfix邮件服务器简单搭建"><a href="#postfix邮件服务器简单搭建" class="headerlink" title="postfix邮件服务器简单搭建"></a>postfix邮件服务器简单搭建</h4><p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319171526895.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230319171526895.png"></p>
+<h3 id="2-云服务区-Kubernetes"><a href="#2-云服务区-Kubernetes" class="headerlink" title="2.云服务区-Kubernetes"></a>2.云服务区-Kubernetes</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>​    Kubernetes（简称K8s）是一个开源的容器编排平台，提供了容器集群的调度、部署、扩缩、服务发现和负载均衡等功能，可以帮助企业更高效地管理和运维容器化应用程序。Kubernetes可以支持多种容器运行时，其中包括Docker、containerd、CRI-O等。在Kubernetes中，Docker作为一个容器运行时（Container Runtime），被集成在Kubernetes的容器引擎中，用于管理和运行容器镜像。Kubernetes不是基于Docker构建的，但是Kubernetes可以使用Docker镜像，并集成了Docker作为其中一个容器运行时的实现。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319203530494.png" alt="image-20230319212643244" style="zoom: 67%;" />
+
+<ul>
+<li><p>API Server是整个系统的对外接口，供客户端和其它组件调用；</p>
+</li>
+<li><p>Scheduler负责对集群内部的资源进行调度；</p>
+</li>
+<li><p>Controller manager负责管理控制器；</p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319215001729.png" alt="image-20230319214510993" style="zoom:80%;" />
+
+<p>​    API server是所有请求的唯一入口，Pod是Kubernetes最基本的操作、部署单元，其作为一组容器的结合，在通pod中的容器共享网络命名空间。一个Pod代表着集群中运行的一个进程，它内部封装了一个或多个紧密相关的容器。除了Pod之外，K8S还有一个<strong>Service</strong>的概念，一个Service可以看作一组提供相同服务的Pod的对外访问接口。每一个node中有Kubelet、Kube-proxy等为该node提供服务。</p>
+<p>​    Kubelet，主要负责监视指派到它所在Node上的Pod，包括创建、修改、监控、删除等。</p>
+<p>​    Kube-proxy，主要负责为Pod对象提供代理。</p>
+<h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><p>•   参考动力节点教程学习k8s，搭建master和node节点</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319214510993.png" alt="image-20230319210554865" style="zoom:67%;" />
+
+
+
+<h4 id="漏洞设立"><a href="#漏洞设立" class="headerlink" title="漏洞设立"></a>漏洞设立</h4><p>​    攻击思路：创建以ubuntu为基础镜像的容器，在其中部署Nginx与存在web漏洞的网站，通过web获取对于云主机的接入权限后，使用操作系统的漏洞用来提权，然后触发容器逃逸漏洞逃逸到企业内网。如下，对于容器逃逸漏洞进行了复现的尝试工作。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230319210554865.png" alt="image-20230319215001729" style="zoom: 67%;" />
+
+<p>Kubernetes 通过多层安全措施来增强容器的安全性，但也不能完全防止容器逃逸漏洞：</p>
+<ol>
+<li>安全上下文：Kubernetes 通过安全上下文为容器内的进程提供了隔离和限制权限的功能。安全上下文定义了容器内进程的用户、组、访问控制和特权等级，从而限制了进程的访问权限。</li>
+<li>安全性设置：Kubernetes 提供了一些安全性设置，如限制容器的 CPU、内存、网络和文件系统等资源的使用量，限制容器能够访问的主机系统的资源等。</li>
+<li>网络隔离：Kubernetes 使用网络隔离来防止容器之间的攻击。每个容器都有一个唯一的 IP 地址，并且可以使用网络策略来限制容器之间的通信。</li>
+<li>权限控制：Kubernetes 提供了丰富的权限控制机制，可以对不同的用户或角色进行访问控制。例如，可以使用 Role-based access control（RBAC）来限制用户对 Kubernetes 资源的访问权限。</li>
+</ol>
+<h3 id="3-办公区"><a href="#3-办公区" class="headerlink" title="3.办公区"></a>3.办公区</h3><h4 id="windows域"><a href="#windows域" class="headerlink" title="windows域"></a>windows域</h4><h4 id="内网web服务"><a href="#内网web服务" class="headerlink" title="内网web服务"></a>内网web服务</h4><p>使用apache部署简单的web服务和数据库。</p>
+<h4 id="IDS"><a href="#IDS" class="headerlink" title="IDS"></a>IDS</h4><p>可使用suricata的对应模式。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">https://lhl7.github.io/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/03/14/P2P%E5%8D%8F%E8%AE%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">P2P协议处理流程分析</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">15</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">企业内网模拟靶场搭建2_环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%92%88%E5%AF%B9%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="toc-text">一、针对网络拓扑的优化与修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%92%88%E5%AF%B9%E7%BB%84%E7%BD%91%E6%8A%80%E6%9C%AF%E7%9A%84%E8%B0%83%E7%A0%94"><span class="toc-text">二、针对组网技术的调研</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%BF%9B%E8%A1%8C%E8%99%9A%E6%8B%9F%E7%BB%84%E7%BD%91"><span class="toc-text">1. 使用云服务技术进行虚拟组网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E6%8B%93%E6%89%91%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-text">2. 使用拓扑软件的思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-zerotier%E8%B0%83%E7%A0%94%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-text">3. zerotier调研使用情况</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%92%88%E5%AF%B9%E7%BD%91%E7%BB%9C%E5%86%85%E9%83%A8%E4%B8%BB%E6%9C%BA%EF%BC%88%E7%BB%84%E4%BB%B6%EF%BC%89%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">三、针对网络内部主机（组件）的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-%E7%BD%91%E7%BB%9C%E5%85%A5%E5%8F%A3"><span class="toc-text">0.网络入口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pfSense%E5%85%A5%E5%8F%A3FW"><span class="toc-text">pfSense入口FW</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#pfSense%E6%A6%82%E5%86%B5"><span class="toc-text">pfSense概况</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nat%E7%AD%96%E7%95%A5"><span class="toc-text">nat策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">实际配置过程：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#suricata"><span class="toc-text">suricata</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-amp-%E9%85%8D%E7%BD%AE"><span class="toc-text">安装&amp;配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-DMZ%E5%8C%BA"><span class="toc-text">1.DMZ区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#bind-DNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">bind DNS服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS-%E6%A6%82%E5%86%B5"><span class="toc-text">DNS-概况</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS-%E4%BC%81%E4%B8%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%90%AD%E5%BB%BADNS%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9F"><span class="toc-text">DNS-企业为什么要搭建DNS服务器？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS-%E9%85%8D%E7%BD%AE"><span class="toc-text">DNS-配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Modsecurity"><span class="toc-text">Modsecurity</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Modsecurity%E5%AE%89%E8%A3%85"><span class="toc-text">Modsecurity安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Modsecurity%E5%8A%A8%E6%80%81%E7%BC%96%E8%AF%91"><span class="toc-text">Modsecurity动态编译</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Modsecurity%E9%85%8D%E7%BD%AE"><span class="toc-text">Modsecurity配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE"><span class="toc-text">Nginx反向代理配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ModSecurity%E5%BC%95%E7%94%A8OWASP-CRS-%E8%A7%84%E5%88%99"><span class="toc-text">ModSecurity引用OWASP CRS 规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%B7%AF%E7%94%B1%E9%99%90%E5%88%B6%E5%85%B6%E4%BB%96ip%E8%AE%BF%E9%97%AEWebServer"><span class="toc-text">配置路由限制其他ip访问WebServer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE%E6%95%B4%E7%90%86"><span class="toc-text">配置文件位置整理</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#postfix%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA"><span class="toc-text">postfix邮件服务器简单搭建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA-Kubernetes"><span class="toc-text">2.云服务区-Kubernetes</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E8%AE%BE%E7%AB%8B"><span class="toc-text">漏洞设立</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8A%9E%E5%85%AC%E5%8C%BA"><span class="toc-text">3.办公区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#windows%E5%9F%9F"><span class="toc-text">windows域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E7%BD%91web%E6%9C%8D%E5%8A%A1"><span class="toc-text">内网web服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDS"><span class="toc-text">IDS</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="企业内网模拟靶场搭建1_前期调研">企业内网模拟靶场搭建1_前期调研</a><time datetime="2023-03-20T03:41:10.094Z" title="Created 2023-03-20 11:41:10">2023-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/14/P2P%E5%8D%8F%E8%AE%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" title="P2P协议处理流程分析">P2P协议处理流程分析</a><time datetime="2023-03-14T06:26:05.983Z" title="Created 2023-03-14 14:26:05">2023-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/" title="企业内网模拟靶场搭建1_前期调研">企业内网模拟靶场搭建1_前期调研</a><time datetime="2023-03-05T14:47:11.297Z" title="Created 2023-03-05 22:47:11">2023-03-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="汇编语言笔记">汇编语言笔记</a><time datetime="2023-01-30T06:43:57.233Z" title="Created 2023-01-30 14:43:57">2023-01-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="机器学习笔记">机器学习笔记</a><time datetime="2023-01-04T07:52:46.330Z" title="Created 2023-01-04 15:52:46">2023-01-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
