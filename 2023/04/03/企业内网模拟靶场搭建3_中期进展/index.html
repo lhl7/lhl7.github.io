@@ -1,0 +1,821 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>企业内网模拟靶场搭建3_中期进展 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="企业内网模拟靶场搭建3_中期进展一、环境搭建进展情况1. 云服务进展1. 针对云服务防御思路参考文献：https:&#x2F;&#x2F;segmentfault.com&#x2F;a&#x2F;1190000022004561  ​    自底向上看，底层从硬件安全（可信环境）到宿主机安全 。将容器编排技术（Kubernetes等）看作云上的“操作系统”，它负责自动化部署、扩缩容、管理应用等。在它之上由微服务、Service Mesh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="企业内网模拟靶场搭建3_中期进展">
+<meta property="og:url" content="https://lhl7.github.io/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="企业内网模拟靶场搭建3_中期进展一、环境搭建进展情况1. 云服务进展1. 针对云服务防御思路参考文献：https:&#x2F;&#x2F;segmentfault.com&#x2F;a&#x2F;1190000022004561  ​    自底向上看，底层从硬件安全（可信环境）到宿主机安全 。将容器编排技术（Kubernetes等）看作云上的“操作系统”，它负责自动化部署、扩缩容、管理应用等。在它之上由微服务、Service Mesh">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-04-03T05:52:13.800Z">
+<meta property="article:modified_time" content="2023-04-03T06:25:30.917Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '企业内网模拟靶场搭建3_中期进展',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-03 14:25:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">企业内网模拟靶场搭建3_中期进展</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-04-03T05:52:13.800Z" title="Created 2023-04-03 13:52:13">2023-04-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-04-03T06:25:30.917Z" title="Updated 2023-04-03 14:25:30">2023-04-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/environment/">environment</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="企业内网模拟靶场搭建3_中期进展"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="企业内网模拟靶场搭建3-中期进展"><a href="#企业内网模拟靶场搭建3-中期进展" class="headerlink" title="企业内网模拟靶场搭建3_中期进展"></a>企业内网模拟靶场搭建3_中期进展</h1><h2 id="一、环境搭建进展情况"><a href="#一、环境搭建进展情况" class="headerlink" title="一、环境搭建进展情况"></a>一、环境搭建进展情况</h2><h3 id="1-云服务进展"><a href="#1-云服务进展" class="headerlink" title="1. 云服务进展"></a>1. 云服务进展</h3><h4 id="1-针对云服务防御思路"><a href="#1-针对云服务防御思路" class="headerlink" title="1. 针对云服务防御思路"></a>1. 针对云服务防御思路</h4><p>参考文献：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022004561">https://segmentfault.com/a/1190000022004561</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402190342456.png" alt="image-20230402190342456"></p>
+<p>​    自底向上看，底层从硬件安全（可信环境）到宿主机安全 。将容器编排技术（Kubernetes等）看作云上的“操作系统”，它负责自动化部署、扩缩容、管理应用等。在它之上由微服务、Service Mesh、容器技术（Docker等）、容器镜像（仓库）组成。它们之间相辅相成，以这些技术为基础构建云原生安全。</p>
+<p>​    我们再对容器安全做一层抽象，又可以看作构建时安全（Build）、部署时安全（Deployment）、运行时安全（Runtime）。对于安全实施准则，我们将其分为三个阶段：</p>
+<ul>
+<li>攻击前：裁剪攻击面，减少对外暴露的攻击面（本文涉及的场景关键词：隔离）；</li>
+<li>攻击时：降低攻击成功率（本文涉及的场景关键词：加固）；</li>
+<li>攻击后：减少攻击成功后攻击者所能获取的有价值的信息、数据以及增加留后门的难度等。</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182406353.png" alt="image-20230402190502171" style="zoom:50%;" />
+
+<p>​    容器一共有7个攻击面：Linux Kernel、Namespace/Cgroups/Aufs、Seccomp-bpf、Libs、Language VM、User Code、Container(Docker) engine。</p>
+<p>以容器逃逸为风险模型，可以提炼出3个攻击面：</p>
+<ol>
+<li>Linux内核漏洞；</li>
+<li>容器自身；</li>
+<li>不安全部署（配置）。</li>
+</ol>
+<blockquote>
+<ol>
+<li>Linux Kernel：云容器运行在主机操作系统之上，因此，Linux Kernel 是云容器最基本的攻击面之一。攻击者可以通过利用 Linux Kernel 的漏洞来访问和破坏云容器内部的数据和应用程序。</li>
+<li>Namespace/Cgroups/Aufs：这些技术是云容器中的核心组件，用于隔离和限制容器的资源和访问权限。然而，攻击者可以利用这些技术的漏洞，绕过容器的隔离和限制，访问和破坏容器内部的数据和应用程序。</li>
+<li>Seccomp-bpf：这是一种 Linux 内核的安全模块，用于限制容器内的系统调用。攻击者可以通过利用 Seccomp-bpf 的漏洞，绕过容器的系统调用限制，访问和破坏容器内部的数据和应用程序。</li>
+<li>Libs：容器中使用的库也是一个攻击面。攻击者可以通过利用库的漏洞，绕过容器的安全限制，访问和破坏容器内部的数据和应用程序。</li>
+<li>Language VM：容器中运行的虚拟机（例如 Java VM 或 Python VM）也是一个攻击面。攻击者可以利用虚拟机的漏洞，访问和破坏容器内部的数据和应用程序。</li>
+<li>User Code：容器中运行的用户代码也是一个攻击面。攻击者可以通过注入恶意代码或利用应用程序的漏洞，访问和破坏容器内部的数据和应用程序。</li>
+<li>Container(Docker) engine：Docker 引擎本身也是一个攻击面。攻击者可以通过利用 Docker 引擎的漏洞，控制和破坏容器的配置和运行环境</li>
+</ol>
+</blockquote>
+<h4 id="2-主机网络模式探究"><a href="#2-主机网络模式探究" class="headerlink" title="2.主机网络模式探究"></a>2.主机网络模式探究</h4><blockquote>
+<p>Pod为Host网络模式，即直接使用宿主机的网络，不进行网络虚拟化隔离。这样一来，Pod中的所有容器就直接暴露在宿主机的网络环境中，这时候，Pod的PodIP就是其所在Node的IP。<br>从原理上来说，当设定Pod的网络为Host时，是设定了Pod中pod-infrastructure（或pause）容器的网络为Host，Pod内部其他容器的网络指向该容器。</p>
+</blockquote>
+<h5 id="Yaml"><a href="#Yaml" class="headerlink" title="Yaml"></a>Yaml</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ReplicationController</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">mynginx</span></span><br><span class="line">        <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span> <span class="comment"># 宿主机不存在则拉取远程</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">      <span class="attr">hostNetwork:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="k8s-pod镜像拉取策略"><a href="#k8s-pod镜像拉取策略" class="headerlink" title="k8s pod镜像拉取策略"></a>k8s pod镜像拉取策略</h5><ul>
+<li>Always：每次创建pod时重新远程拉取镜像</li>
+<li>IfNotPresent：宿主机不存在则拉取远程</li>
+<li>Never：只使用宿主机上存在的，永不拉取</li>
+</ul>
+<h5 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据yaml配置文件创建资源</span></span><br><span class="line">kubectl create -f xxx.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 资源本不存在: 创建新资源。</span></span><br><span class="line"><span class="comment"># 资源已存在: 使配置在已存在的资源上生效</span></span><br><span class="line">kubectl apply -f xxx.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取某类资源列表信息</span></span><br><span class="line">kubectl get pod/deployment/...</span><br><span class="line"><span class="comment"># 删除某类资源</span></span><br><span class="line">kubectl delete pod/deployment/...</span><br><span class="line"><span class="comment"># 详细信息</span></span><br><span class="line">kubectl describe pod</span><br><span class="line"><span class="comment"># 打印日志</span></span><br><span class="line">kubectl logs</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h5><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182423634.png" alt="image-20230402182406353"></p>
+<ul>
+<li>ImagePullBackOff：远程镜像拉取失败</li>
+<li>ErrImageNeverPull：当策略为Never且部署节点上不存在该镜像；从节点上要有这个镜像。<strong>准确的说是调度到哪个节点，那个节点上就要有这个镜像</strong>，否则会报错；<em>当使用本地镜像时需要注意该问题！</em></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402190502171.png" alt="image-20230402182423634"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402183537496.png" alt="image-20230402182504542"><br>    以pod形式启动了一个镜像，执行kubectl get pod 查看状态，发现pod一直重启。查看具体的报错信息，发现报错内容为：Back-off restarting failed container</p>
+<ul>
+<li>原因：镜像启动容器后，<strong>容器内部没有常驻进程，导致容器启动成功后即退出</strong>，从而进行了持续的重启。</li>
+<li>解决：只需要给容器加上一个常驻的进程就可以要使Pod持续运行，就必须指定一个永远不会完成的任务。<br>因此在yaml文件中指定一个启动命令，完整内容如下:</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ReplicationController</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">mynginx</span></span><br><span class="line">        <span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span> <span class="comment"># 宿主机不存在则拉取远程</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">command:</span> [<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-ce&quot;</span>, <span class="string">&quot;tail -f /dev/null&quot;</span>]</span><br><span class="line">      <span class="attr">hostNetwork:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-K8s防护调研"><a href="#3-K8s防护调研" class="headerlink" title="3.K8s防护调研"></a>3.K8s防护调研</h4><h5 id="调研情况"><a href="#调研情况" class="headerlink" title="调研情况"></a>调研情况</h5><p>参考链接：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000041424520">https://segmentfault.com/a/1190000041424520</a></p>
+<blockquote>
+<p>NeuVector 此次开源的并非某个组件或者安全工具，而是一套完整的容器安全平台。这与其他各大云原生安全厂商的开源策略有很大的区别。目前，云原生领域活跃的开源厂商包括：Aqua Security, Falco(sysdig), Anchore, Fairwinds, Portshift 等，以及被红帽收购的 Stackrox，除此还有像 Clair 这样来自大厂的安全工具。而传统的安全厂商虽然都有面向原生安全的产品，然而鲜有软件开源。</p>
+</blockquote>
+<p>开源项目情况：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>厂商</th>
+<th>链接</th>
+<th>Star</th>
+<th>类型</th>
+<th>开源时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>clair</td>
+<td>Quay</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=pU8oiTHZr5RfY53xOLKcJg==.KGdB/xnWWPz5+CPRFTHYd8DrYDacO69DsFTAdgh4F9k=">https://github.com/quay/clair</a></td>
+<td>8.4k</td>
+<td>镜像扫描</td>
+<td>2015-11-13</td>
+</tr>
+<tr>
+<td>trivy</td>
+<td>Aqua</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=9P+6eZ90XJ6supn7CELk2w==.DEy4PhTpTYL44fMgVTA5tC5f2GdEz4wIQWZkLIm7d1SF1n5ETrsKewb1JqJUh6DV">https://github.com/aquasecuri…</a></td>
+<td>10.1k</td>
+<td>镜像扫描</td>
+<td>2019-04-11</td>
+</tr>
+<tr>
+<td>kube-hunter</td>
+<td>Aqua</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=ip5/9JoYMEUMyR43OoPLuQ==.kUziJcf5j9KtFiCZCASsQi2Ji1Fj5MEPyPhN5DXHN4ZROqbcycK5e93IChndWih0">https://github.com/aquasecuri…</a></td>
+<td>3.4k</td>
+<td>漏洞扫描</td>
+<td>2018-07-18</td>
+</tr>
+<tr>
+<td>kube-bench</td>
+<td>Aqua</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=VnXjrf9lcroNZKGj32Urxg==.YfHKipW9UTlYSrjXeQmzalxpS3/XJS8oCu5nQtHqmc+RtO3AXQ0eLKGCNDLwBXv6">https://github.com/aquasecuri…</a></td>
+<td>4.5k</td>
+<td>CIS 安全基线</td>
+<td>2017-06-19</td>
+</tr>
+<tr>
+<td>starboard</td>
+<td>Aqua</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=l0b+11AOYGf28ZTLtfy03g==.zKxhbMLpX9InqxSFy2DaLlaoCxBhcpu4fKLJqQiapTgzqKCPt1H/Bhikn83k/w7J">https://github.com/aquasecuri…</a></td>
+<td>968</td>
+<td>Dashboard</td>
+<td>2020-03-17</td>
+</tr>
+<tr>
+<td>tracee</td>
+<td>Aqua</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=65XoYh7cjTTbLKUmekww/g==.yCmpdWBXzTDS/p4Q7kdbFr0FsRtHQvvmyWYIbFpMMRhEFNyrB0xsSyjb1H6HiS/s">https://github.com/aquasecuri…</a></td>
+<td>1.5k</td>
+<td>基于 eBPF 的系统事件追踪</td>
+<td>2019-09-18</td>
+</tr>
+<tr>
+<td>anchore-engine</td>
+<td>anchore</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=Rr1WfoxN/VRJCK9ryuAo+Q==.HcmJ/43asGPilwC8bf0boulNyfBt2tSYspW2Rwkl1qRhBpTzownCwYZQTDnENJBK">https://github.com/anchore/an…</a></td>
+<td>1.4k</td>
+<td>漏洞扫描</td>
+<td>2017-09-06</td>
+</tr>
+<tr>
+<td>kyverno</td>
+<td>kyverno.io</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=Qf/GglfSsVrHLGhRePj96g==.XNabj1J6COCU1hPrqp9dUDbFRCKgM8vj3kmRvrCiOYzXl52JrDWz5PzmwE+CLDmU">https://github.com/kyverno/ky…</a></td>
+<td>1.8k</td>
+<td>Kubernetes 策略与审计</td>
+<td>2019-02-04</td>
+</tr>
+<tr>
+<td>GateKeeper</td>
+<td>OPA (sysdig)</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=uAK20wD+4GhO4DoSJJVerg==.cqqYxr5H7qSXpafJQOxBIB0Q8OnzvdQOD6ordZYgbpgCKOZZP68xmSCj6isn1FeQ">https://github.com/open-polic…</a></td>
+<td>1.3k</td>
+<td>Kubernetes 策略与审计</td>
+<td>2018-10-26</td>
+</tr>
+<tr>
+<td>falco</td>
+<td>falcosecurity(sysdig)</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=zfjgS4LB1wLOV6LHxGPkrA==.rk2daTCsQIM682PM7K/tFNRdY8Bilx0XjDTW7B794NpegPr7kBPVoeKVRljzAJNJ">https://github.com/falcosecur…</a></td>
+<td>4.4k</td>
+<td>基于内核模块的系统事件追踪、警告</td>
+<td>2016-01-19</td>
+</tr>
+<tr>
+<td>terrascan</td>
+<td>accurics.com</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=o4deXWiAI6yMc91sl3nTDQ==.1NOAUenxPYc7K7hNjoblCiALvRoS2yYqi7rd9fI6DpmSHC5TRB3iFdxnQwRbIoPN">https://github.com/accurics/t…</a></td>
+<td>2.7k</td>
+<td>通用的 IaS 配置扫描</td>
+<td>2017-09-11</td>
+</tr>
+<tr>
+<td>Kubei</td>
+<td>portshift</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=8Z+BX3IKSHmopJEgGrtgAA==.EOwNtsIMIQqLPikA6gIChq9zDbL7Z9T5Hw4m8sZkYqyphujiRdgz5PGSyHlELt1Q">https://github.com/cisco-open…</a></td>
+<td>489</td>
+<td>镜像扫描(带面板)</td>
+<td>2020-03-22</td>
+</tr>
+<tr>
+<td>Polaris</td>
+<td>Fairwinds</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=nsg87K2j5PYz/Cn02CkRbA==.PwMmWTftYEEPWCKbavAW7LT9C/4KhgmtgdVQERHjkLjIeKV2Me6g7bVHOzLxdNTK">https://github.com/FairwindsO…</a></td>
+<td>2.4k</td>
+<td>配置扫描与策略</td>
+<td>2018-11-15</td>
+</tr>
+<tr>
+<td>kubesec</td>
+<td>controlplaneio</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=0nU2pC7vg89n3F5YdxX3jg==.LDpgBFKFzWvchuIWPIACA23cSSj3HJyzUu8RxT58UwHYBHJuUNZ3AWAURmUosORE">https://github.com/controlpla…</a></td>
+<td>667</td>
+<td>Kubernetes 配置扫描</td>
+<td>2017-10-10</td>
+</tr>
+<tr>
+<td>KubeEye</td>
+<td>KubeSphere</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=9xeKMMjh9fzW4/gREAADCw==.Xb6v3YjpKxIIiB1hL6knYnMtOyg9kpWNW9ij0sCMtJ2QiXxmo9upkltRE01Zqzfo">https://github.com/kubesphere…</a></td>
+<td>424</td>
+<td>基于策略的 Kubernetes 集群配置扫描</td>
+<td>2020-11-07</td>
+</tr>
+<tr>
+<td>kube-linter</td>
+<td>Stackrox(RedHat)</td>
+<td><a target="_blank" rel="noopener" href="https://link.segmentfault.com/?enc=ET2yaus3dxZ+TXajm+GY9g==.EVMsjw6ye9srw8DIhLcG+zw5BRBKROSx9tBSzT99mtYRepIxA6tFoOG0vsVRblBX">https://github.com/stackrox/k…</a></td>
+<td>1.8k</td>
+<td>Kubernetes 配置扫描</td>
+<td>2020-08-13</td>
+</tr>
+</tbody></table>
+<p>上表中，我们列举出了来自各个安全厂商的主要开源项目。从上面的表格中我们可以看出,目前开源安全软件集中在四大类别：</p>
+<ol>
+<li>镜像漏洞扫描</li>
+<li>合规、基线扫描</li>
+<li>Kubernetes 安全策略、配置管理</li>
+<li>威胁检测</li>
+</ol>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182504542.png" alt="image-20230402183537496" style="zoom: 50%;" />
+
+<ul>
+<li>Manager, NeuVector 的 Web 控制台，为用户提供了统一的管理 UI，便于用户查看安全事件、管理安全解决方案、规则等。</li>
+<li>Controller, Backend 服务器及控制器，管理如 Enforcer、Scanner 等其他组件，分发安全策略及调度扫描任务。</li>
+<li>Scanner, 用户执行漏洞扫描、基线扫描等任务。</li>
+<li>Enforcer, 一个轻量级的容器，用于拦截系统事件，执行安全策略等。通常以 Daemon set 运行再集群中的每个节点上。</li>
+<li>Updater， 用于更新 CVE 数据库。</li>
+</ul>
+<h5 id="KubeArmor"><a href="#KubeArmor" class="headerlink" title="KubeArmor"></a>KubeArmor</h5><blockquote>
+<p>KubeArmor是一个支持<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tke?from=20065&from_column=20065">容器</a>的运行时安全实施系统，它可以从系统级别限制容器的行为（如进程执行、文件访问、网络操作和资源利用率）。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubearmor.io/">官网</a><br><a target="_blank" rel="noopener" href="https://github.com/kubearmor/KubeArmor">git</a> </p>
+<p>该工具可通过规则配置，对容器指定资源与行为进行监控和拦截，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">security.kubearmor.com/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">KubeArmorPolicy</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ksp-group-1-proc-path-block</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">multiubuntu</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">group:</span> <span class="string">group-1</span></span><br><span class="line">  <span class="attr">process:</span></span><br><span class="line">    <span class="attr">matchPaths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">/bin/sleep</span></span><br><span class="line">  <span class="attr">action:</span></span><br><span class="line">    <span class="string">Block</span></span><br></pre></td></tr></table></figure>
+
+<p>说明：此策略的目的是阻止在带有“group-1”标签的容器中执行“/bin/sleep”。 为此，我们在 selector -&gt; matchLabels 中定义 ‘group-1’ 标签，在 process -&gt; matchPaths 中定义特定路径（’/bin/sleep’）。 此外，我们将“阻止”作为此策略的操作。<br>通过不同的规则配置可达到不同的拦截效果，下面列举出部分：</p>
+<ul>
+<li>Block a specific executable</li>
+<li>Block all executables in a specific directory</li>
+<li>Block all executables in a specific directory and its subdirectories</li>
+<li>Allow specific executables to access certain files only</li>
+<li>…..</li>
+</ul>
+<h4 id="4-NeuVector"><a href="#4-NeuVector" class="headerlink" title="4. NeuVector"></a>4. NeuVector</h4><blockquote>
+<p>NeuVector提供实时深入的容器网络可视化、东西向容器网络监控、主动隔离和保护、容器主机安全以及容器内部安全。<br>NeuVector并非某个组件或者安全工具，而是一套完整的容器安全平台。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/panlifeng/p/16326578.html">Install</a></p>
+<h5 id="安装过程："><a href="#安装过程：" class="headerlink" title="安装过程："></a><strong>安装过程：</strong></h5><p>创建 namespace</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create <span class="keyword">namespace</span> neuvector</span><br></pre></td></tr></table></figure>
+
+<p>部署 CRD (Kubernetes 1.19+ 版本)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/neuvector</span><span class="regexp">/manifests/main</span><span class="regexp">/kubernetes/crd</span>-k8s-<span class="number">1.19</span>.yaml</span><br></pre></td></tr></table></figure>
+
+<p>部署 CRD (Kubernetes 1.18 或更低版本)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/neuvector</span><span class="regexp">/manifests/main</span><span class="regexp">/kubernetes/crd</span>-k8s-<span class="number">1.16</span>.yaml</span><br></pre></td></tr></table></figure>
+
+<p>配置 RBAC</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="keyword">create</span> clusterrole neuvector<span class="operator">-</span>binding<span class="operator">-</span>app <span class="comment">--verb=get,list,watch,update --resource=nodes,pods,services,namespaces</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrole neuvector<span class="operator">-</span>binding<span class="operator">-</span>rbac <span class="comment">--verb=get,list,watch --resource=rolebindings.rbac.authorization.k8s.io,roles.rbac.authorization.k8s.io,clusterrolebindings.rbac.authorization.k8s.io,clusterroles.rbac.authorization.k8s.io</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrolebinding neuvector<span class="operator">-</span>binding<span class="operator">-</span>app <span class="comment">--clusterrole=neuvector-binding-app --serviceaccount=neuvector:default</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrolebinding neuvector<span class="operator">-</span>binding<span class="operator">-</span>rbac <span class="comment">--clusterrole=neuvector-binding-rbac --serviceaccount=neuvector:default</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrole neuvector<span class="operator">-</span>binding<span class="operator">-</span>admission <span class="comment">--verb=get,list,watch,create,update,delete --resource=validatingwebhookconfigurations,mutatingwebhookconfigurations</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrolebinding neuvector<span class="operator">-</span>binding<span class="operator">-</span>admission <span class="comment">--clusterrole=neuvector-binding-admission --serviceaccount=neuvector:default</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrole neuvector<span class="operator">-</span>binding<span class="operator">-</span>customresourcedefinition <span class="comment">--verb=watch,create,get --resource=customresourcedefinitions</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrolebinding  neuvector<span class="operator">-</span>binding<span class="operator">-</span>customresourcedefinition <span class="comment">--clusterrole=neuvector-binding-customresourcedefinition --serviceaccount=neuvector:default</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrole neuvector<span class="operator">-</span>binding<span class="operator">-</span>nvsecurityrules <span class="comment">--verb=list,delete --resource=nvsecurityrules,nvclustersecurityrules</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrolebinding neuvector<span class="operator">-</span>binding<span class="operator">-</span>nvsecurityrules <span class="comment">--clusterrole=neuvector-binding-nvsecurityrules --serviceaccount=neuvector:default</span></span><br><span class="line">kubectl <span class="keyword">create</span> clusterrolebinding neuvector<span class="operator">-</span>binding<span class="operator">-</span><span class="keyword">view</span> <span class="comment">--clusterrole=view --serviceaccount=neuvector:default</span></span><br><span class="line">kubectl <span class="keyword">create</span> rolebinding neuvector<span class="operator">-</span>admin <span class="comment">--clusterrole=admin --serviceaccount=neuvector:default -n neuvector</span></span><br></pre></td></tr></table></figure>
+
+<p>检查是否有以下 RBAC 对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">kubectl get clusterrolebinding  | grep neuvector</span><br><span class="line"></span><br><span class="line">neuvector-binding-admission                            ClusterRole/neuvector-binding-admission                            44h</span><br><span class="line">neuvector-binding-app                                  ClusterRole/neuvector-binding-app                                  44h</span><br><span class="line">neuvector-binding-customresourcedefinition             ClusterRole/neuvector-binding-customresourcedefinition             44h</span><br><span class="line">neuvector-binding-nvadmissioncontrolsecurityrules      ClusterRole/neuvector-binding-nvadmissioncontrolsecurityrules      44h</span><br><span class="line">neuvector-binding-nvsecurityrules                      ClusterRole/neuvector-binding-nvsecurityrules                      44h</span><br><span class="line">neuvector-binding-nvwafsecurityrules                   ClusterRole/neuvector-binding-nvwafsecurityrules                   44h</span><br><span class="line">neuvector-binding-rbac                                 ClusterRole/neuvector-binding-rbac                                 44h</span><br><span class="line">neuvector-binding-view                                 ClusterRole/view                                                   44h</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl get rolebinding -n neuvector | grep neuvector</span><br><span class="line"></span><br><span class="line">neuvector-admin         ClusterRole/admin            44h</span><br><span class="line">neuvector-binding-psp   Role/neuvector-binding-psp   44h</span><br></pre></td></tr></table></figure>
+
+<p>部署 NeuVector</p>
+<p>底层 Runtime 为 Docker</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/neuvector</span><span class="regexp">/manifests/main</span><span class="regexp">/kubernetes/</span><span class="number">5.0</span>.<span class="number">0</span>/neuvector-docker-k8s.yaml</span><br></pre></td></tr></table></figure>
+
+<p>底层 Runtime 为 Containerd（对于 k3s 和 rke2 可以使用此 yaml 文件）</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/neuvector</span><span class="regexp">/manifests/main</span><span class="regexp">/kubernetes/</span><span class="number">5.0</span>.<span class="number">0</span>/neuvector-containerd-k8s.yaml</span><br></pre></td></tr></table></figure>
+
+<p>1.21 以下的 Kubernetes 版本会提示以下错误，将 yaml 文件下载将 batch/v1 修改为 batch/v1beta1</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: unable to recognize &quot;https://raw.githubusercontent.com/neuvector/manifests/main/kubernetes/5.0.0/neuvector-docker-k8s.yaml&quot;: no matches for kind &quot;CronJob&quot; in version &quot;batch/v1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>1.20.x cronjob 还处于 beta 阶段，1.21 版本开始 cronjob 才正式 GA 。</p>
+<p>默认部署 web-ui 使用的是 loadblance 类型的 Service，为了方便访问修改为 NodePort，也可以通过 Ingress 对外提供服务</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl patch  svc neuvector-service-webui  -n neuvector --type=&#x27;json&#x27; -p &#x27;[&#123;<span class="string">&quot;op&quot;</span>:<span class="string">&quot;replace&quot;</span>,<span class="string">&quot;path&quot;</span>:<span class="string">&quot;/spec/type&quot;</span>,<span class="string">&quot;value&quot;</span>:<span class="string">&quot;NodePort&quot;</span>&#125;,&#123;<span class="string">&quot;op&quot;</span>:<span class="string">&quot;add&quot;</span>,<span class="string">&quot;path&quot;</span>:<span class="string">&quot;/spec/ports/0/nodePort&quot;</span>,<span class="string">&quot;value&quot;</span>:30888&#125;]&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a><strong>遇到的问题和解决方案</strong></h5><p>​    NeuVector 安装部署需要在k8s集群中部署包括controller，enforcer，manager，scanner在内的若干个pod，通过官方的yaml文件进行部署时，出现了上述的镜像拉取失败而导致的pod启动失败的问题。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182725446.png" alt="image-20230402182710512"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182824599.png" alt="image-20230402182725446"></p>
+<p>​    如上图所示，多数pod启动失败，原因皆为镜像拉取失败导致的，查看官方提供的yaml文件，得知所有镜像的默认拉取策略为Always，尝试将其改为IfNotPresent，并提前手动拉取镜像(docker pull)到node节点本地来提高pod的部署与启动速度。</p>
+<p>​    出现网络问题，这个应该就是之前镜像拉取失败的主要原因：<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182747459.png" alt="image-20230402182747459"></p>
+<p>​    尝试配置DNS解析，并重启docker服务后解决：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182934688.png" alt="image-20230402182824599" style="zoom:50%;" />
+
+<p>​    所有的镜像均手动拉取下来后，重启之前启动失败的pod：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402184527091.png" alt="image-20230402182849092" style="zoom:67%;" />
+
+<p>访问 <a href="https://node-ip:30888，使用">https://node-ip:30888，使用</a> admin/admin登录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182710512.png" alt="image-20230402182934688"></p>
+<h5 id="功能应用："><a href="#功能应用：" class="headerlink" title="功能应用："></a><strong>功能应用：</strong></h5><p>​    成功安装 NeuVector 后，用户即可通过浏览器打开 NeuVector 的控制台。在控制台的导航栏中包含了，资产管理、策略管理、安全风险、通知、平台设置及联邦集群等五项核心功能：</p>
+<table>
+<thead>
+<tr>
+<th>Assets</th>
+<th>Policy</th>
+<th>Security Risks</th>
+<th>Notifications</th>
+<th>Settings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Platforms</td>
+<td>Admission Control</td>
+<td>Vulnerabilities</td>
+<td>Security Events</td>
+<td>Users &amp; Roles</td>
+</tr>
+<tr>
+<td>Nodes</td>
+<td>Groups</td>
+<td>Vulnerabilities Profile</td>
+<td>Risk Reports</td>
+<td>Configuration</td>
+</tr>
+<tr>
+<td>Containers</td>
+<td>Network Rules</td>
+<td>Compliance</td>
+<td>Events</td>
+<td>LDAP/AD Settings</td>
+</tr>
+<tr>
+<td>Registries</td>
+<td>Response Rules</td>
+<td>Compliance Profile</td>
+<td>-</td>
+<td>SAML Setting</td>
+</tr>
+<tr>
+<td>System Components</td>
+<td>DLP Sensors</td>
+<td>-</td>
+<td>-</td>
+<td>OIDC Settings</td>
+</tr>
+<tr>
+<td>–</td>
+<td>WAF Sensors</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p>扫描查看容器存在的中高危漏洞情况 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402184507499.png" alt="image-20230402184613404"></p>
+<p>查看容器内存使用与网络通信情况<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402184334052.png" alt="image-20230402184527091"></p>
+<p>配置容器应用分组的相关进程规则，文件访问规则等<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402141015331.png" alt="image-20230402184507499"></p>
+<p>配置集群与容器的网络规则</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402184613404.png" alt="image-20230402184409738" style="zoom: 50%;" />
+
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402144022465.png" alt="image-20230402184334052"></p>
+<p>查看集群中的安全事件<br><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402140810947.png" alt="image-20230402184309228" style="zoom: 50%;" /></p>
+<h3 id="2-网络边界防火墙"><a href="#2-网络边界防火墙" class="headerlink" title="2.网络边界防火墙"></a>2.网络边界防火墙</h3><h4 id="pfsense配置zerotier"><a href="#pfsense配置zerotier" class="headerlink" title="pfsense配置zerotier"></a>pfsense配置zerotier</h4><p>pfsense对应的freeBSD版本是12.3</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402184309228.png" alt="image-20230402141015331"></p>
+<p>下载zerotier：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402184409738.png" alt="image-20230402140810947"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg add -f https://pkg.freebsd.org/FreeBSD:12:amd64/latest/All/zerotier-1.10.4.pkg</span><br></pre></td></tr></table></figure>
+
+<p>第二步，安装pfSense-pkg-zerotier软件包，这个软件包提供了在pfSense web界面管理zerotier网络的功能。</p>
+<p>下载<a target="_blank" rel="noopener" href="https://pfschina.org/wp/wp-content/uploads/2021/11/pfSense-pkg-zerotier-cn.zip">pfSense-pkg-zerotier-cn</a>软件包，解压缩后上传到pfSense后台，然后在pfSense shell环境下执行以下安装命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install pfSense-pkg-zerotier-cn.pkg</span><br></pre></td></tr></table></figure>
+
+<p>在启动ZeroTier服务之前，需要手动修改两个文件。</p>
+<p>打开etc&gt;rc.conf文件，添加以下内容并保存：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zerotier_enable=&quot;YES&quot;</span><br></pre></td></tr></table></figure>
+
+<p>打开etc&gt;sysctl.conf，添加以下内容并保存：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.link.tap.up_on_open=1</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="防火墙配置思路-不同区域的访问控制规则"><a href="#防火墙配置思路-不同区域的访问控制规则" class="headerlink" title="防火墙配置思路(不同区域的访问控制规则)"></a>防火墙配置思路(不同区域的访问控制规则)</h4><p>添加zerotier接口：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182849092.png" alt="image-20230402144022465"></p>
+<p><strong>单一防火墙：</strong></p>
+<p>​    使用单一防火墙创建包含DMZ的网络体系必须具有3个以上的网络接口：</p>
+<ul>
+<li><p>外部网络ISP连接到防火墙第一网络接口；</p>
+</li>
+<li><p>内部网络接防火墙的第二网络接口；</p>
+</li>
+<li><p>DMZ则连接防火墙的第三网络接口。 </p>
+</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402170719845.png" alt="image-20230402151106595" style="zoom:50%;" />
+
+<p><strong>双重防火墙：</strong></p>
+<p>​    第一个防火墙（Pfsense）配置为仅允许通往DMZ的通信；IDS（suricata）配置为只允许从DMZ到内部网络的通信。这个设置在安全性上更高，因为攻击内部网络需要突破两个防火墙，如果这两个防火墙是由两个不同的供应商提供的话，则会提供更多的保护，因为这样两个设备就不太可能遇到同样的安全漏洞。这种配置的缺点是购买和管理成本更高。使用不同供应商的不同防火墙的做法被认为是“纵深防御”安全策略的一个组成部分。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402170708527.png" alt="image-20230402151122412" style="zoom:50%;" />
+
+<p><strong>防火墙的设置原则如下：</strong></p>
+<ul>
+<li><p>内网可以访问外网。内网的用户显然需要自由地访问外网。在这一策略中，防火墙需要进行源地址转换。</p>
+</li>
+<li><p>内网可以访问DMZ。此策略是为了方便内网用户使用和管理DMZ中的服务器。建议只对有限的主机进行开放。</p>
+</li>
+<li><p>外网不能访问内网。很显然，内网中存放的是公司内部数据，这些数据不允许外网的用户进行访问。</p>
+</li>
+<li><p>外网可以访问DMZ。DMZ中的服务器本身就是要给外界提供服务的，所以外网必须可以访问DMZ。同时，外网访问DMZ需要由防火墙完成对外地址到服务器实际地址的转换。</p>
+</li>
+<li><p>DMZ访问内网有限制。很明显，如果违背此策略，则当入侵者攻陷DMZ时，就可以进一步进攻到内网的重要数据。</p>
+</li>
+<li><p>DMZ不能访问外网。此条策略也有例外，比如DMZ中放置邮件服务器时，就需要访问外网，否则将不能正常工作。可以根据需要进行设置。</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>当防火墙策略将数据包设置为 “block” 时，防火墙将完全丢弃该数据包，并且不会向发送者发送任何响应。这意味着，被阻止的数据包将被完全忽略，而发送者将不会知道它们是否已被接收或被丢弃。</p>
+<p>相反，当防火墙策略将数据包设置为 “reject” 时，防火墙将向发送者发送一个拒绝的响应，通知其其请求已被阻止。这意味着，发送者将会知道其请求已被拒绝，并且可以尝试进行其他操作。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402151122412.png" alt="image-20230402170708527"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402151106595.png" alt="image-20230402170719845"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402170648171.png" alt="image-20230402170648171"></p>
+<h4 id="IDS的另一种部署方式"><a href="#IDS的另一种部署方式" class="headerlink" title="IDS的另一种部署方式"></a>IDS的另一种部署方式</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402181207296.png" alt="image-20230402181207296"></p>
+<h4 id="使用nat代理转发dns请求"><a href="#使用nat代理转发dns请求" class="headerlink" title="使用nat代理转发dns请求"></a>使用nat代理转发dns请求</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402182009012.png" alt="image-20230402182009012"></p>
+<h3 id="3-Web-amp-邮件服务的搭建情况"><a href="#3-Web-amp-邮件服务的搭建情况" class="headerlink" title="3. Web&amp;邮件服务的搭建情况"></a>3. Web&amp;邮件服务的搭建情况</h3><h4 id="坚冰官网——模拟企业官网"><a href="#坚冰官网——模拟企业官网" class="headerlink" title="坚冰官网——模拟企业官网"></a>坚冰官网——模拟企业官网</h4><p>选型：Vue+npm</p>
+<p>端口：5000</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/fastice-tech &amp;&amp; npm run serve -- --port 5000</span><br><span class="line">Project setup</span><br><span class="line">npm install</span><br><span class="line">Compiles and hot-reloads for development</span><br><span class="line">npm run serve</span><br><span class="line">Compiles and minifies for production</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204733169.png" alt="image-20230402204948566" style="zoom:67%;" />
+
+
+
+<h4 id="北半球小说网站——模拟博客"><a href="#北半球小说网站——模拟博客" class="headerlink" title="北半球小说网站——模拟博客"></a>北半球小说网站——模拟博客</h4><p>选型：Flask+Mysql+nginx</p>
+<p>端口：5002</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/beibq &amp;&amp; python manage.py runserver -h 0.0.0.0 -p 5002</span><br><span class="line">启动：python manage.py runserver -h 0.0.0.0 -p 5002</span><br><span class="line">beibq：用户名root-密码123456</span><br></pre></td></tr></table></figure>
+
+
+
+<p>创建小说、阅览小说、创建用户、md浏览等功能。</p>
+<p><strong>预留漏洞</strong>：文件上传、XSS、sql注入</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204909966.png" alt="image-20230402204909966" style="zoom:67%;" />
+
+
+
+<h4 id="学生选课-论坛——模拟多用户论坛"><a href="#学生选课-论坛——模拟多用户论坛" class="headerlink" title="学生选课/论坛——模拟多用户论坛"></a>学生选课/论坛——模拟多用户论坛</h4><p>选型：Django+Mysql</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/studentTrainPlan &amp;&amp; python main.py runserver</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204835963.png" alt="image-20230402204857538" style="zoom:67%;" />
+
+<p>预留漏洞：sql注入、XSS</p>
+<h4 id="全部反向代理指WAF"><a href="#全部反向代理指WAF" class="headerlink" title="全部反向代理指WAF"></a>全部反向代理指WAF</h4><p>WAFip为 <a target="_blank" rel="noopener" href="http://192.168.254.128/">http://192.168.254.128/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#企业官网</span><br><span class="line">server &#123;</span><br><span class="line">        listen 5000;</span><br><span class="line">        modsecurity on;</span><br><span class="line">        modsecurity_rules_file /etc/nginx/modsec/main.conf;</span><br><span class="line"> location / &#123;</span><br><span class="line"> #proxy_pass &lt;http://localhost:8085&gt;;</span><br><span class="line"> proxy_pass &lt;http://192.168.254.133:5000&gt;;</span><br><span class="line"> proxy_set_header Host $host;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#学生论坛</span><br><span class="line">server &#123;</span><br><span class="line">        listen 80;</span><br><span class="line">        modsecurity on;</span><br><span class="line">        modsecurity_rules_file /etc/nginx/modsec/main.conf;</span><br><span class="line"> location / &#123;</span><br><span class="line"> proxy_pass &lt;http://192.168.254.133:5001&gt;;</span><br><span class="line"> proxy_set_header Host $host;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">#北半球小说</span><br><span class="line">server &#123;</span><br><span class="line">        listen 5002;</span><br><span class="line">        modsecurity on;</span><br><span class="line">        modsecurity_rules_file /etc/nginx/modsec/main.conf;</span><br><span class="line"> location / &#123;</span><br><span class="line"> proxy_pass &lt;http://192.168.254.133:5002&gt;;</span><br><span class="line"> proxy_set_header Host $host;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204700848.png" alt="image-20230402204835963"></p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204640329.png" alt="image-20230402204814105" style="zoom: 67%;" />
+
+<p>防火墙测试：（sql注入过滤测试，测试结果为被防火墙拦截，如下）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402192525999.png" alt="image-20230402204700848"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402192937279.png" alt="image-20230402204733169"></p>
+<h4 id="邮件服务器简单使用"><a href="#邮件服务器简单使用" class="headerlink" title="邮件服务器简单使用"></a>邮件服务器简单使用</h4><p>Postfix 是一种 <code>Mail Transfer Agent 邮件传送代理</code> (MTA) 是 Ubuntu 缺省的邮件代理程序.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">配置SMTP用户名和密码</span><br><span class="line">biscuit19@bisc.com:587 biscuit19:123456</span><br></pre></td></tr></table></figure>
+
+<p>发送邮件测试：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402192550049.png" alt="image-20230402204640329"></p>
+<p>（由于缺少公网域名，所以无法正常解析DNS、发送邮件）</p>
+<h3 id="4-IPS的配置"><a href="#4-IPS的配置" class="headerlink" title="4. IPS的配置"></a>4. IPS的配置</h3><h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-masquerade --permanent</span><br><span class="line"><span class="meta">#</span><span class="bash">开启防火墙的NAT功能，注意如果防火墙为开启需要先开启防火墙</span></span><br><span class="line"><span class="meta">#</span><span class="bash">这个好像也叫地址伪装功能</span></span><br><span class="line"></span><br><span class="line">firewall-cmd --reload  #防火墙重新启动</span><br><span class="line">firewall-cmd --list-all #查看masquerade状态</span><br></pre></td></tr></table></figure>
+
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204814105.png" alt="image-20230402192525999" style="zoom:67%;" />
+
+<p>​    完成后再开启Linux内核路由功能：</p>
+<p>​    通过vim /etc/sysctl.conf在文件里边修改或添加 <strong>net.ipv4.ip_forward=1</strong> 修改结果如下所示：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204857538.png" alt="image-20230402192550049" style="zoom:50%;" />
+
+<p>然后输入sysctl -p 使命令生效</p>
+<p>这时，回到客户机ping或者traceroute 一下百度<a target="_blank" rel="noopener" href="http://www.baidu.com进行测试/">www.baidu.com进行测试</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402192949380.png" alt="image-20230402192622007"></p>
+<p>成功搭建了路由功能。</p>
+<h4 id="IPS配置"><a href="#IPS配置" class="headerlink" title="IPS配置"></a>IPS配置</h4><p>​    首先，输入命令suricata –build-info检查是否在 Suricata 构建中启用了 NFQ，确保输出中列出了 NFQ</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402224030127.png" alt="image-20230402192906565"></p>
+<p>​    使用选项sudo suricata -c /etc/suricata/suricata.yaml -q 0，告诉 Suricata 它应该使用哪个队列号，以便使用NFQ模式运行suricata。</p>
+<blockquote>
+<p>nfqueue是一个Linux内核网络过滤器，可以将特定的网络数据包从内核网络栈中抽取出来，交由用户空间程序处理。通过使用nfqueue，用户空间程序可以对网络数据包进行各种操作，如修改数据包的内容、记录数据包的信息、阻止或允许数据包的传输等。nfqueue可以与iptables或其他内核网络过滤器集成使用，以实现更加复杂的网络过滤和安全策略。通过打开nfqueue支持，可以将网络流量导入到Suricata的处理引擎中，进行深度检测和分析。Suricata可以对流量进行多种操作，如检测、阻止、修改等，以实现更加高效和准确的网络安全策略。</p>
+</blockquote>
+<p>​    在本次实验中，Suricata 在网关上运行并且旨在保护在该网关后面的计算机 ，在网关场景中，将流量发送到 Suricata 的最简单规则是：sudo iptables -I FORWARD -j NFQUEUE，这种情况下，所有转发的流量都流向suricata。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402213026014.png" alt="image-20230402192937279" style="zoom:67%;" />
+
+<p>​    在suricata.yaml文件中，我们配置自己的test.rules规则：</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402192906565.png" alt="image-20230402192949380" style="zoom:67%;" />
+
+<p>​    现在来进行一个简单的测试，我们在test.rules中加入这样一条规则：reject http any any -&gt; any any (msg:”hit baidu.com…”;content:”baidu”; reference:url, <a target="_blank" rel="noopener" href="http://www.baidu.com;),禁止客户端对百度网站的访问./">www.baidu.com;)，禁止客户端对百度网站的访问。</a></p>
+<p>​    然后让suricata在网关下运行：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402192622007.png" alt="image-20230402193014172"></p>
+<p>​    这时，使用客户端访问<a href="http://www.baidu.com是不可行的，下图中是很明显的前后对比：">http://www.baidu.com是不可行的，下图中是很明显的前后对比：</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402193014172.png" alt="image-20230402193032889"></p>
+<h4 id="规则集选用与规则编写"><a href="#规则集选用与规则编写" class="headerlink" title="规则集选用与规则编写"></a>规则集选用与规则编写</h4><p>在高层次上，Suricata签名由三部分组成：</p>
+<ul>
+<li><strong>Action</strong>：当流量符合规则时采取的行动</li>
+<li><strong>Header</strong>：一个标题，描述主机、IP地址、端口、协议和流量方向（传入或传出）</li>
+<li><strong>Options</strong>：选项，指定诸如签名ID（sid）、日志信息、匹配数据包内容的正则表达式、分类类型，以及其他可以帮助缩小识别合法和可疑流量的修饰语</li>
+</ul>
+<p>签名的一般结构如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ACTION <span class="selector-tag">HEADER</span> OPTIONS</span><br></pre></td></tr></table></figure>
+
+<p>alert ssh any any -&gt; 203.0.113.0/24 2022 (msg:”SSH TRAFFIC on non-SSH port”; sid:1000000; rev:2;)</p>
+<p>​    然而，我们没必要，也不可能自己编写所有的规则，suricata本身提供了很多对于应用层协议常见攻击方式的检测规则集，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402230748299.png" alt="image-20230402213026014"></p>
+<p>较为重要的一些值得注意的协议：</p>
+<ul>
+<li><p><strong>Kerberos是一种计算机网络认证协议，是基于加密 Ticket 的身份认证协议，它允许某实体在非安全网络环境下通信，向另一个实体以一种安全的方式证明自己的身份。</strong> Kerberos是第三方认证机制，其中用户和服务依赖于第三方（Kerberos<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cvm?from=20065&from_column=20065">服务器</a>）来对彼此进行身份验证。</p>
+</li>
+<li><p>NFS就是Network File System的缩写，即网络文件系统，Windows可以使用NFS（Network File System）协议来访问NFS共享文件系统，这也是一种常见的跨平台文件共享方案，它允许网络中的计算机之间通过TCP/IP网络共享资源，它最大的功能就是可以<strong>通过网络，让不同的机器、不同的操作系统可以共享彼此的文件。</strong></p>
+</li>
+<li><p><code>Modbus</code>的应用十分广泛，特别是在工业控制领域，Modbus 协议是应用于电子控制器上的一种通用语言。通过此协议，控制器相互之间、控制器经由网络（例如以太网）和其它设备之间可以通信。它已经成为一通用工业标准。有了它，不同厂商生产的控制设备可以连成工业网络，进行集中监控。</p>
+</li>
+<li><p>NTP是从时间协议(Time Protocol)和ICMP时间戳报文(ICMP TimeStamp Message)演变而来，在准确性和健壮性方面进行了特殊的设计，理论上精度可达十亿分之一秒。NTP协议是基于UDP进行传输的，使用端口号为123。</p>
+</li>
+<li><p>SMB（Server Message Block）是一种在计算机网络中常用的通信协议，它允许客户端在计算机网络中访问和共享文件、打印机、串口和其它资源。SMB协议最初由IBM开发，后来被微软引入并进一步发展和推广，成为Windows系统中最常用的文件和打印共享协议之一。</p>
+</li>
+<li><p>MQTT（消息队列遥测传输）是物联网中用于向设备发送消息和从设备发送消息的轻量级消息传递协议。它通过TCP/IP网络运行。还有许多其他消息传递协议可用于物联网，但MQTT由于其简单性和易用性而迅速成为最受欢迎的协议。</p>
+</li>
+</ul>
+<p><strong>规则分析：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert dhcp any any -&gt; <span class="function">any <span class="title">any</span> <span class="params">(msg:<span class="string">&quot;SURICATA DHCP truncated options&quot;</span>; app-layer-event:dhcp.truncated_options; classtype:protocol-command-decode; sid:<span class="number">2227001</span>; rev:<span class="number">1</span>;)</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>alert: 表示如果满足规则条件，则产生一个警报。</li>
+<li>dhcp any any -&gt; any any: 表示匹配源地址和目的地址均为任意IP地址的DHCP流量。</li>
+<li>msg:”SURICATA DHCP truncated options”: 规则的警报信息，表示检测到DHCP请求中存在选项截断。</li>
+<li>app-layer-event:dhcp.truncated_options: 表示警报是由于DHCP协议中存在选项截断导致的，这是基于Suricata IDS的协议分析引擎检测到的。</li>
+<li>classtype:protocol-command-decode: 表示规则的类型为“协议命令解码”，即检测协议命令是否被正确解码，可以防止一些协议解码攻击。</li>
+<li>sid:2227001: 规则的唯一标识符，用于区分不同的规则。</li>
+<li>rev:1: 规则的版本号，用于区分不同版本的规则。</li>
+</ul>
+<h3 id="5-多模块的拼接"><a href="#5-多模块的拼接" class="headerlink" title="5. 多模块的拼接"></a>5. 多模块的拼接</h3><h4 id="vlan与子网技术辨析"><a href="#vlan与子网技术辨析" class="headerlink" title="vlan与子网技术辨析"></a>vlan与子网技术辨析</h4><p>参考:<a target="_blank" rel="noopener" href="https://blog.csdn.net/hiphop1522/article/details/126688669">https://blog.csdn.net/hiphop1522/article/details/126688669</a></p>
+<p>VLAN和IP子网划分的目的是隔离广播包数据和访问控制。VLAN隔离的是二层广播包(广播地址是全FF:FF:FF:FF:FF:FF的MAC地址），IP子网隔离的是三层IP广播包，广播地址是IP子网的最后一个IP地址或全网广播地址（255.255.255.255）。 </p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402223724377.png" alt="image-20230402224030127" style="zoom: 50%;" />
+
+<ul>
+<li><p>PC1：10.1.1.1/24</p>
+</li>
+<li><p>PC2：无地址</p>
+</li>
+<li><p>PC3：10.1.2.1/24</p>
+</li>
+</ul>
+<p><strong>问题一：</strong>PC1发送广播帧的话PC2和PC3能不能收到广播帧？</p>
+<p><strong>问题二：</strong>PC1和PC3是否能够通信？</p>
+<p>首先针对问题一的回答是肯定的，PC1发送广播帧的话，PC2和PC3可以收到。</p>
+<p>那么我们来看下为什么。</p>
+<ol>
+<li>PC1发送广播帧后，该广播帧到达SW1后，因为是广播帧，所以交换机的处理方式是泛洪，将该广播帧从除了接收端口以外的所有接口都复制一份发出去，此时PC2收到了该广播帧，如下图。</li>
+<li>SW1将广播帧发给了SW2和PC2，此时SW2收到该广播帧，也会执行泛洪动作，将该广播帧发给PC3，如下图。</li>
+<li>所以问题一的答案是PC1发送广播帧后，PC2和PC3都能收到该广播帧。</li>
+</ol>
+<p>再是针对问题二的回答是否定的，PC1和PC3不可以通信（SW1和SW2是傻瓜交换机）。</p>
+<p>这又是为什么呢？</p>
+<p>​    对于PC1来说，他的地址是10.1.1.1/24，所以他认为自己所在的广播域是10.1.1.0/24这个区域，PC3：10.1.2.1/24和他不在同一个广播域，所以PC1想要找PC3的话一定会去其他的广播域找，也就是会将报文发给他的网关，而不会在自己所在的这个广播域去找PC3。所以PC1永远无法找到PC3。</p>
+<h4 id="zerotier环境"><a href="#zerotier环境" class="headerlink" title="zerotier环境"></a>zerotier环境</h4><p>​    上两周,提出了使用zerotier的flow rules进行端口转发的方式,因此,将拓扑图中的14台主机加入同一网络,尝试进行网络划分工作:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402223332107.png" alt="image-20230402223724377"></p>
+<p>​    遇到的问题:</p>
+<ul>
+<li>由于zerotier不是物理设备，因此在linux中没有对应网卡的配置文件，无法进行网关、子网掩码等属性的配置</li>
+<li>可以通过如下配置，指定子网掩码位255.255.255.0，但是由于广播域是乱的，导致无法正常通信：</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402204948566.png" alt="image-20230402230748299" style="zoom: 67%;" />
+
+
+
+<h2 id="二、攻击思路调研"><a href="#二、攻击思路调研" class="headerlink" title="二、攻击思路调研"></a>二、攻击思路调研</h2><p>​    ATT&amp;CK作为MITRE机构开发的攻击模型框架，是一个基于现实世界所观察到的真实攻击向量的集合，其包含了已公开报告的众多威胁组织及其使用的工具和攻击技术。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230402193032889.png" alt="image-20230402223332107" style="zoom: 33%;" />
+
+<p>​    ATT&amp;CK框架包括两个主要部分：战术和技术。战术是攻击者在攻击生命周期中使用的高级目标，而技术则是攻击者在实现这些目标时使用的具体工具和方法。ATT&amp;CK框架还包括一个“预测”部分，其中包含了一些可能的未来攻击趋势。</p>
+<p>ATT&amp;CK框架现在包括14个战术，分别是：</p>
+<blockquote>
+<p>Reconnaissance, Resource Development, Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Command and Control, Exfiltration, Impact.</p>
+</blockquote>
+<p>​    侦察、资源开发、初始访问、命令执行、持久化、权限提升、防御规避、发现、横向移动、收集、命令与控制和数据泄露。这些战术按照逻辑分布在多个矩阵中，以“初始访问”战术开始，经过“执行”、“持久化”、“提权”、“防御绕过”、“凭据访问”、“发现”、“横向移动”、“收集”、“命令与控制”、“数据泄露“和”后续破坏“等。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230402210746995.png" alt="https://cdn.jsdelivr.net/gh/Biscuit19/PicGo/img/image-20230402210746995.png"></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0043">https://attack.mitre.org/tactics/TA0043</a></td>
+<td>Reconnaissance</td>
+<td>The adversary is trying to gather information they can use to plan future operations.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0042">https://attack.mitre.org/tactics/TA0042</a></td>
+<td>Resource Development</td>
+<td>The adversary is trying to establish resources they can use to support operations.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0001">https://attack.mitre.org/tactics/TA0001</a></td>
+<td>Initial Access</td>
+<td>The adversary is trying to get into your network.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0002">https://attack.mitre.org/tactics/TA0002</a></td>
+<td>Execution</td>
+<td>The adversary is trying to run malicious code.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0003">https://attack.mitre.org/tactics/TA0003</a></td>
+<td>Persistence</td>
+<td>The adversary is trying to maintain their foothold.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0004">https://attack.mitre.org/tactics/TA0004</a></td>
+<td>Privilege Escalation</td>
+<td>The adversary is trying to gain higher-level permissions.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0005">https://attack.mitre.org/tactics/TA0005</a></td>
+<td>Defense Evasion</td>
+<td>The adversary is trying to avoid being detected.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0006">https://attack.mitre.org/tactics/TA0006</a></td>
+<td>Credential Access</td>
+<td>The adversary is trying to steal account names and passwords.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0007">https://attack.mitre.org/tactics/TA0007</a></td>
+<td>Discovery</td>
+<td>The adversary is trying to figure out your environment.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0008">https://attack.mitre.org/tactics/TA0008</a></td>
+<td>Lateral Movement</td>
+<td>The adversary is trying to move through your environment.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0009">https://attack.mitre.org/tactics/TA0009</a></td>
+<td>Collection</td>
+<td>The adversary is trying to gather data of interest to their goal.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0011">https://attack.mitre.org/tactics/TA0011</a></td>
+<td>Command and Control</td>
+<td>The adversary is trying to communicate with compromised systems to control them.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0010">https://attack.mitre.org/tactics/TA0010</a></td>
+<td>Exfiltration</td>
+<td>The adversary is trying to steal data.</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://attack.mitre.org/tactics/TA0040">https://attack.mitre.org/tactics/TA0040</a></td>
+<td>Impact</td>
+<td>The adversary is trying to manipulate, interrupt, or destroy your systems and data.</td>
+</tr>
+</tbody></table>
+<p>根据ATT&amp;CK的渗透战术，我们制定了基本的渗透攻击框架：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>具体执行</th>
+<th>渗透工具集</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>侦查+资源准备</td>
+<td>信息收集与攻击准备（如注册账号、了解功能）、账户凭证</td>
+<td>theHarvester、Shodan、Recon-ng、Google Hacking Database</td>
+</tr>
+<tr>
+<td>接入网络+执行攻击</td>
+<td>初次进入网络、执行恶意代码</td>
+<td>Metasploit、Empire</td>
+</tr>
+<tr>
+<td>持久化+防检测</td>
+<td>将恶意攻击持久化</td>
+<td>Mimikatz、PowerSploit、Gsecdump、Pwdump</td>
+</tr>
+<tr>
+<td>提权</td>
+<td>提高用户权限</td>
+<td>PowerUp、Incognito、Windows Exploit Suggester、JAWS</td>
+</tr>
+<tr>
+<td>窃取数据</td>
+<td>窃取用户名与密码</td>
+<td>Responder、Wireshark、Tcpdump、Ettercap</td>
+</tr>
+<tr>
+<td>环境发现+横向渗透</td>
+<td>挖掘环境、横向移动</td>
+<td>BloodHound、CrackMapExec、Empire、Metasploit</td>
+</tr>
+</tbody></table>
+<p>这些工具集还未具体测试，之后会逐个测试，构建渗透战术与流程。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/">https://lhl7.github.io/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">企业内网模拟靶场搭建2_环境搭建</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">60</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3-%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95"><span class="toc-text">企业内网模拟靶场搭建3_中期进展</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E8%BF%9B%E5%B1%95%E6%83%85%E5%86%B5"><span class="toc-text">一、环境搭建进展情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%91%E6%9C%8D%E5%8A%A1%E8%BF%9B%E5%B1%95"><span class="toc-text">1. 云服务进展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%92%88%E5%AF%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E9%98%B2%E5%BE%A1%E6%80%9D%E8%B7%AF"><span class="toc-text">1. 针对云服务防御思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%BB%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E6%8E%A2%E7%A9%B6"><span class="toc-text">2.主机网络模式探究</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Yaml"><span class="toc-text">Yaml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#k8s-pod%E9%95%9C%E5%83%8F%E6%8B%89%E5%8F%96%E7%AD%96%E7%95%A5"><span class="toc-text">k8s pod镜像拉取策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Command"><span class="toc-text">Command</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="toc-text">常见错误</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-K8s%E9%98%B2%E6%8A%A4%E8%B0%83%E7%A0%94"><span class="toc-text">3.K8s防护调研</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B0%83%E7%A0%94%E6%83%85%E5%86%B5"><span class="toc-text">调研情况</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#KubeArmor"><span class="toc-text">KubeArmor</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-NeuVector"><span class="toc-text">4. NeuVector</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-text">安装过程：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">遇到的问题和解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%BA%94%E7%94%A8%EF%BC%9A"><span class="toc-text">功能应用：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%95%8C%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">2.网络边界防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pfsense%E9%85%8D%E7%BD%AEzerotier"><span class="toc-text">pfsense配置zerotier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E9%85%8D%E7%BD%AE%E6%80%9D%E8%B7%AF-%E4%B8%8D%E5%90%8C%E5%8C%BA%E5%9F%9F%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E8%A7%84%E5%88%99"><span class="toc-text">防火墙配置思路(不同区域的访问控制规则)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDS%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F"><span class="toc-text">IDS的另一种部署方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8nat%E4%BB%A3%E7%90%86%E8%BD%AC%E5%8F%91dns%E8%AF%B7%E6%B1%82"><span class="toc-text">使用nat代理转发dns请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Web-amp-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%90%AD%E5%BB%BA%E6%83%85%E5%86%B5"><span class="toc-text">3. Web&amp;邮件服务的搭建情况</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9D%9A%E5%86%B0%E5%AE%98%E7%BD%91%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E4%BC%81%E4%B8%9A%E5%AE%98%E7%BD%91"><span class="toc-text">坚冰官网——模拟企业官网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%97%E5%8D%8A%E7%90%83%E5%B0%8F%E8%AF%B4%E7%BD%91%E7%AB%99%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E5%8D%9A%E5%AE%A2"><span class="toc-text">北半球小说网站——模拟博客</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%A6%E7%94%9F%E9%80%89%E8%AF%BE-%E8%AE%BA%E5%9D%9B%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E5%A4%9A%E7%94%A8%E6%88%B7%E8%AE%BA%E5%9D%9B"><span class="toc-text">学生选课&#x2F;论坛——模拟多用户论坛</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%8C%87WAF"><span class="toc-text">全部反向代理指WAF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-text">邮件服务器简单使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-IPS%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">4. IPS的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPS%E9%85%8D%E7%BD%AE"><span class="toc-text">IPS配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99%E9%9B%86%E9%80%89%E7%94%A8%E4%B8%8E%E8%A7%84%E5%88%99%E7%BC%96%E5%86%99"><span class="toc-text">规则集选用与规则编写</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%A4%9A%E6%A8%A1%E5%9D%97%E7%9A%84%E6%8B%BC%E6%8E%A5"><span class="toc-text">5. 多模块的拼接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vlan%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8A%80%E6%9C%AF%E8%BE%A8%E6%9E%90"><span class="toc-text">vlan与子网技术辨析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zerotier%E7%8E%AF%E5%A2%83"><span class="toc-text">zerotier环境</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF%E8%B0%83%E7%A0%94"><span class="toc-text">二、攻击思路调研</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/" title="企业内网模拟靶场搭建3_中期进展">企业内网模拟靶场搭建3_中期进展</a><time datetime="2023-04-03T05:52:13.800Z" title="Created 2023-04-03 13:52:13">2023-04-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="企业内网模拟靶场搭建2_环境搭建">企业内网模拟靶场搭建2_环境搭建</a><time datetime="2023-03-20T03:41:10.094Z" title="Created 2023-03-20 11:41:10">2023-03-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/14/P2P%E5%8D%8F%E8%AE%AE%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/" title="P2P协议处理流程分析">P2P协议处理流程分析</a><time datetime="2023-03-14T06:26:05.983Z" title="Created 2023-03-14 14:26:05">2023-03-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/05/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA1_%E5%89%8D%E6%9C%9F%E8%B0%83%E7%A0%94/" title="企业内网模拟靶场搭建1_前期调研">企业内网模拟靶场搭建1_前期调研</a><time datetime="2023-03-05T14:47:11.297Z" title="Created 2023-03-05 22:47:11">2023-03-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/30/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%AC%94%E8%AE%B0/" title="汇编语言笔记">汇编语言笔记</a><time datetime="2023-01-30T06:43:57.233Z" title="Created 2023-01-30 14:43:57">2023-01-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
