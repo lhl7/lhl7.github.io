@@ -603,14 +603,14 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/linux/</loc>
+    <loc>https://lhl7.github.io/categories/kali/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/kali/</loc>
+    <loc>https://lhl7.github.io/categories/linux/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -631,14 +631,14 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/re-Note/</loc>
+    <loc>https://lhl7.github.io/categories/pwn/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/pwn/</loc>
+    <loc>https://lhl7.github.io/categories/re-Note/</loc>
     <lastmod>2023-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
