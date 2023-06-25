@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>月明星稀 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="12title: TLS指纹综述categories: web  TLS指纹综述一、ja3指纹综述​    TLS指纹是利用TLS过程中的字段所得到的hash指纹，称为ja3，其项目已经于github开源：  https:&#x2F;&#x2F;github.com&#x2F;salesforce&#x2F;ja3 被动检测获得TLS指纹 https:&#x2F;&#x2F;github.com&#x2F;salesforce&#x2F;jarm 主动TLS指纹检测  ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="月明星稀">
+<meta property="og:url" content="https://lhl7.github.io/2023/05/22/TLS%E6%8C%87%E7%BA%B9/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="12title: TLS指纹综述categories: web  TLS指纹综述一、ja3指纹综述​    TLS指纹是利用TLS过程中的字段所得到的hash指纹，称为ja3，其项目已经于github开源：  https:&#x2F;&#x2F;github.com&#x2F;salesforce&#x2F;ja3 被动检测获得TLS指纹 https:&#x2F;&#x2F;github.com&#x2F;salesforce&#x2F;jarm 主动TLS指纹检测  ​">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-05-22T04:51:45.493Z">
+<meta property="article:modified_time" content="2023-05-22T04:53:57.087Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/05/22/TLS%E6%8C%87%E7%BA%B9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '月明星稀',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-22 12:53:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">No title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-22T04:51:45.493Z" title="Created 2023-05-22 12:51:45">2023-05-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-22T04:53:57.087Z" title="Updated 2023-05-22 12:53:57">2023-05-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">title: TLS指纹综述</span><br><span class="line">categories: web</span><br></pre></td></tr></table></figure>
+
+<h1 id="TLS指纹综述"><a href="#TLS指纹综述" class="headerlink" title="TLS指纹综述"></a>TLS指纹综述</h1><h2 id="一、ja3指纹综述"><a href="#一、ja3指纹综述" class="headerlink" title="一、ja3指纹综述"></a>一、ja3指纹综述</h2><p>​    TLS指纹是利用TLS过程中的字段所得到的hash指纹，称为ja3，其项目已经于github开源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/salesforce/ja3">https://github.com/salesforce/ja3</a> 被动检测获得TLS指纹</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/salesforce/jarm">https://github.com/salesforce/jarm</a> 主动TLS指纹检测</li>
+</ul>
+<p>​    然而，网络上普遍使用用于获取ja3指纹网址<a target="_blank" rel="noopener" href="https://ja3er.com/form%E5%B7%B2%E7%BB%8F%E5%AF%84%E4%BA%86%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E9%80%89%E7%94%A8%E7%9B%AE%E5%89%8D%E8%BF%98%E5%9C%A8%E6%B4%BB%E8%B7%83%E7%9A%84%E7%BD%91%E5%9D%80%E5%A6%82%E4%B8%8B%EF%BC%9Ahttps://tls.peet.ws/">https://ja3er.com/form已经寄了，我们可以选用目前还在活跃的网址如下：https://tls.peet.ws/</a> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230507164313008.png" alt="image-20230507164313008"></p>
+<p>​    使用浏览器访问网址时，获取到本机的JA3指纹，这是从服务端对于用户端进行TLS指纹的探测，可以在某种程度上探测用户的操作系统、以及使用的浏览器版本。反之，通过jarm脚本，可以对于对应服务器的JARM，即ja3指纹进行探测，如下所示对百度进行探测。</p>
+<img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230508105727673.png" alt="image-20230508111650118"  />
+
+<p>​    github官方仓库中提到，使用JARM可与i对于C2服务器进行识别，并列出了几种较为常见的渗透工具（病毒）C2服务器的JARM指纹，如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521182921438.png" alt="image-20230508105727673"></p>
+<p>​    仓库中继续提到，当从 abuse.ch 编制的列表中扫描 Trickbot 恶意软件 C2 时，列表中 80% 的实时 IP 产生了相同的 JARM 指纹。将此 JARM 指纹与 <a target="_blank" rel="noopener" href="https://www.alexa.com/topsites">Alexa</a> 排名前 100 万的网站进行比较时，没有重叠。</p>
+<p>​    通过端口 443 扫描了整个互联网，数十亿个 IP，并发现了以下内容：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230508111650118.png" alt="image-20230508112421118"></p>
+<p>​    如果与 Cobalt Strike JARM 匹配的服务器在一年多的时间里属性没有变化，则更有可能是合法的误报，而与 2 个月前不存在的 Cobalt Strike JARM 匹配的服务器则更有可能是恶意的真阳性。</p>
+<h2 id="二、ja3-amp-ja3s"><a href="#二、ja3-amp-ja3s" class="headerlink" title="二、ja3&amp;ja3s"></a>二、ja3&amp;ja3s</h2><p>​    ja3一般指的是所谓服务端的指纹信息；ja3s使用的</p>
+<p>​    那么，JA3算法中的哈希值是如何得到的呢，通过本地的信息进行解释：</p>
+<p>最终的JA3指纹：4558520b679631d89e69d41095530283</p>
+<p>实际是由字符串：771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,11-43-16-45-23-13-10-65281-17513-0-27-18-35-51-5-21-41,29-23-24,0 进行md5得到的hash值。</p>
+<p>后者可以分为五段，分别具有以下含义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TLSVersion：771</span><br><span class="line">Ciphers：4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53</span><br><span class="line">Extensions：11-43-16-45-23-13-10-65281-17513-0-27-18-35-51-5-21-41</span><br><span class="line">EllipticCurves：29-23-24</span><br><span class="line">EllipticCurvePointFormats：0</span><br></pre></td></tr></table></figure>
+
+<p>实际情况如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521115819100.png" alt="image-20230521182921438"></p>
+<p>​    其中，可以看到随机插入的TLS_GREASE值，其定义如下：</p>
+<blockquote>
+<p> GREASE是Generate Random Extensions And Sustain Extensibility的缩写，在RFC8701[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/343562875#ref_2">2]</a>中被正式定义，主要的用处是通过设计一种机制，来防止TLS协议在将来进行扩展的时候受到阻碍。</p>
+</blockquote>
+<p>​    即，在TLS的字段中插入了一些无意义的值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="number">0x0A</span>,<span class="number">0x0A</span>&#125;, &#123;<span class="number">0x1A</span>,<span class="number">0x1A</span>&#125;, &#123;<span class="number">0x2A</span>,<span class="number">0x2A</span>&#125;, &#123;<span class="number">0x3A</span>,<span class="number">0x3A</span>&#125;, &#123;<span class="number">0x4A</span>,<span class="number">0x4A</span>&#125;, &#123;<span class="number">0x5A</span>,<span class="number">0x5A</span>&#125;, &#123;<span class="number">0x6A</span>,<span class="number">0x6A</span>&#125;, &#123;<span class="number">0x7A</span>,<span class="number">0x7A</span>&#125;, &#123;<span class="number">0x8A</span>,<span class="number">0x8A</span>&#125;, &#123;<span class="number">0x9A</span>,<span class="number">0x9A</span>&#125;, &#123;<span class="number">0xAA</span>,<span class="number">0xAA</span>&#125;, &#123;<span class="number">0xBA</span>,<span class="number">0xBA</span>&#125;, &#123;<span class="number">0xCA</span>,<span class="number">0xCA</span>&#125;, &#123;<span class="number">0xDA</span>,<span class="number">0xDA</span>&#125;, &#123;<span class="number">0xEA</span>,<span class="number">0xEA</span>&#125;, &#123;<span class="number">0xFA</span>,<span class="number">0xFA</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这些值可以由客户端在发送Client Hello时随机插入，通时，服务端必须忽略这些值。假设服务端的消息中出现了GREASE值，则客户端必须断开连接。说白了就是使得开发者们不那么懒惰，对生态进行维护。</p>
+<p>​    <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/343562875">知乎</a>作者在文中这样写道：</p>
+<blockquote>
+<p>以TLS为例，如果不通过GREASE对实现方式进行约束，软件逻辑有可能被实现为 CipherSuites，Extension 只支持目前协议中出现的值，如果发现了不在协议中的值就抛出异常。这样实现在当前版本的使用中不会碰到任何问题，但是如果IETF要对TLS协议进行升级，要引入更多CipherSuites值，那样当一个新版本TLS库与旧版本TLS库交互的时候，就会抛出异常，影响业务，这样新版本协议的部署就会遇到很大的阻碍。</p>
+</blockquote>
+<p>​    回归到TLS指纹来讲，客户端的ja3在实际情况下的计算过程中，会被忽略掉（否则每一次的指纹就都不一样了）。</p>
+<p>​    创建JA3之后，我们可以利用同样的方法对TLS握手的服务器端进行指纹识别，即对TLS Server Hello消息进行指纹识别，字段顺序如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TLSVersion，Cipher，Extensions</span><br></pre></td></tr></table></figure>
+
+<p>​    而后计算其hash值即可，那么，这个值有什么意义呢？</p>
+<p>​    由于同一台服务器会根据Client Hello消息及其内容以不同的方式创建其Server Hello消息，因此无法通过一次应答的指纹标记服务器的身份。尽管服务器对不同的客户端的响应是不同的，他们对于同一个客户端的响应却总是一致的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521115851537.png" alt="image-20230521210943819"></p>
+<p>​    由上图，可以看到，使用a.py请求后，对待测指纹服务器进行请求多次，对应的Server指纹是不变的，如果更换请求端指纹，响应端指纹也会随之变化。也就是，在服务器和客户端都不变的情况下，会有一套对应的JA3、JA3s指纹对。</p>
+<p>以github上开源的攻击框架pupy为例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521210943819.png" alt="image-20230521211952270"></p>
+<p>​    其加密算法被硬编码在ssl通信程序中，因此，其将会具有一个独一无二的Client hello中的Cipher Suites字段，即一个独一无二的JA3。此时，攻击者如果注意到了这一点，并尝试改变这一点，比如使用一些公共的库，或者系统套接字进行通信，则可以引入ja3s作为辅助：</p>
+<p>​    由于C2服务器对该客户端应用程序的响应方式与Internet上的普通服务器对该套接字的响应方式相比来说是独一无二的，因此，如果我们结合JA3+JA3，那么我们就能够识别这种恶意通信：</p>
+<ul>
+<li>Metasploit Win10 至Kali：<ul>
+<li>JA3=72a589da586844d7f0818ce684948eea -&gt; JA3S=70999de61602be74d4b25185843bd18e</li>
+</ul>
+</li>
+<li>Cobalt Strike Win10 至 Kali:<ul>
+<li>JA3=72a589da586844d7f0818ce684948eea -&gt; JA3S=b742b407517bac9536a77a7b0fee28e9</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、指纹的修改与随机化"><a href="#三、指纹的修改与随机化" class="headerlink" title="三、指纹的修改与随机化"></a>三、指纹的修改与随机化</h2><h3 id="1-浏览器端对于TLS指纹的改动"><a href="#1-浏览器端对于TLS指纹的改动" class="headerlink" title="1. 浏览器端对于TLS指纹的改动"></a>1. 浏览器端对于TLS指纹的改动</h3><p>​    一般来说，正常情况下的指纹应该是不变的，使用JA3算法就可以唯一的标识一台客户端主机，然而，在进行深入的测试中，发现了一些问题：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521120946850.png" alt="image-20230521115819100"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230508112421118.png" alt="image-20230521115851537"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230522005410166.png" alt="image-20230521120946850"></p>
+<p>​    在Chrome 109版本（大概在2023年初开始计划实装此功能）后，TLS extensions变为随机顺序的字段，使得JA3的最终哈希值发生变化，经过查证，这一现象是被确认的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521211952270.png" alt="image-20230521174020233"></p>
+<p>​    在这一更改的说明中提到，使用固定的拓展顺序，鼓励了服务器端针对chrome客户端的指纹识别。Chrome此举并不是为了防止TLS的指纹，而是为了增进TLS的生态…，告知内容链接如下：</p>
+<p><a target="_blank" rel="noopener" href="https://groups.google.com/a/chromium.org/g/blink-dev/c/zdmNs2rTyVI/m/iN_kZokCAwAJ?utm_medium=email&amp;utm_source=footer&amp;pli=1">https://groups.google.com/a/chromium.org/g/blink-dev/c/zdmNs2rTyVI/m/iN_kZokCAwAJ?utm_medium=email&amp;utm_source=footer&amp;pli=1</a></p>
+<p>​    github对这个问题进行了讨论：<a target="_blank" rel="noopener" href="https://github.com/net4people/bbs/issues/220%EF%BC%8C%E5%85%B6%E4%B8%AD%EF%BC%8C%E6%9C%89%E4%BA%BA%E6%8C%87%E5%87%BA%EF%BC%8C%E5%9C%A8%E4%B8%93%E4%B8%9A%E8%BF%9B%E8%A1%8CTLS%E6%8C%87%E7%BA%B9%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E5%9D%80TLSFingerprint.io">https://github.com/net4people/bbs/issues/220，其中，有人指出，在专业进行TLS指纹检测的网址TLSFingerprint.io</a> 中，其对于浏览器指纹迅速进行了Normalized（也就是排序）处理:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521174020233.png" alt="image-20230521231734759"></p>
+<p>Normalized后的Chrome又具有了相同的指纹，但是存在两个问题：</p>
+<ul>
+<li>丢弃字段顺序信息后，损失了大量的信息，哈希可能的最终值大大减少了；</li>
+<li>不同TLS指纹监测站的标准亟待统一；</li>
+</ul>
+<h3 id="2-使用脚本获得随机指纹"><a href="#2-使用脚本获得随机指纹" class="headerlink" title="2. 使用脚本获得随机指纹"></a>2. 使用脚本获得随机指纹</h3><p>​    当然，由于每一次建立连接的就是客户端本身和服务器本身，其是可以对自己的TLS指纹进行伪装的，以下为github上开源的TLS指纹随机化项目：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/netskopeoss/jarm_randomizer">https://github.com/netskopeoss/jarm_randomizer</a></p>
+<p>​    其实现了27种JA3s指纹的随机化方式，项目中提到如下的可能进展：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521231734759.png" alt="image-20230521235631201"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> ssl</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, timedelta</span><br><span class="line"><span class="keyword">from</span> OpenSSL <span class="keyword">import</span> crypto</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_self_signed_cert</span>(<span class="params">key_path, cert_path</span>):</span></span><br><span class="line">    <span class="comment"># 生成私钥</span></span><br><span class="line">    key = crypto.PKey()</span><br><span class="line">    key.generate_key(crypto.TYPE_RSA, <span class="number">2048</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成证书请求</span></span><br><span class="line">    req = crypto.X509Req()</span><br><span class="line">    req.get_subject().CN = <span class="string">&quot;localhost&quot;</span>  <span class="comment"># 自签名证书的通用名称</span></span><br><span class="line">    req.set_pubkey(key)</span><br><span class="line">    req.sign(key, <span class="string">&quot;sha256&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成自签名证书</span></span><br><span class="line">    cert = crypto.X509()</span><br><span class="line">    cert.set_subject(req.get_subject())</span><br><span class="line">    cert.set_serial_number(<span class="number">1000</span>)</span><br><span class="line">    cert.gmtime_adj_notBefore(<span class="number">0</span>)</span><br><span class="line">    cert.gmtime_adj_notAfter(<span class="number">365</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span>)  <span class="comment"># 有效期一年</span></span><br><span class="line">    cert.set_issuer(cert.get_subject())</span><br><span class="line">    cert.set_pubkey(req.get_pubkey())</span><br><span class="line">    cert.sign(key, <span class="string">&quot;sha256&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将私钥和证书保存到文件</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(key_path, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> key_file:</span><br><span class="line">        key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, key))</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(cert_path, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> cert_file:</span><br><span class="line">        cert_file.write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">learn_tls_config</span>(<span class="params">url</span>):</span></span><br><span class="line">    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    ssl_context = ssl.create_default_context()</span><br><span class="line">    client_socket.connect((url, <span class="number">443</span>))</span><br><span class="line">    ssl_socket = ssl_context.wrap_socket(client_socket, server_hostname=url)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取并储存Server Hello</span></span><br><span class="line">    learned_server_hello = ssl_socket.recv(<span class="number">4096</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(learned_server_hello)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">simulate_tls_config</span>(<span class="params">url, key_path, cert_path</span>):</span></span><br><span class="line">    <span class="comment"># 加载之前学习的Server Hello消息，这里假设存储在文件中</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;server_hello.bin&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        server_hello = file.read()</span><br><span class="line"></span><br><span class="line">    server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    server_sock.bind((<span class="string">&quot;localhost&quot;</span>, <span class="number">8443</span>))</span><br><span class="line">    server_sock.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 等待客户端连接</span></span><br><span class="line">        client_sock, addr = server_sock.accept()</span><br><span class="line"></span><br><span class="line">        context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(key_path) <span class="keyword">and</span> os.path.exists(cert_path):</span><br><span class="line">            <span class="comment"># 使用提供的私钥和证书</span></span><br><span class="line">            context.load_cert_chain(certfile=cert_path, keyfile=key_path)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 生成自签名证书</span></span><br><span class="line">            generate_self_signed_cert(key_path, cert_path)</span><br><span class="line">            context.load_cert_chain(certfile=cert_path, keyfile=key_path)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> context.wrap_socket(client_sock, server_side=<span class="literal">True</span>) <span class="keyword">as</span> ssock:</span><br><span class="line">            ssock.sendall(server_hello)</span><br><span class="line"></span><br><span class="line">        client_sock.close()</span><br></pre></td></tr></table></figure>
+
+<p>​    使用如上脚本进行JA3s脚本的学习，并伪装成对应服务器的JA3脚本。依然存在的问题是：不能够绕过大型网站对于自动化脚本的检查机制。</p>
+<h2 id="四、Network-Protocol-Fingerprinting-NPF-与排序"><a href="#四、Network-Protocol-Fingerprinting-NPF-与排序" class="headerlink" title="四、Network Protocol Fingerprinting (NPF)与排序"></a>四、Network Protocol Fingerprinting (NPF)与排序</h2><h3 id="1-其他指纹"><a href="#1-其他指纹" class="headerlink" title="1. 其他指纹"></a>1. 其他指纹</h3><ul>
+<li>http指纹： <a target="_blank" rel="noopener" href="https://lwthiker.com/networks/2022/06/17/http2-fingerprinting.html">https://lwthiker.com/networks/2022/06/17/http2-fingerprinting.html</a></li>
+<li>tcp指纹： <a target="_blank" rel="noopener" href="https://en-academic.com/dic.nsf/enwiki/868408">https://en-academic.com/dic.nsf/enwiki/868408</a></li>
+<li>ssh指纹： <a target="_blank" rel="noopener" href="https://engineering.salesforce.com/open-sourcing-hassh-abed3ae5044c/">https://engineering.salesforce.com/open-sourcing-hassh-abed3ae5044c/</a></li>
+</ul>
+<p>​    网络中除了针对SSL/TLS协议可以进行如上的指纹进行探测，还可以对于多种，具有丰富可选配置的其他协议进行指纹的探测与记录工作，如上，列出了一些已有的，较为热门的指纹。</p>
+<p>​    然而，一种指纹探测就使用一个程序来完成，始终缺少一个统一的规则集合，就像TLS指纹，多个指纹库要实现信息之间的同步，必须要对于指纹生成方式有一个统一的认知，这就是为什么我们需要NPF。</p>
+<h3 id="2-npf"><a href="#2-npf" class="headerlink" title="2.npf"></a>2.npf</h3><p>​    <a target="_blank" rel="noopener" href="https://github.com/cisco/mercury/blob/main/doc/npf.md">npf</a>被制定为一种针对网络中协议进行指纹提取的规则表示方法，下面以上文介绍过的TLS指纹进行简单的解释：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230521235631201.png" alt="image-20230522005410166"></p>
+<p>​    使用tls/1表示基于tls修正一次后的标准，如上图，区别在于使用了大括号表示排序，下文给出了Extension完整的定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">DEGREASE(x) = <span class="number">0x0a0a</span> <span class="keyword">if</span> x <span class="keyword">is</span> <span class="keyword">in</span> TLS_GREASE, <span class="keyword">and</span> x otherwise.</span><br><span class="line">TLS_GREASE = &#123;</span><br><span class="line">    <span class="number">0x0a0a</span>, <span class="number">0x1a1a</span>, <span class="number">0x2a2a</span>, <span class="number">0x3a3a</span>, <span class="number">0x4a4a</span>, <span class="number">0x5a5a</span>, <span class="number">0x6a6a</span>, <span class="number">0x7a7a</span>,</span><br><span class="line">    <span class="number">0x8a8a</span>, <span class="number">0x9a9a</span>, <span class="number">0xaaaa</span>, <span class="number">0xbaba</span>, <span class="number">0xcaca</span>, <span class="number">0xdada</span>, <span class="number">0xeaea</span>, <span class="number">0xfafa</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TLS_EXT_FIXED = &#123;</span><br><span class="line">    <span class="number">0x0001</span>, <span class="number">0x0005</span>, <span class="number">0x0007</span>, <span class="number">0x0008</span>, <span class="number">0x0009</span>, <span class="number">0x000a</span>, <span class="number">0x000b</span>, <span class="number">0x000d</span>,</span><br><span class="line">    <span class="number">0x000f</span>, <span class="number">0x0010</span>, <span class="number">0x0011</span>, <span class="number">0x0018</span>, <span class="number">0x001b</span>, <span class="number">0x001c</span>, <span class="number">0x002b</span>, <span class="number">0x002d</span>,</span><br><span class="line">    <span class="number">0x0032</span>, <span class="number">0x5500</span></span><br><span class="line">&#125;.</span><br><span class="line">TLS_Extension = extension	</span><br><span class="line">	<span class="keyword">if</span> DEGREASE(extension[<span class="number">0</span>:<span class="number">2</span>]) <span class="keyword">is</span> <span class="keyword">in</span> TLS_EXT_FIXED, <span class="keyword">and</span> DEGREASE(extension[<span class="number">0</span>:<span class="number">2</span>]) otherwise.</span><br></pre></td></tr></table></figure>
+
+<p>​    实际上对于tls的定义就是一个类，然后，在实际情况下，任意对象可以使用如下语法嵌入这个类，如下图为修改前的tls某次消息的指纹对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tls/</span><br><span class="line">(0303)</span><br><span class="line">(130213031301c02cc030009fcca9cca8ccaac02bc02f009ec024c028006bc023c0270067c00ac0140039c009c0130033009d009c003d003c0035002f00ff)</span><br><span class="line">(</span><br><span class="line">    (0000)</span><br><span class="line">    (000b000403000102)</span><br><span class="line">    (000a000c000a001d0017001e00190018)</span><br><span class="line">    (0023)</span><br><span class="line">    (0016)</span><br><span class="line">    (0017)			(000d0030002e040305030603080708080809080a080b080408050806040105010601030302030301020103020202040205020602)</span><br><span class="line">    (002b0009080304030303020301)</span><br><span class="line">    (002d00020101)</span><br><span class="line">    (0033)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>修改后的，如下所示，使用字典序进行了排序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">tls/1/</span><br><span class="line">(0303)</span><br><span class="line">(130213031301c02cc030009fcca9cca8ccaac02bc02f009ec024c028006bc023c0270067c00ac0140039c009c0130033009d009c003d003c0035002f00ff)</span><br><span class="line">[</span><br><span class="line">   (0000)</span><br><span class="line">   (000a000c000a001d0017001e00190018)</span><br><span class="line">   (000b000403000102)       </span><br><span class="line">(000d0030002e040305030603080708080809080a080b080408050806040105010601030302030301020103020202040205020602)</span><br><span class="line">   (0016)</span><br><span class="line">   (0017)</span><br><span class="line">   (0023)</span><br><span class="line">   (002b0009080304030303020301)</span><br><span class="line">   (002d00020101)</span><br><span class="line">   (0033)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>下面是http、openvpn和tcp/ip协议的指纹定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;http/&quot;</span> (method) (version) ((selected-header)*)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;tcp/&quot;</span> (IP_Version)(IP_ID)(IP_TTL)(TCP_Window)((TCP_Option)*)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;openvpn/&quot;</span> (ip_proto) (num_pkt) (&#123;opcode&#125;&#123;key_id&#125;) (HMAC_len) (TLS_Ciphersuites) ((TLS_Extension)*)</span><br></pre></td></tr></table></figure>
+
+<p>​    通过npf规则约束，可以构建基于不同协议的指纹库，并指定对应的规则。</p>
+<h3 id="排序后的TLS指纹"><a href="#排序后的TLS指纹" class="headerlink" title="排序后的TLS指纹"></a>排序后的TLS指纹</h3><p><strong>排序带来的影响？</strong></p>
+<p>那么，排序是否影响了TLS的实际作用呢？即，进行排序后，到底对于TLS jarm指纹的影响有多大？</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230522123055484.png" alt="image-20230522114829449"></p>
+<p>​    hnull的研究者提到，在源本包含2149个指纹种类的集合中，将tls进行排序后，指纹数量下降为2123个，即98.8%的指纹在排序后依然保持独立。</p>
+<p><strong>普遍采用随机化可能导致的安全问题？</strong></p>
+<ul>
+<li>给代码带了了复杂性（如心脏出血漏洞），并不关键</li>
+<li>可能作为C&amp;C消息通道，秘密传输盗窃信息</li>
+</ul>
+<p>如下为元素数量，排列数，与能传输信息长度的关系</p>
+<table>
+<thead>
+<tr>
+<th><em>n</em>（元素数量）</th>
+<th><em>！</em> _ （排列数）</th>
+<th>lg( <em>n</em> !) （位数）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5个</td>
+<td>120</td>
+<td>6.9</td>
+</tr>
+<tr>
+<td>10</td>
+<td>3628800</td>
+<td>21.8</td>
+</tr>
+<tr>
+<td>15</td>
+<td>1307674368000</td>
+<td>40.3</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2432902008176640000</td>
+<td>61.1</td>
+</tr>
+<tr>
+<td>25</td>
+<td>15511210043330985984000000</td>
+<td>83.7</td>
+</tr>
+<tr>
+<td>30</td>
+<td>265252859812191058636308480000000</td>
+<td>107.7</td>
+</tr>
+<tr>
+<td>35</td>
+<td>10333147966386144929666651337523200000000</td>
+<td>132.9</td>
+</tr>
+</tbody></table>
+<p>​    Chrome 常见的 18 个 TLS 扩展的单个排列可以用作攻击者进行信息传输的通道，可以泄漏 lg(18!) = 52.5 位信息，这已经是一个非常大的数量了。假设其他ssl应用也跟随进行随机化，可能为攻击者提供新的信息通道。多次使用这一通道，可以泄露相当长的秘密信息，假设要传递的秘密信息是呈不自然序列的，可以先进行加密，而后在传递后解密；反之，假设秘密信息趋向于均匀随机，则可以直接进行传递。（这一安全问题建立在服务端有内鬼的假设上）</p>
+<p>​    另一个问题是，服务端可能使用TLS随机化的方式对用户进行跟踪，如下，RFC提到，用户对于会话票据的重用可能会使用服务器跟踪用户。特别设计的随机化算法可以类似session一样标记用户。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230522114829449.png" alt="image-20230522123055484"></p>
+<p><a target="_blank" rel="noopener" href="https://hnull.org/2022/12/01/sorting-out-randomized-tls-fingerprints/#effectiveness">https://hnull.org/2022/12/01/sorting-out-randomized-tls-fingerprints/#effectiveness</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/05/22/TLS%E6%8C%87%E7%BA%B9/">https://lhl7.github.io/2023/05/22/TLS%E6%8C%87%E7%BA%B9/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/25/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%90%86%E8%A7%A3/"><img class="prev-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">环境变量理解</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/22/Wireshark%E5%88%86%E6%9E%90TLS%E5%8D%8F%E8%AE%AE/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Wireshark分析TLS协议</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">63</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TLS%E6%8C%87%E7%BA%B9%E7%BB%BC%E8%BF%B0"><span class="toc-text">TLS指纹综述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81ja3%E6%8C%87%E7%BA%B9%E7%BB%BC%E8%BF%B0"><span class="toc-text">一、ja3指纹综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81ja3-amp-ja3s"><span class="toc-text">二、ja3&amp;ja3s</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8C%87%E7%BA%B9%E7%9A%84%E4%BF%AE%E6%94%B9%E4%B8%8E%E9%9A%8F%E6%9C%BA%E5%8C%96"><span class="toc-text">三、指纹的修改与随机化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AB%AF%E5%AF%B9%E4%BA%8ETLS%E6%8C%87%E7%BA%B9%E7%9A%84%E6%94%B9%E5%8A%A8"><span class="toc-text">1. 浏览器端对于TLS指纹的改动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E8%8E%B7%E5%BE%97%E9%9A%8F%E6%9C%BA%E6%8C%87%E7%BA%B9"><span class="toc-text">2. 使用脚本获得随机指纹</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Network-Protocol-Fingerprinting-NPF-%E4%B8%8E%E6%8E%92%E5%BA%8F"><span class="toc-text">四、Network Protocol Fingerprinting (NPF)与排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%B6%E4%BB%96%E6%8C%87%E7%BA%B9"><span class="toc-text">1. 其他指纹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-npf"><span class="toc-text">2.npf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E5%90%8E%E7%9A%84TLS%E6%8C%87%E7%BA%B9"><span class="toc-text">排序后的TLS指纹</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/25/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%90%86%E8%A7%A3/" title="环境变量理解">环境变量理解</a><time datetime="2023-06-25T06:44:15.229Z" title="Created 2023-06-25 14:44:15">2023-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/22/TLS%E6%8C%87%E7%BA%B9/" title="No title">No title</a><time datetime="2023-05-22T04:51:45.493Z" title="Created 2023-05-22 12:51:45">2023-05-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/22/Wireshark%E5%88%86%E6%9E%90TLS%E5%8D%8F%E8%AE%AE/" title="Wireshark分析TLS协议">Wireshark分析TLS协议</a><time datetime="2023-04-22T14:34:39.206Z" title="Created 2023-04-22 22:34:39">2023-04-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/" title="企业内网模拟靶场搭建3_中期进展">企业内网模拟靶场搭建3_中期进展</a><time datetime="2023-04-03T05:52:13.800Z" title="Created 2023-04-03 13:52:13">2023-04-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/20/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA2_%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="企业内网模拟靶场搭建2_环境搭建">企业内网模拟靶场搭建2_环境搭建</a><time datetime="2023-03-20T03:41:10.094Z" title="Created 2023-03-20 11:41:10">2023-03-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
