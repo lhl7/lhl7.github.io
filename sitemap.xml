@@ -630,13 +630,6 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/linux/</loc>
-    <lastmod>2023-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://lhl7.github.io/categories/kali/</loc>
     <lastmod>2023-06-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -644,7 +637,7 @@
   </url>
   
   <url>
-    <loc>https://lhl7.github.io/categories/network/</loc>
+    <loc>https://lhl7.github.io/categories/linux/</loc>
     <lastmod>2023-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -652,6 +645,13 @@
   
   <url>
     <loc>https://lhl7.github.io/categories/web/</loc>
+    <lastmod>2023-06-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lhl7.github.io/categories/network/</loc>
     <lastmod>2023-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
