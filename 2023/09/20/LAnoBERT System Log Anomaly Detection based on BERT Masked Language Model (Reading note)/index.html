@@ -1,0 +1,371 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note) | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LAnoBERT : System Log Anomaly Detection based on BERT Masked Language Model (Reading note)0. Abstractprevious problem Solving problem ：system log anomaly detection  Previous studies :  standardized -&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)">
+<meta property="og:url" content="https://lhl7.github.io/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="LAnoBERT : System Log Anomaly Detection based on BERT Masked Language Model (Reading note)0. Abstractprevious problem Solving problem ：system log anomaly detection  Previous studies :  standardized -&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-09-20T15:25:12.870Z">
+<meta property="article:modified_time" content="2023-09-20T15:24:51.724Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-20 23:24:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">64</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-09-20T15:25:12.870Z" title="Created 2023-09-20 23:25:12">2023-09-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-09-20T15:24:51.724Z" title="Updated 2023-09-20 23:24:51">2023-09-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/ai/">ai</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="LAnoBERT-System-Log-Anomaly-Detection-based-on-BERT-Masked-Language-Model-Reading-note"><a href="#LAnoBERT-System-Log-Anomaly-Detection-based-on-BERT-Masked-Language-Model-Reading-note" class="headerlink" title="LAnoBERT : System Log Anomaly Detection based on BERT Masked Language Model (Reading note)"></a>LAnoBERT : System Log Anomaly Detection based on BERT Masked Language Model (Reading note)</h1><h2 id="0-Abstract"><a href="#0-Abstract" class="headerlink" title="0. Abstract"></a>0. Abstract</h2><h3 id="previous-problem"><a href="#previous-problem" class="headerlink" title="previous problem"></a>previous problem</h3><ul>
+<li><strong>Solving problem</strong> ：system log anomaly detection</li>
+<li> <strong>Previous studies</strong> :  standardized -&gt; anomaly detection</li>
+<li><strong>Issues</strong> : template corresponding -&gt; log key losting</li>
+</ul>
+<h3 id="LAnoBERT"><a href="#LAnoBERT" class="headerlink" title="LAnoBERT"></a>LAnoBERT</h3><ul>
+<li>parser free system log anomaly detection method</li>
+<li><strong>BERT model</strong> : natural language processing<ul>
+<li><strong>masked language modeling</strong> : BERTbased pre-training method</li>
+<li><strong>test process</strong> : unsupervised learning-based anomaly detection using the masked language modeling loss function per log key</li>
+<li><strong>efficient inference process</strong> : pipeline to the actual system</li>
+</ul>
+</li>
+</ul>
+<h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><ul>
+<li><strong>log datasets</strong> : HDFS, BGL, and Thunderbird</li>
+<li><strong>performance</strong> : <ul>
+<li>higher anomaly detection performance compared to unsupervised learning-based benchmark models</li>
+<li>comparable performance with supervised learning-based benchmark models</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><ul>
+<li>minimizes human intervention</li>
+<li><strong>Log data</strong> : sequence data + many duplicates + single log sequence is short</li>
+</ul>
+<p><strong>Machine learning-based log anomaly detection :</strong> </p>
+<h3 id="drawback-of-traditional-studies"><a href="#drawback-of-traditional-studies" class="headerlink" title="drawback of traditional studies"></a>drawback of traditional studies</h3><ul>
+<li><strong>Reliance on Log Parsers</strong> : requires predefined templates for standardizing log keys</li>
+<li><strong>Feature embedding with rich semantics for longterm dependency</strong> :  RNN bad at long consequence &amp; transformer-based better in natural language processing</li>
+<li><strong>Unrealistic problem formulation</strong> : problem regarded binary classification instead of anomaly detection &amp; realistic small amount of abnormal logs</li>
+</ul>
+<h3 id="solutions-and-improvement"><a href="#solutions-and-improvement" class="headerlink" title="solutions and improvement"></a>solutions and improvement</h3><p>solutions : </p>
+<ul>
+<li>Regular expressions to mitigate <strong>information loss</strong> and to minimize <strong>dependence on a specific log parser</strong></li>
+<li>BERT model extract <strong>Contextualized embedding</strong> :</li>
+<li>unsupervised learning-based anomaly detection</li>
+</ul>
+<p>improvement : </p>
+<ul>
+<li>a new BERT-based <strong>unsupervised</strong> and <strong>log parser-free</strong> anomaly detection framework for log data</li>
+<li>an inference process utilizing a log dictionary database is proposed to identify abnormal logs (efficient improvement)</li>
+<li>demonstrated better or comparable performance to supervised learning-based models</li>
+</ul>
+<h2 id="2-Related-Work"><a href="#2-Related-Work" class="headerlink" title="2. Related Work"></a>2. Related Work</h2><p>Log anomaly detection preprocessing method: parsing-based or parsing-free</p>
+<h3 id="parsing-based"><a href="#parsing-based" class="headerlink" title="parsing-based:"></a>parsing-based:</h3><h4 id="Study-1-Drain-Parser"><a href="#Study-1-Drain-Parser" class="headerlink" title="Study 1: Drain Parser"></a>Study 1: Drain Parser</h4><ul>
+<li><strong>Method</strong>: Uses Drain parser for log classification and template allocation.</li>
+<li><strong>Model</strong>: DeepLog employs LSTM for unsupervised anomaly detection.</li>
+<li><strong>Limitations</strong>: Requires domain expertise and candidate selection affects performance.</li>
+</ul>
+<h4 id="Study-2-LogRobust"><a href="#Study-2-LogRobust" class="headerlink" title="Study 2: LogRobust"></a>Study 2: LogRobust</h4><ul>
+<li><strong>Method</strong>: Deploys attention-based bi-LSTM model with Drain parser preprocessing.</li>
+<li><strong>Model</strong>: Classification-based for anomaly detection.</li>
+<li><strong>Limitations</strong>: Relies on a parser and classification approach.</li>
+</ul>
+<h4 id="Study-3-HitAnomaly"><a href="#Study-3-HitAnomaly" class="headerlink" title="Study 3: HitAnomaly"></a>Study 3: HitAnomaly</h4><ul>
+<li><strong>Method</strong>: Utilizes Transformer for anomaly detection with Drain parser preprocessing.</li>
+<li><strong>Model</strong>: Employs attention-based encoding for classification-based anomaly detection.</li>
+<li><strong>Limitations</strong>: Depends on a parser and follows a classification approach.</li>
+</ul>
+<h4 id="Study-4-LogBERT"><a href="#Study-4-LogBERT" class="headerlink" title="Study 4: LogBERT"></a>Study 4: LogBERT</h4><ul>
+<li><strong>Method</strong>: BERT-based log anomaly detection, refining log sequences with Drain parser.</li>
+<li><strong>Model</strong>: Uses masking and sphere volume minimization for inference, but doesn’t fully consider the entire log sequence.</li>
+<li><strong>Limitations</strong>: Still relies on masking and doesn’t fully capture log sequence.</li>
+</ul>
+<h4 id="Our-Study"><a href="#Our-Study" class="headerlink" title="Our Study"></a>Our Study</h4><ul>
+<li><strong>Method</strong>: Proposes log anomaly detection independent of log parser, using simple preprocessing.</li>
+<li><strong>Model</strong>: Employs mask-based BERT for effective anomaly detection across various log types.</li>
+<li><strong>Advantages</strong>: Parser independence, minimized information loss, and comparable performance to supervised learning models.</li>
+</ul>
+<h3 id="parsing-free"><a href="#parsing-free" class="headerlink" title="parsing-free"></a>parsing-free</h3><ul>
+<li><strong>LogSy</strong>: A transformer-based anomaly detection model that doesn’t rely on log parsers. Uses a tokenizer for preprocessing and classification. Trains to increase the distance between normal and abnormal data.</li>
+<li><strong>NeuralLog</strong>: Another parser-free, classification-based model similar to LogSy but utilizes data from both the target system and a separate system during training.</li>
+<li><strong>Proposed Model</strong>: Also parser-free. After simple preprocessing, log sequences are tokenized and used directly for anomaly detection. Offers flexibility for new log sequences.</li>
+</ul>
+<h2 id="3-Background"><a href="#3-Background" class="headerlink" title="3. Background"></a>3. Background</h2><h3 id="Log-parser-for-anomaly-detection"><a href="#Log-parser-for-anomaly-detection" class="headerlink" title="Log parser for anomaly detection"></a>Log parser for anomaly detection</h3><ul>
+<li><strong>purpose</strong> : unstructured data must be converted to structured data</li>
+<li><strong>process</strong> : complicated data are preprocessed for substitution with very few events</li>
+<li><strong>example</strong> : 4,747,964 log messages converted to 376 events —<em>Drain parser (He et al., 2017)</em></li>
+</ul>
+<h3 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h3><ul>
+<li><strong>BERT</strong> <em>(Devlin et al., 2019)</em> is a model consisting of a transformer <em>(Vaswani et al., 2017)</em> encoder </li>
+<li>natural language processing tasks</li>
+<li><strong>major characteristics</strong>(pre-training using two unsupervised learning methods) : <ul>
+<li>masked language modeling (<strong>MLM</strong>) : replace token to “[MASK]”</li>
+<li>next sentence prediction (<strong>NSP</strong>) : combining two sentences “[SEP]”  in front “[CLS]”</li>
+<li>DataSet(do not require labeled data) : <em>(Clark et al., 2019; Jawahar et al., 2019; Tenney et al., 2019)</em>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="BERT-for-anomaly-detection"><a href="#BERT-for-anomaly-detection" class="headerlink" title="BERT for anomaly detection"></a>BERT for anomaly detection</h3><ul>
+<li>system log -&gt; dataset with order (log messages and natural language)</li>
+</ul>
+<p>limitations and Solutions : </p>
+<ul>
+<li><p>Data processing:</p>
+<ul>
+<li>Previous methodologies treated all log data as sequence data</li>
+<li>BERT enables the learning of both the log features and natural language</li>
+</ul>
+</li>
+<li><p>parsing:</p>
+<ul>
+<li>tokenizer of BERT can be applied</li>
+<li>no need using a separate log parser (lose natural language)</li>
+</ul>
+</li>
+<li><p>semantics and context of the system log:</p>
+<ul>
+<li>words appearing in the system log may have a different meaning from natural language</li>
+<li><strong>goal</strong> : an effective pre-training approach for the system log utilizing masked language modeling in a bi-directional context</li>
+</ul>
+</li>
+<li><p>matching technique : </p>
+<ul>
+<li><strong>novel framework</strong> : trained models’ MLM loss and predictive probability -&gt; identifying context anomalies</li>
+<li><strong>inference stage</strong> : log key matching technique</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-Proposed-Method"><a href="#4-Proposed-Method" class="headerlink" title="4.Proposed Method"></a>4.Proposed Method</h2><h3 id="4-1-Masked-Language-Model"><a href="#4-1-Masked-Language-Model" class="headerlink" title="4.1 Masked Language Model"></a>4.1 Masked Language Model</h3><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918100924407.png" alt="image-20230917225504380"></p>
+<p><strong>reasons for usingMLMin system log anomaly detection:</strong></p>
+<ol>
+<li><p>large amount of normal log data -&gt; obtain numerous contextual and structural features during pre-training -&gt; improve the generalization performance</p>
+</li>
+<li><p>MLM does not require the labeling of tasks -&gt; only normal data are used for training -&gt; better than supervised binary classification-based</p>
+</li>
+<li><p>appropriate methodology for prompt-based learning -&gt; no require layers conforming to tasks to perform downstream tasks -&gt; detection by comparing the actual log keys and the generated log keys</p>
+</li>
+<li><p>context of abnormal log data can be identified -&gt; probability of certain words appearing varies if the context of surrounding words is considered</p>
+</li>
+</ol>
+<blockquote>
+<p>For example, let’s consider a sentence in normal log data: “Server startup successful.” In this sentence, the appearance of words like “Server” and “successful” is considered normal because they typically appear in this context. However, if the same words appear in abnormal log data but with a different context, such as “Server startup failed,” then the appearance of these words might be considered abnormal because they shouldn’t appear in this context.</p>
+<p>By using the MLM method, a BERT model can be trained to understand the contextual information of normal log data, enabling it to recognize abnormal contexts in abnormal log data, even when they structurally resemble normal log data. This helps improve the model’s performance in detecting abnormal log entries.</p>
+</blockquote>
+<h3 id="4-2-Problem-Definition"><a href="#4-2-Problem-Definition" class="headerlink" title="4.2  Problem Definition"></a>4.2  Problem Definition</h3><p><strong>Input Representation</strong> : </p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230917225504380.png" alt="image-20230918100924407"></p>
+<p>​    In the training phase, the existing log keys were replaced with the [MASK] token with a probability of 20%, while in the testing phase, each log key was replaced with the [MASK] token to generate test data.</p>
+<p><strong>Objective Function</strong> :</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918101958615.png" alt="image-20230918101258145"></p>
+<p>The objective function used for training …</p>
+<h3 id="4-3-LAnoBERT"><a href="#4-3-LAnoBERT" class="headerlink" title="4.3 LAnoBERT"></a>4.3 LAnoBERT</h3><p>LAnoBERT proposed in this study can be largely divided into the following three parts: preprocessing, model training, and abnormal score computation.</p>
+<h4 id="PREPROCESSING"><a href="#PREPROCESSING" class="headerlink" title="PREPROCESSING"></a>PREPROCESSING</h4><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918101258145.png" alt="image-20230918101958615"></p>
+<p>parser-free method (comparing) :</p>
+<ul>
+<li><strong>Drain</strong> : the parts defined as a template are excluded and eliminated, whereas certain parts are replaced with 〈*〉.</li>
+<li><strong>this study (regular expressions)</strong> : replaced the data with clear formats such as numbers, dates,<br>and IPs with the words ‘NUM’ or ‘IP</li>
+</ul>
+<p>Preprocessed log sequences -&gt; tokenized using the WordPiece  -&gt; BERT</p>
+<h4 id="MODEL"><a href="#MODEL" class="headerlink" title="MODEL"></a>MODEL</h4><p>​    The most crucial assumption of this study is that “<u><strong>There is a difference between the context of a normal system log and that of an abnormal system log</strong>.</u>” </p>
+<p><strong>explain</strong> : <em>language models trained only with normal log will predict wrong when facing context of abnormal logs during the test.</em></p>
+<p><strong>prediction error’s defination</strong> : crossentropy loss that occurs between the label information and logit value generated when the model predicts [MASK] as a specific token</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918104616417.png" alt="image-20230918104616417"></p>
+<p><strong>Train Phase</strong> : <em>Training is initiated from scratch using the initialized BERT, and the same parameters as the BERT-base-uncased are used for the model. The training parameters are almost identical to those of the original BERT (Devlin et al., 2019); the only difference is that the masking probability is set to 0.2, training is only performed for normal logs.</em></p>
+<p><strong>Test Phase</strong> : <em>All log keys present in the log sequence are applied with masking, and the predictive probability and error value are calculated.</em></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918123429256.png" alt="image-20230918104633110"></p>
+<h4 id="ABNORMAL-SCORE"><a href="#ABNORMAL-SCORE" class="headerlink" title="ABNORMAL SCORE"></a>ABNORMAL SCORE</h4><blockquote>
+<p>“Top-k aggregate” refers to the process in the test phase where, to compute an anomaly score for a given text log, the model calculates anomaly scores for all log keys and then selects only the top k highest anomaly scores to represent the overall anomaly level of the entire text log. This approach aims to reduce confusion because normal logs and abnormal logs typically share similar characteristics in most log keys, but only a very small number of log keys are crucial for identifying anomalies.</p>
+<p>Specifically, for a given text log, the LAnoBERT model calculates an anomaly score for each log key during the test phase. These anomaly scores are then sorted, and the top k highest scores are chosen to represent the anomaly level of the entire text log. This approach allows for a more precise identification of the log keys that contribute to the anomaly without being influenced by other normal log keys. In this context, k is typically set to 5, indicating that the top five highest anomaly scores are selected to represent the overall anomaly situation of the text log.</p>
+</blockquote>
+<p><strong>In this study, k is set to 5.</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918112458626.png" alt="image-20230918112458626"></p>
+<p>Top k values are selected from the set of calculated prediction errors and predictive probabilities to computer the final abnormal score.</p>
+<p><strong>Optimize training computational costs</strong> ： </p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918123429256.png" alt="image-20230918104633110"></p>
+<p>​    number of required computations becomes the total number of log sequences × the length of each log sequence.</p>
+<ul>
+<li>dictionary key is defined as a set of <ul>
+<li><em>KEY = {key0, key1, key2，···，keyn}</em></li>
+</ul>
+</li>
+<li>Each key has its corresponding abnormal_error and abnormal_prob as values<ul>
+<li><em>DICT = {key1 : (abnormal_error, abnormal_prob)，key2 : (abnormal_error, abnormal_prob)，···，keyj : (abnormal_error, abnormal_prob)}</em></li>
+</ul>
+</li>
+<li>if, input key matched to one of the log keys extracted as the abnormal score</li>
+<li>else, update dictionary</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918122513513.png" alt="image-20230918120931246"></p>
+<h2 id="5-Experimental-Setting"><a href="#5-Experimental-Setting" class="headerlink" title="5. Experimental Setting"></a>5. Experimental Setting</h2><h3 id="Datasets"><a href="#Datasets" class="headerlink" title="Datasets"></a>Datasets</h3><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918104633110.png" alt="image-20230918122513513"></p>
+<ol>
+<li>HDFS (Hadoop Distributed File System): This dataset comprises log data generated in a private cloud environment. Each log contains multiple log sequences. The HDFS dataset is known for having a relatively simple architecture.</li>
+<li>BGL (Blue Gene/L Supercomputer): This dataset includes logs generated by the Blue Gene/L supercomputer. Each individual log sequence is labeled as normal or abnormal.</li>
+<li>Thunderbird: The Thunderbird dataset originates from the Thunderbird supercomputer system at Sandia National Laboratories. It includes alert and non-alert messages categorized by alert category tags. Among the three datasets, Thunderbird has the largest number of log messages.</li>
+</ol>
+<h3 id="Benchmark-Methods"><a href="#Benchmark-Methods" class="headerlink" title="Benchmark Methods"></a>Benchmark Methods</h3><p>etc…</p>
+<h3 id="Evaluation-Metrics"><a href="#Evaluation-Metrics" class="headerlink" title="Evaluation Metrics"></a>Evaluation Metrics</h3><p>Evaluation Metrics : <strong>F1 score and AUROC</strong>(Area Under the Receiver Operating Characteristic Curve）</p>
+<p>F1 equation : </p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230918123743068.png" alt="image-20230918123429256"></p>
+<p>​    <em>The F1 score calculated using Eq. (6) is a metric influenced by the threshold of a model and cannot guarantee the reliability of the fundamental performance of an anomaly detection model; hence, AUROC, which is an evaluation metric unaffected by the threshold was also calculated.</em></p>
+<h2 id="6-Results"><a href="#6-Results" class="headerlink" title="6.Results"></a>6.Results</h2><h3 id="Anomaly-Detection-Performance"><a href="#Anomaly-Detection-Performance" class="headerlink" title="Anomaly Detection Performance"></a>Anomaly Detection Performance</h3><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230919150127618.png" alt="image-20230919150127618"></p>
+<p>F1-score for the proposed LAnoBERT model and ten additional models : </p>
+<ul>
+<li><p>unsupervised : </p>
+<ul>
+<li>all unsupervised models, except for the proposed LAnoBERT, were obtained from the LogBERT study</li>
+<li>BGL dataset was inferior compared to the HDFS dataset due to its more complex structure</li>
+<li>PCA, iForest, OCSVM, and LogCluster showed lower performance compared to DeepLog, LogAnomaly, and LogBERT which utilized deep learning techniques</li>
+</ul>
+</li>
+<li><p>supervised : </p>
+<ul>
+<li>LogRobust and HitAnomaly favorable on the HDFS and BGL datasets (Drain parser)</li>
+<li>LogSy uses classification model, good in Thunderbird , bad in BGL</li>
+</ul>
+</li>
+</ul>
+<p>etc…</p>
+<h3 id="Performance-according-to-the-BERT-learning-method"><a href="#Performance-according-to-the-BERT-learning-method" class="headerlink" title="Performance according to the BERT learning method"></a>Performance according to the BERT learning method</h3><p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20230920161450863.png" alt="image-20230920161450863"></p>
+<ul>
+<li>BERT model pre-trained with natural language was used and model trained from scratch (Initialized) is showen in the chart</li>
+<li>F1 score in the BGL and Thunderbird data better in pre-trained model , F1 score in the HDFS data worse in pre-trained model<ul>
+<li>reason 1 : HDFS data consisting of a <strong>very simple log</strong> structure have degraded performance</li>
+<li>reason 2 : BGL dataset is a more <strong>complicated</strong> dataset</li>
+<li>reason 3 : HDFS dataset after preprocessing is only 200, which is <strong>very few</strong> for expressing</li>
+</ul>
+</li>
+<li>conclusion :  the results demonstrate that incorporating the LAnoBERT framework with a pre-trained BERT model is aviable alternative</li>
+</ul>
+<h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7.Conclusion"></a>7.Conclusion</h2><p>​    This study proposed LAnoBERT, which is an <strong>unsupervised learning-based system log anomaly detection model</strong> where a parser is not used. The proposed LAnoBERT learned the context of normal log data using MLM, and abnormal logs were detected based on the prediction error and predictive probability during the test. In terms of the nature of the system log, <strong>normal and abnormal data have similar characteristics</strong>; thus, a new score calculation method is proposed for defining the abnormal score based on the <strong>top-k predictive probability</strong>. The proposed model exhibited the best performance compared to the unsupervised models, and superior or similar performance compared to supervised learning based models. In addition, the <strong>efficient inference process proposed</strong> in this study is expected to work well in an actual system. Although the performances of benchmark models are heavily dependent on the use of log parser, our proposed LAnoBERT can be a robust and parser-independent log anomaly detection model.</p>
+<p> future work : </p>
+<ol>
+<li>LAnoBERT requires individual training for each log dataset , to analysis log in different system.</li>
+<li>Transformerbased architecture incurs higher computational costs compared to RNN-based models due to its self-attention layer (O(n^2 · d) complexity) versus the recurrent layer of RNN (O(n · d^2) complexity) , parameter-efficient learning methods should be use</li>
+<li>Log Parser-free methodology can be improved by templating log sequences into the natural language via prompt tuning</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/">https://lhl7.github.io/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/25/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%90%86%E8%A7%A3/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">环境变量理解</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">64</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LAnoBERT-System-Log-Anomaly-Detection-based-on-BERT-Masked-Language-Model-Reading-note"><span class="toc-text">LAnoBERT : System Log Anomaly Detection based on BERT Masked Language Model (Reading note)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Abstract"><span class="toc-text">0. Abstract</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#previous-problem"><span class="toc-text">previous problem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LAnoBERT"><span class="toc-text">LAnoBERT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dataset"><span class="toc-text">Dataset</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-text">1. Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#drawback-of-traditional-studies"><span class="toc-text">drawback of traditional studies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solutions-and-improvement"><span class="toc-text">solutions and improvement</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Related-Work"><span class="toc-text">2. Related Work</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#parsing-based"><span class="toc-text">parsing-based:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Study-1-Drain-Parser"><span class="toc-text">Study 1: Drain Parser</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Study-2-LogRobust"><span class="toc-text">Study 2: LogRobust</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Study-3-HitAnomaly"><span class="toc-text">Study 3: HitAnomaly</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Study-4-LogBERT"><span class="toc-text">Study 4: LogBERT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Our-Study"><span class="toc-text">Our Study</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parsing-free"><span class="toc-text">parsing-free</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Background"><span class="toc-text">3. Background</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Log-parser-for-anomaly-detection"><span class="toc-text">Log parser for anomaly detection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BERT"><span class="toc-text">BERT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BERT-for-anomaly-detection"><span class="toc-text">BERT for anomaly detection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Proposed-Method"><span class="toc-text">4.Proposed Method</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Masked-Language-Model"><span class="toc-text">4.1 Masked Language Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Problem-Definition"><span class="toc-text">4.2  Problem Definition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-LAnoBERT"><span class="toc-text">4.3 LAnoBERT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PREPROCESSING"><span class="toc-text">PREPROCESSING</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MODEL"><span class="toc-text">MODEL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ABNORMAL-SCORE"><span class="toc-text">ABNORMAL SCORE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Experimental-Setting"><span class="toc-text">5. Experimental Setting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Datasets"><span class="toc-text">Datasets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Benchmark-Methods"><span class="toc-text">Benchmark Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-Metrics"><span class="toc-text">Evaluation Metrics</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Results"><span class="toc-text">6.Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Anomaly-Detection-Performance"><span class="toc-text">Anomaly Detection Performance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Performance-according-to-the-BERT-learning-method"><span class="toc-text">Performance according to the BERT learning method</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Conclusion"><span class="toc-text">7.Conclusion</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/" title="LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)">LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)</a><time datetime="2023-09-20T15:25:12.870Z" title="Created 2023-09-20 23:25:12">2023-09-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/25/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%90%86%E8%A7%A3/" title="环境变量理解">环境变量理解</a><time datetime="2023-06-25T06:44:15.229Z" title="Created 2023-06-25 14:44:15">2023-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/22/TLS%E6%8C%87%E7%BA%B9/" title="No title">No title</a><time datetime="2023-05-22T04:51:45.493Z" title="Created 2023-05-22 12:51:45">2023-05-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/22/Wireshark%E5%88%86%E6%9E%90TLS%E5%8D%8F%E8%AE%AE/" title="Wireshark分析TLS协议">Wireshark分析TLS协议</a><time datetime="2023-04-22T14:34:39.206Z" title="Created 2023-04-22 22:34:39">2023-04-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/03/%E4%BC%81%E4%B8%9A%E5%86%85%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%9D%B6%E5%9C%BA%E6%90%AD%E5%BB%BA3_%E4%B8%AD%E6%9C%9F%E8%BF%9B%E5%B1%95/" title="企业内网模拟靶场搭建3_中期进展">企业内网模拟靶场搭建3_中期进展</a><time datetime="2023-04-03T05:52:13.800Z" title="Created 2023-04-03 13:52:13">2023-04-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
