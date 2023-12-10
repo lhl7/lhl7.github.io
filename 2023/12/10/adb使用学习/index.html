@@ -1,0 +1,1965 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>adb使用学习 | 月明星稀</title><meta name="author" content="lhl_2507"><meta name="copyright" content="lhl_2507"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ADB使用学习ADB是Android调试桥（Android Debug Bridge）的缩写，是一个用于在电脑和Android设备之间进行通信和调试的工具。 参考：https:&#x2F;&#x2F;blog.csdn.net&#x2F;Sugar_wolf&#x2F;article&#x2F;details&#x2F;127806122 ADB服务相关使用：adb devices列出当前设备状态，存在三种     当出现offline状态时，使用adb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adb使用学习">
+<meta property="og:url" content="https://lhl7.github.io/2023/12/10/adb%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="月明星稀">
+<meta property="og:description" content="ADB使用学习ADB是Android调试桥（Android Debug Bridge）的缩写，是一个用于在电脑和Android设备之间进行通信和调试的工具。 参考：https:&#x2F;&#x2F;blog.csdn.net&#x2F;Sugar_wolf&#x2F;article&#x2F;details&#x2F;127806122 ADB服务相关使用：adb devices列出当前设备状态，存在三种     当出现offline状态时，使用adb">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lhl7.github.io/img/index.jpg">
+<meta property="article:published_time" content="2023-12-10T07:53:34.110Z">
+<meta property="article:modified_time" content="2023-12-10T07:53:09.077Z">
+<meta property="article:author" content="lhl_2507">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lhl7.github.io/img/index.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://lhl7.github.io/2023/12/10/adb%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'adb使用学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-10 15:53:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">65</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">月明星稀</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">adb使用学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-12-10T07:53:34.110Z" title="Created 2023-12-10 15:53:34">2023-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-12-10T07:53:09.077Z" title="Updated 2023-12-10 15:53:09">2023-12-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/android/">android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="adb使用学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="ADB使用学习"><a href="#ADB使用学习" class="headerlink" title="ADB使用学习"></a>ADB使用学习</h1><p>ADB是Android调试桥（Android Debug Bridge）的缩写，是一个用于在电脑和Android设备之间进行通信和调试的工具。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Sugar_wolf/article/details/127806122">https://blog.csdn.net/Sugar_wolf/article/details/127806122</a></p>
+<h2 id="ADB服务相关"><a href="#ADB服务相关" class="headerlink" title="ADB服务相关"></a>ADB服务相关</h2><p>使用：<code>adb devices</code>列出当前设备状态，存在三种</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209215346895.png" alt="image-20231209215346895"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209215712193.png" alt="image-20231209215357842"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209215439833.png" alt="image-20231209215439833"></p>
+<ul>
+<li><p>当出现offline状态时，使用<code>adb kill-server</code>和<code>adb start-server</code>实现重连。</p>
+</li>
+<li><p>当出现unauthorized状态，说明被连接设备未接受连接设备的公钥，应该会弹窗。</p>
+</li>
+</ul>
+<p>使用命令adb shell，获取手机命令行：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209235712166.png" alt="image-20231209215712193"></p>
+<h2 id="ADB软件操作"><a href="#ADB软件操作" class="headerlink" title="ADB软件操作"></a>ADB软件操作</h2><h3 id="安装卸载"><a href="#安装卸载" class="headerlink" title="安装卸载"></a>安装卸载</h3><p><code>adb install xxx.apk</code>用来安装软件；</p>
+<p><code>adb install</code> 实际是分三步完成：</p>
+<ol>
+<li><code>push apk</code> 文件到 <code>/data/local/tmp</code>。</li>
+<li>调用 <code>pm install</code> 安装。</li>
+<li>删除 <code>/data/local/tmp</code> 下的对应 apk 文件。</li>
+</ol>
+<p>adb install -r &lt;文件路径\apk&gt;：覆盖安装<br>adb install -d &lt;文件路径\apk&gt;：允许降级覆盖安装<br>adb install -g &lt;文件路径\apk&gt;：授权/获取权限，安装软件时把所有权限都打开</p>
+<p>安装可能出现的失败情况：</p>
+<ul>
+<li>Failure：代表安装失败。APK 安装失败的情况有很多，Failure状态之后有安装失败输出代码。常见安装失败输出代码、含义及可能的解决办法如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>输出代码</th>
+<th>含义</th>
+<th>解决办法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INSTALL_FAILED_ALREADY_EXISTS</td>
+<td>应用已经存在，或卸载了但没卸载干净</td>
+<td>adb install 时使用 -r 参数，或者先 adb uninstall 再安装</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_INVALID_APK</td>
+<td>无效的 APK 文件</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_INVALID_URI</td>
+<td>无效的 APK 文件名</td>
+<td>确保 APK 文件名里无中文</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_INSUFFICIENT_STORAGE</td>
+<td>空间不足</td>
+<td>清理空间</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_DUPLICATE_PACKAGE</td>
+<td>已经存在同名程序</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_NO_SHARED_USER</td>
+<td>请求的共享用户不存在</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_UPDATE_INCOMPATIBLE</td>
+<td>以前安装过同名应用，但卸载时数据没有移除；或者已安装该应用，但签名不一致</td>
+<td>先 adb uninstall 再安装</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_SHARED_USER_INCOMPATIBLE</td>
+<td>请求的共享用户存在但签名不一致</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_MISSING_SHARED_LIBRARY</td>
+<td>安装包使用了设备上不可用的共享库</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_REPLACE_COULDNT_DELETE</td>
+<td>替换时无法删除</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_DEXOPT</td>
+<td>dex 优化验证失败或空间不足</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_OLDER_SDK</td>
+<td>设备系统版本低于应用要求</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_CONFLICTING_PROVIDER</td>
+<td>设备里已经存在与应用里同名的 content provider</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_NEWER_SDK</td>
+<td>设备系统版本高于应用要求</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_TEST_ONLY</td>
+<td>应用是 test-only 的，但安装时没有指定 -t 参数</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_CPU_ABI_INCOMPATIBLE</td>
+<td>包含不兼容设备 CPU 应用程序二进制接口的 native code</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_MISSING_FEATURE</td>
+<td>应用使用了设备不可用的功能</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_CONTAINER_ERROR</td>
+<td>1. sdcard 访问失败;2. 应用签名与 ROM 签名一致，被当作内置应用。</td>
+<td>1. 确认 sdcard 可用，或者安装到内置存储;2. 打包时不与 ROM 使用相同签名。</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_INVALID_INSTALL_LOCATION</td>
+<td>1. 不能安装到指定位置;2. 应用签名与 ROM 签名一致，被当作内置应用。</td>
+<td>1. 切换安装位置，添加或删除 -s 参数;2. 打包时不与 ROM 使用相同签名。</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_MEDIA_UNAVAILABLE</td>
+<td>安装位置不可用</td>
+<td>一般为 sdcard，确认 sdcard 可用或安装到内置存储</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_VERIFICATION_TIMEOUT</td>
+<td>验证安装包超时</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_VERIFICATION_FAILURE</td>
+<td>验证安装包失败</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_PACKAGE_CHANGED</td>
+<td>应用与调用程序期望的不一致</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_UID_CHANGED</td>
+<td>以前安装过该应用，与本次分配的 UID 不一致</td>
+<td>清除以前安装过的残留文件</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_VERSION_DOWNGRADE</td>
+<td>已经安装了该应用更高版本</td>
+<td>使用 -d 参数</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_PERMISSION_MODEL_DOWNGRADE</td>
+<td>已安装 target SDK 支持运行时权限的同名应用，要安装的版本不支持运行时权限</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_NOT_APK</td>
+<td>指定路径不是文件，或不是以 .apk 结尾</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_BAD_MANIFEST</td>
+<td>无法解析的 AndroidManifest.xml 文件</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_UNEXPECTED_EXCEPTION</td>
+<td>解析器遇到异常</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_NO_CERTIFICATES</td>
+<td>安装包没有签名</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_INCONSISTENT_CERTIFICATES</td>
+<td>已安装该应用，且签名与 APK 文件不一致</td>
+<td>先卸载设备上的该应用，再安装</td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_CERTIFICATE_ENCODING</td>
+<td>解析 APK 文件时遇到 CertificateEncodingException</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_BAD_PACKAGE_NAME</td>
+<td>manifest 文件里没有或者使用了无效的包名</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_BAD_SHARED_USER_ID</td>
+<td>manifest 文件里指定了无效的共享用户 ID</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_MANIFEST_MALFORMED</td>
+<td>解析 manifest 文件时遇到结构性错误</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_PARSE_FAILED_MANIFEST_EMPTY</td>
+<td>在 manifest 文件里找不到找可操作标签（instrumentation 或 application）</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_INTERNAL_ERROR</td>
+<td>因系统问题安装失败</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_USER_RESTRICTED</td>
+<td>用户被限制安装应用</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_DUPLICATE_PERMISSION</td>
+<td>应用尝试定义一个已经存在的权限名称</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_NO_MATCHING_ABIS</td>
+<td>应用包含设备的应用程序二进制接口不支持的 native code</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_CANCELED_BY_USER</td>
+<td>应用安装需要在设备上确认，但未操作设备或点了取消</td>
+<td>在设备上同意安装</td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_ACWF_INCOMPATIBLE</td>
+<td>应用程序与设备不兼容</td>
+<td></td>
+</tr>
+<tr>
+<td>INSTALL_FAILED_TEST_ONLY</td>
+<td>APK 文件是使用 Android Studio 直接 RUN 编译出来的文件</td>
+<td>通过 Gradle 的 assembleDebug 或 assembleRelease 重新编译，或者 Generate Signed APK</td>
+</tr>
+<tr>
+<td>does not contain AndroidManifest.xml</td>
+<td>无效的 APK 文件</td>
+<td></td>
+</tr>
+<tr>
+<td>is not a valid zip file</td>
+<td>无效的 APK 文件</td>
+<td></td>
+</tr>
+<tr>
+<td>Offline</td>
+<td>设备未连接成功</td>
+<td>先将设备与 adb 连接成功</td>
+</tr>
+<tr>
+<td>unauthorized</td>
+<td>设备未授权允许调试</td>
+<td></td>
+</tr>
+<tr>
+<td>error: device not found</td>
+<td>没有连接成功的设备</td>
+<td>先将设备与 adb 连接成功</td>
+</tr>
+<tr>
+<td>protocol failure</td>
+<td>设备已断开连接</td>
+<td>先将设备与 adb 连接成功</td>
+</tr>
+<tr>
+<td>Unknown option: -s</td>
+<td>Android 2.2 以下不支持安装到 sdcard</td>
+<td>不使用 -s 参数</td>
+</tr>
+<tr>
+<td>No space left on device</td>
+<td>空间不足</td>
+<td>清理空间</td>
+</tr>
+<tr>
+<td>Permission denied … sdcard …</td>
+<td>sdcard 不可用</td>
+<td></td>
+</tr>
+<tr>
+<td>signatures do not match the previously installed version; ignoring!</td>
+<td>已安装该应用且签名不一致</td>
+<td>先卸载设备上的该应用，再安装</td>
+</tr>
+</tbody></table>
+<p>卸载：</p>
+<p><code>adb uninstall [-k] \&lt;package-name&gt;</code></p>
+<p>-k 参数可选，表示卸载应用但保留数据和缓存目录。</p>
+<h3 id="卸载软件思路"><a href="#卸载软件思路" class="headerlink" title="卸载软件思路"></a>卸载软件思路</h3><p>要卸载软件，首先需要获知&lt;package-name&gt;，记录一下我个人的探究过程：</p>
+<p>在进入android shell后（使用 <code>adb shell</code>），常见的相关工具有两个：</p>
+<h4 id="pm"><a href="#pm" class="headerlink" title="pm"></a>pm</h4><p>pm（package-manager）是Android系统中的包管理器工具，用于管理应用程序包（APK）及其相关信息。它允许用户执行各种操作，包括安装、卸载、查询应用程序信息等。</p>
+<p>pm list packages可以列出应用列表：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209215357842.png" alt="image-20231209225340339"></p>
+<p>然而并没有什么用，依然不太清楚哪个package对应哪个app；</p>
+<p>因此，可以使用一些比较方便的option进行筛选：</p>
+<p><code>pm list packages -3</code> 显示第三方应用，即用户自己安装的应用，也对应着手机操作者唯一具有卸载权限的应用；</p>
+<p><code>pm list packages -u</code>显示由用户安装的应用，这里实际就包括系统预装了；</p>
+<p><code>pm list packages -s</code>只显示系统应用程序。</p>
+<p>那么三者究竟有什么关系，经过对于结果的统计，发现 -u的输出几乎是 -3 和 -s的并集，在我的手机（oppo）上验证，-u的输出与 -3 和 -s的并集之间仅仅相差几个pakcage；</p>
+<h4 id="dumpsys"><a href="#dumpsys" class="headerlink" title="dumpsys"></a>dumpsys</h4><p><code>dumpsys</code>是Android系统中一个强大的调试命令，用于提供关于系统服务状态和信息的详细报告。它可以展示各种系统级别的信息，包括运行中的服务、内存状态、CPU信息、网络状态、传感器数据等。</p>
+<p>然而，在dumpsys后面添加各类服务的名字，就可以对于信息进行粗筛，如<code>dumpsys window</code>或<code>dumpsys battery</code>等，然而这些对于非系统开发者并没有什么用；</p>
+<p>网上的教程一般都说，</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210000056184.png" alt="image-20231209235712166"></p>
+<p>亲测在oppo机型不太行，作为替代，可以使用：<code>dumpsys activity activities | grep mControlTarget</code> c查看正在受控的activity：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209225340339.png" alt="image-20231209235825042"></p>
+<p>也可以通过屏幕状态筛选正在活动的应用，如命令：<code>dumpsys window windows | grep mSurface</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231209235825042.png" alt="image-20231210000056184"></p>
+<p>这样一来，据此就可以尝试寻找需要进行卸载的App；</p>
+<h4 id="huawei系统软件卸载案例"><a href="#huawei系统软件卸载案例" class="headerlink" title="huawei系统软件卸载案例"></a>huawei系统软件卸载案例</h4><p>参考，摘抄自：<a target="_blank" rel="noopener" href="http://www.usbmi.com/5700.html">http://www.usbmi.com/5700.html</a></p>
+<p><em>正常操作的情况下，安卓手机的控制只需要单用户即可，因此卸载用户目录下的软件即可，不需要从系统目录连根拔起斩尽杀绝（这样刷机的时候还能恢复）</em></p>
+<p><strong>第一步：</strong></p>
+<p>手机的”设置”—“系统”—“开发人员选项”，界面下滑找到”调试”，打开“USB调试”、“连接USB时总是弹出提示”“监控ADB安装应用”、“仅充电模式下允许USB调试”这四个选项，有些不让选也影响不大。</p>
+<p><strong>第二步：</strong></p>
+<p>电脑下载调试工具包    ADB Kits</p>
+<p>数据线连接电脑和手机，连接后在手机选择<code>仅充电</code></p>
+<p>手机还会有一条连接确认，确认即可。</p>
+<p><strong>第三步：</strong></p>
+<p>adb命令(做打码处理)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\xxx\Desktop\Andriod\adb&gt;adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">KWG5Txxxxxx07xx5        device</span><br></pre></td></tr></table></figure>
+
+<p>说明已经连接了设备，下面就可以操作了</p>
+<p><strong>第四步：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">获取系统当前用户的安装列表：</span><br><span class="line">adb shell pm list packages &gt;alist.txt</span><br><span class="line">已启用的应用列表:</span><br><span class="line">adb shell pm list packages -s -e &gt;enabled.txt</span><br></pre></td></tr></table></figure>
+
+<p>输出到文件方便查看。</p>
+<p><strong>第五步：</strong></p>
+<p>开始动手!</p>
+<p>禁用命令格式：<code>adb shell pm disable-user 软件包名</code></p>
+<p>启用命令格式：<code>adb shell pm enable 软件包名</code></p>
+<p>删除命令格式：<code>adb shell pm uninstall --user 0 软件包名</code></p>
+<p><strong>附录1，常见软件包名称对应</strong></p>
+<p>摘抄自：<a target="_blank" rel="noopener" href="http://www.8fe.com/jiaocheng/1201.html%EF%BC%88%E4%B8%AA%E4%BA%BA%E8%AE%A4%E4%B8%BA%E9%9D%9E%E5%B8%B8%E5%85%A8%E9%9D%A2%E4%BA%86%EF%BC%89">http://www.8fe.com/jiaocheng/1201.html（个人认为非常全面了）</a></p>
+<p>直接找到相应的包名执行命令开删就可以了！</p>
+<table>
+<thead>
+<tr>
+<th align="center">包名</th>
+<th align="center">应用名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">com.android.networkstack.inprocess</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.providers.downloads</td>
+<td align="center">下载管理器</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.totemweather</td>
+<td align="center">天气</td>
+</tr>
+<tr>
+<td align="center">com.huawei.desktop.explorer</td>
+<td align="center">我的文件</td>
+</tr>
+<tr>
+<td align="center">com.huawei.arengine.service</td>
+<td align="center">华为AR引擎</td>
+</tr>
+<tr>
+<td align="center">com.google.android.overlay.settingsProvider</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.soundrecorder</td>
+<td align="center">录音机</td>
+</tr>
+<tr>
+<td align="center">com.google.android.configupdater</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.mms.service</td>
+<td align="center">短信服务</td>
+</tr>
+<tr>
+<td align="center">com.android.companiondevicemanager</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.imedia.dolby</td>
+<td align="center">杜比音效</td>
+</tr>
+<tr>
+<td align="center">com.google.android.ext.shared</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.google.android.onetimeinitializer</td>
+<td align="center">谷歌one time</td>
+</tr>
+<tr>
+<td align="center">com.huawei.desktop.systemui</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.multimedia.audioengine</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.numberidentity</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.KoBackup</td>
+<td align="center">备份</td>
+</tr>
+<tr>
+<td align="center">com.google.ar.core</td>
+<td align="center">谷歌AR服务</td>
+</tr>
+<tr>
+<td align="center">com.android.nfc</td>
+<td align="center">NFC服务</td>
+</tr>
+<tr>
+<td align="center">com.android.mms</td>
+<td align="center">信息</td>
+</tr>
+<tr>
+<td align="center">com.huawei.systemserver</td>
+<td align="center">系统服务</td>
+</tr>
+<tr>
+<td align="center">com.android.ons</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.himovie.partner1</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.cloud</td>
+<td align="center">华为云</td>
+</tr>
+<tr>
+<td align="center">com.huawei.profile</td>
+<td align="center">华为Profile</td>
+</tr>
+<tr>
+<td align="center">com.huawei.himovie.partner2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.contacts</td>
+<td align="center">联系人</td>
+</tr>
+<tr>
+<td align="center">com.android.systemui.overlay</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.simappdialog</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.vending</td>
+<td align="center">Google Play商店</td>
+</tr>
+<tr>
+<td align="center">com.android.frameworkhwext.honor</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.wallet.sdk.walletsdk</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.modulemetadata</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.providers.media</td>
+<td align="center">媒体存储</td>
+</tr>
+<tr>
+<td align="center">com.huawei.bluetooth</td>
+<td align="center">通过蓝牙导入</td>
+</tr>
+<tr>
+<td align="center">com.android.email</td>
+<td align="center">电子邮件</td>
+</tr>
+<tr>
+<td align="center">com.android.providers.blockednumber</td>
+<td align="center">存储已屏蔽的号码</td>
+</tr>
+<tr>
+<td align="center">com.android.wallpaperbackup</td>
+<td align="center">壁纸备份</td>
+</tr>
+<tr>
+<td align="center">com.Qunar</td>
+<td align="center">去哪儿</td>
+</tr>
+<tr>
+<td align="center">com.google.android.gsf.login</td>
+<td align="center">谷歌组件</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.mirrorshare</td>
+<td align="center">无线分享</td>
+</tr>
+<tr>
+<td align="center">com.svox.pico</td>
+<td align="center">Pico TTS</td>
+</tr>
+<tr>
+<td align="center">com.android.packageinstaller</td>
+<td align="center">打包安装程序</td>
+</tr>
+<tr>
+<td align="center">com.android.frameworkhwext.overlay.dark</td>
+<td align="center">安卓框架</td>
+</tr>
+<tr>
+<td align="center">com.google.android.printservice.readb</td>
+<td align="center">谷歌组件</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.hwpay</td>
+<td align="center">华为钱包安全支付</td>
+</tr>
+<tr>
+<td align="center">com.android.imedia.syncplay</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.providers.userdictionary</td>
+<td align="center">用户词典</td>
+</tr>
+<tr>
+<td align="center">com.android.providers.telephony</td>
+<td align="center">通话/信息存储</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.launcher</td>
+<td align="center">华为桌面</td>
+</tr>
+<tr>
+<td align="center">com.huawei.camerakit.impl</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.androidx</td>
+<td align="center">AndroidX</td>
+</tr>
+<tr>
+<td align="center">com.android.phone.recorder</td>
+<td align="center">录音机</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hidisk</td>
+<td align="center">文件管理</td>
+</tr>
+<tr>
+<td align="center">com.huawei.featurelayer.featureframework</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.providers.calendar</td>
+<td align="center">日历存储</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.tips</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.camera</td>
+<td align="center">相机</td>
+</tr>
+<tr>
+<td align="center">com.android.exchange</td>
+<td align="center">Exchange服务</td>
+</tr>
+<tr>
+<td align="center">com.baidu.haokan</td>
+<td align="center">好看视频</td>
+</tr>
+<tr>
+<td align="center">com.smile.gifmaker</td>
+<td align="center">gif制造商</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hiskytone</td>
+<td align="center">天际通</td>
+</tr>
+<tr>
+<td align="center">com.huawei.nlp</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">cn.wps.moffice_eng</td>
+<td align="center">WPS</td>
+</tr>
+<tr>
+<td align="center">com.android.hwmirror</td>
+<td align="center">镜子</td>
+</tr>
+<tr>
+<td align="center">com.huawei.dmsdp</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.hicar</td>
+<td align="center">华为汽车</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hiboard</td>
+<td align="center">负一屏</td>
+</tr>
+<tr>
+<td align="center">com.huawei.ihealth</td>
+<td align="center">华为健康</td>
+</tr>
+<tr>
+<td align="center">com.huawei.yellowpage</td>
+<td align="center">在线黄页</td>
+</tr>
+<tr>
+<td align="center">com.huawei.internetaudioservice</td>
+<td align="center">智能线控</td>
+</tr>
+<tr>
+<td align="center">com.huawei.livewallpaper.matewenty</td>
+<td align="center">华山</td>
+</tr>
+<tr>
+<td align="center">com.google.android.backuptransport</td>
+<td align="center">谷歌备份传输</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.thememan</td>
+<td align="center">主题</td>
+</tr>
+<tr>
+<td align="center">com.ifytek.speechsuite</td>
+<td align="center">讯飞语音引擎</td>
+</tr>
+<tr>
+<td align="center">com.android.inputmethod.latin</td>
+<td align="center">AOSP输入法</td>
+</tr>
+<tr>
+<td align="center">com.android.providers.contacts</td>
+<td align="center">联系人存储</td>
+</tr>
+<tr>
+<td align="center">com.android.permissioncontroller</td>
+<td align="center">安卓权限控制</td>
+</tr>
+<tr>
+<td align="center">com.huawei.assetsync</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.systemui</td>
+<td align="center">系统界面</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwvoipservice</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.assetsyncservice</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.bluetooth</td>
+<td align="center">蓝牙</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hff</td>
+<td align="center">hff服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.aod</td>
+<td align="center">灭屏显示</td>
+</tr>
+<tr>
+<td align="center">com.android.vebding</td>
+<td align="center">谷歌play商店</td>
+</tr>
+<tr>
+<td align="center">com.andeoid.wallpaper.livepicker</td>
+<td align="center">稻穗屏保</td>
+</tr>
+<tr>
+<td align="center">com.szzc.ucar.pilot</td>
+<td align="center">神州租车</td>
+</tr>
+<tr>
+<td align="center">com.amap.android.ams</td>
+<td align="center">高德位置服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.remoteassistant</td>
+<td align="center">远程协助</td>
+</tr>
+<tr>
+<td align="center">com.autonavi.minimap</td>
+<td align="center">高德地图</td>
+</tr>
+<tr>
+<td align="center">ctrip.android.view</td>
+<td align="center">携程旅行</td>
+</tr>
+<tr>
+<td align="center">com.huawei.retaildemo</td>
+<td align="center">演示程序</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.location.activityrecognition</td>
+<td align="center">行为识别</td>
+</tr>
+<tr>
+<td align="center">com.huawei.geofence</td>
+<td align="center">地理围栏</td>
+</tr>
+<tr>
+<td align="center">com.stupeflix.replay</td>
+<td align="center">Quik</td>
+</tr>
+<tr>
+<td align="center">com.ifeng.news2</td>
+<td align="center">凤凰新闻</td>
+</tr>
+<tr>
+<td align="center">com.nuance.swype.emui</td>
+<td align="center">华为Swype输入法</td>
+</tr>
+<tr>
+<td align="center">com.dianping.v1</td>
+<td align="center">大众点评</td>
+</tr>
+<tr>
+<td align="center">com.google.android.ext.services</td>
+<td align="center">android Services Library</td>
+</tr>
+<tr>
+<td align="center">com.huawei.locationsharing</td>
+<td align="center">位置共享</td>
+</tr>
+<tr>
+<td align="center">com.huawei.cryptosms.service</td>
+<td align="center">短信加密</td>
+</tr>
+<tr>
+<td align="center">com.android.defcontainer</td>
+<td align="center">软件包访问帮助程序</td>
+</tr>
+<tr>
+<td align="center">com.realvnc.android.remote</td>
+<td align="center">VNC远程控制</td>
+</tr>
+<tr>
+<td align="center">com.android.deskclock</td>
+<td align="center">时钟</td>
+</tr>
+<tr>
+<td align="center">com.android.location.fused</td>
+<td align="center">融合定位</td>
+</tr>
+<tr>
+<td align="center">com.google.android.syncadapters.contacts</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.server.telecom</td>
+<td align="center">通话管理</td>
+</tr>
+<tr>
+<td align="center">com.google.android.webview</td>
+<td align="center">安卓内置浏览器</td>
+</tr>
+<tr>
+<td align="center">com.android.gallery3d</td>
+<td align="center">图库</td>
+</tr>
+<tr>
+<td align="center">android.ext.services</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.google.android.gsf</td>
+<td align="center">谷歌服务框架</td>
+</tr>
+<tr>
+<td align="center">com.google.android.gms</td>
+<td align="center">谷歌play服务</td>
+</tr>
+<tr>
+<td align="center">com.google.android.overlay.gmsconfig</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">androidx.camera.extensions.impl</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.providers.settings</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.livewallpaper.matetwenty</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.calendar</td>
+<td align="center">日历</td>
+</tr>
+<tr>
+<td align="center">com.android.incallui</td>
+<td align="center">拨号</td>
+</tr>
+<tr>
+<td align="center">com.huawei.systemmanager</td>
+<td align="center">手机管家</td>
+</tr>
+<tr>
+<td align="center">com.huawei.securityserver</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.se</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.google.android.partnersetup</td>
+<td align="center">谷歌合作伙伴设置</td>
+</tr>
+<tr>
+<td align="center">com.android.localtransport</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.calculator2</td>
+<td align="center">计算器</td>
+</tr>
+<tr>
+<td align="center">com.huawei.deviceauth</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.networkstack.permissionconfig</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.remotecontroller</td>
+<td align="center">华为智能遥控</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.hwupgradeguide</td>
+<td align="center">升级向导</td>
+</tr>
+<tr>
+<td align="center">com.android.huawei.HiMediaEngine</td>
+<td align="center">定制多媒体引擎</td>
+</tr>
+<tr>
+<td align="center">com.android.shell</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.phone</td>
+<td align="center">拨号</td>
+</tr>
+<tr>
+<td align="center">com.android.settings</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.qeexo.smartshot</td>
+<td align="center">智能截屏</td>
+</tr>
+<tr>
+<td align="center">com.huawei.vrservice</td>
+<td align="center">华为VR眼镜服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.compass</td>
+<td align="center">指南针</td>
+</tr>
+<tr>
+<td align="center">com.google.android.printservice.recommendation</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.dsdscardmanager</td>
+<td align="center">双卡管理</td>
+</tr>
+<tr>
+<td align="center">com.tencent.qqlivehuawei</td>
+<td align="center">腾讯视频华为版</td>
+</tr>
+<tr>
+<td align="center">com.huawei.powergenie</td>
+<td align="center">省电精灵</td>
+</tr>
+<tr>
+<td align="center">com.android.apps.tag</td>
+<td align="center">标记</td>
+</tr>
+<tr>
+<td align="center">com.huawei.watch.sync</td>
+<td align="center">手表应用同步</td>
+</tr>
+<tr>
+<td align="center">com.ss.android.ugc.aweme</td>
+<td align="center">抖音短视频</td>
+</tr>
+<tr>
+<td align="center">com.huawei.mmitest</td>
+<td align="center">华为测试组件</td>
+</tr>
+<tr>
+<td align="center">com.android.wallpaper.livepicker</td>
+<td align="center">动态壁纸</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.wfdft</td>
+<td align="center">WLAN直连</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.instantonline</td>
+<td align="center">华为一键热点应用</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.projectmenu</td>
+<td align="center">工程菜单</td>
+</tr>
+<tr>
+<td align="center">com.android.vpndialogs</td>
+<td align="center">VPN设置</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.pushagent</td>
+<td align="center">推送服务</td>
+</tr>
+<tr>
+<td align="center">com.android.cts.ctsshim</td>
+<td align="center">旅行助手</td>
+</tr>
+<tr>
+<td align="center">com.android.dreams.phototable</td>
+<td align="center">图片屏保程序</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hitouch</td>
+<td align="center">Hi Touch功能</td>
+</tr>
+<tr>
+<td align="center">com.huawei.vassistant</td>
+<td align="center">语音助手</td>
+</tr>
+<tr>
+<td align="center">com.android.onetimeinitializer</td>
+<td align="center">一次性</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hilink.framework</td>
+<td align="center">智能家居连接服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwstartupguide</td>
+<td align="center">安装向导</td>
+</tr>
+<tr>
+<td align="center">com.android.calllogbackup</td>
+<td align="center">通讯录备份</td>
+</tr>
+<tr>
+<td align="center">com.android.managedprovisioning</td>
+<td align="center">工作资料设置</td>
+</tr>
+<tr>
+<td align="center">com.android.proxyhandler</td>
+<td align="center">处理器信息</td>
+</tr>
+<tr>
+<td align="center">com.huawei.fido.uafclient</td>
+<td align="center">在线快速验证</td>
+</tr>
+<tr>
+<td align="center">com.android.emergency</td>
+<td align="center">个人紧急信息</td>
+</tr>
+<tr>
+<td align="center">com.huawei.ims</td>
+<td align="center">华为云镜像服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwpolicyservice</td>
+<td align="center">华为旅行助手服务管理</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwapplet</td>
+<td align="center">旅行助手策略管理</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hicard</td>
+<td align="center">卡片管理</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hiview</td>
+<td align="center">状态栏通知有关</td>
+</tr>
+<tr>
+<td align="center">com.huawei.trustspace</td>
+<td align="center">支付保护中心</td>
+</tr>
+<tr>
+<td align="center">com.huawei.spaceservice</td>
+<td align="center">云空间</td>
+</tr>
+<tr>
+<td align="center">com.huawei.fastapp</td>
+<td align="center">快应用中心</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hisuite</td>
+<td align="center">华为手机助手</td>
+</tr>
+<tr>
+<td align="center">com.android.captiveportallogin</td>
+<td align="center">Captive Portal Login</td>
+</tr>
+<tr>
+<td align="center">com.huawei.bd</td>
+<td align="center">用户体验计划</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwdetectrepair</td>
+<td align="center">智能检测</td>
+</tr>
+<tr>
+<td align="center">com.android.bluetoothmidiservice</td>
+<td align="center">蓝牙模组</td>
+</tr>
+<tr>
+<td align="center">com.huawei.ca</td>
+<td align="center">ca服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.karaoke</td>
+<td align="center">K歌特效</td>
+</tr>
+<tr>
+<td align="center">com.huawei.rcsserviceapplication</td>
+<td align="center">华为rcs服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hiaction</td>
+<td align="center">智能识屏中控模块</td>
+</tr>
+<tr>
+<td align="center">com.android.inputdevices</td>
+<td align="center">输入设备</td>
+</tr>
+<tr>
+<td align="center">com.android.frameworkres.overlay</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.externalstorage</td>
+<td align="center">外部存储设备</td>
+</tr>
+<tr>
+<td align="center">com.android.documentsui</td>
+<td align="center">文件</td>
+</tr>
+<tr>
+<td align="center">com.huawei.secime</td>
+<td align="center">华为安全输入法</td>
+</tr>
+<tr>
+<td align="center">com.android.htmlviewer</td>
+<td align="center">HTML查看器</td>
+</tr>
+<tr>
+<td align="center">com.huawei.regservice</td>
+<td align="center">注册服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.trustcircle</td>
+<td align="center">支付保护中心</td>
+</tr>
+<tr>
+<td align="center">com.huawei.wallet</td>
+<td align="center">华为钱包</td>
+</tr>
+<tr>
+<td align="center">com.iflytek.speechsuite</td>
+<td align="center">讯飞语音引擎</td>
+</tr>
+<tr>
+<td align="center">com.huawei.parentcontrol</td>
+<td align="center">学生模式</td>
+</tr>
+<tr>
+<td align="center">com.huawei.recsys</td>
+<td align="center">华为智能系统还原</td>
+</tr>
+<tr>
+<td align="center">com.huawei.iaware</td>
+<td align="center">智能优化</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.UEInfoCheck</td>
+<td align="center">自注册短信</td>
+</tr>
+<tr>
+<td align="center">com.huawei.synergy</td>
+<td align="center">输入设备</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.chr</td>
+<td align="center">HwChrService</td>
+</tr>
+<tr>
+<td align="center">com.android.wallpapercropper</td>
+<td align="center">壁纸裁剪器</td>
+</tr>
+<tr>
+<td align="center">com.huawei.intelligent</td>
+<td align="center">情景智能</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.FloatTasks</td>
+<td align="center">悬浮导航</td>
+</tr>
+<tr>
+<td align="center">com.huawei.nearby</td>
+<td align="center">华为附近</td>
+</tr>
+<tr>
+<td align="center">com.huawei.phoneservice</td>
+<td align="center">会员服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.iconnect</td>
+<td align="center">智能家居连接</td>
+</tr>
+<tr>
+<td align="center">com.android.statementservice</td>
+<td align="center">Intent Filter Verification Services</td>
+</tr>
+<tr>
+<td align="center">com.huawei.trustagent</td>
+<td align="center">智能解锁</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.instantshare</td>
+<td align="center">Huawei Share</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.internal.app</td>
+<td align="center">Huawei Share</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwasm</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.android.printspooler</td>
+<td align="center">打印处理服务</td>
+</tr>
+<tr>
+<td align="center">com.android.sharedstoragebackup</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.wifiprobqeservice</td>
+<td align="center">WiFi服务</td>
+</tr>
+<tr>
+<td align="center">com.android.backupconfirm</td>
+<td align="center">第三方的应用程序</td>
+</tr>
+<tr>
+<td align="center">com.android.stk</td>
+<td align="center">sim应用</td>
+</tr>
+<tr>
+<td align="center">com.android.pacprocessor</td>
+<td align="center">电脑连接辅助</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hiviewtunnel</td>
+<td align="center">电量优化</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.AutoRegSms</td>
+<td align="center">自动注册</td>
+</tr>
+<tr>
+<td align="center">com.android.frameworkhwext.HONOR</td>
+<td align="center">荣耀框架</td>
+</tr>
+<tr>
+<td align="center">com.android.certinstaller</td>
+<td align="center">证书安装器</td>
+</tr>
+<tr>
+<td align="center">com.android.mtp</td>
+<td align="center">MTP服务</td>
+</tr>
+<tr>
+<td align="center">com.android.frameworkhwext.dark</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.printservice</td>
+<td align="center">谷歌组件</td>
+</tr>
+<tr>
+<td align="center">com.huawei.featurelayer.sharedfeature.map</td>
+<td align="center">华为地图服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.motionservice</td>
+<td align="center">手势服务</td>
+</tr>
+<tr>
+<td align="center">com.sankuai.meituan</td>
+<td align="center">美团</td>
+</tr>
+<tr>
+<td align="center">com.huawei.health</td>
+<td align="center">运动健康</td>
+</tr>
+<tr>
+<td align="center">org.simalliance.openmobileapi.service</td>
+<td align="center">SmartcardService</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hnreader</td>
+<td align="center">荣耀阅读</td>
+</tr>
+<tr>
+<td align="center">com.huawei.vdrive</td>
+<td align="center">驾驶模式</td>
+</tr>
+<tr>
+<td align="center">companiondevicemanager</td>
+<td align="center">系统状态栏</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.FMRadio</td>
+<td align="center">收音机</td>
+</tr>
+<tr>
+<td align="center">com.android.dreams.basic</td>
+<td align="center">基本互动屏保</td>
+</tr>
+<tr>
+<td align="center">com.huawei.tips</td>
+<td align="center">智能提醒</td>
+</tr>
+<tr>
+<td align="center">com.huawei.gameassistant</td>
+<td align="center">游戏助手</td>
+</tr>
+<tr>
+<td align="center">com.android.storagemanager</td>
+<td align="center">存储设备管理</td>
+</tr>
+<tr>
+<td align="center">com.huawei.scanner</td>
+<td align="center">扫一扫</td>
+</tr>
+<tr>
+<td align="center">com.huawei.mycenter</td>
+<td align="center">会员中心</td>
+</tr>
+<tr>
+<td align="center">com.huawei.contactscamcard</td>
+<td align="center">名片全能王</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwireader</td>
+<td align="center">华为阅读</td>
+</tr>
+<tr>
+<td align="center">com.android.browser</td>
+<td align="center">浏览器</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwvplayer.youku</td>
+<td align="center">华为视频优酷版</td>
+</tr>
+<tr>
+<td align="center">com.taobao.mobile.dipei</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.hicloud.android.clone</td>
+<td align="center">手机克隆</td>
+</tr>
+<tr>
+<td align="center">com.xunmeng.pinduoduo</td>
+<td align="center">拼多多</td>
+</tr>
+<tr>
+<td align="center">com.huawei.HwMultiScreenShot</td>
+<td align="center">滚动截屏</td>
+</tr>
+<tr>
+<td align="center">com.ss.android.article.news</td>
+<td align="center">今日头条</td>
+</tr>
+<tr>
+<td align="center">com.UCMobile</td>
+<td align="center">UC浏览器</td>
+</tr>
+<tr>
+<td align="center">com.android.keychain</td>
+<td align="center">密钥链</td>
+</tr>
+<tr>
+<td align="center">com.example.android.notepad</td>
+<td align="center">备忘录</td>
+</tr>
+<tr>
+<td align="center">com.huawei.nb.service</td>
+<td align="center">可删可禁用</td>
+</tr>
+<tr>
+<td align="center">com.huawei.lives</td>
+<td align="center">生活</td>
+</tr>
+<tr>
+<td align="center">com.google.android.marvin.talkback</td>
+<td align="center">TalkBack</td>
+</tr>
+<tr>
+<td align="center">com.android.carrierconfig</td>
+<td align="center">运营商配置</td>
+</tr>
+<tr>
+<td align="center">com.android.systEMUI.overlay</td>
+<td align="center">主题界面</td>
+</tr>
+<tr>
+<td align="center">com.huawei.fans</td>
+<td align="center">花粉俱乐部</td>
+</tr>
+<tr>
+<td align="center">com.baidu.searchbox</td>
+<td align="center">百度搜素</td>
+</tr>
+<tr>
+<td align="center">com.huawei.gamebox</td>
+<td align="center">华为游戏中心</td>
+</tr>
+<tr>
+<td align="center">com.wuba</td>
+<td align="center">58同城</td>
+</tr>
+<tr>
+<td align="center">com.unionpay.tsmservice</td>
+<td align="center">tsm服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hifolder</td>
+<td align="center">精品推荐</td>
+</tr>
+<tr>
+<td align="center">com.huawei.screenrecorder</td>
+<td align="center">屏幕录制</td>
+</tr>
+<tr>
+<td align="center">com.huawei.browser</td>
+<td align="center">浏览器</td>
+</tr>
+<tr>
+<td align="center">com.android.mediacenter</td>
+<td align="center">音乐</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.hiaidsengine</td>
+<td align="center">屏幕录制</td>
+</tr>
+<tr>
+<td align="center">com.huawei.contentsensor</td>
+<td align="center">取词</td>
+</tr>
+<tr>
+<td align="center">com.huawei.msdp</td>
+<td align="center">综合传感信息处理平台</td>
+</tr>
+<tr>
+<td align="center">com.huawei.suggestion</td>
+<td align="center">情景智能</td>
+</tr>
+<tr>
+<td align="center">com.huawei.search</td>
+<td align="center">智慧搜索</td>
+</tr>
+<tr>
+<td align="center">com.huawei.himovie</td>
+<td align="center">华为视频</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.findmyphone</td>
+<td align="center">查找我的手机</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.airsharing</td>
+<td align="center">多屏互动</td>
+</tr>
+<tr>
+<td align="center">com.huawei.skytone</td>
+<td align="center">天际通数据服务</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hbs.framework</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.lbs</td>
+<td align="center">HwLBSService</td>
+</tr>
+<tr>
+<td align="center">com.huawei.smartlocation</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">com.huawei.appmarket</td>
+<td align="center">华为应用市场</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.hwouc</td>
+<td align="center">系统更新</td>
+</tr>
+<tr>
+<td align="center">com.huawei.pengine</td>
+<td align="center">智能建议</td>
+</tr>
+<tr>
+<td align="center">com.huawei.videoeditor</td>
+<td align="center">视频编辑</td>
+</tr>
+<tr>
+<td align="center">com.huawei.contacts.sync</td>
+<td align="center">联系人同步</td>
+</tr>
+<tr>
+<td align="center">com.android.frameworkhwext.nova</td>
+<td align="center">更换主题</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.thememanager</td>
+<td align="center">主题</td>
+</tr>
+<tr>
+<td align="center">com.bjbyhd.screenreader_huawei</td>
+<td align="center">屏幕阅读</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.hwaps</td>
+<td align="center">智能分辨率</td>
+</tr>
+<tr>
+<td align="center">com.huawei.scenepack</td>
+<td align="center">华为旅行助手</td>
+</tr>
+<tr>
+<td align="center">com.android.printservice.recommendation</td>
+<td align="center">谷歌组件</td>
+</tr>
+<tr>
+<td align="center">com.huawei.pcassistant</td>
+<td align="center">电脑端工具</td>
+</tr>
+<tr>
+<td align="center">com.android.keyguard</td>
+<td align="center">华为杂志锁屏</td>
+</tr>
+<tr>
+<td align="center">com.android.providers.downloads.ui</td>
+<td align="center">下载内容</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hiai</td>
+<td align="center">智慧引擎</td>
+</tr>
+<tr>
+<td align="center">com.huawei.languagedownloader</td>
+<td align="center">下载语言</td>
+</tr>
+<tr>
+<td align="center">com.huawei.securitymgr</td>
+<td align="center">隐私空间</td>
+</tr>
+<tr>
+<td align="center">com.huawei.imedia.sws</td>
+<td align="center">音效管理</td>
+</tr>
+<tr>
+<td align="center">com.huawei.android.hsf</td>
+<td align="center">华为框架服务</td>
+</tr>
+<tr>
+<td align="center">com.baidu.input_huawei</td>
+<td align="center">百度输入法华为版</td>
+</tr>
+<tr>
+<td align="center">com.huawei.hwid</td>
+<td align="center">华为移动服务</td>
+</tr>
+<tr>
+<td align="center">com.android.cts.priv.ctsshim</td>
+<td align="center">旅行助手</td>
+</tr>
+</tbody></table>
+<h2 id="模拟操作"><a href="#模拟操作" class="headerlink" title="模拟操作"></a>模拟操作</h2><h3 id="am"><a href="#am" class="headerlink" title="am"></a>am</h3><p><code>am</code>命令是Android系统中的一个重要工具，用于与Activity Manager（活动管理器）进行交互。</p>
+<p>一般来说，am的常见使用方法有如下：</p>
+<ul>
+<li>启动activity：<code>adb shell am start -n &lt;package-name&gt;/&lt;activity-name&gt;</code></li>
+<li>启动service：<code>adb shell am startservice -n &lt;package-name&gt;/&lt;service-name&gt;</code></li>
+<li>强制停止activity：<code>adb shell am force-stop &lt;package-name&gt;</code></li>
+<li>发送广播：<code>adb shell am broadcast -a &lt;action&gt;</code></li>
+<li>杀死应用：<code>adb shell am kill &lt;package-name&gt;</code></li>
+</ul>
+<p>其中：</p>
+<ul>
+<li>**-a &lt;ACTION&gt;**：指定要执行的操作，例如<code>android.intent.action.VIEW</code>。</li>
+<li>**-n &lt;COMPONENT&gt;**：明确指定要启动的Activity或Service的组件名称，例如<code>com.example.package/.MainActivity</code>。</li>
+</ul>
+<h4 id="启动activity："><a href="#启动activity：" class="headerlink" title="启动activity："></a>启动activity：</h4><p><code>am start -a android.settings.SETTINGS</code>                   # 打开系统设置页面<br><code>am start -a android.intent.action.DIAL -d tel:10086</code>     # 打开拨号页面<br><code>am start -n com.android.mms/.ui.ConversationList</code>        # 打开短信会话列表</p>
+<h4 id="启动-停止service："><a href="#启动-停止service：" class="headerlink" title="启动/停止service："></a>启动/停止service：</h4><p>顺便普及一下安卓知识：</p>
+<blockquote>
+<p>在Android中，Activity和Service是两种不同的组件，它们有不同的功能和用途，但可以相互配合实现更丰富的应用程序功能。</p>
+<p><strong>Activity</strong> 是用户与应用程序交互的主要界面。它表示一个屏幕上的用户界面，并且通常与用户的交互相关联，比如接收用户的输入、展示信息等。Activity通常代表应用程序的一个单独屏幕或一个交互状态。例如，一个登录界面、设置页面或游戏的不同关卡都可以是不同的Activity。</p>
+<p><strong>Service</strong> 是一种后台运行的组件，用于执行长时间运行的操作或处理后台任务，而不需要直接与用户交互。Service可以在后台运行，即使用户切换到了其他应用或手机处于休眠状态，Service仍然可以继续运行。Service常常用于处理网络请求、播放音乐、执行文件下载、检索数据等需要长时间运行的任务。</p>
+<p>Activity和Service之间的关系可以是相互独立的，也可以相互配合：</p>
+<ol>
+<li><strong>Activity启动Service</strong>：Activity可以通过启动Service来执行后台任务，如在用户点击一个按钮后开始下载文件或播放音乐。</li>
+<li><strong>Service通知Activity</strong>：Service可以通过广播、回调或其他方式与Activity通信，向Activity发送数据或通知，让Activity更新界面或执行相应操作。</li>
+<li><strong>绑定Service到Activity</strong>：Activity可以绑定到Service，这样它们之间可以建立更紧密的连接，Activity可以直接调用Service提供的方法进行交互。</li>
+</ol>
+</blockquote>
+<p>启动service：<code>adb shell am startservice [options] &lt;intent&gt;</code></p>
+<p>停止service：<code>adb shell am stopservice [options] &lt;intent&gt;</code></p>
+<h4 id="广播操作（broadcast）："><a href="#广播操作（broadcast）：" class="headerlink" title="广播操作（broadcast）："></a>广播操作（broadcast）：</h4><p>可以向所有组件广播，也可以只向指定组件广播。<br>例如，向所有组件广播 <code>BOOT_COMPLETED</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast -a android.intent.action.BOOT_COMPLETED</span><br></pre></td></tr></table></figure>
+
+<p>又例如，只向 <code>com.android.receiver.test/.BootCompletedReceiver</code> 广播 <code>BOOT_COMPLETED</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast -a android.intent.action.BOOT_COMPLETED -n com.android.receiver.test/.BootCompletedReceiver</span><br></pre></td></tr></table></figure>
+
+<p>常见的事件有以下：</p>
+<table>
+<thead>
+<tr>
+<th>action</th>
+<th>触发时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>android.net.conn.CONNECTIVITY_CHANGE</td>
+<td>网络连接发生变化</td>
+</tr>
+<tr>
+<td>android.intent.action.SCREEN_ON</td>
+<td>屏幕点亮</td>
+</tr>
+<tr>
+<td>android.intent.action.SCREEN_OFF</td>
+<td>屏幕熄灭</td>
+</tr>
+<tr>
+<td>android.intent.action.BATTERY_LOW</td>
+<td>电量低，会弹出电量低提示框</td>
+</tr>
+<tr>
+<td>android.intent.action.BATTERY_OKAY</td>
+<td>电量恢复了</td>
+</tr>
+<tr>
+<td>android.intent.action.BOOT_COMPLETED</td>
+<td>设备启动完毕</td>
+</tr>
+<tr>
+<td>android.intent.action.DEVICE_STORAGE_LOW</td>
+<td>存储空间过低</td>
+</tr>
+<tr>
+<td>android.intent.action.DEVICE_STORAGE_OK</td>
+<td>存储空间恢复</td>
+</tr>
+<tr>
+<td>android.intent.action.PACKAGE_ADDED</td>
+<td>安装了新的应用</td>
+</tr>
+<tr>
+<td>android.net.wifi.STATE_CHANGE</td>
+<td>WiFi连接状态发生变化</td>
+</tr>
+<tr>
+<td>android.net.wifi.WIFI_STATE_CHANGED</td>
+<td>WiFi状态变为启用/关闭/正在启动/正在关闭/未知</td>
+</tr>
+<tr>
+<td>android.intent.action.BATTERY_CHANGED</td>
+<td>电池电量发生变化</td>
+</tr>
+<tr>
+<td>android.intent.action.INPUT_METHOD_CHANGED</td>
+<td>系统输入法发生变化</td>
+</tr>
+<tr>
+<td>android.intent.action.ACTION_POWER_CONNECTED</td>
+<td>外部电源连接</td>
+</tr>
+<tr>
+<td>android.intent.action.ACTION_POWER_DISCONNECTED</td>
+<td>外部电源断开连接</td>
+</tr>
+<tr>
+<td>android.intent.action.DREAMING_STARTED</td>
+<td>系统开始休眠</td>
+</tr>
+<tr>
+<td>android.intent.action.DREAMING_STOPPED</td>
+<td>系统停止休眠</td>
+</tr>
+<tr>
+<td>android.intent.action.WALLPAPER_CHANGED</td>
+<td>壁纸发生变化</td>
+</tr>
+<tr>
+<td>android.intent.action.HEADSET_PLUG</td>
+<td>插入耳机</td>
+</tr>
+<tr>
+<td>android.intent.action.MEDIA_UNMOUNTED</td>
+<td>卸载外部介质</td>
+</tr>
+<tr>
+<td>android.intent.action.MEDIA_MOUNTED</td>
+<td>挂载外部介质</td>
+</tr>
+<tr>
+<td>android.os.action.POWER_SAVE_MODE_CHANGED</td>
+<td>省电模式开启</td>
+</tr>
+</tbody></table>
+<p>然而：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210125315496.png" alt="image-20231210112859464"></p>
+<p>推测没有root权限是不能进行广播的。</p>
+<h4 id="终止程序："><a href="#终止程序：" class="headerlink" title="终止程序："></a>终止程序：</h4><ul>
+<li>强制停止activity：<code>adb shell am force-stop &lt;package-name&gt;</code></li>
+<li>停止应用：<code>adb shell am kill &lt;package-name&gt;</code></li>
+</ul>
+<p>二者的区别是，kill是正常停止应用进程，而force-stop是立即终止应用程序的所有组件，故后者的威力更大，但force-stop不会释放应用程序的资源或清除其数据，只是强制停止应用程序的运行。因此，当应用程序进程出现问题或者卡死时，使用force-stop，一般情况则使用kill就行。</p>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><p>文件操作实际并不复杂，和linux相同的<code>rm</code>、<code>mkdir</code>、<code>pwd</code>、<code>touch</code>、<code>cp</code>、<code>mv</code>等命令不做赘述。</p>
+<p>比较指的关注且常用的就是push和pull，用于手机和终端进行交互：</p>
+<p>从模拟器/设备下载指定的文件到计算机：<code>adb pull &lt;remote&gt; [local]</code></p>
+<p>指定的文件从计算机上传到模拟器/设备：<code>adb push &lt;local&gt; &lt;remote&gt;</code></p>
+<p>（pull和push需要在adb shell以外操作，毕竟不是adb shell pull）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210130305506.png" alt="image-20231210125315496"></p>
+<p><strong>内部储存：</strong></p>
+<p>手机文件管理-设备储存对应的目录是：/sdcard<br>各个应用的储存在：/sdcard/Andriod/data/&lt;package-name&gt;目录下，也就是应用数据目录：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210151612535.png" alt="image-20231210130305506"></p>
+<p>如相册为：/sdcard/DCIM；即/sdcard/Andriod/data/以外的储存位置就是非应用数据目录，两者的差异就是卸载应用的时候系统会清除应用数据目录下的文件。</p>
+<p><strong>外部储存：</strong></p>
+<p>用户软件目录为：/data 然而这个目录是需要root权限的，否则不可读，在对应目录下有权限划分，软件只能读取自身目录下的文件。</p>
+<p>举个例子：</p>
+<p>如何打开网易云音乐呢，首先我们手动打开网易云音乐软件，然后使用命令dumpsys获取activity名：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210151128822.png" alt="image-20231210151128822"></p>
+<p>然后<code>am start -n com.netease.cloudmusic/com.netease.cloudmusic.activity.IconChangeDefaultAlias</code></p>
+<p>就打开该软件啦；</p>
+<h3 id="输入操作"><a href="#输入操作" class="headerlink" title="输入操作"></a>输入操作</h3><h4 id="input"><a href="#input" class="headerlink" title="input"></a>input</h4><p><code>input</code>命令是在 Android 系统上模拟用户输入的工具，可以模拟各种输入设备（如触摸屏、键盘、鼠标等）的操作。以下是该命令的基本用法和参数：</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bashCopy code</span><br><span class="line">input [&lt;source&gt;] [-d DISPLAY_ID] &lt;command&gt; [&lt;arg&gt;...]</span><br></pre></td></tr></table></figure>
+
+<p><strong>命令参数解释</strong>：</p>
+<ul>
+<li><code>&lt;source&gt;</code>：指定输入设备的来源，如触摸屏（touchscreen）、键盘（keyboard）、鼠标（mouse）等。</li>
+<li><code>-d DISPLAY_ID</code>：指定显示器 ID。</li>
+<li><code>&lt;command&gt;</code>：指定要执行的操作命令。</li>
+<li><code>&lt;arg&gt;...</code>：相关参数。</li>
+</ul>
+<p><strong>可用命令及默认来源</strong>：</p>
+<ol>
+<li><code>text &lt;string&gt;</code>：在当前<strong>焦点位置输入文本</strong>（默认来源为 touchscreen）。</li>
+<li><code>keyevent [--longpress|--doubletap] &lt;key code number or name&gt; ...</code>：发送<strong>按键事件</strong>，可以是按键代码或者名称（默认来源为 keyboard）。</li>
+<li><code>tap &lt;x&gt; &lt;y&gt;</code>：在指定位置模拟点击（默认来源为 touchscreen）。</li>
+<li><code>swipe &lt;x1&gt; &lt;y1&gt; &lt;x2&gt; &lt;y2&gt; [duration(ms)]</code>：在屏幕上模拟滑动操作（默认来源为 touchscreen）。</li>
+<li><code>draganddrop &lt;x1&gt; &lt;y1&gt; &lt;x2&gt; &lt;y2&gt; [duration(ms)]</code>：模拟拖放操作（默认来源为 touchscreen）。</li>
+<li><code>press</code>：执行按压操作（默认来源为 trackball）。</li>
+<li><code>press&lt;dx&gt; &lt;dy&gt;</code>：模拟滚动操作（默认来源为 trackball）。</li>
+<li><code>motionevent &lt;DOWN|UP|MOVE|CANCEL&gt; &lt;x&gt; &lt;y&gt;</code>：发送原始的 MotionEvent 事件（默认来源为 touchscreen）。</li>
+<li><code>keycombination [-t duration(ms)] &lt;key code 1&gt; &lt;key code 2&gt; ...</code>：发送组合键事件（默认来源为 keyboard）。</li>
+</ol>
+<p>以text为例：</p>
+<p><code>adb shell input text &quot;hello world&quot;</code>就可以在手机焦点处输入hello world</p>
+<h4 id="按钮事件-keyevent实例"><a href="#按钮事件-keyevent实例" class="headerlink" title="按钮事件 - keyevent实例"></a>按钮事件 - keyevent实例</h4><p>具体可参看</p>
+<p><a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/view/KeyEvent">https://developer.android.com/reference/android/view/KeyEvent</a></p>
+<p><code>adb shell input keyevent &lt;keycode&gt;</code> 命令：</p>
+<table>
+<thead>
+<tr>
+<th>keycode</th>
+<th>含义</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>HOME 键</td>
+<td>KEYCODE_HOME</td>
+</tr>
+<tr>
+<td>4</td>
+<td>返回键</td>
+<td>FLAG_KEEP_TOUCH_MODE</td>
+</tr>
+<tr>
+<td>5</td>
+<td>打开拨号应用</td>
+<td>KEYCODE_CALL</td>
+</tr>
+<tr>
+<td>24</td>
+<td>增加音量</td>
+<td>KEYCODE_VOLUME_UP</td>
+</tr>
+<tr>
+<td>25</td>
+<td>降低音量</td>
+<td>KEYCODE_VOLUME_DOWN</td>
+</tr>
+<tr>
+<td>26</td>
+<td>电源键</td>
+<td>KEYCODE_POWER</td>
+</tr>
+<tr>
+<td>27</td>
+<td>摄像机照相（首先要启动相机应用）</td>
+<td>KEYCODE_CAMERA</td>
+</tr>
+<tr>
+<td>122</td>
+<td>移动光标到行首或列表顶部</td>
+<td>KEYCODE_MOVE_HOME</td>
+</tr>
+<tr>
+<td>123</td>
+<td>移动光标到行末或列表底部</td>
+<td>KEYCODE_MOVE_END</td>
+</tr>
+<tr>
+<td>220</td>
+<td>降低屏幕亮度</td>
+<td>KEYCODE_BRIGHTNESS_DOWN</td>
+</tr>
+<tr>
+<td>221</td>
+<td>提高屏幕亮度</td>
+<td>KEYCODE_BRIGHTNESS_UP</td>
+</tr>
+<tr>
+<td>164</td>
+<td>静音</td>
+<td>KEYCODE_VOLUME_MUTE</td>
+</tr>
+</tbody></table>
+<p>使用keycode 或者 对应的代码都可以。</p>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><p>press、roll等操作都需要手机上的坐标，因此稍微研究一下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210144459159.png" alt="image-20231210144459159"></p>
+<p>打开坐标后，会有屏幕上面的一部分显示坐标情况：</p>
+<p>当触摸时，会显示X、Y实时坐标（图中没有），完成一道轨迹后，会显示dx、dy，即起止点的变化情况，滑动时还会有Xv、Yv表示速度。</p>
+<p>有一些关键点：</p>
+<ul>
+<li><p>（0,0）在手机左上角，X向右增长、Y向下增长</p>
+</li>
+<li><p>左下角坐标约为（1450，3200），实际大小其实可以命令查到：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/lhl7/My_pics/Typora/image-20231210112859464.png" alt="image-20231210151612535"></p>
+</li>
+<li><p>正常滑动速度也就是Xv = 1左右</p>
+</li>
+</ul>
+<p>因此综上，举个例子，模拟一下锁屏的滑动操作：</p>
+<p><code>swipe &lt;x1&gt; &lt;y1&gt; &lt;x2&gt; &lt;y2&gt;</code>：<code>swipe 300 1000 300 500</code></p>
+<p>从坐标（300，1000）滑到（300，500）即在手机的左侧的上半部分，模拟了一次短程的向上滑动；</p>
+<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p>截图保存在电脑：<code>adb exec-out screencap -p &gt; sc.png</code></p>
+<p>或者先保存在手机<code>adb shell screencap -p /sdcard/sc.png</code>，然后导出到电脑<code>adb pull /sdcard/sc.png</code>；</p>
+<p>录制屏幕以 mp4 格式保存到 /sdcard：<code>adb shell screenrecord /sdcard/filename.mp4</code></p>
+<p>需要停止时按 Ctrl-C，默认录制时间和最长录制时间都是 180 秒。<br>如果需要导出到电脑：</p>
+<p><code>adb pull /sdcard/filename.mp4</code></p>
+<h2 id="获取activity"><a href="#获取activity" class="headerlink" title="获取activity"></a>获取activity</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yongfengnice/p/14268229.html">https://www.cnblogs.com/yongfengnice/p/14268229.html</a></p>
+<p>android开发获取手机当前界面Activity完整包名的解决方法</p>
+<ol>
+<li><p>电脑连上手机，终端输入：adb shell //进入手机终端</p>
+</li>
+<li><p>输入 logcat | grep cmp= //然后终端就进入了堵塞监听状态，比如 logcat | grep cmp=com.suyf.test 可以只查看该包名的信息</p>
+</li>
+<li><p>操作手机打开APP，终端就会监听显示出当前打开的APP包名和Activity名称。</p>
+<p>比如： START u0 {flg=0x10000000 cmp=com.miui.securitycenter/com.miui.permcenter.autostart.AutoStartManagementActivity} from uid 10514</p>
+<p>这个方法一般用于查看要跳转的第三方页面，很方便就可以查看到完整的页面路径。</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lhl_2507</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://lhl7.github.io/2023/12/10/adb%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/">https://lhl7.github.io/2023/12/10/adb%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/index.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/"><img class="next-cover" src="/img/index.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">lhl_2507</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">65</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">16</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/lhl7" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ADB%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0"><span class="toc-text">ADB使用学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ADB%E6%9C%8D%E5%8A%A1%E7%9B%B8%E5%85%B3"><span class="toc-text">ADB服务相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ADB%E8%BD%AF%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">ADB软件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD"><span class="toc-text">安装卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6%E6%80%9D%E8%B7%AF"><span class="toc-text">卸载软件思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pm"><span class="toc-text">pm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dumpsys"><span class="toc-text">dumpsys</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#huawei%E7%B3%BB%E7%BB%9F%E8%BD%AF%E4%BB%B6%E5%8D%B8%E8%BD%BD%E6%A1%88%E4%BE%8B"><span class="toc-text">huawei系统软件卸载案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E6%93%8D%E4%BD%9C"><span class="toc-text">模拟操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#am"><span class="toc-text">am</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8activity%EF%BC%9A"><span class="toc-text">启动activity：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-%E5%81%9C%E6%AD%A2service%EF%BC%9A"><span class="toc-text">启动&#x2F;停止service：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%BF%E6%92%AD%E6%93%8D%E4%BD%9C%EF%BC%88broadcast%EF%BC%89%EF%BC%9A"><span class="toc-text">广播操作（broadcast）：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E6%AD%A2%E7%A8%8B%E5%BA%8F%EF%BC%9A"><span class="toc-text">终止程序：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="toc-text">输入操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#input"><span class="toc-text">input</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6-keyevent%E5%AE%9E%E4%BE%8B"><span class="toc-text">按钮事件 - keyevent实例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%90%E6%A0%87"><span class="toc-text">坐标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-text">截图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96activity"><span class="toc-text">获取activity</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/10/adb%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/" title="adb使用学习">adb使用学习</a><time datetime="2023-12-10T07:53:34.110Z" title="Created 2023-12-10 15:53:34">2023-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/" title="LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)">LAnoBERT System Log Anomaly Detection based on BERT Masked Language Model (Reading note)</a><time datetime="2023-09-20T15:25:12.870Z" title="Created 2023-09-20 23:25:12">2023-09-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/06/25/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%90%86%E8%A7%A3/" title="环境变量理解">环境变量理解</a><time datetime="2023-06-25T06:44:15.229Z" title="Created 2023-06-25 14:44:15">2023-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/05/22/TLS%E6%8C%87%E7%BA%B9/" title="No title">No title</a><time datetime="2023-05-22T04:51:45.493Z" title="Created 2023-05-22 12:51:45">2023-05-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/04/22/Wireshark%E5%88%86%E6%9E%90TLS%E5%8D%8F%E8%AE%AE/" title="Wireshark分析TLS协议">Wireshark分析TLS协议</a><time datetime="2023-04-22T14:34:39.206Z" title="Created 2023-04-22 22:34:39">2023-04-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lhl_2507</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Local search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

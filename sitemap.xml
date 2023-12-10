@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lhl7.github.io/2023/12/10/adb%E4%BD%BF%E7%94%A8%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2023-12-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lhl7.github.io/2023/09/20/LAnoBERT%20System%20Log%20Anomaly%20Detection%20based%20on%20BERT%20Masked%20Language%20Model%20(Reading%20note)/</loc>
     
     <lastmod>2023-09-20</lastmod>
@@ -607,7 +616,7 @@
 
   <url>
     <loc>https://lhl7.github.io/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -617,112 +626,112 @@
   
   <url>
     <loc>https://lhl7.github.io/categories/cve/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/Note-re/</loc>
-    <lastmod>2023-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lhl7.github.io/categories/linux/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/kali/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lhl7.github.io/categories/linux/</loc>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/network/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/web/</loc>
-    <lastmod>2023-09-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://lhl7.github.io/categories/pwn/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/re-Note/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://lhl7.github.io/categories/pwn/</loc>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/other/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/python/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/reverse/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/pwns/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/ai/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/others/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/android/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lhl7.github.io/categories/environment/</loc>
-    <lastmod>2023-09-20</lastmod>
+    <lastmod>2023-12-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
